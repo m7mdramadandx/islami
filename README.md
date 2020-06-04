@@ -1,3 +1,5 @@
+# Islamic Awareness
+
 Android App for reading prophets stories and islamic quotes which needed in daily life
 
 ## Built With
