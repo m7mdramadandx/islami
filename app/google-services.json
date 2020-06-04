@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:678709494528:android:6f1b16499894895e07a9e5",
+        "mobilesdk_app_id": "1:678709494528:android:9b8023dcce8dd7ff07a9e5",
         "android_client_info": {
-          "package_name": "com.ramadan.theReminder"
+          "package_name": "com.ramadan.islamicAwareness"
         }
       },
       "oauth_client": [

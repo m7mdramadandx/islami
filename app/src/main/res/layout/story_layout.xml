@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    tools:context=".sampledata.Story">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="16dp"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.florent37.expansionpanel.ExpansionHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:padding="10dp"
+                    app:expansion_headerIndicator="@id/headerIndicator1"
+                    app:expansion_layout="@id/expansionLayout1"
+                    app:expansion_toggleOnClick="true">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Section-1"
+                        android:textColor="#fff" />
+
+                    <ImageView
+                        android:id="@+id/headerIndicator1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:adjustViewBounds="true"
+                        app:srcCompat="@drawable/expand" />
+                </com.github.florent37.expansionpanel.ExpansionHeader>
+
+                <com.github.florent37.expansionpanel.ExpansionLayout
+                    android:id="@+id/expansionLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/silver"
+                    android:isScrollContainer="true"
+                    android:padding="8dp"
+                    android:scrollbarThumbVertical="@drawable/story">
+
+                    <TextView
+                        android:id="@+id/section1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoSizeTextType="uniform"
+                        android:text="string/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/title"
+                        android:textAlignment="textStart"
+                        android:textColorHighlight="@color/colorAccent"
+                        android:textIsSelectable="true" />
+                </com.github.florent37.expansionpanel.ExpansionLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.florent37.expansionpanel.ExpansionHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="10dp"
+                    app:expansion_headerIndicator="@id/headerIndicator2"
+                    app:expansion_layout="@id/expansionLayout2"
+                    app:expansion_toggleOnClick="true">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Section-2"
+                        android:textColor="#fff" />
+
+                    <ImageView
+                        android:id="@+id/headerIndicator2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:adjustViewBounds="true"
+                        app:srcCompat="@drawable/expand" />
+                </com.github.florent37.expansionpanel.ExpansionHeader>
+
+                <com.github.florent37.expansionpanel.ExpansionLayout
+                    android:id="@+id/expansionLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/silver"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/section2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="all"
+                        android:autoSizeTextType="uniform"
+                        android:text="string/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/title"
+                        android:textAlignment="textStart"
+                        android:textColorHighlight="@color/colorAccent"
+                        android:textIsSelectable="true" />
+                </com.github.florent37.expansionpanel.ExpansionLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.florent37.expansionpanel.ExpansionHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="10dp"
+                    app:expansion_headerIndicator="@id/headerIndicator3"
+                    app:expansion_layout="@id/expansionLayout3"
+                    app:expansion_toggleOnClick="true">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Section-3"
+                        android:textColor="#fff" />
+
+                    <ImageView
+                        android:id="@+id/headerIndicator3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:adjustViewBounds="true"
+                        app:srcCompat="@drawable/expand" />
+                </com.github.florent37.expansionpanel.ExpansionHeader>
+
+                <com.github.florent37.expansionpanel.ExpansionLayout
+                    android:id="@+id/expansionLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/silver"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/section3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="all"
+                        android:autoSizeTextType="uniform"
+                        android:text="string/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/title"
+                        android:textAlignment="textStart"
+                        android:textColorHighlight="@color/colorAccent"
+                        android:textIsSelectable="true" />
+                </com.github.florent37.expansionpanel.ExpansionLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.florent37.expansionpanel.ExpansionHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="10dp"
+                    app:expansion_headerIndicator="@id/headerIndicator4"
+                    app:expansion_layout="@id/expansionLayout4"
+                    app:expansion_toggleOnClick="true">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Section-4"
+                        android:textColor="#fff" />
+
+                    <ImageView
+                        android:id="@+id/headerIndicator4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:adjustViewBounds="true"
+                        app:srcCompat="@drawable/expand" />
+                </com.github.florent37.expansionpanel.ExpansionHeader>
+
+                <com.github.florent37.expansionpanel.ExpansionLayout
+                    android:id="@+id/expansionLayout4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/silver"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/section4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="all"
+                        android:autoSizeTextType="uniform"
+                        android:text="string/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/title"
+                        android:textAlignment="textStart"
+                        android:textColorHighlight="@color/colorAccent"
+                        android:textIsSelectable="true" />
+                </com.github.florent37.expansionpanel.ExpansionLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.florent37.expansionpanel.ExpansionHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="10dp"
+                    app:expansion_headerIndicator="@id/headerIndicator5"
+                    app:expansion_layout="@id/expansionLayout5"
+                    app:expansion_toggleOnClick="true">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Section-5"
+                        android:textColor="#fff" />
+
+                    <ImageView
+                        android:id="@+id/headerIndicator5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:adjustViewBounds="true"
+                        app:srcCompat="@drawable/expand" />
+                </com.github.florent37.expansionpanel.ExpansionHeader>
+
+                <com.github.florent37.expansionpanel.ExpansionLayout
+                    android:id="@+id/expansionLayout5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/silver"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/section5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="all"
+                        android:autoSizeTextType="uniform"
+                        android:text="string/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/title"
+                        android:textAlignment="textStart"
+                        android:textColorHighlight="@color/colorAccent"
+                        android:textIsSelectable="true" />
+                </com.github.florent37.expansionpanel.ExpansionLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.florent37.expansionpanel.ExpansionHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="10dp"
+                    app:expansion_headerIndicator="@id/headerIndicator6"
+                    app:expansion_layout="@id/expansionLayout6"
+                    app:expansion_toggleOnClick="true">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Section-6"
+                        android:textColor="#fff" />
+
+                    <ImageView
+                        android:id="@+id/headerIndicator6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:adjustViewBounds="true"
+                        app:srcCompat="@drawable/expand" />
+                </com.github.florent37.expansionpanel.ExpansionHeader>
+
+                <com.github.florent37.expansionpanel.ExpansionLayout
+                    android:id="@+id/expansionLayout6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/silver"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/section6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="all"
+                        android:autoSizeTextType="uniform"
+                        android:text="string/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/title"
+                        android:textAlignment="textStart"
+                        android:textColorHighlight="@color/colorAccent"
+                        android:textIsSelectable="true" />
+                </com.github.florent37.expansionpanel.ExpansionLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.github.florent37.expansionpanel.ExpansionHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="10dp"
+                    app:expansion_headerIndicator="@id/headerIndicator7"
+                    app:expansion_layout="@id/expansionLayout7"
+                    app:expansion_toggleOnClick="true">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Section-7"
+                        android:textColor="#fff" />
+
+                    <ImageView
+                        android:id="@+id/headerIndicator7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:adjustViewBounds="true"
+                        app:srcCompat="@drawable/expand" />
+                </com.github.florent37.expansionpanel.ExpansionHeader>
+
+                <com.github.florent37.expansionpanel.ExpansionLayout
+                    android:id="@+id/expansionLayout7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/silver"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/section7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="all"
+                        android:autoSizeTextType="uniform"
+                        android:text="string/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/title"
+                        android:textAlignment="textStart"
+                        android:textColorHighlight="@color/colorAccent"
+                        android:textIsSelectable="true" />
+                </com.github.florent37.expansionpanel.ExpansionLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

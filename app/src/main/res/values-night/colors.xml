@@ -3,9 +3,10 @@
     <color name="colorPrimary">#162447</color>
     <color name="colorPrimaryDark">#17223b</color>
     <color name="colorAccent">#f0a500</color>
-    <color name="silver">#eeeeee</color>
-    <color name="colorBackground">#FFFFFF</color>
-    <color name="colorText">#162447</color>
+    <color name="silver">#272727</color>
+    <color name="colorBackground">#151515</color>
+    <color name="colorText">#fff</color>
     <color name="actionbar_background">#17223b</color>
     <color name="actionbar_text">#ffffff</color>
+
 </resources>

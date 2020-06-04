@@ -3,11 +3,9 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
     android:clickable="true"
     android:focusable="true"
     android:gravity="center"
-    android:minHeight="150dp"
     card_view:cardCornerRadius="14dp"
     card_view:cardElevation="8dp"
     card_view:cardPreventCornerOverlap="false"
@@ -15,7 +13,7 @@
 
 
     <ImageView
-        android:id="@+id/prophetImg"
+        android:id="@+id/categoryImg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -28,15 +26,15 @@
         android:background="@drawable/bg_overlay" />
 
     <TextView
-        android:id="@+id/prophetName"
+        android:id="@+id/categoryName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:paddingBottom="6dp"
-        android:text="prophetName"
+        android:paddingBottom="8dp"
+        android:text="categoryName"
         android:textAlignment="center"
         android:textColor="#fff"
-        android:textSize="18sp"
+        android:textSize="19sp"
         android:textStyle="bold" />
 
 </androidx.cardview.widget.CardView>
