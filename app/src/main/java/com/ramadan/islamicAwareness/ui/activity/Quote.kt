@@ -1,4 +1,4 @@
-package com.ramadan.islamicAwareness.sampledata
+package com.ramadan.islamicAwareness.ui.activity
 
 import android.content.Context
 import android.os.Bundle
@@ -10,12 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.ramadan.islamicAwareness.R
-import com.ramadan.islamicAwareness.ViewModel.ViewModel
+import com.ramadan.islamicAwareness.ui.adapter.QuoteImgAdapter
+import com.ramadan.islamicAwareness.ui.viewModel.ViewModel
 import com.smarteist.autoimageslider.IndicatorAnimations
-import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController.ClickListener
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
-import com.smarteist.imageslider.QuoteImgAdapter
 import com.squareup.picasso.Picasso
 
 
@@ -24,26 +23,28 @@ class Quote : AppCompatActivity() {
     private lateinit var sliderView: SliderView
     private lateinit var adapter: QuoteImgAdapter
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
-    private lateinit var category: String
+    private var category: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.quote_layout)
-        val bundle = intent?.extras
-        category = bundle?.getString("category").toString()
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         sliderView = findViewById(R.id.imageSlider)
         adapter = QuoteImgAdapter(this)
         sliderView.setSliderAdapter(adapter)
         sliderView.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
         sliderView.setSliderTransformAnimation(SliderAnimations.CUBEINSCALINGTRANSFORMATION)
-        sliderView.setOnIndicatorClickListener(ClickListener { position ->
+        sliderView.setOnIndicatorClickListener { position ->
             sliderView.currentPagePosition = position
-
-        })
-        setTitle()
+        }
         observeDate()
     }
 
-    private fun setTitle() {
+    override fun onStart() {
+        super.onStart()
+        category = intent.getStringExtra("category")!!
+        println(category)
         title = if (category == "Death") {
             "Judgement Day quotes"
         } else {
@@ -60,13 +61,12 @@ class Quote : AppCompatActivity() {
         Picasso.get()
             .load(imgUrl).error(R.drawable.error_img).placeholder(
                 R.drawable.load_img
-            )
-            .into(imageView)
+            ).into(imageView)
         alert.show()
     }
 
     private fun observeDate() {
-        viewModel.fetchQuote(category).observe(this, Observer {
+        viewModel.fetchQuote(category!!).observe(this, Observer {
             adapter.setDataList(it)
         })
     }

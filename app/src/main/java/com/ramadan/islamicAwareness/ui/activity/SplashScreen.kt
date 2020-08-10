@@ -1,4 +1,4 @@
-package com.ramadan.islamicAwareness.sampledata
+package com.ramadan.islamicAwareness.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,7 +14,7 @@ class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen)
-        actionBar?.hide()
+        supportActionBar?.hide()
         Handler().postDelayed(Runnable {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

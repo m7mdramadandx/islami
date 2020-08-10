@@ -1,17 +1,16 @@
-package com.ramadan.islamicAwareness.Adapter
+package com.ramadan.islamicAwareness.ui.adapter
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ramadan.islamicAwareness.Model.Category
 import com.ramadan.islamicAwareness.R
-import com.ramadan.islamicAwareness.sampledata.Quote
-import com.ramadan.islamicAwareness.sampledata.QuoteDashboard
+import com.ramadan.islamicAwareness.data.model.Category
+import com.ramadan.islamicAwareness.ui.activity.QuoteDashboard
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.quote_item.view.*
+import com.ramadan.islamicAwareness.ui.activity.Quote as QuoteActivity
 
 
 class QuoteAdapter(val context: QuoteDashboard) :
@@ -47,18 +46,16 @@ class QuoteAdapter(val context: QuoteDashboard) :
         fun customView(category: Category) {
             Picasso.get().load(category.imgUrl).error(R.drawable.error_img)
                 .placeholder(R.drawable.load_img).into(itemView.categoryImg)
-            if (category.name == "Death") {
+            if (category.name == "Death")
                 itemView.categoryName.text = "Judgement Day"
-            } else {
+            else
                 itemView.categoryName.text = category.name
+            itemView.setOnClickListener {
+                Intent(itemView.context, QuoteActivity::class.java).apply {
+                    putExtra("category", category.name)
+                    itemView.context.startActivity(this)
+                }
             }
-            itemView.setOnClickListener(View.OnClickListener {
-                val intent = Intent(itemView.context, Quote::class.java)
-                val bundle = Bundle()
-                bundle.putString("category", category.name)
-                intent.putExtras(bundle)
-                itemView.context.startActivity(intent)
-            })
         }
     }
 }

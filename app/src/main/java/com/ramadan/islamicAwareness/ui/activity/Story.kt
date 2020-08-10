@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package com.ramadan.islamicAwareness.sampledata
+package com.ramadan.islamicAwareness.ui.activity
 
 import android.content.Intent
 import android.graphics.Color
@@ -19,17 +19,21 @@ import kotlinx.android.synthetic.main.story_layout.*
 
 class Story : AppCompatActivity() {
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
-    private lateinit var prophetName: String
+    private var prophetName: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.story_layout)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        loadData()
+        initMenuFragment()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
         val bundle = intent.extras
         prophetName = bundle?.getString("prophetName").toString()
-        title = prophetName
-        actionBar?.setHomeButtonEnabled(true)
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBar?.isHideOnContentScrollEnabled
-        actionBar?.setDisplayUseLogoEnabled(true)
         section1.text = bundle?.getString("section1")
         section2.text = bundle?.getString("section2")
         section3.text = bundle?.getString("section3")
@@ -37,8 +41,7 @@ class Story : AppCompatActivity() {
         section5.text = bundle?.getString("section5")
         section6.text = bundle?.getString("section6")
         section7.text = bundle?.getString("section7")
-        loadData()
-        initMenuFragment()
+        supportActionBar?.title = prophetName
 
     }
 

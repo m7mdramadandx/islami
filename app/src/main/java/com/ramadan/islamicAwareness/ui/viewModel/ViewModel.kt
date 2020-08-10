@@ -1,12 +1,12 @@
-package com.ramadan.islamicAwareness.ViewModel
+package com.ramadan.islamicAwareness.ui.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ramadan.islamicAwareness.Model.Category
-import com.ramadan.islamicAwareness.Model.Prophet
-import com.ramadan.islamicAwareness.Model.Quote
-import com.ramadan.islamicAwareness.Repo.Repo
+import com.ramadan.islamicAwareness.data.model.Category
+import com.ramadan.islamicAwareness.data.model.Prophet
+import com.ramadan.islamicAwareness.data.model.Quote
+import com.ramadan.islamicAwareness.data.repo.Repo
 
 class ViewModel : ViewModel() {
     private val repo = Repo()

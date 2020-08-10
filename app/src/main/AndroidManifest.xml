@@ -10,13 +10,9 @@
         android:resizeableActivity="true"
         android:roundIcon="@drawable/round_icon"
         android:theme="@style/AppTheme">
-        <activity android:name=".sampledata.Quote" />
-        <activity android:name=".sampledata.Story" />
-        <activity
-            android:name=".sampledata.SplashScreen"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-
-
+        <activity android:name=".ui.activity.Quote" />
+        <activity android:name=".ui.activity.Story" />
+        <activity android:name=".ui.activity.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

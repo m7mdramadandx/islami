@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
-import com.ramadan.islamicAwareness.Adapter.ViewPagerAdapter
-import com.ramadan.islamicAwareness.sampledata.QuoteDashboard
-import com.ramadan.islamicAwareness.sampledata.StoryDashboard
+import com.ramadan.islamicAwareness.ui.activity.QuoteDashboard
+import com.ramadan.islamicAwareness.ui.activity.StoryDashboard
+import com.ramadan.islamicAwareness.ui.adapter.ViewPagerAdapter
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
             ViewPagerAdapter(supportFragmentManager, 0)
         viewPagerAdapter.addFragment(storyDashboard, "Stories")
         viewPagerAdapter.addFragment(quoteDashboard, "Quotes")
-        viewPager.adapter = viewPagerAdapter
         viewPager.adapter = viewPagerAdapter
         tabLayout.setupWithViewPager(viewPager)
         tabLayout.getTabAt(0)!!.setIcon(R.drawable.story)

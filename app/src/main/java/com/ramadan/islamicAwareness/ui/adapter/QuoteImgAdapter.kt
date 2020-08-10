@@ -1,11 +1,11 @@
-package com.smarteist.imageslider
+package com.ramadan.islamicAwareness.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ramadan.islamicAwareness.R
-import com.ramadan.islamicAwareness.sampledata.Quote
+import com.ramadan.islamicAwareness.data.model.Quote
 import com.smarteist.autoimageslider.SliderViewAdapter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.quote_img.view.*
@@ -14,9 +14,9 @@ import kotlinx.android.synthetic.main.quote_img.view.*
 class QuoteImgAdapter(val context: Context) :
     SliderViewAdapter<QuoteImgAdapter.CustomView>() {
 
-    private var dataList = mutableListOf<com.ramadan.islamicAwareness.Model.Quote>()
+    private var dataList = mutableListOf<Quote>()
 
-    fun setDataList(data: MutableList<com.ramadan.islamicAwareness.Model.Quote>) {
+    fun setDataList(data: MutableList<Quote>) {
         dataList = data
         notifyDataSetChanged()
 
@@ -29,7 +29,7 @@ class QuoteImgAdapter(val context: Context) :
     }
 
     override fun onBindViewHolder(viewHolder: CustomView, position: Int) {
-        val quote: com.ramadan.islamicAwareness.Model.Quote = dataList[position]
+        val quote: Quote = dataList[position]
         return viewHolder.customView(quote)
     }
 
@@ -39,8 +39,8 @@ class QuoteImgAdapter(val context: Context) :
 
     class CustomView(itemView: View) :
         ViewHolder(itemView) {
-        val _quote = Quote()
-        fun customView(quote: com.ramadan.islamicAwareness.Model.Quote) {
+        val _quote = com.ramadan.islamicAwareness.ui.activity.Quote()
+        fun customView(quote: Quote) {
             Picasso.get()
                 .load(quote.imgUrl).error(R.drawable.error_img).placeholder(R.drawable.load_img)
                 .into(itemView.hadithImg)

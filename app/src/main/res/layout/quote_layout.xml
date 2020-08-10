@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:orientation="vertical"
-    tools:context=".sampledata.Quote">
+    tools:context=".data.Quote">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

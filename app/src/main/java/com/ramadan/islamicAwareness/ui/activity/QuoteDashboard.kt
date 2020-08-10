@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package com.ramadan.islamicAwareness.sampledata
+package com.ramadan.islamicAwareness.ui.activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,9 +13,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.ramadan.islamicAwareness.Adapter.QuoteAdapter
 import com.ramadan.islamicAwareness.R
-import com.ramadan.islamicAwareness.ViewModel.ViewModel
+import com.ramadan.islamicAwareness.ui.adapter.QuoteAdapter
+import com.ramadan.islamicAwareness.ui.viewModel.ViewModel
 
 class QuoteDashboard : Fragment() {
     private lateinit var quoteAdapter: QuoteAdapter

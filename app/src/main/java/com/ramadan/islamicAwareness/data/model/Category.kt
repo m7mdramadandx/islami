@@ -1,4 +1,4 @@
-package com.ramadan.islamicAwareness.Model
+package com.ramadan.islamicAwareness.data.model
 
 
 class Category(name: String, imgUrl: String) {

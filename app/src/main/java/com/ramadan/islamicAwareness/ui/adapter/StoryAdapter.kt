@@ -1,4 +1,4 @@
-package com.ramadan.islamicAwareness.Adapter
+package com.ramadan.islamicAwareness.ui.adapter
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ramadan.islamicAwareness.Model.Prophet
 import com.ramadan.islamicAwareness.R
-import com.ramadan.islamicAwareness.sampledata.Story
-import com.ramadan.islamicAwareness.sampledata.StoryDashboard
+import com.ramadan.islamicAwareness.data.model.Prophet
+import com.ramadan.islamicAwareness.ui.activity.Story
+import com.ramadan.islamicAwareness.ui.activity.StoryDashboard
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.prophet_item.view.*
 

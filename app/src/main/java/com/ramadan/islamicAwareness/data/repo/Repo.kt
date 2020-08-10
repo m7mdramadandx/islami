@@ -1,12 +1,12 @@
-package com.ramadan.islamicAwareness.Repo
+package com.ramadan.islamicAwareness.data.repo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.ramadan.islamicAwareness.Model.Category
-import com.ramadan.islamicAwareness.Model.Prophet
-import com.ramadan.islamicAwareness.Model.Quote
+import com.ramadan.islamicAwareness.data.model.Category
+import com.ramadan.islamicAwareness.data.model.Prophet
+import com.ramadan.islamicAwareness.data.model.Quote
 
 class Repo {
 
