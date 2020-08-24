@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:orientation="vertical"
-    tools:context=".data.Story">
-
+    tools:context=".ui.activity.Story">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,6 +26,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <ExpandableListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextSwitcher
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </ExpandableListView>
 
                 <com.github.florent37.expansionpanel.ExpansionHeader
                     android:layout_width="match_parent"
@@ -85,7 +93,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorPrimaryDark"
                     android:padding="10dp"
                     app:expansion_headerIndicator="@id/headerIndicator2"
                     app:expansion_layout="@id/expansionLayout2"
@@ -154,7 +162,7 @@
                         android:id="@+id/headerIndicator3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right"
+                        android:layout_gravity="end"
                         android:adjustViewBounds="true"
                         app:srcCompat="@drawable/expand" />
                 </com.github.florent37.expansionpanel.ExpansionHeader>
@@ -189,7 +197,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorPrimaryDark"
                     android:padding="10dp"
                     app:expansion_headerIndicator="@id/headerIndicator4"
                     app:expansion_layout="@id/expansionLayout4"
@@ -293,7 +301,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorPrimaryDark"
                     android:padding="10dp"
                     app:expansion_headerIndicator="@id/headerIndicator6"
                     app:expansion_layout="@id/expansionLayout6"
@@ -386,8 +394,6 @@
                         android:textIsSelectable="true" />
                 </com.github.florent37.expansionpanel.ExpansionLayout>
             </LinearLayout>
-
         </LinearLayout>
-
     </ScrollView>
 </LinearLayout>

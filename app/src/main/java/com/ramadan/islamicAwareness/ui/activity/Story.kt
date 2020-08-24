@@ -30,8 +30,8 @@ class Story : AppCompatActivity() {
 
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         val bundle = intent.extras
         prophetName = bundle?.getString("prophetName").toString()
         section1.text = bundle?.getString("section1")

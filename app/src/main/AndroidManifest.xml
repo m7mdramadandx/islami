@@ -5,10 +5,10 @@
     <application
         android:allowBackup="true"
         android:appCategory="social"
-        android:icon="@drawable/icon"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:resizeableActivity="true"
-        android:roundIcon="@drawable/round_icon"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.Quote" />
         <activity android:name=".ui.activity.Story" />

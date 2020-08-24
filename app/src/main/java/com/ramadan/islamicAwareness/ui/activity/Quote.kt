@@ -41,8 +41,8 @@ class Quote : AppCompatActivity() {
         observeDate()
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         category = intent.getStringExtra("category")!!
         println(category)
         title = if (category == "Death") {
