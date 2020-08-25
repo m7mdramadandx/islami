@@ -1,9 +1,10 @@
 package com.ramadan.islamicAwareness.ui.activity
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -23,11 +24,17 @@ class Quote : AppCompatActivity() {
     private lateinit var sliderView: SliderView
     private lateinit var adapter: QuoteImgAdapter
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
-    private var category: String? = null
+    private var category: String? = "null"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.quote_layout)
+        category = intent?.getStringExtra("category")
+        supportActionBar?.title = if (category == "Death") {
+            "Judgement Day quotes"
+        } else {
+            "$category quotes"
+        }
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         sliderView = findViewById(R.id.imageSlider)
@@ -41,28 +48,18 @@ class Quote : AppCompatActivity() {
         observeDate()
     }
 
-    override fun onResume() {
-        super.onResume()
-        category = intent.getStringExtra("category")!!
-        println(category)
-        title = if (category == "Death") {
-            "Judgement Day quotes"
-        } else {
-            "$category quotes"
-        }
-    }
-
-    fun x(imgUrl: String, context: Context) {
-        val alert: AlertDialog.Builder = AlertDialog.Builder(context)
-        val factory = LayoutInflater.from(context)
-        val view: View = factory.inflate(R.layout.alert_dialog, null)
+    fun showImg(imgUrl: String, context: Context) {
+        val dialogBuilder = AlertDialog.Builder(context)
+        val view = LayoutInflater.from(context).inflate(R.layout.img_dialog, null)
+        dialogBuilder.setView(view)
+        val alertDialog = dialogBuilder.create()
         val imageView: ImageView = view.findViewById(R.id.quoteImg)
-        alert.setView(view)
         Picasso.get()
             .load(imgUrl).error(R.drawable.error_img).placeholder(
                 R.drawable.load_img
             ).into(imageView)
-        alert.show()
+        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
     }
 
     private fun observeDate() {

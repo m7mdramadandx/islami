@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -20,25 +19,16 @@ import com.ramadan.islamicAwareness.ui.viewModel.ViewModel
 class StoryDashboard : Fragment() {
     private lateinit var prophetsAdapter: StoryAdapter
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
-    lateinit var progress: ProgressBar
-    private fun observeDate() {
-        viewModel.fetchStory().observe(this, Observer {
-            prophetsAdapter.setDataList(it)
-        })
-        progress.visibility = View.GONE
-    }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         observeDate()
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.recycle_view, container, false)
-        progress = view.findViewById(R.id.progress_circular)
         prophetsAdapter = StoryAdapter(this)
         val recyclerView: RecyclerView = view.findViewById(R.id.dashboardRecycleView)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
@@ -46,4 +36,11 @@ class StoryDashboard : Fragment() {
         recyclerView.adapter = prophetsAdapter
         return view
     }
+
+    private fun observeDate() {
+        viewModel.fetchStory().observe(this, Observer {
+            prophetsAdapter.setDataList(it)
+        })
+    }
+
 }

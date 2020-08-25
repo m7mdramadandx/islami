@@ -45,7 +45,7 @@ class QuoteImgAdapter(val context: Context) :
                 .load(quote.imgUrl).error(R.drawable.error_img).placeholder(R.drawable.load_img)
                 .into(itemView.hadithImg)
             itemView.setOnClickListener(View.OnClickListener {
-                _quote.x(quote.imgUrl!!, itemView.context)
+                _quote.showImg(quote.imgUrl!!, itemView.context)
             })
         }
     }

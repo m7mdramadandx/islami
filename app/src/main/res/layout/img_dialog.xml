@@ -4,17 +4,15 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@android:color/white"
-    card_view:cardCornerRadius="14dp">
+    card_view:cardBackgroundColor="@android:color/transparent"
+    card_view:cardCornerRadius="25dp">
 
     <ImageView
         android:id="@+id/quoteImg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@android:color/transparent"
-        android:minWidth="300dp"
-        android:minHeight="500dp"
         android:src="@drawable/error_img" />
 
 </androidx.cardview.widget.CardView>

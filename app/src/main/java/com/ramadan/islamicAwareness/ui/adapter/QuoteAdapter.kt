@@ -53,6 +53,7 @@ class QuoteAdapter(val context: QuoteDashboard) :
             itemView.setOnClickListener {
                 Intent(itemView.context, QuoteActivity::class.java).apply {
                     putExtra("category", category.name)
+                    println(category.name + " +++")
                     itemView.context.startActivity(this)
                 }
             }

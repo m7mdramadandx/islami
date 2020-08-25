@@ -9,7 +9,6 @@ import com.ramadan.islamicAwareness.R
 
 
 class SplashScreen : AppCompatActivity() {
-    private val timeOut: Long = 2500
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +18,6 @@ class SplashScreen : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, timeOut)
+        }, 2000)
     }
 }
