@@ -21,5 +21,5 @@ Android App for reading prophets stories and islamic quotes which needed in dail
 
 <img src="Screenshot/222.png" width=200> <img src="Screenshot/01.png" width=200> <img src="Screenshot/02.png" width=200> 
 
-<img src="Screenshot/Screenshot_1596942617.png" width=200> <img src="Screenshot/Screenshot_1596942621.png" width=200>  <img src="Screenshot/Screenshot_1596942615.png" width=200> 
+<img src="Screenshot/011.png" width=200> <img src="Screenshot/Screenshot_1596942621.png" width=200>  <img src="Screenshot/Screenshot_1596942547.png" width=200> 
 
