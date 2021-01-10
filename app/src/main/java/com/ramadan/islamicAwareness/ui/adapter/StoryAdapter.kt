@@ -30,11 +30,10 @@ class StoryAdapter(val context: StoryDashboard) :
     }
 
     override fun getItemCount(): Int {
-        if (dataList.size > 0) {
-            return dataList.size
+        return if (dataList.size > 0) {
+            dataList.size
         } else {
-            return 0
-
+            0
         }
     }
 
@@ -50,7 +49,7 @@ class StoryAdapter(val context: StoryDashboard) :
             Picasso.get().load(prophet.imgUrl).error(R.drawable.error_img)
                 .placeholder(R.drawable.load_img).into(itemView.prophetImg)
             itemView.prophetName.text = prophet.name
-            itemView.setOnClickListener(View.OnClickListener {
+            itemView.setOnClickListener {
                 val intent = Intent(itemView.context, Story::class.java)
                 val bundle = Bundle()
                 bundle.putString("prophetName", prophet.name)
@@ -63,7 +62,7 @@ class StoryAdapter(val context: StoryDashboard) :
                 bundle.putString("section7", prophet.section7)
                 intent.putExtras(bundle)
                 itemView.context.startActivity(intent)
-            })
+            }
 
         }
     }

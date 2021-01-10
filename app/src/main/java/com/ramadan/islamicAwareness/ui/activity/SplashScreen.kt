@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.ramadan.islamicAwareness.ui.activity
 
 import android.content.Intent
@@ -14,10 +16,9 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen)
         supportActionBar?.hide()
-        Handler().postDelayed(Runnable {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+        Handler().postDelayed({
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }, 2000)
+        }, 1500)
     }
 }

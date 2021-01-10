@@ -1,5 +1,10 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="tool_bar_height">56dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="treeview_left_padding">8</dimen>
+    <dimen name="treeview_top_padding">8</dimen>
+    <dimen name="treeview_right_padding">8</dimen>
+    <dimen name="treeview_bottom_padding">8</dimen>
 
 </resources>

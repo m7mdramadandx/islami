@@ -24,7 +24,7 @@ class Story : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.story_layout)
         val bundle = intent.extras
-        prophetName = bundle?.getString("prophetName").toString()
+        prophetName = bundle?.getString("prophetName")
         section1.text = bundle?.getString("section1")
         section2.text = bundle?.getString("section2")
         section3.text = bundle?.getString("section3")
@@ -35,11 +35,13 @@ class Story : AppCompatActivity() {
         supportActionBar?.title = prophetName
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        accessibility_custom_action_0.setOnLongClickListener { view -> view.isFocused }
         loadData()
         initMenuFragment()
 
     }
-    
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
@@ -50,12 +52,10 @@ class Story : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        item?.let {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        item.let {
             when (it.itemId) {
-                R.id.context_menu -> {
-                    showContextMenuDialogFragment()
-                }
+                R.id.context_menu -> showContextMenuDialogFragment()
             }
         }
         return super.onOptionsItemSelected(item)
@@ -71,13 +71,13 @@ class Story : AppCompatActivity() {
 
         contextMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams).apply {
             menuItemClickListener = { view, position ->
-                if (position == 1) {
+                if (position == 0) {
                     val intent = Intent()
                     intent.action = Intent.ACTION_VIEW
                     intent.addCategory(Intent.CATEGORY_BROWSABLE)
                     intent.data = Uri.parse("https://translate.google.com/")
                     startActivity(intent)
-                } else if (position == 2) {
+                } else if (position == 1) {
                     val intent = Intent()
                     intent.action = Intent.ACTION_VIEW
                     intent.addCategory(Intent.CATEGORY_BROWSABLE)
@@ -89,15 +89,12 @@ class Story : AppCompatActivity() {
     }
 
     private fun getMenuObjects() = mutableListOf<MenuObject>().apply {
-        val empty = MenuObject().apply {}
-        empty.setBgColorValue((Color.rgb(23, 34, 59)))
         val translate =
             MenuObject("Translate words").apply { setResourceValue(R.drawable.translate) }
         translate.setBgColorValue((Color.rgb(22, 36, 71)))
         val wikipidia =
             MenuObject("Who's $prophetName").apply { setResourceValue(R.drawable.wikipedia) }
         wikipidia.setBgColorValue((Color.rgb(23, 34, 59)))
-        add(empty)
         add(translate)
         add(wikipidia)
     }
