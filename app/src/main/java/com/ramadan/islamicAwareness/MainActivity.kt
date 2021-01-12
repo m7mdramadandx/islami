@@ -11,17 +11,18 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.viewpager.widget.ViewPager
 import com.google.android.gms.ads.*
 import com.google.android.material.tabs.TabLayout
-import com.ramadan.islamicAwareness.ui.activity.ProphetsTree
+import com.ramadan.islamicAwareness.ui.activity.FamilyTree
 import com.ramadan.islamicAwareness.ui.activity.QuoteDashboard
 import com.ramadan.islamicAwareness.ui.activity.StoryDashboard
+import com.ramadan.islamicAwareness.ui.activity.Topics
 import com.ramadan.islamicAwareness.ui.adapter.ViewPagerAdapter
 import com.ramadan.islamicAwareness.utils.LocaleHelper
-
 
 class MainActivity : AppCompatActivity() {
     private val quoteDashboard: QuoteDashboard = QuoteDashboard()
     private val storyDashboard: StoryDashboard = StoryDashboard()
-    private val prophetsTree: ProphetsTree = ProphetsTree()
+    private val familyTree: FamilyTree = FamilyTree()
+    private val topics: Topics = Topics()
     private lateinit var mAdView: AdView
     private lateinit var mInterstitialAd: InterstitialAd
     private val localeHelper = LocaleHelper()
@@ -34,12 +35,14 @@ class MainActivity : AppCompatActivity() {
         val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager, 0)
         viewPagerAdapter.addFragment(storyDashboard, getString(R.string.stories))
         viewPagerAdapter.addFragment(quoteDashboard, getString(R.string.quotes))
-        viewPagerAdapter.addFragment(prophetsTree, getString(R.string.prophets_tree))
+        viewPagerAdapter.addFragment(familyTree, getString(R.string.prophets_tree))
+        viewPagerAdapter.addFragment(topics, getString(R.string.topics))
         viewPager.adapter = viewPagerAdapter
         tabLayout.setupWithViewPager(viewPager)
         tabLayout.getTabAt(0)!!.setIcon(R.drawable.story)
         tabLayout.getTabAt(1)!!.setIcon(R.drawable.quote)
-        tabLayout.getTabAt(2)!!.setIcon(R.drawable.googleg_disabled_color_18)
+        tabLayout.getTabAt(2)!!.setIcon(R.drawable.family_tree)
+        tabLayout.getTabAt(3)!!.setIcon(R.drawable.topic)
 
 
         MobileAds.initialize(this, getString(R.string.ad_id))

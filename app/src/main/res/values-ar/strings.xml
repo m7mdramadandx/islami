@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="stories">القصص</string>
+    <string name="app_name">الوعي الإسلامي</string>
+    <string name="quotes">نصوص</string>
+    <string name="prophets_tree">شجرة الأنبياء</string>
+    <string name="language">اللغة</string>
+    <string name="topics">مواضيع مهمة</string>
+    <string name="adam">أدم 1000</string>
+
+</resources>

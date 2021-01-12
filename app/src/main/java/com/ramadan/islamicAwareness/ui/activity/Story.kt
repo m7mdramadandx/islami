@@ -35,8 +35,10 @@ class Story : AppCompatActivity() {
         supportActionBar?.title = prophetName
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        accessibility_custom_action_0.setOnLongClickListener { view -> view.isFocused }
+        ss.addListener { expansionLayout, expanded ->
+            if (expanded)
+                println("****")
+        }
         loadData()
         initMenuFragment()
 
