@@ -44,7 +44,6 @@ class StoryAdapter(val context: StoryDashboard) :
 
 
     inner class CustomView(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val story = Story()
         fun customView(prophet: Prophet) {
             Picasso.get().load(prophet.imgUrl).error(R.drawable.error_img)
                 .placeholder(R.drawable.load_img).into(itemView.prophetImg)

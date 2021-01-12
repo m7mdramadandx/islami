@@ -6,7 +6,7 @@
     android:background="@color/silver">
 
     <ImageView
-        android:id="@+id/hadithImg"
+        android:id="@+id/sliderImg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:minHeight="500dp"

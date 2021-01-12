@@ -1,14 +1,7 @@
 package com.ramadan.islamicAwareness.ui.activity
 
-import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.widget.ImageView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.ramadan.islamicAwareness.R
 import com.ramadan.islamicAwareness.ui.adapter.QuoteImgAdapter
@@ -16,13 +9,14 @@ import com.ramadan.islamicAwareness.ui.viewModel.ViewModel
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
-import com.squareup.picasso.Picasso
 
 
 @Suppress("DEPRECATION")
 class Quote : AppCompatActivity() {
     private lateinit var sliderView: SliderView
+    private lateinit var sliderView1: SliderView
     private lateinit var adapter: QuoteImgAdapter
+    private lateinit var adapter1: QuoteImgAdapter
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private var category: String? = "null"
 
@@ -30,41 +24,37 @@ class Quote : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.quote_layout)
         category = intent?.getStringExtra("category")
-        supportActionBar?.title = if (category == "Death") {
+        supportActionBar!!.title = if (category == "Death") {
             "Judgement Day quotes"
         } else {
             "$category quotes"
         }
-        supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        sliderView = findViewById(R.id.imageSlider)
+        supportActionBar!!.setHomeButtonEnabled(true)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         adapter = QuoteImgAdapter(this)
+        sliderView = findViewById(R.id.imageSlider)
         sliderView.setSliderAdapter(adapter)
         sliderView.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
         sliderView.setSliderTransformAnimation(SliderAnimations.CUBEINSCALINGTRANSFORMATION)
         sliderView.setOnIndicatorClickListener { position ->
             sliderView.currentPagePosition = position
         }
+
+        adapter1 = QuoteImgAdapter(this)
+        sliderView1 = findViewById(R.id.imageSlider1)
+        sliderView1.setSliderAdapter(adapter1)
+        sliderView1.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
+        sliderView1.setSliderTransformAnimation(SliderAnimations.CUBEINSCALINGTRANSFORMATION)
+        sliderView1.setOnIndicatorClickListener { position ->
+            sliderView1.currentPagePosition = position
+        }
         observeDate()
     }
 
-    fun showImg(imgUrl: String, context: Context) {
-        val dialogBuilder = AlertDialog.Builder(context)
-        val view = LayoutInflater.from(context).inflate(R.layout.img_dialog, null)
-        dialogBuilder.setView(view)
-        val alertDialog = dialogBuilder.create()
-        val imageView: ImageView = view.findViewById(R.id.quoteImg)
-        Picasso.get()
-            .load(imgUrl).error(R.drawable.error_img).placeholder(
-                R.drawable.load_img
-            ).into(imageView)
-        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        alertDialog.show()
-    }
-
     private fun observeDate() {
-        viewModel.fetchQuote(category!!).observe(this, Observer {
+        viewModel.fetchQuote(category!!).observe(this, {
             adapter.setDataList(it)
+            adapter1.setDataList(it)
         })
     }
 }

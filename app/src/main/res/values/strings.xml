@@ -13,32 +13,34 @@
     <string name="language">language</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="topics">Important Topics</string>
-    <string name="adam">Adam (1000)</string>
-    <string name="aron">Aron (122)</string>
-    <string name="abraham">Abraham (200)</string>
-    <string name="david">David (100)</string>
-    <string name="dhul_kifl">Dhul-Kifl</string>
-    <string name="eisha">Eisha</string>
-    <string name="elias">Elias</string>
-    <string name="heber">Heber (464)</string>
-    <string name="idriss">Idriss (865)</string>
-    <string name="isaac">Isaac (180)</string>
-    <string name="isiah">Isiah</string>
-    <string name="ishmael">Ishmael (137)</string>
-    <string name="jacob">jacob (147)</string>
-    <string name="jonah">Jonah</string>
-    <string name="jesus">Jesus ---</string>
-    <string name="jethri">Jethri</string>
-    <string name="job">Job (93)</string>
-    <string name="joseph">Joseph (110)</string>
-    <string name="john">John</string>
-    <string name="lot">Lot</string>
-    <string name="methusaleh">Methusaleh</string>
-    <string name="moses">Moses (120)</string>
-    <string name="muhammad">MUHAMMAD (63)</string>
-    <string name="noah">Noah (950)</string>
-    <string name="solomon">Solomon (52)</string>
-    <string name="zecharia">Zecharia (150)</string>
+    <string name="adam">1) Adam (1000)</string>
+    <string name="aron">16) Aron (122)</string>
+    <string name="abraham">7) Abraham (200)</string>
+    <string name="david">17) David (100)</string>
+    <string name="dhul_kifl">14) Dhul-Kifl</string>
+    <string name="elisha">20) Elisha</string>
+    <string name="elias">19) Elias</string>
+    <string name="heber">4) Heber (464)</string>
+    <string name="idriss">2) Idriss (865)</string>
+    <string name="isaac">9) Isaac (180)</string>
+    <string name="ishmael">8) Ishmael (137)</string>
+    <string name="jacob">10) jacob (147)</string>
+    <string name="jonah">21) Jonah</string>
+    <string name="jesus">24) Jesus —
+        son of Mary</string>
+    <string name="jethri">12) Jethri</string>
+    <string name="job">13) Job (93)</string>
+    <string name="joseph">11) Joseph (110)</string>
+    <string name="john">23) John</string>
+    <string name="lot">6) Lot</string>
+    <string name="methuselah">5) Methuselah</string>
+    <string name="moses">15) Moses (120)</string>
+    <string name="muhammad">25) MUHAMMAD (63)</string>
+    <string name="noah">3) Noah (950)</string>
+    <string name="solomon">18) Solomon (52)</string>
+    <string name="zacharia">22) Zacharia (150)</string>
+
+
     <string name="hashim_ibn_abd_manaf">Hashim Ibn Abd Manaf</string>
     <string name="abd_almuttalib">Abd Almuttalib</string>
     <string name="abd_allah">Abd Allah</string>
@@ -65,5 +67,6 @@
     <string name="hussein">hussein</string>
     <string name="hassan">hassan</string>
     <string name="muhsin">muhsin</string>
+    <string name="arabized_arabs">Arabized Arabs</string>
 
 </resources>

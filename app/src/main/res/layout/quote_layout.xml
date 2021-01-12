@@ -10,14 +10,36 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginHorizontal="12dp"
         android:layout_marginVertical="36dp"
+        android:layout_weight="1"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp">
 
         <com.smarteist.autoimageslider.SliderView
             android:id="@+id/imageSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/silver"
+            app:sliderAnimationDuration="500"
+            app:sliderIndicatorAnimationDuration="600"
+            app:sliderIndicatorSelectedColor="@color/colorAccent"
+            app:sliderIndicatorUnselectedColor="@color/colorPrimary"
+            app:sliderScrollTimeInSec="4" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginVertical="36dp"
+        android:layout_weight="1"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp">
+
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/imageSlider1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/silver"

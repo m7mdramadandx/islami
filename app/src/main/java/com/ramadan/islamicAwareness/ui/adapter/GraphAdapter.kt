@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import com.google.android.material.snackbar.Snackbar
 import com.ramadan.islamicAwareness.R
 import de.blox.graphview.Graph
@@ -26,15 +27,18 @@ class GraphAdapter(itemView: Graph) : GraphAdapter<GraphView.ViewHolder>(itemVie
     }
 
     override fun onBindViewHolder(viewHolder: GraphView.ViewHolder, data: Any, position: Int) {
-        (viewHolder as SimpleViewHolder).textView.text =
-            data.toString().removePrefix("Node(data=").removeSuffix(")")
+        val dataNode = data.toString().removePrefix("Node(data=").removeSuffix(")")
+        (viewHolder as SimpleViewHolder).textView.text = dataNode
+        if (dataNode.contains("MUHAMMAD")) {
+            viewHolder.nodeCard.setCardBackgroundColor(Color.rgb(0,200,83))
+        }
         viewHolder.textView.setOnClickListener {
-            Snackbar.make(it, it.nodeText.text, Snackbar.LENGTH_LONG).setBackgroundTint(Color.WHITE)
-                .show()
+            Snackbar.make(it, it.nodeText.text, Snackbar.LENGTH_LONG).show()
         }
     }
 
     class SimpleViewHolder(itemView: View) : GraphView.ViewHolder(itemView) {
         var textView: TextView = itemView.findViewById(R.id.nodeText)
+        var nodeCard: CardView = itemView.findViewById(R.id.nodeCard)
     }
 }
