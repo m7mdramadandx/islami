@@ -7,7 +7,8 @@ import com.ramadan.islamicAwareness.ui.adapter.GraphAdapter
 import com.ramadan.islamicAwareness.utils.Utils
 import de.blox.graphview.Graph
 import de.blox.graphview.GraphView
-import de.blox.graphview.layered.SugiyamaAlgorithm
+import de.blox.graphview.Node
+import de.blox.graphview.tree.BuchheimWalkerAlgorithm
 import de.blox.graphview.tree.BuchheimWalkerConfiguration
 
 class MuhammadTree : AppCompatActivity() {
@@ -25,7 +26,7 @@ class MuhammadTree : AppCompatActivity() {
 
         graph.addEdge(utils.hashim_ibn_abd_manaf, utils.abd_almuttalib)
         graph.addEdge(utils.abd_almuttalib, utils.abd_allah)
-        graph.addEdge(utils.aminah_bint_wahab, utils.abd_allah)
+//        graph.addEdge(utils.aminah_bint_wahab, utils.abd_allah)
         graph.addEdge(utils.abd_allah, utils.muhammad)
         graph.addEdge(utils.muhammad, utils.khadija)
         graph.addEdge(utils.muhammad, utils.sawada)
@@ -40,16 +41,17 @@ class MuhammadTree : AppCompatActivity() {
         graph.addEdge(utils.muhammad, utils.maymuma)
         graph.addEdge(utils.muhammad, utils.maria)
 //        graph.addEdge(utils.khadija, Node(getString(R.string.abd_allah)))
-//        graph.addEdge(utils.khadija, utils.al_qasim)
-//        graph.addEdge(utils.khadija, utils.zainab)
-//        graph.addEdge(utils.khadija, utils.fatima)
-//        graph.addEdge(utils.fatima, utils.hussein)
-//        graph.addEdge(utils.fatima, utils.hassan)
-//        graph.addEdge(utils.fatima, utils.muhsin)
-//        graph.addEdge(utils.fatima, utils.umm_kalthum)
+        graph.addEdge(utils.khadija, utils.al_qasim)
+        graph.addEdge(utils.khadija, utils.zainab)
+        graph.addEdge(utils.khadija, utils.fatima)
+        graph.addEdge(utils.fatima, utils.hussein)
+        graph.addEdge(utils.fatima, utils.hassan)
+        graph.addEdge(utils.fatima, utils.muhsin)
+        graph.addEdge(utils.fatima, utils.umm_kalthum)
 //        graph.addEdge(utils.fatima, utils.zainab)
-//        graph.addEdge(utils.khadija, utils.umm_kalthum)
-//        graph.addEdge(utils.khadija, utils.ruqayyah)
+        val umm_kalthum = Node(getString(R.string.umm_kalthum))
+//        graph.addEdge(utils.khadija, umm_kalthum)
+        graph.addEdge(utils.khadija, utils.ruqayyah)
 //        graph.addEdge(utils.ruqayyah, Node(getString(R.string.abd_allah)))
 
         val graphAdapter = GraphAdapter(graph);
@@ -60,6 +62,6 @@ class MuhammadTree : AppCompatActivity() {
             .setLevelSeparation(100)
             .setSubtreeSeparation(50)
             .build()
-        graphView?.setLayout(SugiyamaAlgorithm())
+        graphView?.setLayout(BuchheimWalkerAlgorithm(configuration))
     }
 }

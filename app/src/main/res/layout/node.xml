@@ -8,7 +8,7 @@
     android:layout_margin="5dp"
     card_view:cardBackgroundColor="@color/colorPrimary"
     card_view:cardCornerRadius="10dp"
-    card_view:cardElevation="16dp"
+    card_view:cardElevation="12dp"
     card_view:contentPadding="10dp">
 
 
@@ -17,6 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="nodeText"
+        android:textSize="19sp"
         android:textColor="@android:color/white" />
 
 </androidx.cardview.widget.CardView>
