@@ -1,7 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="treeview_left_padding">8</dimen>
-    <dimen name="treeview_top_padding">8</dimen>
-    <dimen name="treeview_right_padding">8</dimen>
-    <dimen name="treeview_bottom_padding">8</dimen>
-</resources>
+<resources></resources>

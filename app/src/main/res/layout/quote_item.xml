@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_height="220dp"
     android:layout_gravity="center"
-    android:clickable="true"
-    android:focusable="true"
-    card_view:cardCornerRadius="14dp"
+    android:gravity="center"
+    card_view:cardCornerRadius="15dp"
     card_view:cardElevation="8dp"
     card_view:cardPreventCornerOverlap="false"
     card_view:cardUseCompatPadding="true">
@@ -14,7 +13,7 @@
 
     <ImageView
         android:id="@+id/categoryImg"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"

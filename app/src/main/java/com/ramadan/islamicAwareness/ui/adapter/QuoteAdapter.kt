@@ -1,5 +1,6 @@
 package com.ramadan.islamicAwareness.ui.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +8,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islamicAwareness.R
 import com.ramadan.islamicAwareness.data.model.Category
-import com.ramadan.islamicAwareness.ui.activity.QuoteDashboard
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.quote_item.view.*
 import com.ramadan.islamicAwareness.ui.activity.Quote as QuoteActivity
 
 
-class QuoteAdapter(val context: QuoteDashboard) :
+class QuoteAdapter(val context: Context) :
     RecyclerView.Adapter<QuoteAdapter.CustomView>() {
     private var dataList = mutableListOf<Category>()
 

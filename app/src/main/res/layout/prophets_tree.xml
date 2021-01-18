@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.otaliastudios.zoom.ZoomLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/zoomLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical|horizontal"
     app:hasClickableChildren="true">
+
+    <ImageButton
+        android:id="@+id/zoomIn"
+        android:layout_width="0dp"
+        android:layout_height="6dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/zoom_in" />
 
     <de.blox.graphview.GraphView
         android:id="@+id/graphView"

@@ -2,18 +2,14 @@
     <string name="app_name">Islamic Awareness</string>
 
     <string name="ad_id" translatable="false">ca-app-pub-5169956365910255~4844827484</string>
-    <string name="playback_banner_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
     <string name="home_banner_id" translatable="false">ca-app-pub-3940256099942544/8865242552</string>
-    <string name="Interstitial_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="channel_id" translatable="false">MyDefaultChannelID</string>
 
     <string name="stories">Stories</string>
     <string name="quotes">Quotes</string>
     <string name="prophets_tree">Prophets Tree</string>
-    <string name="language">language</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="topics">Important Topics</string>
-    <string name="adam">1) Adam (1000)</string>
+    <string name="adam">Adam</string>
     <string name="aron">16) Aron (122)</string>
     <string name="abraham">7) Abraham (200)</string>
     <string name="david">17) David (100)</string>
@@ -49,7 +45,6 @@
     <string name="sawada">sawada (2)</string>
     <string name="aisha">aisha (3)</string>
     <string name="zainab">zainab</string>
-    <string name="zainab1">zainab (5)</string>
     <string name="zainab2">zainab (7)</string>
     <string name="hafsa">hafsa (4)</string>
     <string name="umm_salama">Umm Salama (6)</string>
@@ -68,5 +63,9 @@
     <string name="hassan">hassan</string>
     <string name="muhsin">muhsin</string>
     <string name="arabized_arabs">Arabized Arabs</string>
+    <!-- Strings used for fragments for navigation -->
+
+    <string name="welcome_to_appName">Welcome to Islamic</string>
+    <string name="suggested_to_you">Suggested to you</string>
 
 </resources>

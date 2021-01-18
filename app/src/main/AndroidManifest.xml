@@ -16,6 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.activity.TechnicalSupport"></activity>
+        <activity android:name=".ui.activity.about" />
+        <activity android:name=".ui.activity.Dashboard" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -23,16 +26,20 @@
 
         <activity android:name=".ui.activity.Quote" />
         <activity android:name=".ui.activity.Story" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".ui.activity.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.MuhammadTree" />
         <activity android:name=".ui.activity.ProphetsTree" />
         <activity android:name=".ui.activity.BigTree" />
+        <activity android:name=".ui.activity.StoryDashboard" />
+        <activity android:name=".ui.activity.QuoteDashboard" />
+        <activity android:name=".ui.activity.Topics" />
+        <activity android:name=".ui.activity.FamilyTree" />
     </application>
 
 </manifest>

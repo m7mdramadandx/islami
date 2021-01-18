@@ -2,33 +2,18 @@ package com.ramadan.islamicAwareness.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.cardview.widget.CardView
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import com.ramadan.islamicAwareness.R
+import kotlinx.android.synthetic.main.family_tree.*
 
 
-class FamilyTree : Fragment() {
+class FamilyTree : AppCompatActivity() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        val view = inflater.inflate(R.layout.family_tree, container, false)
-        view.findViewById<CardView>(R.id.a1).setOnClickListener {
-            val intent = Intent(view.context, MuhammadTree::class.java)
-            startActivity(intent)
-        }
-        view.findViewById<CardView>(R.id.a2).setOnClickListener {
-            val intent = Intent(view.context, ProphetsTree::class.java)
-            startActivity(intent)
-        }
-        view.findViewById<CardView>(R.id.a3).setOnClickListener {
-            val intent = Intent(view.context, BigTree::class.java)
-            startActivity(intent)
-        }
-        return view
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.family_tree)
+        a1.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
+        a2.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
+        a3.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
     }
 }

@@ -1,5 +1,6 @@
 package com.ramadan.islamicAwareness.ui.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,12 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islamicAwareness.R
 import com.ramadan.islamicAwareness.data.model.Prophet
 import com.ramadan.islamicAwareness.ui.activity.Story
-import com.ramadan.islamicAwareness.ui.activity.StoryDashboard
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.prophet_item.view.*
 
 
-class StoryAdapter(val context: StoryDashboard) :
+class StoryAdapter(val context: Context) :
     RecyclerView.Adapter<StoryAdapter.CustomView>() {
     private var dataList = mutableListOf<Prophet>()
 

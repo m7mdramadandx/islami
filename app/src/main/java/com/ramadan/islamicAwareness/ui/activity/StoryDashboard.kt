@@ -3,10 +3,7 @@
 package com.ramadan.islamicAwareness.ui.activity
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +12,7 @@ import com.ramadan.islamicAwareness.R
 import com.ramadan.islamicAwareness.ui.adapter.StoryAdapter
 import com.ramadan.islamicAwareness.ui.viewModel.ViewModel
 
-class StoryDashboard : Fragment() {
+class StoryDashboard : AppCompatActivity() {
     private lateinit var prophetsAdapter: StoryAdapter
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
 
@@ -24,22 +21,19 @@ class StoryDashboard : Fragment() {
         observeDate()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        val view = inflater.inflate(R.layout.recycle_view, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.recycle_view)
         prophetsAdapter = StoryAdapter(this)
-        observeDate()
-        val recyclerView: RecyclerView = view.findViewById(R.id.dashboardRecycleView)
+        val recyclerView: RecyclerView = findViewById(R.id.dashboardRecycleView)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         recyclerView.layoutManager = staggeredGridLayoutManager
         recyclerView.adapter = prophetsAdapter
-        return view
+
     }
 
     private fun observeDate() {
-        viewModel.fetchStory().observe(viewLifecycleOwner, { prophetsAdapter.setDataList(it) })
+        viewModel.fetchStory().observe(this, { prophetsAdapter.setDataList(it) })
     }
 
 }

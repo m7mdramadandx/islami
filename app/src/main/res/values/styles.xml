@@ -40,6 +40,5 @@
 
 
     <!-- Define other styles to fix theme -->
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 </resources>

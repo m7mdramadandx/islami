@@ -5,6 +5,10 @@ import com.ramadan.islamicAwareness.R
 import de.blox.graphview.Node
 
 class Utils(val context: Context) {
+    val input = "abc"
+    var array = Array(input.length) { input[it].toString() }
+
+
     val adam = Node(context.getString(R.string.adam))
     val empty = Node("\t\t\t\t\t\t\t\t")
     val arabized_arabs = Node(context.getString(R.string.arabized_arabs))
