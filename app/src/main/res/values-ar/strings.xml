@@ -50,5 +50,7 @@
     <string name="hassan">حسن</string>
     <string name="muhsin">محسن</string>
     <string name="isaac">إسحاق</string>
+    <string name="save">حفظ</string>
+    <string name="cancel">إخفاء</string>
 
 </resources>

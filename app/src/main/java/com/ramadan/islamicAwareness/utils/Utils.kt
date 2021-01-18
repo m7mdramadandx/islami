@@ -4,6 +4,7 @@ import android.content.Context
 import com.ramadan.islamicAwareness.R
 import de.blox.graphview.Node
 
+
 class Utils(val context: Context) {
     val input = "abc"
     var array = Array(input.length) { input[it].toString() }
@@ -67,4 +68,6 @@ class Utils(val context: Context) {
     val muhsin = Node(context.getString(R.string.muhsin))
 
 
+    private val localeHelper = LocaleHelper()
 }
+

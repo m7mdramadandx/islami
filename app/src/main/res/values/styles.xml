@@ -9,11 +9,21 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/colorText</item>
+        <item name="fontFamily">@font/aref_font_family</item>
+        <!--        <item name="android:typeface">@font/aref_ruqaa_regular</item>-->
 
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/MyActionBar</item>
         <item name="actionBarTabTextStyle">@style/MyActionBarTabText</item>
         <item name="actionMenuTextColor">@color/actionbar_text</item>
+        <item name="android:fontFamily">@font/aref_font_family</item>
+
+    </style>
+
+    <style name="TextViewStyle" parent="TextView">
+        <item name="android:fontFamily">@font/aref_regular</item>
+        <item name="fontFamily">@font/aref_regular</item>
+
     </style>
 
     <!-- ActionBar styles -->

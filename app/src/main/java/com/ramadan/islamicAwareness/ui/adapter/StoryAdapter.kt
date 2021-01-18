@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.prophet_item.view.*
 
 
-class StoryAdapter(val context: Context) :
+class StoryAdapter(val context: Context, val isDashboard: Boolean) :
     RecyclerView.Adapter<StoryAdapter.CustomView>() {
     private var dataList = mutableListOf<Prophet>()
 
@@ -31,10 +31,9 @@ class StoryAdapter(val context: Context) :
 
     override fun getItemCount(): Int {
         return if (dataList.size > 0) {
-            dataList.size
-        } else {
-            0
-        }
+            if (isDashboard) 6
+            else dataList.size
+        } else 0
     }
 
     override fun onBindViewHolder(holder: CustomView, position: Int) {
@@ -47,6 +46,10 @@ class StoryAdapter(val context: Context) :
         fun customView(prophet: Prophet) {
             Picasso.get().load(prophet.imgUrl).error(R.drawable.error_img)
                 .placeholder(R.drawable.load_img).into(itemView.prophetImg)
+            if (isDashboard) {
+                itemView.prophetImg.maxHeight =
+                    itemView.resources.getDimension(R.dimen.max_card_height).toInt()
+            }
             itemView.prophetName.text = prophet.name
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, Story::class.java)

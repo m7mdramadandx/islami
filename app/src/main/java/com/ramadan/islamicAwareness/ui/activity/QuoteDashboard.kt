@@ -24,7 +24,7 @@ class QuoteDashboard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recycle_view)
-        quoteAdapter = QuoteAdapter(this)
+        quoteAdapter = QuoteAdapter(this, false)
         val recyclerView: RecyclerView = findViewById(R.id.dashboardRecycleView)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         recyclerView.layoutManager = staggeredGridLayoutManager

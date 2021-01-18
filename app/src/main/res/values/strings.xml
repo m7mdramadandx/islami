@@ -67,5 +67,7 @@
 
     <string name="welcome_to_appName">Welcome to Islamic</string>
     <string name="suggested_to_you">Suggested to you</string>
+    <string name="save">Save</string>
+    <string name="cancel">Dismiss</string>
 
 </resources>

@@ -12,7 +12,7 @@ class FamilyTree : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.family_tree)
-        a1.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
+        a1.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
         a2.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
         a3.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
     }

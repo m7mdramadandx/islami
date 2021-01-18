@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.quote_item.view.*
 import com.ramadan.islamicAwareness.ui.activity.Quote as QuoteActivity
 
 
-class QuoteAdapter(val context: Context) :
+class QuoteAdapter(val context: Context, val isDashboard: Boolean) :
     RecyclerView.Adapter<QuoteAdapter.CustomView>() {
     private var dataList = mutableListOf<Category>()
 
@@ -29,11 +29,7 @@ class QuoteAdapter(val context: Context) :
     }
 
     override fun getItemCount(): Int {
-        return if (dataList.size > 0) {
-            dataList.size
-        } else {
-            0
-        }
+        return if (dataList.size > 0) dataList.size else 0
     }
 
     override fun onBindViewHolder(holder: CustomView, position: Int) {
@@ -46,6 +42,10 @@ class QuoteAdapter(val context: Context) :
         fun customView(category: Category) {
             Picasso.get().load(category.imgUrl).error(R.drawable.error_img)
                 .placeholder(R.drawable.load_img).into(itemView.categoryImg)
+            if (isDashboard) {
+                itemView.categoryImg.maxHeight =
+                    itemView.resources.getDimension(R.dimen.max_card_height_1).toInt()
+            }
             if (category.name == "Death")
                 itemView.categoryName.text = "Judgement Day"
             else
@@ -53,7 +53,6 @@ class QuoteAdapter(val context: Context) :
             itemView.setOnClickListener {
                 Intent(itemView.context, QuoteActivity::class.java).apply {
                     putExtra("category", category.name)
-                    println(category.name + " +++")
                     itemView.context.startActivity(this)
                 }
             }

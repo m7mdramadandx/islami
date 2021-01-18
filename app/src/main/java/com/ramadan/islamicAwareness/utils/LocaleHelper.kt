@@ -2,7 +2,6 @@
 
 package com.ramadan.islamicAwareness.utils
 
-import android.annotation.TargetApi
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
@@ -13,6 +12,20 @@ import java.util.*
 class LocaleHelper {
     companion object {
         private const val SELECTED_LANGUAGE = "default_language"
+        private const val SELECTED_THEME = "default_theme"
+    }
+
+    fun setTheme(context: Context, theme: String?) {
+        val prefs: SharedPreferences = getDefaultSharedPreferences(context)
+        val editor = prefs.edit()
+        editor.putString(SELECTED_THEME, theme)
+        editor.clear().apply()
+
+    }
+
+    fun getDefaultTheme(context: Context): String {
+        val prefs = getDefaultSharedPreferences(context)
+        return prefs.getString(SELECTED_THEME, "light").toString()
     }
 
     fun setLocale(context: Context, language: String): Context {
@@ -33,7 +46,6 @@ class LocaleHelper {
         return prefs.getString(SELECTED_LANGUAGE, "en").toString()
     }
 
-    @TargetApi(Build.VERSION_CODES.N)
     private fun updateResources(context: Context, language: String): Context {
         val locale = Locale(language)
         Locale.setDefault(locale)
