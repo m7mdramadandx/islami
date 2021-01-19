@@ -50,7 +50,7 @@ class Utils(val context: Context) {
     val zainab = Node(context.getString(string.zainab))
     val zainab1 = Node(context.getString(string.zainab))
     val zainab2 = Node(context.getString(string.zainab2))
-    val hafsa = Node("hafsa")
+    val hafsa = Node(context.getString(string.hafsa))
     val umm_salama = Node(context.getString(string.umm_salama))
     val juwayriya = Node(context.getString(string.juwayriya))
     val umm_habiba = Node(context.getString(string.umm_habiba))
@@ -69,5 +69,7 @@ class Utils(val context: Context) {
 
 
     private val localeHelper = LocaleHelper()
+
 }
+
 

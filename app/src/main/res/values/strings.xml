@@ -69,5 +69,19 @@
     <string name="suggested_to_you">Suggested to you</string>
     <string name="save">Save</string>
     <string name="cancel">Dismiss</string>
+    <string name="hadiths">Hadiths</string>
+    <string name="quranic_verses">Quranic verses</string>
+    <string name="prophets_family_tree">Prophets Family Tree</string>
+    <string name="muhammad_family_tree">Muhammad Family Tree</string>
+    <string name="the_big_family_tree">The big Family Tree</string>
+    <string name="send_feedback">Send us Feedback</string>
+    <string name="about_app">About Application</string>
+    <string name="rate_app">"Rate Application "</string>
+    <string name="language">Languages</string>
+    <string name="themes">Theme</string>
+    <string name="share">Share</string>
+    <string name="view_images">View images</string>
+    <string name="send">Send</string>
+    <string name="please_give_details_on_the_issue_or_provide_general_feedback">Please give details on the issue or provide general feedback</string>
 
 </resources>

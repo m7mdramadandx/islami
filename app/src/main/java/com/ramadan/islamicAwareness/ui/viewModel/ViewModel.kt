@@ -6,19 +6,23 @@ import androidx.lifecycle.ViewModel
 import com.ramadan.islamicAwareness.data.model.Category
 import com.ramadan.islamicAwareness.data.model.Prophet
 import com.ramadan.islamicAwareness.data.model.Quote
-import com.ramadan.islamicAwareness.data.repo.Repo
+import com.ramadan.islamicAwareness.data.repo.Repository
 
 class ViewModel : ViewModel() {
-    private val repo = Repo()
-    fun fetchStory(): LiveData<MutableList<Prophet>> {
+    private val repo = Repository()
+    fun fetchAllStories(isEnglish: Boolean): LiveData<MutableList<Prophet>> {
         val mutableData = MutableLiveData<MutableList<Prophet>>()
-        repo.fetchStory().observeForever { prophetList -> mutableData.value = prophetList }
+        repo.fetchAllStories(isEnglish)
+            .observeForever { prophetList -> mutableData.value = prophetList }
         return mutableData
     }
 
+    fun fetchStory(isEnglish: Boolean, prophetName: String): Prophet? =
+        repo.fetchStory(isEnglish, prophetName)
+
     fun fetchCategory(): LiveData<MutableList<Category>> {
         val mutableData = MutableLiveData<MutableList<Category>>()
-        repo.fetchCategory().observeForever { categoryList -> mutableData.value = categoryList }
+        repo.fetchCategory(true).observeForever { categoryList -> mutableData.value = categoryList }
         return mutableData
     }
 

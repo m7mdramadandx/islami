@@ -32,7 +32,7 @@ class Quote : AppCompatActivity() {
         supportActionBar!!.setHomeButtonEnabled(true)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         adapter = QuoteImgAdapter(this)
-        sliderView = findViewById(R.id.imageSlider)
+        sliderView = findViewById(R.id.versesSlider)
         sliderView.setSliderAdapter(adapter)
         sliderView.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
         sliderView.setSliderTransformAnimation(SliderAnimations.CUBEINSCALINGTRANSFORMATION)
@@ -41,7 +41,7 @@ class Quote : AppCompatActivity() {
         }
 
         adapter1 = QuoteImgAdapter(this)
-        sliderView1 = findViewById(R.id.imageSlider1)
+        sliderView1 = findViewById(R.id.hadithsSlider)
         sliderView1.setSliderAdapter(adapter1)
         sliderView1.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
         sliderView1.setSliderTransformAnimation(SliderAnimations.CUBEINSCALINGTRANSFORMATION)

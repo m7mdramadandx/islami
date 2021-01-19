@@ -31,8 +31,9 @@ class StoryAdapter(val context: Context, val isDashboard: Boolean) :
 
     override fun getItemCount(): Int {
         return if (dataList.size > 0) {
-            if (isDashboard) 6
-            else dataList.size
+//            if (isDashboard) 6
+//            else
+            dataList.size
         } else 0
     }
 
@@ -55,13 +56,7 @@ class StoryAdapter(val context: Context, val isDashboard: Boolean) :
                 val intent = Intent(itemView.context, Story::class.java)
                 val bundle = Bundle()
                 bundle.putString("prophetName", prophet.name)
-                bundle.putString("section1", prophet.section1)
-                bundle.putString("section2", prophet.section2)
-                bundle.putString("section3", prophet.section3)
-                bundle.putString("section4", prophet.section4)
-                bundle.putString("section5", prophet.section5)
-                bundle.putString("section6", prophet.section6)
-                bundle.putString("section7", prophet.section7)
+                bundle.putStringArrayList("text", prophet.text)
                 intent.putExtras(bundle)
                 itemView.context.startActivity(intent)
             }

@@ -55,13 +55,10 @@ dependencies {
     implementation 'com.github.smarteist:autoimageslider:1.3.7'
     implementation 'com.github.florent37:expansionpanel:1.2.4'
     implementation 'com.github.Yalantis:Context-Menu.Android:1.1.4'
-//    implementation 'com.github.bmelnychuk:atv:1.2.9'
-//    implementation "com.github.skydoves:doublelift:1.0.3"
     implementation 'de.blox:graphview:0.7.1'
     implementation 'com.otaliastudios:zoomlayout:1.8.0'
-
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 //    implementation 'de.blox.treeview:treeview:0.0.3'
-
 
     def lifecycle_version = "2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"

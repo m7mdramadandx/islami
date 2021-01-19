@@ -52,5 +52,23 @@
     <string name="isaac">إسحاق</string>
     <string name="save">حفظ</string>
     <string name="cancel">إخفاء</string>
+    <string name="hadiths">أحاديث</string>
+    <string name="quranic_verses">آيات قرآنية</string>
+    <string name="prophets_family_tree">شجرة عائلة الأنبياء</string>
+    <string name="elisha">اليسع</string>
+    <string name="muhammad_family_tree">شجرة عائلة محمد</string>
+    <string name="hashim_ibn_abd_manaf">هاشم بن عبد مناف</string>
+    <string name="sawada">سودة</string>
+    <string name="hafsa">حفصة</string>
+    <string name="juwayriya">جويرية</string>
+    <string name="maymuma">ميمونة</string>
+    <string name="arabized_arabs">العرب المستعربة</string>
+    <string name="the_big_family_tree">الشجرة الكبرى</string>
+    <string name="send_feedback">أرسل ملاحظاتك إلينا</string>
+    <string name="about_app">عن التطبيق</string>
+    <string name="rate_app">قيم التطبيق</string>
+    <string name="language">اللغة</string>
+    <string name="themes">المظهر</string>
+    <string name="share">مشاركة</string>
 
 </resources>

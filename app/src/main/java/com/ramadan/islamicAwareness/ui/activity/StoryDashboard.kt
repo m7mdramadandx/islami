@@ -33,7 +33,7 @@ class StoryDashboard : AppCompatActivity() {
     }
 
     private fun observeDate() {
-        viewModel.fetchStory().observe(this, { prophetsAdapter.setDataList(it) })
+        viewModel.fetchAllStories(true).observe(this, { prophetsAdapter.setDataList(it) })
     }
 
 }

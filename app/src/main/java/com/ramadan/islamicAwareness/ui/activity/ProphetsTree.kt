@@ -20,9 +20,7 @@ class ProphetsTree : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         graphView = findViewById(R.id.graphView)
-
         val graph = Graph()
-
         val utils = Utils(this)
         graph.addEdge(utils.adam, utils.idriss)
         graph.addEdge(utils.idriss, utils.noah)

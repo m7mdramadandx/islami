@@ -19,7 +19,7 @@ class LocaleHelper {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
         val editor = prefs.edit()
         editor.putString(SELECTED_THEME, theme)
-        editor.clear().apply()
+        editor.apply()
 
     }
 
@@ -38,7 +38,7 @@ class LocaleHelper {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
         val editor = prefs.edit()
         editor.putString(SELECTED_LANGUAGE, language)
-        editor.clear().apply()
+        editor.apply()
     }
 
     fun getDefaultLanguage(context: Context): String {

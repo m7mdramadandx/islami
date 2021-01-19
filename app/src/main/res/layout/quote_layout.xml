@@ -4,21 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     android:orientation="vertical"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="24dp"
     tools:context=".ui.activity.Quote">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quranic_verses"
+        android:textColor="@color/titleColor"
+        android:textSize="21sp" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginVertical="36dp"
+        android:layout_marginVertical="16dp"
         android:layout_weight="1"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp">
 
         <com.smarteist.autoimageslider.SliderView
-            android:id="@+id/imageSlider"
+            android:id="@+id/versesSlider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/silver"
@@ -29,17 +36,25 @@
             app:sliderScrollTimeInSec="4" />
     </androidx.cardview.widget.CardView>
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/hadiths"
+        android:textColor="@color/titleColor"
+        android:textSize="21sp" />
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginVertical="36dp"
+        android:layout_marginVertical="16dp"
         android:layout_weight="1"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp">
 
         <com.smarteist.autoimageslider.SliderView
-            android:id="@+id/imageSlider1"
+            android:id="@+id/hadithsSlider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/silver"

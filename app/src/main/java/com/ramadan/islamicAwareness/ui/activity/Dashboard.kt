@@ -46,29 +46,22 @@ class Dashboard : AppCompatActivity() {
     private lateinit var quoteAdapter: QuoteAdapter
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
-
+    private var isEnglish: Boolean = true
     override fun onStart() {
         super.onStart()
         observeDate()
         appLanguage()
-        appTheme()
         initMenuFragment()
 //        overrideDefaultFont("fonts/aref_regular.ttf", assets)
 
     }
 
-    private fun appTheme() {
-        when (localeHelper.getDefaultTheme(this)) {
-            "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            "night" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dashboard)
         supportActionBar?.hide()
+        isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         val typeface = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             resources.getFont(R.font.aref_regular)
         } else {
@@ -111,13 +104,14 @@ class Dashboard : AppCompatActivity() {
     }
 
     private fun observeDate() {
-        viewModel.fetchStory().observe(this, { prophetsAdapter.setDataList(it) })
+        viewModel.fetchAllStories(isEnglish).observe(this, { prophetsAdapter.setDataList(it) })
         viewModel.fetchCategory().observe(this, { quoteAdapter.setDataList(it) })
+
     }
 
 
     private fun appLanguage() {
-        if (localeHelper.getDefaultLanguage(this) == "en") switchBtn.isChecked = true
+        if (isEnglish) switchBtn.isChecked = true
         switchBtn.setOnCheckedChangeListener { button, isChecked ->
             when {
                 isChecked -> localeHelper.persist(applicationContext, "en")
@@ -173,9 +167,9 @@ class Dashboard : AppCompatActivity() {
                     4 -> alertDialog("aa", "Light theme", "Night theme", false)
                     5 -> alertDialog("aa", "العربية", "English", true)
                     6 -> startActivity(Intent(view.context, StoryDashboard::class.java))
-                    7 -> startActivity(Intent(view.context, TechnicalSupport::class.java))
+                    7 -> startActivity(Intent(view.context, SendFeedback::class.java))
                     8 -> startActivity(Intent(view.context, About::class.java))
-
+                    9 -> startActivity(Intent(view.context, About::class.java))
                 }
             }
         }
@@ -204,27 +198,32 @@ class Dashboard : AppCompatActivity() {
             setBgColorValue(primaryColorDark)
             add(this)
         }
-        MenuObject("Theme").apply {
+        MenuObject(getString(R.string.themes)).apply {
             setResourceValue(R.drawable.theme)
             setBgColorValue(primaryColor)
             add(this)
         }
-        MenuObject("Language").apply {
+        MenuObject(getString(R.string.language)).apply {
             setResourceValue(R.drawable.language)
             setBgColorValue(primaryColorDark)
             add(this)
         }
-        MenuObject("Rate ").apply {
+        MenuObject(getString(R.string.rate_app)).apply {
             setResourceValue(R.drawable.rate_review)
             setBgColorValue(primaryColor)
             add(this)
         }
-        MenuObject("Technical Support").apply {
+        MenuObject(getString(R.string.share)).apply {
+            setResourceValue(R.drawable.invite_friend)
+            setBgColorValue(primaryColor)
+            add(this)
+        }
+        MenuObject(getString(R.string.send_feedback)).apply {
             setResourceValue(R.drawable.contact_support)
             setBgColorValue(primaryColorDark)
             add(this)
         }
-        MenuObject("About ").apply {
+        MenuObject(getString(R.string.about_app)).apply {
             setResourceValue(R.drawable.info)
             setBgColorValue(primaryColor)
             add(this)
@@ -289,5 +288,35 @@ class Dashboard : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun firstSuggestedCard(view: View) {
+        val prophet = viewModel.fetchStory(isEnglish, "Muhammad")
+        val intent = Intent(this, Story::class.java)
+        val bundle = Bundle()
+        bundle.putString("prophetName", prophet?.name)
+        bundle.putStringArrayList("text", prophet?.text)
+        intent.putExtras(bundle)
+        startActivity(intent)
+    }
+
+    fun secondSuggestedCard(view: View) {
+        val prophet = viewModel.fetchStory(isEnglish, "Job")
+        val intent = Intent(this, Story::class.java)
+        val bundle = Bundle()
+        bundle.putString("prophetName", prophet?.name)
+        bundle.putStringArrayList("text", prophet?.text)
+        intent.putExtras(bundle)
+        startActivity(intent)
+    }
+
+    fun thirdSuggestedCard(view: View) {
+        val prophet = viewModel.fetchStory(isEnglish, "Muhammad")
+        val intent = Intent(this, Story::class.java)
+        val bundle = Bundle()
+        bundle.putString("prophetName", prophet?.name)
+        bundle.putStringArrayList("text", prophet?.text)
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 }

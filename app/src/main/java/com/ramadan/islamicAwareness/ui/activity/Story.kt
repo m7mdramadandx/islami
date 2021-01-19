@@ -25,21 +25,20 @@ class Story : AppCompatActivity() {
         setContentView(R.layout.story_layout)
         val bundle = intent.extras
         prophetName = bundle?.getString("prophetName")
-        section1.text = bundle?.getString("section1")
-        section2.text = bundle?.getString("section2")
-        section3.text = bundle?.getString("section3")
-        section4.text = bundle?.getString("section4")
-        section5.text = bundle?.getString("section5")
-        section6.text = bundle?.getString("section6")
-        section7.text = bundle?.getString("section7")
+        val text = bundle?.getStringArrayList("text")
+        text?.elementAtOrNull(0).also { section1.text = it }
+        text?.elementAtOrNull(1).also { section2.text = it }
+        text?.elementAtOrNull(2).also { section3.text = it }
+        text?.elementAtOrNull(3).also { section4.text = it }
+        text?.elementAtOrNull(4).also { section5.text = it }
+        text?.elementAtOrNull(5).also { section6.text = it }
+        text?.elementAtOrNull(6).also { section7.text = it }
+
         supportActionBar?.title = prophetName
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        ss.addListener { expansionLayout, expanded ->
-            if (expanded)
-                println("****")
-        }
-        loadData()
+
+        layoutVisibility()
         initMenuFragment()
 
     }
@@ -91,14 +90,16 @@ class Story : AppCompatActivity() {
     }
 
     private fun getMenuObjects() = mutableListOf<MenuObject>().apply {
-        val translate =
-            MenuObject("Translate words").apply { setResourceValue(R.drawable.translate) }
-        translate.setBgColorValue((Color.rgb(22, 36, 71)))
-        val wikipidia =
-            MenuObject("Who's $prophetName").apply { setResourceValue(R.drawable.wikipedia) }
-        wikipidia.setBgColorValue((Color.rgb(23, 34, 59)))
-        add(translate)
-        add(wikipidia)
+        MenuObject("Translate words").apply {
+            setResourceValue(R.drawable.translate)
+            setBgColorValue((Color.rgb(22, 36, 71)))
+            add(this)
+        }
+        MenuObject("Who's $prophetName").apply {
+            setResourceValue(R.drawable.wikipedia)
+            setBgColorValue((Color.rgb(23, 34, 59)))
+            add(this)
+        }
     }
 
     private fun showContextMenuDialogFragment() {
@@ -107,7 +108,7 @@ class Story : AppCompatActivity() {
         }
     }
 
-    private fun loadData() {
+    private fun layoutVisibility() {
         when {
             section2.text.length < 10 -> {
                 layout2.visibility = GONE
