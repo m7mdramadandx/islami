@@ -15,6 +15,7 @@
         android:textColor="@color/titleColor" />
 
     <EditText
+        android:id="@+id/msgEditText"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_marginTop="16dp"
@@ -25,6 +26,7 @@
         android:textAlignment="inherit" />
 
     <Button
+        android:id="@+id/sendBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

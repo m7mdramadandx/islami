@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="stories">القصص</string>
-    <string name="app_name">الوعي الإسلامي</string>
+    <string name="app_name">إسلامي</string>
     <string name="quotes">نصوص</string>
     <string name="prophets_tree">شجرة الأنبياء</string>
     <string name="topics">مواضيع مهمة</string>
-    <string name="adam">أدم</string>
-    <string name="welcome_to_appName">اهلا بك </string>
+    <string name="adam">آدم</string>
+    <string name="welcome_to_appName">اهلا بك في إسلامي</string>
     <string name="suggested_to_you">مقترح لك</string>
     <string name="aron">هارون</string>
     <string name="abraham">إبراهيم</string>
-    <string name="david">داوود</string>
+    <string name="david">داوُد</string>
     <string name="dhul_kifl">ذو الكفل</string>
     <string name="elias">إلياس</string>
     <string name="heber">هود</string>

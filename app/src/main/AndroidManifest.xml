@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ramadan.islamicAwareness">
+    package="com.ramadan.islami">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,30 +19,83 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.SendFeedback" />
-        <activity android:name=".ui.activity.About" />
-        <activity android:name=".ui.activity.Dashboard" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/ad_id" />
 
-        <activity android:name=".ui.activity.Quote" />
-        <activity android:name=".ui.activity.Story" />
-        <activity android:name=".ui.activity.SplashScreen">
+        <activity android:name="com.ramadan.islami.ui.activity.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.MuhammadTree" />
-        <activity android:name=".ui.activity.ProphetsTree" />
-        <activity android:name=".ui.activity.BigTree" />
-        <activity android:name=".ui.activity.StoryDashboard" />
-        <activity android:name=".ui.activity.QuoteDashboard" />
-        <activity android:name=".ui.activity.Topics" />
-        <activity android:name=".ui.activity.FamilyTree" />
+
+        <activity
+            android:name="com.ramadan.islami.ui.activity.Dashboard"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.ramadan.islami.ui.activity.SendFeedback"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:label="@string/send_feedback" />
+        <activity
+            android:name="com.ramadan.islami.ui.activity.About"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:label="@string/about_app" />
+        <activity
+            android:name="com.ramadan.islami.ui.activity.Quote"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:label="@string/quotes" />
+        <activity
+            android:name="com.ramadan.islami.ui.activity.Story"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:label="@string/stories" />
+        <activity
+            android:name="com.ramadan.islami.ui.activity.MuhammadTree"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:label="@string/muhammad_family_tree" />
+        <activity
+            android:name="com.ramadan.islami.ui.activity.ProphetsTree"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:label="@string/prophets_tree" />
+        <activity
+            android:name="com.ramadan.islami.ui.activity.BigTree"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:label="@string/the_big_family_tree" />
+        <activity
+            android:name="com.ramadan.islami.ui.activity.StoryDashboard"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:label="@string/stories" />
+        <activity
+            android:name="com.ramadan.islami.ui.activity.QuoteDashboard"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:label="@string/quotes" />
+        <activity
+            android:name="com.ramadan.islami.ui.activity.Topics"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:label="@string/topics" />
+        <activity
+            android:name="com.ramadan.islami.ui.activity.FamilyTree"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:label="@string/prophets_family_tree" />
+        <activity
+            android:name=".ui.activity.RecyclerViewActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true" />
     </application>
 
 </manifest>

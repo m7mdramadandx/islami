@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Islamic Awareness</string>
+    <string name="app_name">islami</string>
 
     <string name="ad_id" translatable="false">ca-app-pub-5169956365910255~4844827484</string>
     <string name="home_banner_id" translatable="false">ca-app-pub-3940256099942544/8865242552</string>
@@ -9,9 +9,9 @@
     <string name="prophets_tree">Prophets Tree</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="topics">Important Topics</string>
+    <string name="abraham">7) Abraham (200)</string>
     <string name="adam">Adam</string>
     <string name="aron">16) Aron (122)</string>
-    <string name="abraham">7) Abraham (200)</string>
     <string name="david">17) David (100)</string>
     <string name="dhul_kifl">14) Dhul-Kifl</string>
     <string name="elisha">20) Elisha</string>
@@ -41,18 +41,18 @@
     <string name="abd_almuttalib">Abd Almuttalib</string>
     <string name="abd_allah">Abd Allah</string>
     <string name="aminah_bint_wahab">Aminah Bint Wahab</string>
-    <string name="khadija">khadija (1)</string>
-    <string name="sawada">sawada (2)</string>
-    <string name="aisha">aisha (3)</string>
+    <string name="khadija">khadija</string>
+    <string name="sawada">sawada</string>
+    <string name="aisha">aisha</string>
     <string name="zainab">zainab</string>
-    <string name="zainab2">zainab (7)</string>
-    <string name="hafsa">4) hafsa </string>
-    <string name="umm_salama">Umm Salama (6)</string>
-    <string name="juwayriya">juwayriya (8)</string>
-    <string name="umm_habiba">umm_habiba (9)</string>
-    <string name="safiyya">safiyya (10)</string>
-    <string name="maymuma">maymuma (11)</string>
-    <string name="maria">maria (12)</string>
+    <string name="zainab2">zainab</string>
+    <string name="hafsa">hafsa</string>
+    <string name="umm_salama">Umm Salama</string>
+    <string name="juwayriya">juwayriya</string>
+    <string name="umm_habiba">umm_habiba</string>
+    <string name="safiyya">safiyya</string>
+    <string name="maymuma">maymuma</string>
+    <string name="maria">maria</string>
     <string name="al_qasim">al_qasim</string>
     <string name="fatima">fatima</string>
     <string name="umm_kalthum">umm_kalthum</string>
@@ -65,7 +65,7 @@
     <string name="arabized_arabs">Arabized Arabs</string>
     <!-- Strings used for fragments for navigation -->
 
-    <string name="welcome_to_appName">Welcome to Islamic</string>
+    <string name="welcome_to_appName">Welcome to islami</string>
     <string name="suggested_to_you">Suggested to you</string>
     <string name="save">Save</string>
     <string name="cancel">Dismiss</string>

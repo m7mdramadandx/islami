@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         app:lineColor="@color/colorAccent"
-        app:useMaxSize="false" />
+        />
 
 </com.otaliastudios.zoom.ZoomLayout>
 

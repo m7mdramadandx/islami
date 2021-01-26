@@ -1,34 +1,41 @@
 {
   "project_info": {
-    "project_number": "678709494528",
-    "firebase_url": "https://qsas-34735.firebaseio.com",
-    "project_id": "qsas-34735",
-    "storage_bucket": "qsas-34735.appspot.com"
+    "project_number": "173815807932",
+    "project_id": "islami-ecc03",
+    "storage_bucket": "islami-ecc03.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:678709494528:android:9b8023dcce8dd7ff07a9e5",
+        "mobilesdk_app_id": "1:173815807932:android:0aa41d082e81416f7935b9",
         "android_client_info": {
-          "package_name": "com.ramadan.islamicAwareness"
+          "package_name": "com.ramadan.islami"
         }
       },
       "oauth_client": [
         {
-          "client_id": "678709494528-ug876vso8v0ipmpbcb9g5hbugtsvq9d9.apps.googleusercontent.com",
+          "client_id": "173815807932-cubob1esgg5j6oie2pvtokh8h0g54pad.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ramadan.islami",
+            "certificate_hash": "fff50eebaf410b41cf8dbd313b3faced68ebbca1"
+          }
+        },
+        {
+          "client_id": "173815807932-ijrnlj9qv3bdup2ak5fafjs9kac8kigs.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDHomkIle-axUMomD4_VH0YINFenweLs50"
+          "current_key": "AIzaSyDxWerzZpxMLDttGC7amxaI6awZ1kz5E5g"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "678709494528-ug876vso8v0ipmpbcb9g5hbugtsvq9d9.apps.googleusercontent.com",
+              "client_id": "173815807932-ijrnlj9qv3bdup2ak5fafjs9kac8kigs.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
