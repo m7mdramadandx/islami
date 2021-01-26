@@ -93,7 +93,7 @@
             android:hardwareAccelerated="true"
             android:label="@string/prophets_family_tree" />
         <activity
-            android:name=".ui.activity.RecyclerViewActivity"
+            android:name=".ui.activity.Videos"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
             android:hardwareAccelerated="true" />
     </application>

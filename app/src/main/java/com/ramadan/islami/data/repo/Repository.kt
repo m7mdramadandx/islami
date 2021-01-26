@@ -6,6 +6,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.ramadan.islami.data.model.Category
 import com.ramadan.islami.data.model.Prophet
 import com.ramadan.islami.data.model.Quote
+import com.ramadan.islami.data.model.Video
 import com.ramadan.islami.utils.defaultImg
 import kotlinx.coroutines.tasks.await
 
@@ -73,6 +74,22 @@ class Repository {
         val hadiths = data.get("hadiths") as ArrayList<String>
         quote = Quote(imgUrl!!, verses, hadiths)
         return quote
+    }
+
+    suspend fun fetchVideos(isEnglish: Boolean): MutableLiveData<MutableList<Video>> {
+        val mutableLiveData = MutableLiveData<MutableList<Video>>()
+        val dataList: MutableList<Video> = mutableListOf()
+        if (isEnglish) language = "en"
+        val data = rootCollection.document(language).collection("videos").get().await()
+            .forEach {
+                val category: String? = it.getString("category")
+                val id: String? = it.getString("id")
+                val title: String? = it.getString("title")
+                val video = Video(category!!, id!!, title!!)
+                dataList.add(video)
+            }
+        mutableLiveData.value = dataList
+        return mutableLiveData
     }
 
     fun sendFeedback(msg: String) {

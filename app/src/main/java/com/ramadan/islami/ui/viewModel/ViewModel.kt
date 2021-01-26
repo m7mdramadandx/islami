@@ -6,12 +6,14 @@ import androidx.lifecycle.ViewModel
 import com.ramadan.islami.data.model.Category
 import com.ramadan.islami.data.model.Prophet
 import com.ramadan.islami.data.model.Quote
+import com.ramadan.islami.data.model.Video
 import com.ramadan.islami.data.repo.Repository
 import com.ramadan.islami.utils.defaultImg
 import kotlinx.coroutines.*
 
 class ViewModel : ViewModel() {
     private val repo = Repository()
+
     fun fetchAllStories(isEnglish: Boolean): LiveData<MutableList<Prophet>> {
         val mutableData = MutableLiveData<MutableList<Prophet>>()
         GlobalScope.launch {
@@ -19,6 +21,18 @@ class ViewModel : ViewModel() {
             withContext(Dispatchers.Main) {
                 repo.fetchAllStories(isEnglish)
                     .observeForever { prophetList -> mutableData.value = prophetList }
+            }
+        }
+        return mutableData
+    }
+
+    fun fetchVideos(isEnglish: Boolean): LiveData<MutableList<Video>> {
+        val mutableData = MutableLiveData<MutableList<Video>>()
+        GlobalScope.launch {
+            delay(1000)
+            withContext(Dispatchers.Main) {
+                repo.fetchVideos(isEnglish)
+                    .observeForever { videosList -> mutableData.value = videosList }
             }
         }
         return mutableData
@@ -47,15 +61,8 @@ class ViewModel : ViewModel() {
         return mutableData
     }
 
-    suspend fun fetchQuote(isEnglish: Boolean, category: String): Quote? {
-        var quote: Quote? = null
-//        GlobalScope.launch {
-//            delay(1000)
-//            withContext(Dispatchers.Main) {
-        quote = repo.getQuote(isEnglish, category)
-//            }
-//        }
-        return quote
+    suspend fun fetchQuote(isEnglish: Boolean, category: String): Quote {
+        return repo.getQuote(isEnglish, category)
     }
 
     fun sendFeedback(msg: String) {

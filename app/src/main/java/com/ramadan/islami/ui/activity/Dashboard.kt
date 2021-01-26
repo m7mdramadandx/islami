@@ -78,7 +78,7 @@ class Dashboard : AppCompatActivity() {
 
         seeAllStories.setOnClickListener { startActivity(Intent(this, StoryDashboard::class.java)) }
         seeAllQuotes.setOnClickListener { startActivity(Intent(this, QuoteDashboard::class.java)) }
-        seeAllTopics.setOnClickListener { startActivity(Intent(this, Topics::class.java)) }
+        seeAllTopics.setOnClickListener { startActivity(Intent(this, Videos::class.java)) }
         seeAllTrees.setOnClickListener { startActivity(Intent(this, FamilyTree::class.java)) }
         muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
         prophetTree.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
@@ -163,7 +163,7 @@ class Dashboard : AppCompatActivity() {
                     4 -> alertDialog("aa", "Light theme", "Night theme", false)
                     5 -> alertDialog("aa", "العربية", "English", true)
                     6 -> startActivity(Intent(view.context, StoryDashboard::class.java))
-                    7 -> startActivity(Intent(view.context, RecyclerViewActivity::class.java))
+                    7 -> startActivity(Intent(view.context, Videos::class.java))
                     8 -> startActivity(Intent(view.context, SendFeedback::class.java))
                     9 -> startActivity(Intent(view.context, About::class.java))
                 }
