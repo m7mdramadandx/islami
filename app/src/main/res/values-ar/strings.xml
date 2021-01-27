@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="stories">القصص</string>
+    <string name="stories">قصص</string>
     <string name="app_name">إسلامي</string>
     <string name="quotes">نصوص</string>
     <string name="prophets_tree">شجرة الأنبياء</string>
     <string name="topics">مواضيع مهمة</string>
     <string name="adam">آدم</string>
-    <string name="welcome_to_appName">اهلا بك في إسلامي</string>
+    <string name="welcome_to_islami">اهلا بك في إسلامي</string>
     <string name="suggested_to_you">مقترح لك</string>
     <string name="aron">هارون</string>
     <string name="abraham">إبراهيم</string>

@@ -36,7 +36,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/welcome_to_appName"
+                android:text="@string/welcome_to_islami"
                 android:textColor="@color/titleColor"
                 android:textSize="28sp"
                 ads:layout_constraintStart_toStartOf="parent"
@@ -82,9 +82,9 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/muhammadStory"
                         android:layout_width="200dp"
-                        android:onClick="firstSuggestedCard"
                         android:layout_height="100dp"
                         android:layout_margin="16dp"
+                        android:onClick="firstSuggestedCard"
                         card_view:cardCornerRadius="15dp"
                         card_view:cardElevation="14dp">
 
@@ -365,7 +365,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/topics"
+                    android:text="@string/videos"
                     android:textColor="@android:color/white"
                     android:textSize="21sp" />
 

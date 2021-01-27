@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.res.ResourcesCompat
@@ -25,6 +26,7 @@ import com.google.android.gms.ads.InterstitialAd
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.QuoteAdapter
 import com.ramadan.islami.ui.adapter.StoryAdapter
+import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
@@ -35,7 +37,7 @@ import kotlinx.android.synthetic.main.dashboard.*
 import java.lang.reflect.Field
 
 
-class Dashboard : AppCompatActivity() {
+class Dashboard : AppCompatActivity(), Listener {
     private lateinit var mAdView: AdView
     private lateinit var mAdView1: AdView
     private lateinit var mInterstitialAd: InterstitialAd
@@ -60,6 +62,8 @@ class Dashboard : AppCompatActivity() {
         setContentView(R.layout.dashboard)
         supportActionBar?.hide()
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
+        viewModel.listener = this
+
         val typeface = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             resources.getFont(R.font.aref_regular)
         } else {
@@ -290,8 +294,8 @@ class Dashboard : AppCompatActivity() {
         val prophet = viewModel.fetchStory(isEnglish, "Muhammad")
         val intent = Intent(this, Story::class.java)
         val bundle = Bundle()
-        bundle.putString("prophetName", prophet?.name)
-        bundle.putStringArrayList("text", prophet?.text)
+        bundle.putString("prophetName", prophet.name)
+        bundle.putStringArrayList("text", prophet.text)
         intent.putExtras(bundle)
         startActivity(intent)
     }
@@ -300,8 +304,8 @@ class Dashboard : AppCompatActivity() {
         val prophet = viewModel.fetchStory(isEnglish, "Job")
         val intent = Intent(this, Story::class.java)
         val bundle = Bundle()
-        bundle.putString("prophetName", prophet?.name)
-        bundle.putStringArrayList("text", prophet?.text)
+        bundle.putString("prophetName", prophet.name)
+        bundle.putStringArrayList("text", prophet.text)
         intent.putExtras(bundle)
         startActivity(intent)
     }
@@ -310,9 +314,30 @@ class Dashboard : AppCompatActivity() {
         val prophet = viewModel.fetchStory(isEnglish, "Muhammad")
         val intent = Intent(this, Story::class.java)
         val bundle = Bundle()
-        bundle.putString("prophetName", prophet?.name)
-        bundle.putStringArrayList("text", prophet?.text)
+        bundle.putString("prophetName", prophet.name)
+        bundle.putStringArrayList("text", prophet.text)
         intent.putExtras(bundle)
         startActivity(intent)
+    }
+
+    private fun loadingDialog(isFinished: Boolean) {
+        val dialogBuilder = AlertDialog.Builder(this)
+        val view = View.inflate(this, R.layout.loading_dialog, null)
+        dialogBuilder.setView(view)
+        val alertDialog = dialogBuilder.create()
+        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        if (isFinished) alertDialog.cancel()
+        else alertDialog.show()
+//        alertDialog.setCancelable(false)
+    }
+
+    override fun onStarted() {
+    }
+
+    override fun onSuccess() {
+    }
+
+    override fun onFailure(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

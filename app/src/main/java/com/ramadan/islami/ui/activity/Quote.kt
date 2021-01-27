@@ -58,14 +58,16 @@ class Quote : AppCompatActivity() {
 
     private fun observeDate() {
         GlobalScope.launch {
+
             viewModel.fetchQuote(isEnglish, category!!).also {
                 delay(3000)
                 withContext(Dispatchers.Main) {
-                    adapter.setDataList(it!!.verses)
+                    adapter.setDataList(it.verses)
                     adapter1.setDataList(it.hadiths)
                 }
             }
-
         }
     }
+
+
 }
