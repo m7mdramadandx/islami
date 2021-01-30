@@ -22,8 +22,8 @@ import java.io.OutputStream
 import kotlin.random.Random
 
 
-class QuoteImgAdapter(val context: Context) :
-    SliderViewAdapter<QuoteImgAdapter.CustomView>() {
+class SliderAdapter(val context: Context) :
+    SliderViewAdapter<SliderAdapter.CustomView>() {
 
     private var dataList = ArrayList<String>()
 
@@ -95,5 +95,6 @@ class QuoteImgAdapter(val context: Context) :
                 println(e.message)
             }
         }
+
     }
 }

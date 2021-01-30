@@ -44,6 +44,7 @@ class Dashboard : AppCompatActivity(), Listener {
     private val localeHelper = LocaleHelper()
     private lateinit var prophetsAdapter: StoryAdapter
     private lateinit var quoteAdapter: QuoteAdapter
+
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
     private var isEnglish: Boolean = true
@@ -73,6 +74,7 @@ class Dashboard : AppCompatActivity(), Listener {
         menuOptions.setOnClickListener { showContextMenuDialogFragment() }
         prophetsAdapter = StoryAdapter(this, true)
         quoteAdapter = QuoteAdapter(this, true)
+
         val storiesRV: RecyclerView = findViewById(R.id.storiesRecyclerView)
         val quotesRV: RecyclerView = findViewById(R.id.quotesRecyclerView)
         storiesRV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
@@ -82,11 +84,14 @@ class Dashboard : AppCompatActivity(), Listener {
 
         seeAllStories.setOnClickListener { startActivity(Intent(this, StoryDashboard::class.java)) }
         seeAllQuotes.setOnClickListener { startActivity(Intent(this, QuoteDashboard::class.java)) }
-        seeAllTopics.setOnClickListener { startActivity(Intent(this, Videos::class.java)) }
+        topics.setOnClickListener { startActivity(Intent(this, Topics::class.java)) }
         seeAllTrees.setOnClickListener { startActivity(Intent(this, FamilyTree::class.java)) }
-        muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
-        prophetTree.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
-        bigTree.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
+//        muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
+//        prophetsTree.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
+        hadiths.setOnClickListener { startActivity(Intent(this, Hadiths::class.java)) }
+//        bigTree.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
+//        muhammadStory.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
+//        jobStory.setOnClickListener { startActivity(Intent(this, Videos::class.java)) }
 
 //        MobileAds.initialize(this, getString(R.string.ad_id))
 //        val testDeviceIds = listOf("33BE2250B43518CCDA7DE426D04EE231")
@@ -107,7 +112,8 @@ class Dashboard : AppCompatActivity(), Listener {
 
     private fun observeDate() {
         viewModel.fetchAllStories(isEnglish).observe(this, { prophetsAdapter.setDataList(it) })
-        viewModel.fetchCategory(isEnglish).observe(this, { quoteAdapter.setDataList(it) })
+        viewModel.fetchCategory(isEnglish).observe(this, { quoteAdapter.setCategoryDataList(it) })
+
     }
 
     private fun appLanguage() {
@@ -320,24 +326,18 @@ class Dashboard : AppCompatActivity(), Listener {
         startActivity(intent)
     }
 
-    private fun loadingDialog(isFinished: Boolean) {
-        val dialogBuilder = AlertDialog.Builder(this)
-        val view = View.inflate(this, R.layout.loading_dialog, null)
-        dialogBuilder.setView(view)
-        val alertDialog = dialogBuilder.create()
-        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        if (isFinished) alertDialog.cancel()
-        else alertDialog.show()
-//        alertDialog.setCancelable(false)
-    }
-
     override fun onStarted() {
     }
 
     override fun onSuccess() {
+        progress1.visibility = View.GONE
+        progress2.visibility = View.GONE
+
     }
 
     override fun onFailure(message: String) {
+        progress1.visibility = View.GONE
+        progress2.visibility = View.GONE
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

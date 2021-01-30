@@ -19,11 +19,19 @@
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_marginTop="16dp"
-        android:background="@color/silver"
+        android:background="@color/silver_grey"
         android:gravity="top"
         android:hint="Aa"
         android:padding="8dp"
         android:textAlignment="inherit" />
+
+    <include
+        android:id="@+id/progress"
+        layout="@layout/loading_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/sendBtn"

@@ -2,7 +2,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,7 +29,6 @@
                 android:src="@drawable/slide_menu"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
             <TextView
                 android:id="@+id/textView"
@@ -72,107 +70,37 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <GridLayout
+                    android:id="@+id/gridView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
+                    android:orientation="horizontal"
+                    android:useDefaultMargins="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
 
-                    <androidx.cardview.widget.CardView
+                    <include
                         android:id="@+id/muhammadStory"
+                        layout="@layout/card_item"
                         android:layout_width="200dp"
                         android:layout_height="100dp"
-                        android:layout_margin="16dp"
-                        android:onClick="firstSuggestedCard"
-                        card_view:cardCornerRadius="15dp"
-                        card_view:cardElevation="14dp">
+                        android:useDefaultMargins="true" />
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:adjustViewBounds="true"
-                            android:scaleType="centerCrop" />
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/bg_overlay" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:paddingBottom="6dp"
-                            android:text="Muhammad's Story"
-                            android:textAlignment="center"
-                            android:textColor="#fff" />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/jobStory"
-                        android:layout_width="200dp"
-                        android:layout_height="100dp"
-                        android:layout_margin="16dp"
-                        card_view:cardCornerRadius="15dp"
-                        card_view:cardElevation="14dp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:adjustViewBounds="true"
-                            android:scaleType="centerCrop" />
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/bg_overlay" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:paddingBottom="6dp"
-                            android:text="Job's Story"
-                            android:textAlignment="center"
-                            android:textColor="#fff" />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
+                    <include
                         android:id="@+id/hadiths"
+                        layout="@layout/card_item"
                         android:layout_width="200dp"
                         android:layout_height="100dp"
-                        android:layout_margin="16dp"
-                        card_view:cardCornerRadius="15dp"
-                        card_view:cardElevation="14dp">
+                        android:useDefaultMargins="true" />
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:adjustViewBounds="true"
-                            android:scaleType="centerCrop" />
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/bg_overlay" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:paddingBottom="6dp"
-                            android:text="@string/hadiths"
-                            android:textAlignment="center"
-                            android:textColor="#fff" />
-
-                    </androidx.cardview.widget.CardView>
+                    <include
+                        android:id="@+id/jobStory"
+                        layout="@layout/card_item"
+                        android:layout_width="200dp"
+                        android:layout_height="100dp" />
 
                 </GridLayout>
             </HorizontalScrollView>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -186,7 +114,7 @@
                 android:id="@+id/storiesCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorSecondary"
                 android:padding="8dp"
                 ads:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -213,6 +141,15 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/seeAllStories" />
 
+                <include
+                    android:id="@+id/progress1"
+                    layout="@layout/loading_dialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true" />
+
             </RelativeLayout>
 
             <com.google.android.gms.ads.AdView
@@ -232,12 +169,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorSecondary"
                 android:padding="8dp"
                 ads:layout_constraintEnd_toEndOf="parent"
                 ads:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/adView">
-
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -261,6 +197,16 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/seeAllQuotes" />
 
+                <include
+                    android:id="@+id/progress2"
+                    layout="@layout/loading_dialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true" />
+
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -268,7 +214,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorSecondary"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="12dp"
                 ads:layout_constraintEnd_toEndOf="parent"
@@ -299,51 +245,26 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
-                        <androidx.cardview.widget.CardView
+                        <include
                             android:id="@+id/muhammadTree"
-                            android:layout_width="120dp"
+                            layout="@layout/card_item"
+                            android:layout_width="200dp"
                             android:layout_height="100dp"
-                            android:layout_margin="16dp"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="16dp"
-                            app:contentPadding="8dp">
+                            android:layout_gravity="center" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/muhammad_family_tree" />
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/prophetTree"
-                            android:layout_width="120dp"
+                        <include
+                            android:id="@+id/prophetsTree"
+                            layout="@layout/card_item"
+                            android:layout_width="200dp"
                             android:layout_height="100dp"
-                            android:layout_margin="16dp"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="16dp"
-                            app:contentPadding="8dp">
+                            android:layout_gravity="center" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/prophets_family_tree" />
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
+                        <include
                             android:id="@+id/bigTree"
-                            android:layout_width="120dp"
+                            layout="@layout/card_item"
+                            android:layout_width="200dp"
                             android:layout_height="100dp"
-                            android:layout_margin="16dp"
-                            app:cardCornerRadius="10dp"
-                            app:cardElevation="16dp"
-                            app:contentPadding="8dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/the_big_family_tree" />
-                        </androidx.cardview.widget.CardView>
-
+                            android:layout_gravity="center" />
                     </GridLayout>
 
                 </HorizontalScrollView>
@@ -351,36 +272,46 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/topicsCard"
+                android:id="@+id/videosCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorSecondary"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="12dp"
                 ads:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/familyTreeCard">
 
-                <TextView
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/topics"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/videos"
-                    android:textColor="@android:color/white"
-                    android:textSize="21sp" />
+                    android:minHeight="140dp">
 
-                <ImageButton
-                    android:id="@+id/seeAllTopics"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/expand" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/failure_img" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/seeAllTopics" />
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_overlay" />
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:paddingBottom="6dp"
+                        android:text="@string/topics"
+                        android:textAlignment="center"
+                        android:textColor="#fff" />
+
+                </androidx.cardview.widget.CardView>
 
             </RelativeLayout>
 
@@ -393,7 +324,8 @@
                 ads:adUnitId="@string/home_banner_id"
                 ads:layout_constraintEnd_toEndOf="parent"
                 ads:layout_constraintStart_toStartOf="parent"
-                ads:layout_constraintTop_toBottomOf="@id/topicsCard" />
+                ads:layout_constraintTop_toBottomOf="@id/videosCard" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </ScrollView>

@@ -20,7 +20,7 @@ class ViewModel : ViewModel() {
         listener?.onStarted()
         val mutableData = MutableLiveData<MutableList<Prophet>>()
         GlobalScope.launch {
-            delay(3000)
+            delay(1000)
             withContext(Dispatchers.Main) {
                 repo.fetchAllStories(isEnglish)
                     .observeForever { prophetList -> mutableData.value = prophetList }
@@ -35,7 +35,7 @@ class ViewModel : ViewModel() {
         listener?.onStarted()
         val mutableData = MutableLiveData<MutableList<Video>>()
         GlobalScope.launch {
-            delay(3000)
+            delay(1000)
             withContext(Dispatchers.Main) {
                 repo.fetchVideos(isEnglish)
                     .observeForever { videosList -> mutableData.value = videosList }
@@ -50,7 +50,7 @@ class ViewModel : ViewModel() {
         listener?.onStarted()
         val prophet = Prophet("", "", defaultImg, ArrayList(0))
         GlobalScope.launch {
-            delay(3000)
+            delay(1000)
             withContext(Dispatchers.Main) {
                 repo.fetchStory(isEnglish, prophetName)
                 if (prophet.text.isNotEmpty()) listener?.onSuccess()
@@ -64,7 +64,7 @@ class ViewModel : ViewModel() {
         listener?.onStarted()
         val mutableData = MutableLiveData<MutableList<Category>>()
         GlobalScope.launch {
-            delay(3000)
+            delay(1000)
             withContext(Dispatchers.Main) {
                 repo.fetchCategories(isEnglish)
                     .observeForever { categoryList -> mutableData.value = categoryList }
@@ -77,8 +77,16 @@ class ViewModel : ViewModel() {
 
     suspend fun fetchQuote(isEnglish: Boolean, category: String): Quote {
         listener?.onStarted()
-        val quote = repo.getQuote(isEnglish, category)
+        val quote = repo.fetchQuote(isEnglish, category)
         if (quote.verses.isNotEmpty()) listener?.onSuccess()
+        else listener?.onFailure("Failure")
+        return quote
+    }
+
+    suspend fun fetchHadiths(isEnglish: Boolean): Quote {
+        listener?.onStarted()
+        val quote = repo.fetchHadiths(isEnglish)
+        if (quote.hadiths.isNotEmpty()) listener?.onSuccess()
         else listener?.onFailure("Failure")
         return quote
     }

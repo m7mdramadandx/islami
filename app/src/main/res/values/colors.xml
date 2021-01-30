@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#162447</color>
-    <color name="colorPrimaryDark">#17223b</color>
+    <color name="colorSecondary">#17223b</color>
     <color name="colorAccent">#E1B34F</color>
-    <color name="silver">#eeeeee</color>
+    <color name="silver_grey">#eeeeee</color>
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorText">#162447</color>
     <color name="actionbar_background">#17223b</color>

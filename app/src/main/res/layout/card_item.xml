@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardItem"
+    style="@style/CardViewStyle"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:gravity="center"
-    card_view:cardCornerRadius="15dp"
-    card_view:cardElevation="14dp"
-    card_view:cardPreventCornerOverlap="false"
-    card_view:cardUseCompatPadding="true">
-
+    android:minHeight="140dp">
 
     <ImageView
-        android:id="@+id/categoryImg"
+        android:id="@+id/cardImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/error_img" />
+        android:src="@drawable/failure_img" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -25,15 +22,13 @@
         android:background="@drawable/bg_overlay" />
 
     <TextView
-        android:id="@+id/categoryName"
+        android:id="@+id/cardName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:paddingBottom="8dp"
-        android:text="categoryName"
+        android:paddingBottom="6dp"
         android:textAlignment="center"
         android:textColor="#fff"
-        android:textSize="19sp"
         android:textStyle="bold" />
 
 </androidx.cardview.widget.CardView>

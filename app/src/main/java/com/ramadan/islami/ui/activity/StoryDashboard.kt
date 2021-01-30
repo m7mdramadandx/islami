@@ -31,6 +31,8 @@ class StoryDashboard : AppCompatActivity(), Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recycle_view)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         viewModel.listener = this
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         prophetsAdapter = StoryAdapter(this, false)
@@ -46,7 +48,6 @@ class StoryDashboard : AppCompatActivity(), Listener {
     }
 
     override fun onStarted() {
-        progress.visibility = View.VISIBLE
     }
 
     override fun onSuccess() {
@@ -54,6 +55,7 @@ class StoryDashboard : AppCompatActivity(), Listener {
     }
 
     override fun onFailure(message: String) {
+        progress.visibility = View.GONE
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 

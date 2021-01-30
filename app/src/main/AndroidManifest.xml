@@ -96,6 +96,7 @@
             android:name=".ui.activity.Videos"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
             android:hardwareAccelerated="true" />
+        <activity android:name=".ui.activity.Hadiths" />
     </application>
 
 </manifest>

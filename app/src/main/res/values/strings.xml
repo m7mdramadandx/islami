@@ -82,7 +82,14 @@
     <string name="share">Share</string>
     <string name="view_images">View images</string>
     <string name="send">Send</string>
-    <string name="please_give_details_on_the_issue_or_provide_general_feedback">Please give details on the issue or provide general feedback</string>
     <string name="videos">videos</string>
+    <string name="please_give_details_on_the_issue_or_provide_general_feedback">Please provide details of the issue or provide general feedback</string>
+    <string name="part_6">Part-6</string>
+    <string name="part_7">Part-7</string>
+    <string name="part_5">Part-5</string>
+    <string name="part_4">Part-4</string>
+    <string name="part_3">Part-3</string>
+    <string name="part_2">Part-2</string>
+    <string name="part_1">Part-1</string>
 
 </resources>

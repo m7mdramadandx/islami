@@ -12,6 +12,7 @@ import android.view.View.GONE
 import androidx.appcompat.app.AppCompatActivity
 import com.ramadan.islami.R
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
+import com.yalantis.contextmenu.lib.MenuGravity
 import com.yalantis.contextmenu.lib.MenuObject
 import com.yalantis.contextmenu.lib.MenuParams
 import kotlinx.android.synthetic.main.story_layout.*
@@ -26,13 +27,13 @@ class Story : AppCompatActivity() {
         val bundle = intent.extras
         prophetName = bundle?.getString("prophetName")
         val text = bundle?.getStringArrayList("text")
-        text?.elementAtOrNull(0).also { section1.text = it }
-        text?.elementAtOrNull(1).also { section2.text = it }
-        text?.elementAtOrNull(2).also { section3.text = it }
-        text?.elementAtOrNull(3).also { section4.text = it }
-        text?.elementAtOrNull(4).also { section5.text = it }
-        text?.elementAtOrNull(5).also { section6.text = it }
-        text?.elementAtOrNull(6).also { section7.text = it }
+        text?.elementAtOrNull(0).also { part0.text = it }
+        text?.elementAtOrNull(1).also { part1.text = it }
+        text?.elementAtOrNull(2).also { part2.text = it }
+        text?.elementAtOrNull(3).also { part3.text = it }
+        text?.elementAtOrNull(4).also { part4.text = it }
+        text?.elementAtOrNull(5).also { part5.text = it }
+        text?.elementAtOrNull(6).also { part6.text = it }
 
         supportActionBar?.title = prophetName
         supportActionBar?.setHomeButtonEnabled(true)
@@ -65,9 +66,9 @@ class Story : AppCompatActivity() {
     private fun initMenuFragment() {
         val menuParams = MenuParams(
             actionBarSize = resources.getDimension(R.dimen.tool_bar_height).toInt(),
-            animationDuration = 250,
             menuObjects = getMenuObjects(),
-            isClosableOutside = true
+            isClosableOutside = true,
+            gravity = MenuGravity.START
         )
 
         contextMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams).apply {
@@ -110,7 +111,7 @@ class Story : AppCompatActivity() {
 
     private fun layoutVisibility() {
         when {
-            section2.text.length < 10 -> {
+            part1.text.length < 10 -> {
                 layout2.visibility = GONE
                 layout3.visibility = GONE
                 layout4.visibility = GONE
@@ -118,29 +119,29 @@ class Story : AppCompatActivity() {
                 layout6.visibility = GONE
                 layout7.visibility = GONE
             }
-            section3.text.length < 10 -> {
+            part2.text.length < 10 -> {
                 layout3.visibility = GONE
                 layout4.visibility = GONE
                 layout5.visibility = GONE
                 layout6.visibility = GONE
                 layout7.visibility = GONE
             }
-            section4.text.length < 10 -> {
+            part3.text.length < 10 -> {
                 layout4.visibility = GONE
                 layout5.visibility = GONE
                 layout6.visibility = GONE
                 layout7.visibility = GONE
             }
-            section5.text.length < 10 -> {
+            part4.text.length < 10 -> {
                 layout5.visibility = GONE
                 layout6.visibility = GONE
                 layout7.visibility = GONE
             }
-            section6.text.length < 10 -> {
+            part5.text.length < 10 -> {
                 layout6.visibility = GONE
                 layout7.visibility = GONE
             }
-            section7.text.length < 10 -> {
+            part6.text.length < 10 -> {
                 layout7.visibility = GONE
             }
         }

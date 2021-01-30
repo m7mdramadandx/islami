@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     android:orientation="vertical"
+    android:paddingHorizontal="8dp"
+    android:paddingVertical="16dp"
     tools:context=".ui.activity.Story">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="4dp"
-        android:layout_marginVertical="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -28,7 +27,6 @@
                 android:orientation="vertical">
 
                 <com.github.florent37.expansionpanel.ExpansionHeader
-                    android:id="@+id/ss"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
@@ -40,22 +38,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="@color/colorPrimary"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="16dp"
                         app:contentPadding="16dp">
 
                         <TextView
                             style="@style/TextAppearance.AppCompat.Title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Section-1"
+                            android:text="@string/part_1"
                             android:textColor="#fff" />
 
                         <ImageView
                             android:id="@+id/headerIndicator1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
+                            android:layout_gravity="end"
                             android:adjustViewBounds="true"
                             app:srcCompat="@drawable/expand" />
                     </androidx.cardview.widget.CardView>
@@ -66,19 +62,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
-                    android:background="@color/silver"
-                    android:isScrollContainer="true"
-                    android:padding="8dp">
+                    android:background="@color/silver_grey">
 
                     <TextView
-                        android:id="@+id/section1"
+                        android:id="@+id/part0"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
                         android:autoSizeTextType="uniform"
-                        android:text="string/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/title"
-                        android:textAlignment="textStart"
-                        android:textColorHighlight="@color/colorAccent"
-                        android:textIsSelectable="true" />
+                        android:textAlignment="textStart" />
                 </com.github.florent37.expansionpanel.ExpansionLayout>
 
             </LinearLayout>
@@ -101,23 +93,21 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:cardBackgroundColor="@color/colorPrimaryDark"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="16dp"
+                        app:cardBackgroundColor="@color/colorSecondary"
                         app:contentPadding="16dp">
 
                         <TextView
                             style="@style/TextAppearance.AppCompat.Title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Section-2"
+                            android:text="@string/part_2"
                             android:textColor="#fff" />
 
                         <ImageView
                             android:id="@+id/headerIndicator2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
+                            android:layout_gravity="end"
                             android:adjustViewBounds="true"
                             app:srcCompat="@drawable/expand" />
                     </androidx.cardview.widget.CardView>
@@ -128,19 +118,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
-                    android:background="@color/silver"
-                    android:padding="8dp">
+                    android:background="@color/silver_grey">
 
                     <TextView
-                        android:id="@+id/section2"
+                        android:id="@+id/part1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:autoLink="all"
+                        android:layout_margin="8dp"
                         android:autoSizeTextType="uniform"
-                        android:text="string/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/title"
-                        android:textAlignment="textStart"
-                        android:textColorHighlight="@color/colorAccent"
-                        android:textIsSelectable="true" />
+                        android:textAlignment="textStart" />
                 </com.github.florent37.expansionpanel.ExpansionLayout>
             </LinearLayout>
 
@@ -163,15 +149,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="@color/colorPrimary"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="16dp"
                         app:contentPadding="16dp">
 
                         <TextView
                             style="@style/TextAppearance.AppCompat.Title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Section-3"
+                            android:text="@string/part_3"
                             android:textColor="#fff" />
 
                         <ImageView
@@ -189,19 +173,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
-                    android:background="@color/silver"
-                    android:padding="8dp">
+                    android:background="@color/silver_grey">
 
                     <TextView
-                        android:id="@+id/section3"
+                        android:id="@+id/part2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:autoLink="all"
+                        android:layout_margin="8dp"
                         android:autoSizeTextType="uniform"
-                        android:text="string/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/title"
-                        android:textAlignment="textStart"
-                        android:textColorHighlight="@color/colorAccent"
-                        android:textIsSelectable="true" />
+                        android:textAlignment="textStart" />
                 </com.github.florent37.expansionpanel.ExpansionLayout>
             </LinearLayout>
 
@@ -222,9 +202,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:cardBackgroundColor="@color/colorPrimaryDark"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="16dp"
+                        app:cardBackgroundColor="@color/colorSecondary"
                         app:contentPadding="16dp">
 
 
@@ -232,14 +210,14 @@
                             style="@style/TextAppearance.AppCompat.Title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Section-4"
+                            android:text="@string/part_4"
                             android:textColor="#fff" />
 
                         <ImageView
                             android:id="@+id/headerIndicator4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
+                            android:layout_gravity="end"
                             android:adjustViewBounds="true"
                             app:srcCompat="@drawable/expand" />
                     </androidx.cardview.widget.CardView>
@@ -250,19 +228,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
-                    android:background="@color/silver"
-                    android:padding="8dp">
+                    android:background="@color/silver_grey">
 
                     <TextView
-                        android:id="@+id/section4"
+                        android:id="@+id/part3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:autoLink="all"
+                        android:layout_margin="8dp"
                         android:autoSizeTextType="uniform"
-                        android:text="string/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/title"
-                        android:textAlignment="textStart"
-                        android:textColorHighlight="@color/colorAccent"
-                        android:textIsSelectable="true" />
+                        android:textAlignment="textStart" />
                 </com.github.florent37.expansionpanel.ExpansionLayout>
             </LinearLayout>
 
@@ -284,22 +258,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="@color/colorPrimary"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="16dp"
                         app:contentPadding="16dp">
 
                         <TextView
                             style="@style/TextAppearance.AppCompat.Title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Section-5"
+                            android:text="@string/part_5"
                             android:textColor="#fff" />
 
                         <ImageView
                             android:id="@+id/headerIndicator5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
+                            android:layout_gravity="end"
                             android:adjustViewBounds="true"
                             app:srcCompat="@drawable/expand" />
                     </androidx.cardview.widget.CardView>
@@ -310,19 +282,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
-                    android:background="@color/silver"
-                    android:padding="8dp">
+                    android:background="@color/silver_grey">
 
                     <TextView
-                        android:id="@+id/section5"
+                        android:id="@+id/part4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:autoLink="all"
+                        android:layout_margin="8dp"
                         android:autoSizeTextType="uniform"
-                        android:text="string/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/title"
-                        android:textAlignment="textStart"
-                        android:textColorHighlight="@color/colorAccent"
-                        android:textIsSelectable="true" />
+                        android:textAlignment="textStart" />
                 </com.github.florent37.expansionpanel.ExpansionLayout>
             </LinearLayout>
 
@@ -343,23 +311,21 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:cardBackgroundColor="@color/colorPrimaryDark"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="16dp"
+                        app:cardBackgroundColor="@color/colorSecondary"
                         app:contentPadding="16dp">
 
                         <TextView
                             style="@style/TextAppearance.AppCompat.Title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Section-6"
+                            android:text="@string/part_6"
                             android:textColor="#fff" />
 
                         <ImageView
                             android:id="@+id/headerIndicator6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
+                            android:layout_gravity="end"
                             android:adjustViewBounds="true"
                             app:srcCompat="@drawable/expand" />
                     </androidx.cardview.widget.CardView>
@@ -370,19 +336,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
-                    android:background="@color/silver"
-                    android:padding="8dp">
+                    android:background="@color/silver_grey">
 
                     <TextView
-                        android:id="@+id/section6"
+                        android:id="@+id/part5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
                         android:autoLink="all"
                         android:autoSizeTextType="uniform"
-                        android:text="string/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/title"
-                        android:textAlignment="textStart"
-                        android:textColorHighlight="@color/colorAccent"
-                        android:textIsSelectable="true" />
+                        android:textAlignment="textStart" />
                 </com.github.florent37.expansionpanel.ExpansionLayout>
             </LinearLayout>
 
@@ -404,22 +367,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="@color/colorPrimary"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="16dp"
                         app:contentPadding="16dp">
 
                         <TextView
                             style="@style/TextAppearance.AppCompat.Title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Section-7"
+                            android:text="@string/part_7"
                             android:textColor="#fff" />
 
                         <ImageView
                             android:id="@+id/headerIndicator7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
+                            android:layout_gravity="end"
                             android:adjustViewBounds="true"
                             app:srcCompat="@drawable/expand" />
                     </androidx.cardview.widget.CardView>
@@ -429,20 +390,16 @@
                     android:id="@+id/expansionLayout7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:background="@color/silver"
-                    android:padding="8dp">
+                    android:background="@color/silver_grey">
 
                     <TextView
-                        android:id="@+id/section7"
+                        android:id="@+id/part6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
                         android:autoLink="all"
                         android:autoSizeTextType="uniform"
-                        android:text="string/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/titlestring/title"
-                        android:textAlignment="textStart"
-                        android:textColorHighlight="@color/colorAccent"
-                        android:textIsSelectable="true" />
+                        android:textAlignment="textStart" />
                 </com.github.florent37.expansionpanel.ExpansionLayout>
             </LinearLayout>
         </LinearLayout>

@@ -22,6 +22,7 @@ class QuoteDashboard : AppCompatActivity(), Listener {
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
+    private var recyclerView: RecyclerView? = null
 
     override fun onStart() {
         super.onStart()
@@ -31,23 +32,23 @@ class QuoteDashboard : AppCompatActivity(), Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recycle_view)
+        supportActionBar!!.setHomeButtonEnabled(true)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         viewModel.listener = this
         quoteAdapter = QuoteAdapter(this, false)
-        val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
+        recyclerView = findViewById(R.id.recycler_view)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-        recyclerView.layoutManager = staggeredGridLayoutManager
-        recyclerView.adapter = quoteAdapter
+        recyclerView?.layoutManager = staggeredGridLayoutManager
+        recyclerView?.adapter = quoteAdapter
 
     }
 
-
     private fun observeDate() {
-        viewModel.fetchCategory(isEnglish).observe(this, { quoteAdapter.setDataList(it) })
+        viewModel.fetchCategory(isEnglish).observe(this, { quoteAdapter.setCategoryDataList(it) })
     }
 
     override fun onStarted() {
-        progress.visibility = View.VISIBLE
     }
 
     override fun onSuccess() {
@@ -55,6 +56,7 @@ class QuoteDashboard : AppCompatActivity(), Listener {
     }
 
     override fun onFailure(message: String) {
+        progress.visibility = View.GONE
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 

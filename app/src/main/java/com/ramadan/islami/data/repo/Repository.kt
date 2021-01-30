@@ -64,15 +64,26 @@ class Repository {
         return mutableLiveData
     }
 
-    suspend fun getQuote(isEnglish: Boolean, category: String): Quote {
-        var quote: Quote
+    suspend fun fetchQuote(isEnglish: Boolean, category: String): Quote {
+        val quote: Quote
         if (isEnglish) language = "en"
         val data = rootCollection.document(language).collection("quotes")
             .document(category).get().await()
         val imgUrl: String? = data.getString("image")
-        val verses = data?.get("verses") as ArrayList<String>
+        val verses = (data?.get("verses") ?: ArrayList<String>(0)) as ArrayList<String>
         val hadiths = data.get("hadiths") as ArrayList<String>
         quote = Quote(imgUrl!!, verses, hadiths)
+        return quote
+    }
+
+    suspend fun fetchHadiths(isEnglish: Boolean): Quote {
+        val quote: Quote
+        if (isEnglish) language = "en"
+        val data = rootCollection.document(language).collection("quotes")
+            .document("hadiths").get().await()
+        val imgUrl: String? = data.getString("image")
+        val hadiths = data.get("hadiths") as ArrayList<String>
+        quote = Quote(imgUrl!!, ArrayList(0), hadiths)
         return quote
     }
 
@@ -80,7 +91,7 @@ class Repository {
         val mutableLiveData = MutableLiveData<MutableList<Video>>()
         val dataList: MutableList<Video> = mutableListOf()
         if (isEnglish) language = "en"
-        val data = rootCollection.document(language).collection("videos").get().await()
+        rootCollection.document(language).collection("videos").get().await()
             .forEach {
                 val category: String? = it.getString("category")
                 val id: String? = it.getString("id")

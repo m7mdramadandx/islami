@@ -6,15 +6,18 @@
         <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
         <item name="android:actionMenuTextColor">@color/actionbar_text</item>
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="cardViewStyle">@style/CardViewStyle</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColorHighlight">@color/colorAccent</item>
+        <item name="android:textIsSelectable">true</item>
         <item name="fontFamily">@font/aref_font_family</item>
         <!--        <item name="android:typeface">@font/aref_ruqaa_regular</item>-->
-
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/MyActionBar</item>
-        <item name="actionBarTabTextStyle">@style/MyActionBarTabText</item>
+        <!--        <item name="actionBarTabTextStyle">@style/MyActionBarTabText</item>-->
         <item name="actionMenuTextColor">@color/actionbar_text</item>
         <item name="android:fontFamily">@font/aref_font_family</item>
 
@@ -23,14 +26,18 @@
     <style name="TextViewStyle" parent="TextView">
         <item name="android:fontFamily">@font/aref_regular</item>
         <item name="fontFamily">@font/aref_regular</item>
+    </style>
 
+    <style name="CardViewStyle" parent="CardView">
+        <item name="cardCornerRadius">10dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardBackgroundColor">@color/silver_grey</item>
     </style>
 
     <!-- ActionBar styles -->
     <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@color/actionbar_background</item>
         <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
-
         <!-- Support library compatibility -->
         <item name="background">@color/actionbar_background</item>
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>
@@ -39,13 +46,11 @@
     <!-- ActionBar title text -->
     <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/actionbar_text</item>
-
     </style>
 
     <!-- ActionBar tabs text -->
     <style name="MyActionBarTabText" parent="@style/Widget.AppCompat.ActionBar.TabText">
         <item name="android:textColor">@color/actionbar_text</item>
-
     </style>
 
 

@@ -12,8 +12,13 @@ class FamilyTree : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.family_tree)
-        a1.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
-        a2.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
-        a3.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
+        muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
+        prophets_family_tree.setOnClickListener {
+            startActivity(Intent(this,
+                ProphetsTree::class.java))
+        }
+        the_big_family_tree.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }
