@@ -2,14 +2,12 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:background="@color/silver_grey">
+    android:layout_gravity="center">
 
     <ImageView
         android:id="@+id/sliderImg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:minHeight="500dp"
+        android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         android:src="@drawable/error_img" />
 

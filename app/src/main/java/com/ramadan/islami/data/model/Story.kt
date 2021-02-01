@@ -1,7 +1,7 @@
 package com.ramadan.islami.data.model
 
 
-class Prophet(
+class Story(
     val displayName: String,
     val name: String,
     val imgUrl: String,

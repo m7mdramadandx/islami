@@ -11,8 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        app:lineColor="@color/colorAccent"
-        />
+        app:lineColor="@color/colorAccent" />
 
 </com.otaliastudios.zoom.ZoomLayout>
 

@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.ramadan.islami.data.model.Category
-import com.ramadan.islami.data.model.Prophet
 import com.ramadan.islami.data.model.Quote
+import com.ramadan.islami.data.model.Story
 import com.ramadan.islami.data.model.Video
 import com.ramadan.islami.data.repo.Repository
 import com.ramadan.islami.utils.defaultImg
@@ -16,9 +16,9 @@ class ViewModel : ViewModel() {
     private val repo = Repository()
     var listener: Listener? = null
 
-    fun fetchAllStories(isEnglish: Boolean): LiveData<MutableList<Prophet>> {
+    fun fetchAllStories(isEnglish: Boolean): LiveData<MutableList<Story>> {
         listener?.onStarted()
-        val mutableData = MutableLiveData<MutableList<Prophet>>()
+        val mutableData = MutableLiveData<MutableList<Story>>()
         GlobalScope.launch {
             delay(1000)
             withContext(Dispatchers.Main) {
@@ -46,9 +46,9 @@ class ViewModel : ViewModel() {
         return mutableData
     }
 
-    fun fetchStory(isEnglish: Boolean, prophetName: String): Prophet {
+    fun fetchStory(isEnglish: Boolean, prophetName: String): Story {
         listener?.onStarted()
-        val prophet = Prophet("", "", defaultImg, ArrayList(0))
+        val prophet = Story("", "", defaultImg, ArrayList(0))
         GlobalScope.launch {
             delay(1000)
             withContext(Dispatchers.Main) {

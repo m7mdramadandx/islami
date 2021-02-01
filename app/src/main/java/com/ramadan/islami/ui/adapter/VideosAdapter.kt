@@ -20,7 +20,6 @@ internal class VideosAdapter(private val lifecycle: Lifecycle) :
         notifyDataSetChanged()
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val youTubePlayerView = LayoutInflater.from(parent.context)
             .inflate(R.layout.video_item, parent, false) as YouTubePlayerView
@@ -28,33 +27,28 @@ internal class VideosAdapter(private val lifecycle: Lifecycle) :
         return ViewHolder(youTubePlayerView)
     }
 
+    override fun getItemCount(): Int = dataList.size
+
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.cueVideo(dataList[position])
     }
 
-    override fun getItemCount(): Int {
-        return dataList.size
-    }
-
-    internal class ViewHolder(private val youTubePlayerView: YouTubePlayerView) :
-        RecyclerView.ViewHolder(
-            youTubePlayerView) {
+    internal class ViewHolder(playerView: YouTubePlayerView) : RecyclerView.ViewHolder(playerView) {
         private var youTubePlayer: YouTubePlayer? = null
         private var currentVideoId: String? = null
         fun cueVideo(video: Video) {
             currentVideoId = video.id
             if (youTubePlayer == null) return
-            youTubePlayer!!.cueVideo(video.id, 0f)
+            youTubePlayer?.cueVideo(video.id, 0f)
         }
 
         init {
-            youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-                override fun onReady(initializedYouTubePlayer: YouTubePlayer) {
-                    youTubePlayer = initializedYouTubePlayer
-                    youTubePlayer!!.cueVideo(currentVideoId!!, 0f)
+            playerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    this@ViewHolder.youTubePlayer = youTubePlayer
+                    this@ViewHolder.youTubePlayer?.cueVideo(currentVideoId!!, 0f)
                 }
             })
-
         }
     }
 }

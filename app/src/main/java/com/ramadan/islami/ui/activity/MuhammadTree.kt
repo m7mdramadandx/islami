@@ -9,12 +9,12 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.GraphAdapter
-import com.ramadan.islami.utils.Utils
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuObject
 import com.yalantis.contextmenu.lib.MenuParams
 import de.blox.graphview.Graph
 import de.blox.graphview.GraphView
+import de.blox.graphview.Node
 import de.blox.graphview.tree.BuchheimWalkerAlgorithm
 import de.blox.graphview.tree.BuchheimWalkerConfiguration
 
@@ -30,43 +30,42 @@ class MuhammadTree : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         graphView = findViewById(R.id.graphView)
         val graph = Graph()
-        val utils = Utils(this)
-        graph.addEdge(utils.hashim_ibn_abd_manaf, utils.abd_almuttalib)
-        graph.addEdge(utils.abd_almuttalib, utils.abd_allah)
-        graph.addEdge(utils.abd_allah, utils.muhammad)
-        graph.addEdge(utils.muhammad, utils.khadija)
-        graph.addEdge(utils.muhammad, utils.sawada)
-        graph.addEdge(utils.muhammad, utils.aisha)
-        graph.addEdge(utils.muhammad, utils.hafsa)
-        graph.addEdge(utils.muhammad, utils.zainab1)
-        graph.addEdge(utils.muhammad, utils.umm_salama)
-        graph.addEdge(utils.muhammad, utils.zainab2)
-        graph.addEdge(utils.muhammad, utils.juwayriya)
-        graph.addEdge(utils.muhammad, utils.umm_habiba)
-        graph.addEdge(utils.muhammad, utils.safiyya)
-        graph.addEdge(utils.muhammad, utils.maymuma)
-        graph.addEdge(utils.muhammad, utils.maria)
-//        graph.addEdge(utils.khadija, Node(getString(R.string.abd_allah)))
-        graph.addEdge(utils.khadija, utils.al_qasim)
-        graph.addEdge(utils.khadija, utils.zainab)
-        graph.addEdge(utils.khadija, utils.fatima)
-        graph.addEdge(utils.fatima, utils.hussein)
-        graph.addEdge(utils.fatima, utils.hassan)
-        graph.addEdge(utils.fatima, utils.muhsin)
-        graph.addEdge(utils.fatima, utils.umm_kalthum)
-        graph.addEdge(utils.fatima, utils.zainab)
-//        val umm_kalthum = Node(getString(R.string.umm_kalthum))
-//        graph.addEdge(utils.khadija, umm_kalthum)
-        graph.addEdge(utils.khadija, utils.ruqayyah)
-//        graph.addEdge(utils.ruqayyah, Node(getString(R.string.abd_allah)))
+        graph.addEdge(Node(getString(R.string.hashim_ibn_abd_manaf)),
+            Node(getString(R.string.abd_almuttalib)))
+        graph.addEdge(Node(getString(R.string.abd_almuttalib)), Node(getString(R.string.abd_allah)))
+        graph.addEdge(Node(getString(R.string.abd_allah)), Node(getString(R.string.muhammad)))
+        graph.addEdge(Node(getString(R.string.muhammad)), Node(getString(R.string.khadija)))
+        graph.addEdge(Node(getString(R.string.muhammad)), Node(getString(R.string.sawada)))
+        graph.addEdge(Node(getString(R.string.muhammad)), Node(getString(R.string.aisha)))
+        graph.addEdge(Node(getString(R.string.muhammad)), Node(getString(R.string.hafsa)))
+        graph.addEdge(Node(getString(R.string.muhammad)), Node(getString(R.string.zainab)))
+        graph.addEdge(Node(getString(R.string.muhammad)), Node(getString(R.string.umm_salama)))
+        graph.addEdge(Node(getString(R.string.muhammad)), Node(getString(R.string.zainab1)))
+        graph.addEdge(Node(getString(R.string.muhammad)), Node(getString(R.string.juwayriya)))
+        graph.addEdge(Node(getString(R.string.muhammad)), Node(getString(R.string.umm_habiba)))
+        graph.addEdge(Node(getString(R.string.muhammad)), Node(getString(R.string.safiyya)))
+        graph.addEdge(Node(getString(R.string.muhammad)), Node(getString(R.string.maymuma)))
+        graph.addEdge(Node(getString(R.string.muhammad)), Node(getString(R.string.maria)))
+        graph.addEdge(Node(getString(R.string.khadija)), Node(getString(R.string.abd_allah1)))
+        graph.addEdge(Node(getString(R.string.khadija)), Node(getString(R.string.al_qasim)))
+        graph.addEdge(Node(getString(R.string.khadija)), Node(getString(R.string.zainab2)))
+        graph.addEdge(Node(getString(R.string.khadija)), Node(getString(R.string.fatima)))
+        graph.addEdge(Node(getString(R.string.fatima)), Node(getString(R.string.hussein)))
+        graph.addEdge(Node(getString(R.string.fatima)), Node(getString(R.string.hassan)))
+        graph.addEdge(Node(getString(R.string.fatima)), Node(getString(R.string.muhsin)))
+        graph.addEdge(Node(getString(R.string.fatima)), Node(getString(R.string.umm_kalthum1)))
+        graph.addEdge(Node(getString(R.string.fatima)), Node(getString(R.string.zainab3)))
+        graph.addEdge(Node(getString(R.string.khadija)), Node(getString(R.string.umm_kalthum)))
+        graph.addEdge(Node(getString(R.string.khadija)), Node(getString(R.string.ruqayyah)))
+        graph.addEdge(Node(getString(R.string.ruqayyah)), Node(getString(R.string.abd_allah2)))
 
         val graphAdapter = GraphAdapter(graph);
         graphView?.adapter = graphAdapter
         val configuration: BuchheimWalkerConfiguration = BuchheimWalkerConfiguration.Builder()
             .setSiblingSeparation(100)
             .setLevelSeparation(300)
-            .setSubtreeSeparation(300)
-            .setOrientation(BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM)
+            .setSubtreeSeparation(500)
+            .setOrientation(BuchheimWalkerConfiguration.ORIENTATION_RIGHT_LEFT)
             .build()
         graphView?.setLayout(BuchheimWalkerAlgorithm(configuration))
         initMenuFragment()
@@ -115,7 +114,7 @@ class MuhammadTree : AppCompatActivity() {
 
     private fun getMenuObjects() = mutableListOf<MenuObject>().apply {
         MenuObject(getString(R.string.view_images)).apply {
-            setResourceValue(R.drawable.translate)
+            setResourceValue(R.drawable.photo_library)
             setBgColorValue((Color.rgb(22, 36, 71)))
             add(this)
         }

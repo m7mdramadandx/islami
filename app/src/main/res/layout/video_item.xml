@@ -4,5 +4,7 @@
     android:id="@+id/youtube_player_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="4dp"
-    app:color="@color/colorAccent" />
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="24dp"
+    android:elevation="18dp"
+    app:barrierDirection="left" />

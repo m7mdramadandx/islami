@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
-import com.ramadan.islami.ui.adapter.QuoteAdapter
+import com.ramadan.islami.ui.adapter.RecycleViewAdapter
 import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycle_view.*
 
 class QuoteDashboard : AppCompatActivity(), Listener {
-    private lateinit var quoteAdapter: QuoteAdapter
+    private lateinit var recycleViewAdapter: RecycleViewAdapter
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
@@ -36,16 +36,17 @@ class QuoteDashboard : AppCompatActivity(), Listener {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         viewModel.listener = this
-        quoteAdapter = QuoteAdapter(this, false)
+        recycleViewAdapter = RecycleViewAdapter(this, false)
         recyclerView = findViewById(R.id.recycler_view)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         recyclerView?.layoutManager = staggeredGridLayoutManager
-        recyclerView?.adapter = quoteAdapter
+        recyclerView?.adapter = recycleViewAdapter
 
     }
 
     private fun observeDate() {
-        viewModel.fetchCategory(isEnglish).observe(this, { quoteAdapter.setCategoryDataList(it) })
+        viewModel.fetchCategory(isEnglish)
+            .observe(this, { recycleViewAdapter.setCategoryDataList(it) })
     }
 
     override fun onStarted() {

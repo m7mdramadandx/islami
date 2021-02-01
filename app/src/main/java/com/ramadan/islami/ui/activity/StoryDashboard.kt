@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
-import com.ramadan.islami.ui.adapter.StoryAdapter
+import com.ramadan.islami.ui.adapter.RecycleViewAdapter
 import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycle_view.*
 
 class StoryDashboard : AppCompatActivity(), Listener {
-    private lateinit var prophetsAdapter: StoryAdapter
+    private lateinit var storyAdapter: RecycleViewAdapter
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
@@ -35,16 +35,16 @@ class StoryDashboard : AppCompatActivity(), Listener {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         viewModel.listener = this
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
-        prophetsAdapter = StoryAdapter(this, false)
+        storyAdapter = RecycleViewAdapter(this, false)
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         recyclerView.layoutManager = staggeredGridLayoutManager
-        recyclerView.adapter = prophetsAdapter
+        recyclerView.adapter = storyAdapter
 
     }
 
     private fun observeDate() {
-        viewModel.fetchAllStories(isEnglish).observe(this, { prophetsAdapter.setDataList(it) })
+        viewModel.fetchAllStories(isEnglish).observe(this, { storyAdapter.setStoriesDataList(it) })
     }
 
     override fun onStarted() {

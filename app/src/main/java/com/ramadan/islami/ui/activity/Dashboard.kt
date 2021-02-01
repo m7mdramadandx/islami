@@ -18,17 +18,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.InterstitialAd
 import com.ramadan.islami.R
-import com.ramadan.islami.ui.adapter.QuoteAdapter
-import com.ramadan.islami.ui.adapter.StoryAdapter
+import com.ramadan.islami.ui.adapter.SliderAdapter
 import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
+import com.smarteist.autoimageslider.IndicatorAnimations
+import com.smarteist.autoimageslider.SliderAnimations
+import com.smarteist.autoimageslider.SliderView
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuGravity
 import com.yalantis.contextmenu.lib.MenuObject
@@ -42,8 +41,10 @@ class Dashboard : AppCompatActivity(), Listener {
     private lateinit var mAdView1: AdView
     private lateinit var mInterstitialAd: InterstitialAd
     private val localeHelper = LocaleHelper()
-    private lateinit var prophetsAdapter: StoryAdapter
-    private lateinit var quoteAdapter: QuoteAdapter
+    private lateinit var storiesSlider: SliderView
+    private lateinit var storiesAdapter: SliderAdapter
+    private lateinit var quotesSlider: SliderView
+    private lateinit var quotesAdapter: SliderAdapter
 
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
@@ -72,25 +73,34 @@ class Dashboard : AppCompatActivity(), Listener {
         }
         textView.typeface = typeface
         menuOptions.setOnClickListener { showContextMenuDialogFragment() }
-        prophetsAdapter = StoryAdapter(this, true)
-        quoteAdapter = QuoteAdapter(this, true)
+        storiesSlider = findViewById(R.id.storiesSlider)
+        storiesAdapter = SliderAdapter(this)
+        storiesSlider.setSliderAdapter(storiesAdapter)
+        storiesSlider.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LOCALE
+        storiesSlider.startAutoCycle()
+        storiesSlider.isAutoCycle = true
+        storiesSlider.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
+        storiesSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
 
-        val storiesRV: RecyclerView = findViewById(R.id.storiesRecyclerView)
-        val quotesRV: RecyclerView = findViewById(R.id.quotesRecyclerView)
-        storiesRV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
-        quotesRV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
-        storiesRV.adapter = prophetsAdapter
-        quotesRV.adapter = quoteAdapter
+        quotesSlider = findViewById(R.id.quotesSlider)
+        quotesAdapter = SliderAdapter(this)
+        quotesSlider.setSliderAdapter(quotesAdapter)
+        quotesSlider.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LOCALE
+        quotesSlider.startAutoCycle()
+        quotesSlider.isAutoCycle = true
+        quotesSlider.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
+        quotesSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
+//        sliderView.setOnIndicatorClickListener { p -> sliderView.currentPagePosition = p }
 
         seeAllStories.setOnClickListener { startActivity(Intent(this, StoryDashboard::class.java)) }
         seeAllQuotes.setOnClickListener { startActivity(Intent(this, QuoteDashboard::class.java)) }
-        topics.setOnClickListener { startActivity(Intent(this, Topics::class.java)) }
         seeAllTrees.setOnClickListener { startActivity(Intent(this, FamilyTree::class.java)) }
-//        muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
+        topics.setOnClickListener { startActivity(Intent(this, Topics::class.java)) }
+        muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
 //        prophetsTree.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
         hadiths.setOnClickListener { startActivity(Intent(this, Hadiths::class.java)) }
 //        bigTree.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
-//        muhammadStory.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
+        muhammadStory.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
 //        jobStory.setOnClickListener { startActivity(Intent(this, Videos::class.java)) }
 
 //        MobileAds.initialize(this, getString(R.string.ad_id))
@@ -111,8 +121,9 @@ class Dashboard : AppCompatActivity(), Listener {
     }
 
     private fun observeDate() {
-        viewModel.fetchAllStories(isEnglish).observe(this, { prophetsAdapter.setDataList(it) })
-        viewModel.fetchCategory(isEnglish).observe(this, { quoteAdapter.setCategoryDataList(it) })
+        viewModel.fetchAllStories(isEnglish)
+            .observe(this, { storiesAdapter.setProphetDataList(it) })
+        viewModel.fetchCategory(isEnglish).observe(this, { quotesAdapter.setCategoryDataList(it) })
 
     }
 
@@ -326,18 +337,16 @@ class Dashboard : AppCompatActivity(), Listener {
         startActivity(intent)
     }
 
-    override fun onStarted() {
-    }
+    override fun onStarted() {}
 
     override fun onSuccess() {
+        progress.visibility = View.GONE
         progress1.visibility = View.GONE
-        progress2.visibility = View.GONE
-
     }
 
     override fun onFailure(message: String) {
+        progress.visibility = View.GONE
         progress1.visibility = View.GONE
-        progress2.visibility = View.GONE
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

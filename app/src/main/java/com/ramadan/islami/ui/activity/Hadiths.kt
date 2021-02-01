@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
-import com.ramadan.islami.ui.adapter.QuoteAdapter
+import com.ramadan.islami.ui.adapter.RecycleViewAdapter
 import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
@@ -17,7 +17,7 @@ import kotlinx.coroutines.*
 
 class Hadiths : AppCompatActivity(), Listener {
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
-    private lateinit var quoteAdapter: QuoteAdapter
+    private lateinit var recycleViewAdapter: RecycleViewAdapter
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
     private var recyclerView: RecyclerView? = null
@@ -34,10 +34,10 @@ class Hadiths : AppCompatActivity(), Listener {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         viewModel.listener = this
-        quoteAdapter = QuoteAdapter(this, false)
+        recycleViewAdapter = RecycleViewAdapter(this, false)
         recyclerView = findViewById(R.id.recycler_view)
         recyclerView?.layoutManager = LinearLayoutManager(this)
-        recyclerView?.adapter = quoteAdapter
+        recyclerView?.adapter = recycleViewAdapter
 
     }
 
@@ -46,7 +46,7 @@ class Hadiths : AppCompatActivity(), Listener {
             viewModel.fetchHadiths(isEnglish).also {
                 delay(500)
                 withContext(Dispatchers.Main) {
-                    quoteAdapter.setQuotesDataList(it.hadiths)
+                    recycleViewAdapter.setQuotesDataList(it.hadiths)
                     progress.visibility = View.GONE
                 }
             }

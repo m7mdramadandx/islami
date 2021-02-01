@@ -75,5 +75,12 @@
     <string name="please_give_details_on_the_issue_or_provide_general_feedback">يرجى تقديم التفاصيل حول المشكلة أو تقديم ملاحظات عامة</string>
     <string name="videos">فديوهات</string>
     <string name="zainab2">زينب</string>
+    <string name="part_1">الجزء الأول</string>
+    <string name="part_2">الجزء الثاني</string>
+    <string name="part_3">الجزء الثالث</string>
+    <string name="part_4">الجزء الرابع</string>
+    <string name="part_5">الجزء الخامس</string>
+    <string name="part_7">الجزء السابع</string>
+    <string name="part_6">الجزء السادس</string>
 
 </resources>

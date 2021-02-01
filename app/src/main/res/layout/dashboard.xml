@@ -115,40 +115,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorSecondary"
-                android:padding="8dp"
+                android:paddingVertical="8dp"
                 ads:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
+                    style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:text="@string/stories"
-                    android:textColor="@android:color/white"
-                    android:textSize="21sp" />
+                    android:textColor="@android:color/white" />
 
                 <ImageButton
                     android:id="@+id/seeAllStories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="8dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/expand" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/storiesRecyclerView"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/seeAllStories" />
+                    android:layout_marginTop="32dp"
+                    ads:cardBackgroundColor="@android:color/transparent">
 
-                <include
-                    android:id="@+id/progress1"
-                    layout="@layout/loading_dialog"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true" />
+                    <com.smarteist.autoimageslider.SliderView
+                        android:id="@+id/storiesSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_below="@id/seeAllStories"
+                        app:sliderIndicatorSelectedColor="@color/colorAccent"
+                        app:sliderIndicatorUnselectedColor="@android:color/white">
+
+                        <include
+                            android:id="@+id/progress"
+                            layout="@layout/loading_dialog"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center" />
+
+                    </com.smarteist.autoimageslider.SliderView>
+
+                </androidx.cardview.widget.CardView>
 
             </RelativeLayout>
 
@@ -170,17 +182,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:background="@color/colorSecondary"
-                android:padding="8dp"
+                android:paddingVertical="8dp"
                 ads:layout_constraintEnd_toEndOf="parent"
                 ads:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/adView">
 
                 <TextView
+                    style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:text="@string/quotes"
-                    android:textColor="@android:color/white"
-                    android:textSize="21sp" />
+                    android:textColor="@android:color/white" />
 
 
                 <ImageButton
@@ -188,25 +201,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="8dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/expand" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/quotesRecyclerView"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/seeAllQuotes" />
+                    android:layout_marginTop="32dp"
+                    ads:cardBackgroundColor="@android:color/transparent">
 
-                <include
-                    android:id="@+id/progress2"
-                    layout="@layout/loading_dialog"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true" />
+                    <com.smarteist.autoimageslider.SliderView
+                        android:id="@+id/quotesSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_below="@id/seeAllQuotes"
+                        app:sliderIndicatorSelectedColor="@color/colorAccent"
+                        app:sliderIndicatorUnselectedColor="@android:color/white">
 
+                        <include
+                            android:id="@+id/progress1"
+                            layout="@layout/loading_dialog"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center" />
 
+                    </com.smarteist.autoimageslider.SliderView>
+                </androidx.cardview.widget.CardView>
             </RelativeLayout>
 
             <RelativeLayout
@@ -217,7 +238,7 @@
                 android:background="@color/colorSecondary"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="12dp"
-                ads:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/quotesCard">
 
@@ -279,7 +300,7 @@
                 android:background="@color/colorSecondary"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="12dp"
-                ads:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/familyTreeCard">
 

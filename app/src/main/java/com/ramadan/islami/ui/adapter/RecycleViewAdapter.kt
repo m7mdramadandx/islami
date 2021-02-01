@@ -7,17 +7,17 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
 import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RelativeLayout
-import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Category
+import com.ramadan.islami.data.model.Story
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.card_item.view.*
 import java.io.File
@@ -25,12 +25,19 @@ import java.io.FileOutputStream
 import java.io.OutputStream
 import kotlin.random.Random
 import com.ramadan.islami.ui.activity.Quote as QuoteActivity
+import com.ramadan.islami.ui.activity.Story as ActivityStory
 
 
-class QuoteAdapter(val context: Context, val isDashboard: Boolean) :
-    RecyclerView.Adapter<QuoteAdapter.CustomView>() {
+class RecycleViewAdapter(val context: Context, val isDashboard: Boolean) :
+    RecyclerView.Adapter<RecycleViewAdapter.CustomView>() {
+    private var storiesList = mutableListOf<Story>()
     private var categoryList = mutableListOf<Category>()
     private var quotesList = ArrayList<String>()
+
+    fun setStoriesDataList(data: MutableList<Story>) {
+        storiesList = data
+        notifyDataSetChanged()
+    }
 
     fun setCategoryDataList(data: MutableList<Category>) {
         data.removeAt(1)
@@ -50,24 +57,40 @@ class QuoteAdapter(val context: Context, val isDashboard: Boolean) :
     }
 
     override fun getItemCount(): Int {
-        return if (categoryList.size > 0) categoryList.size else quotesList.size
-    }
-
-    override fun onBindViewHolder(holder: CustomView, position: Int) {
-        if (categoryList.size > 0) {
-            val category: Category = categoryList[position]
-            holder.categoryView(category)
-        } else {
-            val quotes: String = quotesList[position]
-            holder.quoteView(quotes)
-
+        return when {
+            storiesList.size > 0 -> storiesList.size
+            categoryList.size > 0 -> categoryList.size
+            else -> 0
         }
     }
 
+    override fun onBindViewHolder(holder: CustomView, position: Int) {
+        when {
+            storiesList.size > 0 -> holder.storyView(storiesList[position])
+            categoryList.size > 0 -> holder.categoryView(categoryList[position])
+            else -> holder.quoteView(quotesList[position])
+        }
+    }
 
     inner class CustomView(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val dirPath = Environment.getExternalStoragePublicDirectory(
             Environment.DIRECTORY_PICTURES).path + "/" + itemView.context.getString(R.string.app_name)
+
+        fun storyView(story: Story) {
+            Picasso.get().load(story.imgUrl).error(R.drawable.failure_img)
+                .placeholder(R.drawable.load_img).into(itemView.cardImg)
+            if (isDashboard) itemView.cardImg.maxHeight =
+                itemView.resources.getDimension(R.dimen.max_card_height).toInt()
+            itemView.cardName.text = story.displayName
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, ActivityStory::class.java)
+                val bundle = Bundle()
+                bundle.putString("prophetName", story.displayName)
+                bundle.putStringArrayList("text", story.text)
+                intent.putExtras(bundle)
+                itemView.context.startActivity(intent)
+            }
+        }
 
         fun categoryView(category: Category) {
             Picasso.get().load(category.imgUrl).error(R.drawable.error_img)
@@ -87,8 +110,6 @@ class QuoteAdapter(val context: Context, val isDashboard: Boolean) :
         fun quoteView(quotes: String) {
             Picasso.get().load(quotes).error(R.drawable.error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.cardImg)
-            itemView.layoutParams.width = RelativeLayout.LayoutParams.MATCH_PARENT
-            itemView.updatePadding(16, 16, 16, 16)
             itemView.setOnClickListener { showImg(quotes, itemView.context) }
         }
 

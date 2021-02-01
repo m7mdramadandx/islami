@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.ramadan.islami.data.model.Category
-import com.ramadan.islami.data.model.Prophet
 import com.ramadan.islami.data.model.Quote
+import com.ramadan.islami.data.model.Story
 import com.ramadan.islami.data.model.Video
 import com.ramadan.islami.utils.defaultImg
 import kotlinx.coroutines.tasks.await
@@ -15,9 +15,9 @@ class Repository {
     private val rootCollection = FirebaseFirestore.getInstance().collection("root")
     var language = "ar"
 
-    suspend fun fetchAllStories(isEnglish: Boolean): LiveData<MutableList<Prophet>> {
-        val mutableData = MutableLiveData<MutableList<Prophet>>()
-        val dataList: MutableList<Prophet> = mutableListOf()
+    suspend fun fetchAllStories(isEnglish: Boolean): LiveData<MutableList<Story>> {
+        val mutableData = MutableLiveData<MutableList<Story>>()
+        val dataList: MutableList<Story> = mutableListOf()
         if (isEnglish) language = "en"
         rootCollection.document(language).collection("stories").get()
             .addOnSuccessListener { result ->
@@ -25,7 +25,7 @@ class Repository {
                     val displayName = document.getString("name") ?: document.id
                     val imgUrl = document.getString("image")
                     val text = document.get("text") as ArrayList<String>?
-                    val prophet = Prophet(displayName, document.id, imgUrl!!, text!!)
+                    val prophet = Story(displayName, document.id, imgUrl!!, text!!)
                     dataList.add(prophet)
                 }
                 mutableData.value = dataList
@@ -33,8 +33,8 @@ class Repository {
         return mutableData
     }
 
-    suspend fun fetchStory(isEnglish: Boolean, prophetName: String): Prophet {
-        var prophet = Prophet("", "", defaultImg, ArrayList(0))
+    suspend fun fetchStory(isEnglish: Boolean, prophetName: String): Story {
+        var prophet = Story("", "", defaultImg, ArrayList(0))
         if (isEnglish) language = "en"
         rootCollection.document(language).collection("stories").get().await()
             .forEach { document ->
@@ -42,7 +42,7 @@ class Repository {
                     val displayName: String = document.getString("name") ?: document.id
                     val imgUrl: String? = document.getString("image")
                     val text: ArrayList<String>? = document.get("text") as ArrayList<String>?
-                    prophet = Prophet(displayName, document.id, imgUrl!!, text!!)
+                    prophet = Story(displayName, document.id, imgUrl!!, text!!)
                 }
             }
         return prophet

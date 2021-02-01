@@ -31,7 +31,8 @@
     <string name="lot">6) Lot</string>
     <string name="methuselah">5) Methuselah</string>
     <string name="moses">15) Moses (120)</string>
-    <string name="muhammad">25) MUHAMMAD (63)</string>
+    <string name="muhammad1">25) MUHAMMAD (63)</string>
+    <string name="muhammad">MUHAMMAD</string>
     <string name="noah">3) Noah (950)</string>
     <string name="solomon">18) Solomon (52)</string>
     <string name="zacharia">22) Zacharia (150)</string>
@@ -40,12 +41,16 @@
     <string name="hashim_ibn_abd_manaf">Hashim Ibn Abd Manaf</string>
     <string name="abd_almuttalib">Abd Almuttalib</string>
     <string name="abd_allah">Abd Allah</string>
+    <string name="abd_allah1">Abd Allah1</string>
+    <string name="abd_allah2">Abd Allah2</string>
     <string name="aminah_bint_wahab">Aminah Bint Wahab</string>
     <string name="khadija">khadija</string>
     <string name="sawada">sawada</string>
     <string name="aisha">aisha</string>
     <string name="zainab">zainab</string>
-    <string name="zainab2">zainab</string>
+    <string name="zainab1">zainab1</string>
+    <string name="zainab2">zainab2</string>
+    <string name="zainab3">zainab3</string>
     <string name="hafsa">hafsa</string>
     <string name="umm_salama">Umm Salama</string>
     <string name="juwayriya">juwayriya</string>
@@ -56,6 +61,7 @@
     <string name="al_qasim">al_qasim</string>
     <string name="fatima">fatima</string>
     <string name="umm_kalthum">umm_kalthum</string>
+    <string name="umm_kalthum1">umm_kalthum1</string>
     <string name="ruqayyah">ruqayyah</string>
     <string name="ali">ali</string>
     <string name="umamah">umamah</string>
@@ -84,12 +90,14 @@
     <string name="send">Send</string>
     <string name="videos">videos</string>
     <string name="please_give_details_on_the_issue_or_provide_general_feedback">Please provide details of the issue or provide general feedback</string>
-    <string name="part_6">Part-6</string>
-    <string name="part_7">Part-7</string>
-    <string name="part_5">Part-5</string>
-    <string name="part_4">Part-4</string>
-    <string name="part_3">Part-3</string>
-    <string name="part_2">Part-2</string>
-    <string name="part_1">Part-1</string>
+    <string name="part_6">Part 6</string>
+    <string name="part_7">Part 7</string>
+    <string name="part_5">Part 5</string>
+    <string name="part_4">Part 4</string>
+    <string name="part_3">Part 3</string>
+    <string name="part_2">Part 2</string>
+    <string name="part_1">Part 1</string>
+    <string name="could_download">download image by long press</string>
+    <string name="couldnot_download">you will not able to download images</string>
 
 </resources>

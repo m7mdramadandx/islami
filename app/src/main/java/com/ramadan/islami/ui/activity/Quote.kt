@@ -4,27 +4,29 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
-import com.ramadan.islami.ui.adapter.SliderAdapter
+import com.ramadan.islami.ui.adapter.RecycleViewAdapter
 import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
-import com.smarteist.autoimageslider.IndicatorAnimations
-import com.smarteist.autoimageslider.SliderAnimations
-import com.smarteist.autoimageslider.SliderView
+import kotlinx.android.synthetic.main.quote_layout.*
 import kotlinx.coroutines.*
 
 
 @Suppress("DEPRECATION")
 class Quote : AppCompatActivity() {
-    private lateinit var sliderView: SliderView
-    private lateinit var sliderView1: SliderView
-    private lateinit var adapter: SliderAdapter
-    private lateinit var adapter1: SliderAdapter
+    private var versesRecyclerView: RecyclerView? = null
+    private var hadithsRecyclerView: RecyclerView? = null
+    private lateinit var versesAdapter: RecycleViewAdapter
+    private lateinit var hadithsAdapter: RecycleViewAdapter
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private var category: String? = ""
     private var isEnglish: Boolean = true
@@ -43,29 +45,18 @@ class Quote : AppCompatActivity() {
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         category = intent?.getStringExtra("category")
         supportActionBar!!.title = intent?.getStringExtra("title")
-        adapter = SliderAdapter(this)
-        sliderView = findViewById(R.id.versesSlider)
-        sliderView.setSliderAdapter(adapter)
-        sliderView.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
-        sliderView.setSliderTransformAnimation(SliderAnimations.CUBEINSCALINGTRANSFORMATION)
-        sliderView.setOnIndicatorClickListener { position ->
-            sliderView.currentPagePosition = position
-        }
-
-        adapter1 = SliderAdapter(this)
-        sliderView1 = findViewById(R.id.hadithsSlider)
-        sliderView1.setSliderAdapter(adapter1)
-        sliderView1.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
-        sliderView1.setSliderTransformAnimation(SliderAnimations.CUBEINSCALINGTRANSFORMATION)
-        sliderView1.setOnIndicatorClickListener { position ->
-            sliderView1.currentPagePosition = position
-        }
-
-        val version = Build.VERSION.SDK_INT
-        if (version > Build.VERSION_CODES.LOLLIPOP_MR1) {
-            if (!checkIfAlreadyPermission()) {
-                requestForSpecificPermission()
-            }
+        versesAdapter = RecycleViewAdapter(this, false)
+        hadithsAdapter = RecycleViewAdapter(this, false)
+        versesRecyclerView = findViewById(R.id.versesRecyclerView)
+        hadithsRecyclerView = findViewById(R.id.hadithsRecyclerView)
+        versesRecyclerView?.layoutManager =
+            StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
+        hadithsRecyclerView?.layoutManager =
+            StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
+        versesRecyclerView?.adapter = versesAdapter
+        hadithsRecyclerView?.adapter = hadithsAdapter
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
+            if (!checkIfAlreadyPermission()) requestForSpecificPermission()
         }
     }
 
@@ -89,9 +80,9 @@ class Quote : AppCompatActivity() {
     ) {
         when (requestCode) {
             101 -> if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "download image by long press", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.could_download), Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "you will not able to download images", Toast.LENGTH_LONG)
+                Toast.makeText(this, getString(R.string.couldnot_download), Toast.LENGTH_LONG)
                     .show()
             }
             else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -101,10 +92,11 @@ class Quote : AppCompatActivity() {
     private fun observeDate() {
         GlobalScope.launch {
             viewModel.fetchQuote(isEnglish, category!!).also {
-                delay(500)
+                delay(1000)
                 withContext(Dispatchers.Main) {
-                    adapter.setDataList(it.verses)
-                    adapter1.setDataList(it.hadiths)
+                    versesAdapter.setQuotesDataList(it.verses)
+                    hadithsAdapter.setQuotesDataList(it.hadiths)
+                    progress.visibility = View.GONE
                 }
             }
         }

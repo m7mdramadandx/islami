@@ -53,9 +53,9 @@ class ProphetsTree : AppCompatActivity() {
 
         graphView?.adapter = graphAdapter
         val configuration: BuchheimWalkerConfiguration = BuchheimWalkerConfiguration.Builder()
-            .setSiblingSeparation(50)
-            .setLevelSeparation(50)
-            .setSubtreeSeparation(50)
+            .setSiblingSeparation(10)
+            .setLevelSeparation(100)
+            .setSubtreeSeparation(100)
             .build()
         graphView?.setLayout(BuchheimWalkerAlgorithm(configuration))
     }
