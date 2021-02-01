@@ -36,9 +36,9 @@ class QuoteDashboard : AppCompatActivity(), Listener {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         viewModel.listener = this
-        recycleViewAdapter = RecycleViewAdapter(this, false)
+        recycleViewAdapter = RecycleViewAdapter(isDashboard = false, isQuotes = false)
         recyclerView = findViewById(R.id.recycler_view)
-        val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView?.layoutManager = staggeredGridLayoutManager
         recyclerView?.adapter = recycleViewAdapter
 
@@ -49,8 +49,7 @@ class QuoteDashboard : AppCompatActivity(), Listener {
             .observe(this, { recycleViewAdapter.setCategoryDataList(it) })
     }
 
-    override fun onStarted() {
-    }
+    override fun onStarted() {}
 
     override fun onSuccess() {
         progress.visibility = View.GONE

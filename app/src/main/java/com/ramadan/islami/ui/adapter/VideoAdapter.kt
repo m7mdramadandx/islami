@@ -10,8 +10,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Video
 
-internal class VideosAdapter(private val lifecycle: Lifecycle) :
-    RecyclerView.Adapter<VideosAdapter.ViewHolder>() {
+internal class VideoAdapter(private val lifecycle: Lifecycle) :
+    RecyclerView.Adapter<VideoAdapter.ViewHolder>() {
 
     private var dataList = mutableListOf<Video>()
 

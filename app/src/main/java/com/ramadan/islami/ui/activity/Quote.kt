@@ -45,8 +45,8 @@ class Quote : AppCompatActivity() {
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         category = intent?.getStringExtra("category")
         supportActionBar!!.title = intent?.getStringExtra("title")
-        versesAdapter = RecycleViewAdapter(this, false)
-        hadithsAdapter = RecycleViewAdapter(this, false)
+        versesAdapter = RecycleViewAdapter(isDashboard = false, isQuotes = true)
+        hadithsAdapter = RecycleViewAdapter(isDashboard = false, isQuotes = true)
         versesRecyclerView = findViewById(R.id.versesRecyclerView)
         hadithsRecyclerView = findViewById(R.id.hadithsRecyclerView)
         versesRecyclerView?.layoutManager =
@@ -92,11 +92,12 @@ class Quote : AppCompatActivity() {
     private fun observeDate() {
         GlobalScope.launch {
             viewModel.fetchQuote(isEnglish, category!!).also {
-                delay(1000)
+                delay(300)
                 withContext(Dispatchers.Main) {
                     versesAdapter.setQuotesDataList(it.verses)
                     hadithsAdapter.setQuotesDataList(it.hadiths)
-                    progress.visibility = View.GONE
+                    if (it.verses.isNotEmpty())
+                        progress.visibility = View.GONE
                 }
             }
         }

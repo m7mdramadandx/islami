@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
-import com.ramadan.islami.ui.adapter.VideosAdapter
+import com.ramadan.islami.ui.adapter.VideoAdapter
 import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycle_view.*
 
 class Videos : AppCompatActivity() {
-    private lateinit var videosAdapter: VideosAdapter
+    private lateinit var videoAdapter: VideoAdapter
     private lateinit var recyclerView: RecyclerView
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private var isEnglish: Boolean = true
@@ -33,13 +33,13 @@ class Videos : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         recyclerView = findViewById(R.id.recycler_view)
-        videosAdapter = VideosAdapter(this.lifecycle)
+        videoAdapter = VideoAdapter(this.lifecycle)
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
-        recyclerView.adapter = videosAdapter
+        recyclerView.adapter = videoAdapter
     }
 
     private fun observeDate() {
-        viewModel.fetchVideos(isEnglish).observe(this, { videosAdapter.setDataList(it) })
+        viewModel.fetchVideos(isEnglish).observe(this, { videoAdapter.setDataList(it) })
     }
 
 }

@@ -5,51 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingHorizontal="8dp"
+    android:paddingVertical="16dp"
     tools:context=".ui.activity.FamilyTree">
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/muhammadTree"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_margin="16dp"
+            android:layout_marginBottom="8dp"
             card_view:contentPadding="8dp">
 
             <TextView
+                style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/muhammad_family_tree" />
+                android:text="@string/muhammad_family_tree"
+                android:textColor="@android:color/white" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/prophets_family_tree"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_margin="16dp"
+            android:layout_marginBottom="8dp"
             card_view:contentPadding="8dp">
 
             <TextView
+                style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/prophets_family_tree" />
+                android:text="@string/prophets_family_tree"
+                android:textColor="@android:color/white" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/the_big_family_tree"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_margin="16dp"
+            android:layout_marginBottom="8dp"
             card_view:contentPadding="8dp">
 
             <TextView
+                style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/the_big_family_tree" />
+                android:text="@string/the_big_family_tree"
+                android:textColor="@android:color/white" />
         </androidx.cardview.widget.CardView>
     </GridLayout>
 

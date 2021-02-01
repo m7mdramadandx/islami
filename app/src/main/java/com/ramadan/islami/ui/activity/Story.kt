@@ -8,40 +8,51 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View.GONE
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
+import com.ramadan.islami.ui.adapter.StoryAdapter
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuGravity
 import com.yalantis.contextmenu.lib.MenuObject
 import com.yalantis.contextmenu.lib.MenuParams
-import kotlinx.android.synthetic.main.story_layout.*
+import kotlinx.android.synthetic.main.recycle_view.*
+
+//import kotlinx.android.synthetic.main.story_layout.*
 
 
 class Story : AppCompatActivity() {
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
     private var prophetName: String? = "null"
+    var bundle: Bundle? = null
+    private lateinit var storyAdapter: StoryAdapter
+    private lateinit var recyclerView: RecyclerView
+
+    override fun onStart() {
+        super.onStart()
+        observeData()
+        initMenuFragment()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.story_layout)
-        val bundle = intent.extras
+        setContentView(R.layout.recycle_view)
+        recyclerView = findViewById(R.id.recycler_view)
+        progress.visibility = View.GONE
+        storyAdapter = StoryAdapter()
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = storyAdapter
+        bundle = intent.extras
         prophetName = bundle?.getString("prophetName")
-        val text = bundle?.getStringArrayList("text")
-        text?.elementAtOrNull(0).also { part0.text = it }
-        text?.elementAtOrNull(1).also { part1.text = it }
-        text?.elementAtOrNull(2).also { part2.text = it }
-        text?.elementAtOrNull(3).also { part3.text = it }
-        text?.elementAtOrNull(4).also { part4.text = it }
-        text?.elementAtOrNull(5).also { part5.text = it }
-        text?.elementAtOrNull(6).also { part6.text = it }
-
         supportActionBar?.title = prophetName
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
 
-        layoutVisibility()
-        initMenuFragment()
-
+    private fun observeData() {
+        storyAdapter.setStoriesDataList(bundle!!.getStringArrayList("text")!!)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -55,11 +66,7 @@ class Story : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        item.let {
-            when (it.itemId) {
-                R.id.context_menu -> showContextMenuDialogFragment()
-            }
-        }
+        item.let { if (it.itemId == R.id.context_menu) showContextMenuDialogFragment() }
         return super.onOptionsItemSelected(item)
     }
 
@@ -68,7 +75,7 @@ class Story : AppCompatActivity() {
             actionBarSize = resources.getDimension(R.dimen.tool_bar_height).toInt(),
             menuObjects = getMenuObjects(),
             isClosableOutside = true,
-            gravity = MenuGravity.START
+            gravity = MenuGravity.END
         )
 
         contextMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams).apply {
@@ -106,44 +113,6 @@ class Story : AppCompatActivity() {
     private fun showContextMenuDialogFragment() {
         if (supportFragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
             contextMenuDialogFragment.show(supportFragmentManager, ContextMenuDialogFragment.TAG)
-        }
-    }
-
-    private fun layoutVisibility() {
-        when {
-            part1.text.length < 10 -> {
-                layout2.visibility = GONE
-                layout3.visibility = GONE
-                layout4.visibility = GONE
-                layout5.visibility = GONE
-                layout6.visibility = GONE
-                layout7.visibility = GONE
-            }
-            part2.text.length < 10 -> {
-                layout3.visibility = GONE
-                layout4.visibility = GONE
-                layout5.visibility = GONE
-                layout6.visibility = GONE
-                layout7.visibility = GONE
-            }
-            part3.text.length < 10 -> {
-                layout4.visibility = GONE
-                layout5.visibility = GONE
-                layout6.visibility = GONE
-                layout7.visibility = GONE
-            }
-            part4.text.length < 10 -> {
-                layout5.visibility = GONE
-                layout6.visibility = GONE
-                layout7.visibility = GONE
-            }
-            part5.text.length < 10 -> {
-                layout6.visibility = GONE
-                layout7.visibility = GONE
-            }
-            part6.text.length < 10 -> {
-                layout7.visibility = GONE
-            }
         }
     }
 

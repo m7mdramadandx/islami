@@ -7,12 +7,29 @@ import android.content.SharedPreferences
 import android.os.Build
 import android.preference.PreferenceManager.getDefaultSharedPreferences
 import java.util.*
+import kotlin.collections.HashSet
 
 
 class LocaleHelper {
     companion object {
         private const val SELECTED_LANGUAGE = "default_language"
         private const val SELECTED_THEME = "default_theme"
+        private const val MARKS = "marks"
+    }
+
+    fun setMark(context: Context, double: Double) {
+        val prefs: SharedPreferences = getDefaultSharedPreferences(context)
+        val editor = prefs.edit()
+        val newMark = HashSet<String>()
+        newMark.addAll(getMark(context))
+        newMark.add(double.toString())
+        editor.putStringSet(MARKS, newMark)
+        editor.apply()
+    }
+
+    fun getMark(context: Context): MutableSet<String> {
+        val prefs = getDefaultSharedPreferences(context)
+        return prefs.getStringSet(MARKS, emptySet())!!
     }
 
     fun setTheme(context: Context, theme: String?) {
@@ -20,7 +37,6 @@ class LocaleHelper {
         val editor = prefs.edit()
         editor.putString(SELECTED_THEME, theme)
         editor.apply()
-
     }
 
     fun getDefaultTheme(context: Context): String {

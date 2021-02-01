@@ -34,7 +34,7 @@ class Hadiths : AppCompatActivity(), Listener {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         viewModel.listener = this
-        recycleViewAdapter = RecycleViewAdapter(this, false)
+        recycleViewAdapter = RecycleViewAdapter(isDashboard = false, isQuotes = false)
         recyclerView = findViewById(R.id.recycler_view)
         recyclerView?.layoutManager = LinearLayoutManager(this)
         recyclerView?.adapter = recycleViewAdapter
@@ -44,17 +44,17 @@ class Hadiths : AppCompatActivity(), Listener {
     private fun observeDate() {
         GlobalScope.launch {
             viewModel.fetchHadiths(isEnglish).also {
-                delay(500)
+                delay(300)
                 withContext(Dispatchers.Main) {
-                    recycleViewAdapter.setQuotesDataList(it.hadiths)
-                    progress.visibility = View.GONE
+                    recycleViewAdapter.setQuotesDataList(it.hadiths).also {
+                        progress.visibility = View.GONE
+                    }
                 }
             }
         }
     }
 
-    override fun onStarted() {
-    }
+    override fun onStarted() {}
 
     override fun onSuccess() {
     }

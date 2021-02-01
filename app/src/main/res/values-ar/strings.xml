@@ -82,5 +82,6 @@
     <string name="part_5">الجزء الخامس</string>
     <string name="part_7">الجزء السابع</string>
     <string name="part_6">الجزء السادس</string>
+    <string name="part">جزء رقم "</string>
 
 </resources>

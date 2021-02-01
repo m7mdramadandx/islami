@@ -9,6 +9,8 @@ import com.ramadan.islami.data.model.Story
 import com.ramadan.islami.data.model.Video
 import com.ramadan.islami.utils.defaultImg
 import kotlinx.coroutines.tasks.await
+import java.util.*
+import kotlin.collections.ArrayList
 
 class Repository {
     private val tag = "Repository"
@@ -23,9 +25,9 @@ class Repository {
             .addOnSuccessListener { result ->
                 result.forEach { document ->
                     val displayName = document.getString("name") ?: document.id
-                    val imgUrl = document.getString("image")
+                    val imgUrl = document.getString("image") ?: defaultImg
                     val text = document.get("text") as ArrayList<String>?
-                    val prophet = Story(displayName, document.id, imgUrl!!, text!!)
+                    val prophet = Story(displayName, document.id, imgUrl, text!!)
                     dataList.add(prophet)
                 }
                 mutableData.value = dataList
@@ -39,10 +41,12 @@ class Repository {
         rootCollection.document(language).collection("stories").get().await()
             .forEach { document ->
                 if (prophetName == document.id) {
-                    val displayName: String = document.getString("name") ?: document.id
-                    val imgUrl: String? = document.getString("image")
+                    val displayName: String =
+                        document.getString("name") ?: document.id.toUpperCase(Locale.ROOT)
+                    val name: String = document.id
+                    val imgUrl: String = document.getString("image") ?: defaultImg
                     val text: ArrayList<String>? = document.get("text") as ArrayList<String>?
-                    prophet = Story(displayName, document.id, imgUrl!!, text!!)
+                    prophet = Story(displayName, name, imgUrl, text!!)
                 }
             }
         return prophet
@@ -54,7 +58,8 @@ class Repository {
         if (isEnglish) language = "en"
         rootCollection.document(language).collection("quotes").get().await()
             .forEach { snapshot ->
-                val displayName: String = snapshot.getString("name") ?: snapshot.id
+                val displayName: String =
+                    snapshot.getString("name") ?: snapshot.id.toUpperCase(Locale.ROOT)
                 val name: String = snapshot.id
                 val imgUrl: String? = snapshot.getString("image")
                 val category = Category(displayName, name, imgUrl!!)
@@ -69,10 +74,10 @@ class Repository {
         if (isEnglish) language = "en"
         val data = rootCollection.document(language).collection("quotes")
             .document(category).get().await()
-        val imgUrl: String? = data.getString("image")
+        val imgUrl: String = data.getString("image") ?: defaultImg
         val verses = (data?.get("verses") ?: ArrayList<String>(0)) as ArrayList<String>
         val hadiths = data.get("hadiths") as ArrayList<String>
-        quote = Quote(imgUrl!!, verses, hadiths)
+        quote = Quote(imgUrl, verses, hadiths)
         return quote
     }
 
@@ -81,9 +86,9 @@ class Repository {
         if (isEnglish) language = "en"
         val data = rootCollection.document(language).collection("quotes")
             .document("hadiths").get().await()
-        val imgUrl: String? = data.getString("image")
+        val imgUrl: String = data.getString("image") ?: defaultImg
         val hadiths = data.get("hadiths") as ArrayList<String>
-        quote = Quote(imgUrl!!, ArrayList(0), hadiths)
+        quote = Quote(imgUrl, ArrayList(0), hadiths)
         return quote
     }
 
