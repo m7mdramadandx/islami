@@ -72,8 +72,13 @@
         <activity
             android:name=".ui.activity.Videos"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
-            android:hardwareAccelerated="true" />
-        <activity android:name=".ui.activity.Hadiths" />
+            android:hardwareAccelerated="true"
+            android:label="@string/videos" />
+        <activity
+            android:name=".ui.activity.Hadiths"
+            android:label="@string/hadiths" />
+        <activity android:name=".ui.activity.Information" />
+        <activity android:name=".ui.activity.Info" />
     </application>
 
 </manifest>

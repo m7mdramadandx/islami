@@ -27,12 +27,13 @@ class GraphAdapter(itemView: Graph) : GraphAdapter<GraphView.ViewHolder>(itemVie
     }
 
     override fun onBindViewHolder(viewHolder: GraphView.ViewHolder, data: Any, position: Int) {
-        val dataNode = data.toString().removePrefix("Node(data=").removeSuffix(")")
+        val dataNode = data.toString()
+//            .removePrefix("Node(data=").removeSuffix(")")
         (viewHolder as SimpleViewHolder).textView.text = dataNode
         if (dataNode.contains("MUHAMMAD")) {
-            viewHolder.nodeCard.setCardBackgroundColor(Color.rgb(0,200,83))
+            viewHolder.nodeCard.setCardBackgroundColor(Color.rgb(0, 200, 83))
         }
-        viewHolder.textView.setOnClickListener {
+        viewHolder.nodeCard.setOnClickListener {
             Snackbar.make(it, it.nodeText.text, Snackbar.LENGTH_LONG).show()
         }
     }

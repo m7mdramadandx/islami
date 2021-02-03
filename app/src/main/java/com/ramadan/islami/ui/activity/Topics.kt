@@ -14,8 +14,13 @@ class Topics : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         videosCard.setOnClickListener { startActivity(Intent(this, Videos::class.java)) }
+        information.setOnClickListener { startActivity(Intent(this, Information::class.java)) }
 
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 
 }

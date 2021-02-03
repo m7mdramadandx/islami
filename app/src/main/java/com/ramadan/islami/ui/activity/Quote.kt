@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.RecycleViewAdapter
+import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.quote_layout.*
@@ -22,7 +23,7 @@ import kotlinx.coroutines.*
 
 
 @Suppress("DEPRECATION")
-class Quote : AppCompatActivity() {
+class Quote : AppCompatActivity(), Listener {
     private var versesRecyclerView: RecyclerView? = null
     private var hadithsRecyclerView: RecyclerView? = null
     private lateinit var versesAdapter: RecycleViewAdapter
@@ -45,6 +46,7 @@ class Quote : AppCompatActivity() {
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         category = intent?.getStringExtra("category")
         supportActionBar!!.title = intent?.getStringExtra("title")
+        viewModel.listener = this
         versesAdapter = RecycleViewAdapter(isDashboard = false, isQuotes = true)
         hadithsAdapter = RecycleViewAdapter(isDashboard = false, isQuotes = true)
         versesRecyclerView = findViewById(R.id.versesRecyclerView)
@@ -96,12 +98,20 @@ class Quote : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     versesAdapter.setQuotesDataList(it.verses)
                     hadithsAdapter.setQuotesDataList(it.hadiths)
-                    if (it.verses.isNotEmpty())
-                        progress.visibility = View.GONE
+                    if (it.verses.isNotEmpty()) progress.visibility = View.GONE
                 }
             }
         }
     }
 
 
+    override fun onStarted() {}
+
+    override fun onSuccess() {
+        Toast.makeText(this, getString(R.string.could_download), Toast.LENGTH_LONG).show()
+    }
+
+    override fun onFailure(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
 }

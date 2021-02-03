@@ -21,6 +21,7 @@ import de.blox.graphview.tree.BuchheimWalkerConfiguration
 
 class MuhammadTree : AppCompatActivity() {
     var graphView: GraphView? = null
+    lateinit var graph: Graph
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +30,7 @@ class MuhammadTree : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         graphView = findViewById(R.id.graphView)
-        val graph = Graph()
+        graph = Graph()
         graph.addEdge(Node(getString(R.string.hashim_ibn_abd_manaf)),
             Node(getString(R.string.abd_almuttalib)))
         graph.addEdge(Node(getString(R.string.abd_almuttalib)), Node(getString(R.string.abd_allah)))

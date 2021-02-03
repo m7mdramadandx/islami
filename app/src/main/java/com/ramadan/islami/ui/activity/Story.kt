@@ -25,14 +25,13 @@ import kotlinx.android.synthetic.main.recycle_view.*
 
 class Story : AppCompatActivity() {
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
-    private var prophetName: String? = "null"
+    private var title: String? = null
     var bundle: Bundle? = null
     private lateinit var storyAdapter: StoryAdapter
     private lateinit var recyclerView: RecyclerView
 
     override fun onStart() {
         super.onStart()
-        observeData()
         initMenuFragment()
     }
 
@@ -45,14 +44,17 @@ class Story : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = storyAdapter
         bundle = intent.extras
-        prophetName = bundle?.getString("prophetName")
-        supportActionBar?.title = prophetName
+        title = bundle?.getString("storyTitle")
+        supportActionBar?.title = title
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        observeData()
+
     }
 
     private fun observeData() {
-        storyAdapter.setStoriesDataList(bundle!!.getStringArrayList("text")!!)
+        storyAdapter.setStoriesDataList(bundle!!.getStringArrayList("text")!!,
+            bundle!!.getString("storyTitle") ?: title!!)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -90,7 +92,7 @@ class Story : AppCompatActivity() {
                     val intent = Intent()
                     intent.action = Intent.ACTION_VIEW
                     intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                    intent.data = Uri.parse("https://en.wikipedia.org/wiki/$prophetName")
+                    intent.data = Uri.parse("https://en.wikipedia.org/wiki/$title")
                     startActivity(intent)
                 }
             }
@@ -103,7 +105,7 @@ class Story : AppCompatActivity() {
             setBgColorValue((Color.rgb(22, 36, 71)))
             add(this)
         }
-        MenuObject("Who's $prophetName").apply {
+        MenuObject("Who's $title").apply {
             setResourceValue(R.drawable.wikipedia)
             setBgColorValue((Color.rgb(23, 34, 59)))
             add(this)

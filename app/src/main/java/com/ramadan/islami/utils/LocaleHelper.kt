@@ -17,12 +17,12 @@ class LocaleHelper {
         private const val MARKS = "marks"
     }
 
-    fun setMark(context: Context, double: Double) {
+    fun setMark(context: Context, part: String) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
         val editor = prefs.edit()
         val newMark = HashSet<String>()
         newMark.addAll(getMark(context))
-        newMark.add(double.toString())
+        newMark.add(part)
         editor.putStringSet(MARKS, newMark)
         editor.apply()
     }

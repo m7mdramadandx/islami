@@ -20,7 +20,7 @@ class SliderAdapter(val context: Context) :
     private var storyList = mutableListOf<com.ramadan.islami.data.model.Story>()
     private var categoryList = mutableListOf<Category>()
 
-    fun setProphetDataList(data: MutableList<com.ramadan.islami.data.model.Story>) {
+    fun setStoriesDataList(data: MutableList<com.ramadan.islami.data.model.Story>) {
         data.shuffle()
         storyList = data
         notifyDataSetChanged()
@@ -43,7 +43,7 @@ class SliderAdapter(val context: Context) :
         return when {
             storyList.size > 0 -> 6
             categoryList.size > 0 -> categoryList.size
-            else -> 0
+            else -> 1
         }
     }
 
@@ -62,7 +62,7 @@ class SliderAdapter(val context: Context) :
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, Story::class.java)
                 val bundle = Bundle()
-                bundle.putString("prophetName", story.displayName)
+                bundle.putString("storyTitle", story.displayName)
                 bundle.putStringArrayList("text", story.text)
                 intent.putExtras(bundle)
                 itemView.context.startActivity(intent)

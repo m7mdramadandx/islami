@@ -12,7 +12,6 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textColorHighlight">@color/colorAccent</item>
-        <item name="android:textIsSelectable">true</item>
         <item name="fontFamily">@font/aref_font_family</item>
         <!--        <item name="android:typeface">@font/aref_ruqaa_regular</item>-->
         <!-- Support library compatibility -->

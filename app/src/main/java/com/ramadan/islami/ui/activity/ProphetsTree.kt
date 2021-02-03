@@ -59,4 +59,6 @@ class ProphetsTree : AppCompatActivity() {
             .build()
         graphView?.setLayout(BuchheimWalkerAlgorithm(configuration))
     }
+
+
 }

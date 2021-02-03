@@ -42,4 +42,9 @@ class Videos : AppCompatActivity() {
         viewModel.fetchVideos(isEnglish).observe(this, { videoAdapter.setDataList(it) })
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
 }

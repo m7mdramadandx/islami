@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.os.Environment
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.ImageView
 import com.google.android.material.snackbar.Snackbar
@@ -68,10 +69,15 @@ class Utils(val context: Context) {
         Picasso.get()
             .load(imgUrl).error(R.drawable.failure_img).placeholder(R.drawable.load_img)
             .into(imageView)
-        val bitmap = (imageView.drawable as BitmapDrawable).bitmap
+        var bitmap: Bitmap? = null
+        try {
+            bitmap = (imageView.drawable as BitmapDrawable).bitmap
+        } catch (e: Exception) {
+            Log.e("ERROR", e.localizedMessage!!)
+        }
         imageView.setOnLongClickListener {
             try {
-                saveImage(bitmap)
+                saveImage(bitmap!!)
                 Snackbar.make(it, context.getString(string.saved), Snackbar.LENGTH_LONG).show()
             } catch (e: Exception) {
                 Snackbar.make(it,
@@ -83,6 +89,7 @@ class Utils(val context: Context) {
         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
     }
+
 
     private fun saveImage(bitmap: Bitmap) {
         try {
@@ -99,6 +106,7 @@ class Utils(val context: Context) {
             println(e.message)
         }
     }
+
 
 }
 

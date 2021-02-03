@@ -23,18 +23,23 @@ class SendFeedback : AppCompatActivity(), Listener {
             if (msgEditText.text.toString().isNotEmpty())
                 viewModel.sendFeedback(msgEditText.text.toString())
             else
-                onFailure("No words to send")
+                onFailure(getString(R.string.no_words_to_send))
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     override fun onStarted() {
         progress.visibility = View.VISIBLE
-
     }
 
     override fun onSuccess() {
         progress.visibility = View.GONE
-        Toast.makeText(this, "Thanks for your time", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.thanks_for_your_time), Toast.LENGTH_LONG).show()
+        msgEditText.text.clear()
     }
 
     override fun onFailure(message: String) {

@@ -41,7 +41,13 @@ class QuoteDashboard : AppCompatActivity(), Listener {
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView?.layoutManager = staggeredGridLayoutManager
         recyclerView?.adapter = recycleViewAdapter
+        recyclerView?.setPadding(8, 32, 8, 16)
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun observeDate() {

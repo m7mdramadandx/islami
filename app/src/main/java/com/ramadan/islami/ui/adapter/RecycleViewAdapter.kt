@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Category
+import com.ramadan.islami.data.model.Information
 import com.ramadan.islami.data.model.Story
 import com.ramadan.islami.utils.Utils
 import com.squareup.picasso.Picasso
@@ -20,6 +21,7 @@ class RecycleViewAdapter(val isDashboard: Boolean, val isQuotes: Boolean) :
     RecyclerView.Adapter<RecycleViewAdapter.CustomView>() {
     private var storiesList = mutableListOf<Story>()
     private var categoryList = mutableListOf<Category>()
+    private var infoList = mutableListOf<Information>()
     private var quotesList = ArrayList<String>()
 
     fun setStoriesDataList(data: MutableList<Story>) {
@@ -27,9 +29,13 @@ class RecycleViewAdapter(val isDashboard: Boolean, val isQuotes: Boolean) :
         notifyDataSetChanged()
     }
 
+    fun setInfoDataList(data: MutableList<Information>) {
+        infoList = data
+        notifyDataSetChanged()
+    }
+
     fun setCategoryDataList(data: MutableList<Category>) {
         data.removeAt(1)
-        data.shuffle()
         categoryList = data
         notifyDataSetChanged()
     }
@@ -74,7 +80,7 @@ class RecycleViewAdapter(val isDashboard: Boolean, val isQuotes: Boolean) :
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, ActivityStory::class.java)
                 val bundle = Bundle()
-                bundle.putString("prophetName", story.displayName)
+                bundle.putString("storyTitle", story.displayName)
                 bundle.putStringArrayList("text", story.text)
                 intent.putExtras(bundle)
                 itemView.context.startActivity(intent)

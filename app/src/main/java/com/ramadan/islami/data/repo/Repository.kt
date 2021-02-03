@@ -3,10 +3,7 @@ package com.ramadan.islami.data.repo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
-import com.ramadan.islami.data.model.Category
-import com.ramadan.islami.data.model.Quote
-import com.ramadan.islami.data.model.Story
-import com.ramadan.islami.data.model.Video
+import com.ramadan.islami.data.model.*
 import com.ramadan.islami.utils.defaultImg
 import kotlinx.coroutines.tasks.await
 import java.util.*
@@ -103,6 +100,23 @@ class Repository {
                 val title: String? = it.getString("title")
                 val video = Video(category!!, id!!, title!!)
                 dataList.add(video)
+            }
+        mutableLiveData.value = dataList
+        return mutableLiveData
+    }
+
+    suspend fun fetchInformation(isEnglish: Boolean): MutableLiveData<MutableList<Information>> {
+        val mutableLiveData = MutableLiveData<MutableList<Information>>()
+        val dataList: MutableList<Information> = mutableListOf()
+        if (isEnglish) language = "en"
+        rootCollection.document(language).collection("information").get().await()
+            .forEach {
+                val title: String = it.getString("title") ?: it.id
+                val brief: String? = it.getString("brief")
+                val image: String = it.getString("imageF") ?: defaultImg
+                val text: ArrayList<String> = it.get("text") as ArrayList<String>
+                val info = Information(title, it.id, brief!!, image, text)
+                dataList.add(info)
             }
         mutableLiveData.value = dataList
         return mutableLiveData

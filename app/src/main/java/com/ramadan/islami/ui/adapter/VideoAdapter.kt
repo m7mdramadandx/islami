@@ -9,6 +9,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Video
+import kotlinx.android.synthetic.main.video_item.view.*
 
 internal class VideoAdapter(private val lifecycle: Lifecycle) :
     RecyclerView.Adapter<VideoAdapter.ViewHolder>() {
@@ -40,6 +41,9 @@ internal class VideoAdapter(private val lifecycle: Lifecycle) :
             currentVideoId = video.id
             if (youTubePlayer == null) return
             youTubePlayer?.cueVideo(video.id, 0f)
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                itemView.youtube_player_view.tooltipText = video.title
+            }
         }
 
         init {
@@ -47,8 +51,11 @@ internal class VideoAdapter(private val lifecycle: Lifecycle) :
                 override fun onReady(youTubePlayer: YouTubePlayer) {
                     this@ViewHolder.youTubePlayer = youTubePlayer
                     this@ViewHolder.youTubePlayer?.cueVideo(currentVideoId!!, 0f)
+
                 }
             })
+            playerView.enableBackgroundPlayback(true)
+
         }
     }
 }

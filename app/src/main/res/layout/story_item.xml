@@ -16,7 +16,7 @@
         app:expansion_toggleOnClick="true">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/expandedCard"
+            android:id="@+id/expansionCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="@color/colorPrimary"
@@ -46,13 +46,13 @@
         android:layout_marginHorizontal="8dp"
         android:background="@color/silver_grey">
 
-        <TextView
-            android:id="@+id/storyText"
+        <com.ramadan.islami.utils.LinedTextView
+            android:id="@+id/expansionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autoSizeTextType="uniform"
             android:padding="8dp"
-            android:textAlignment="textStart" />
+            android:textIsSelectable="true"
+            android:textSize="19sp" />
     </com.github.florent37.expansionpanel.ExpansionLayout>
 
 </LinearLayout>

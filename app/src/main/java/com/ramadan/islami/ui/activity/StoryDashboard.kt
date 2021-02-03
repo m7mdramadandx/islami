@@ -28,11 +28,14 @@ class StoryDashboard : AppCompatActivity(), Listener {
         observeDate()
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recycle_view)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true);
+
         viewModel.listener = this
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         storyAdapter = RecycleViewAdapter(isDashboard = false, isQuotes = false)
@@ -44,7 +47,12 @@ class StoryDashboard : AppCompatActivity(), Listener {
     }
 
     private fun observeDate() {
-        viewModel.fetchAllStories(isEnglish).observe(this, { storyAdapter.setStoriesDataList(it) })
+        viewModel.fetchStories(isEnglish).observe(this, { storyAdapter.setStoriesDataList(it) })
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     override fun onStarted() {

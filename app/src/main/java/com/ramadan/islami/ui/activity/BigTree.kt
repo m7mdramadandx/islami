@@ -35,4 +35,10 @@ class BigTree : AppCompatActivity() {
         graphView?.adapter = graphAdapter
         graphView?.setLayout(SugiyamaAlgorithm())
     }
+
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 }

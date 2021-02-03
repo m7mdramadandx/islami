@@ -90,17 +90,16 @@ class Dashboard : AppCompatActivity(), Listener {
         quotesSlider.isAutoCycle = true
         quotesSlider.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
         quotesSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
-//        sliderView.setOnIndicatorClickListener { p -> sliderView.currentPagePosition = p }
 
         seeAllStories.setOnClickListener { startActivity(Intent(this, StoryDashboard::class.java)) }
         seeAllQuotes.setOnClickListener { startActivity(Intent(this, QuoteDashboard::class.java)) }
         seeAllTrees.setOnClickListener { startActivity(Intent(this, FamilyTree::class.java)) }
         topics.setOnClickListener { startActivity(Intent(this, Topics::class.java)) }
         muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
-//        prophetsTree.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
+        prophetsTree.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
         hadiths.setOnClickListener { startActivity(Intent(this, Hadiths::class.java)) }
-//        bigTree.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
-        muhammadStory.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
+        bigTree.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
+//        muhammadStory.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
 //        jobStory.setOnClickListener { startActivity(Intent(this, Videos::class.java)) }
 
 //        MobileAds.initialize(this, getString(R.string.ad_id))
@@ -121,8 +120,7 @@ class Dashboard : AppCompatActivity(), Listener {
     }
 
     private fun observeDate() {
-        viewModel.fetchAllStories(isEnglish)
-            .observe(this, { storiesAdapter.setProphetDataList(it) })
+        viewModel.fetchStories(isEnglish).observe(this, { storiesAdapter.setStoriesDataList(it) })
         viewModel.fetchCategory(isEnglish).observe(this, { quotesAdapter.setCategoryDataList(it) })
 
     }

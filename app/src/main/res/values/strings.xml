@@ -102,5 +102,10 @@
     <string name="saved">Saved</string>
     <string name="failed_to_download">Failed to download</string>
     <string name="part">part </string>
+    <string name="no_words_to_send">No words to send</string>
+    <string name="thanks_for_your_time">Thanks for your time</string>
+    <string name="did_you_finished">Did you finished?</string>
+    <string name="not_yet">not yet</string>
+    <string name="yes">Yes</string>
 
 </resources>

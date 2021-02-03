@@ -12,13 +12,19 @@ class FamilyTree : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.family_tree)
-        muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
-        prophets_family_tree.setOnClickListener {
-            startActivity(Intent(this,
-                ProphetsTree::class.java))
-        }
-        the_big_family_tree.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
+        prophets_family_tree.setOnClickListener {
+            startActivity(Intent(this, ProphetsTree::class.java))
+        }
+        the_big_family_tree.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
+
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

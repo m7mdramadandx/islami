@@ -24,7 +24,7 @@ class Hadiths : AppCompatActivity(), Listener {
 
     override fun onStart() {
         super.onStart()
-        observeDate()
+        runBlocking { observeDate() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,29 +38,40 @@ class Hadiths : AppCompatActivity(), Listener {
         recyclerView = findViewById(R.id.recycler_view)
         recyclerView?.layoutManager = LinearLayoutManager(this)
         recyclerView?.adapter = recycleViewAdapter
+        recyclerView?.setPadding(8, 32, 8, 16)
 
     }
 
-    private fun observeDate() {
-        GlobalScope.launch {
+    private suspend fun observeDate() {
+        GlobalScope.launch(Dispatchers.IO) {
             viewModel.fetchHadiths(isEnglish).also {
-                delay(300)
+                delay(500)
                 withContext(Dispatchers.Main) {
-                    recycleViewAdapter.setQuotesDataList(it.hadiths).also {
-                        progress.visibility = View.GONE
-                    }
+                    recycleViewAdapter.setQuotesDataList(it.hadiths)
+                    if (it.hadiths.isNotEmpty()) progress.visibility = View.GONE
+                    Toast.makeText(this@Hadiths,
+                        getString(R.string.could_download),
+                        Toast.LENGTH_LONG).show()
+
                 }
             }
         }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     override fun onStarted() {}
 
     override fun onSuccess() {
+//        Toast.makeText(this, getString(R.string.could_download), Toast.LENGTH_LONG).show()
     }
 
     override fun onFailure(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
+
 
 }
