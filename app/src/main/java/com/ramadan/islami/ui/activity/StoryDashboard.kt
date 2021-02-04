@@ -38,7 +38,7 @@ class StoryDashboard : AppCompatActivity(), Listener {
 
         viewModel.listener = this
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
-        storyAdapter = RecycleViewAdapter(isDashboard = false, isQuotes = false)
+        storyAdapter = RecycleViewAdapter(isWrapped = false)
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         recyclerView.layoutManager = staggeredGridLayoutManager

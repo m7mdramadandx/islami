@@ -1,15 +1,16 @@
 package com.ramadan.islami.ui.adapter
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
-import com.ramadan.islami.data.model.Category
-import com.ramadan.islami.data.model.Information
+import com.ramadan.islami.data.model.Collection
+import com.ramadan.islami.data.model.Quote
 import com.ramadan.islami.data.model.Story
+import com.ramadan.islami.ui.activity.InformationList
+import com.ramadan.islami.ui.activity.VideosList
 import com.ramadan.islami.utils.Utils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.card_item.view.*
@@ -17,24 +18,19 @@ import com.ramadan.islami.ui.activity.Quote as QuoteActivity
 import com.ramadan.islami.ui.activity.Story as ActivityStory
 
 
-class RecycleViewAdapter(val isDashboard: Boolean, val isQuotes: Boolean) :
+class RecycleViewAdapter(val isWrapped: Boolean) :
     RecyclerView.Adapter<RecycleViewAdapter.CustomView>() {
     private var storiesList = mutableListOf<Story>()
-    private var categoryList = mutableListOf<Category>()
-    private var infoList = mutableListOf<Information>()
+    private var categoryList = mutableListOf<Quote>()
     private var quotesList = ArrayList<String>()
+    private var collectionList = mutableListOf<Collection>()
 
     fun setStoriesDataList(data: MutableList<Story>) {
         storiesList = data
         notifyDataSetChanged()
     }
 
-    fun setInfoDataList(data: MutableList<Information>) {
-        infoList = data
-        notifyDataSetChanged()
-    }
-
-    fun setCategoryDataList(data: MutableList<Category>) {
+    fun setCategoryDataList(data: MutableList<Quote>) {
         data.removeAt(1)
         categoryList = data
         notifyDataSetChanged()
@@ -43,6 +39,11 @@ class RecycleViewAdapter(val isDashboard: Boolean, val isQuotes: Boolean) :
     fun setQuotesDataList(data: ArrayList<String>) {
         data.shuffle()
         quotesList = data
+        notifyDataSetChanged()
+    }
+
+    fun setCollectionsDataList(data: MutableList<Collection>) {
+        collectionList = data
         notifyDataSetChanged()
     }
 
@@ -57,6 +58,7 @@ class RecycleViewAdapter(val isDashboard: Boolean, val isQuotes: Boolean) :
             storiesList.size > 0 -> storiesList.size
             categoryList.size > 0 -> categoryList.size
             quotesList.size > 0 -> quotesList.size
+            collectionList.size > 0 -> collectionList.size
             else -> 1
         }
     }
@@ -64,39 +66,33 @@ class RecycleViewAdapter(val isDashboard: Boolean, val isQuotes: Boolean) :
     override fun onBindViewHolder(holder: CustomView, position: Int) {
         when {
             storiesList.size > 0 -> holder.storyView(storiesList[position])
-            categoryList.size > 0 -> holder.categoryView(categoryList[position])
+            categoryList.size > 0 -> holder.quotesList(categoryList[position])
             quotesList.size > 0 -> holder.quoteView(quotesList[position])
+            collectionList.size > 0 -> holder.collectionView(collectionList[position])
         }
     }
 
     inner class CustomView(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val util = Utils(itemView.context)
+
         fun storyView(story: Story) {
             Picasso.get().load(story.imgUrl).error(R.drawable.failure_img)
                 .placeholder(R.drawable.load_img).into(itemView.cardImg)
-            if (isDashboard) itemView.cardImg.maxHeight =
-                itemView.resources.getDimension(R.dimen.max_card_height).toInt()
-            itemView.cardName.text = story.displayName
+            itemView.cardName.text = story.title
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, ActivityStory::class.java)
-                val bundle = Bundle()
-                bundle.putString("storyTitle", story.displayName)
-                bundle.putStringArrayList("text", story.text)
-                intent.putExtras(bundle)
+                intent.putExtra("story", story)
                 itemView.context.startActivity(intent)
             }
         }
 
-        fun categoryView(category: Category) {
-            Picasso.get().load(category.imgUrl).error(R.drawable.error_img)
+        fun quotesList(quote: Quote) {
+            Picasso.get().load(quote.image).error(R.drawable.error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.cardImg)
-            if (isDashboard) itemView.cardImg.maxHeight =
-                itemView.resources.getDimension(R.dimen.max_card_height_1).toInt()
-            itemView.cardName.text = category.displayName
+            itemView.cardName.text = quote.title
             itemView.setOnClickListener {
                 Intent(itemView.context, QuoteActivity::class.java).apply {
-                    putExtra("title", category.displayName)
-                    putExtra("category", category.name)
+                    putExtra("quotes", quote)
                     itemView.context.startActivity(this)
                 }
             }
@@ -105,10 +101,37 @@ class RecycleViewAdapter(val isDashboard: Boolean, val isQuotes: Boolean) :
         fun quoteView(quotes: String) {
             Picasso.get().load(quotes).error(R.drawable.error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.cardImg)
-            if (isQuotes) {
+            if (isWrapped) {
                 itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
             }
             itemView.setOnClickListener { util.showImg(quotes, itemView.context) }
+        }
+
+        fun collectionView(collection: Collection) {
+            Picasso.get().load(collection.image).error(R.drawable.error_img)
+                .placeholder(R.drawable.failure_img).into(itemView.cardImg)
+            if (isWrapped) {
+                itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
+            }
+            itemView.cardName.text = collection.title
+            itemView.setOnClickListener {
+                when (collection.id) {
+                    "videos" -> {
+                        Intent(itemView.context, VideosList::class.java).apply {
+                            putExtra("id", collection.id)
+                            putExtra("title", collection.title)
+                            itemView.context.startActivity(this)
+                        }
+                    }
+                    "information" -> {
+                        Intent(itemView.context, InformationList::class.java).apply {
+                            putExtra("id", collection.id)
+                            putExtra("title", collection.title)
+                            itemView.context.startActivity(this)
+                        }
+                    }
+                }
+            }
         }
 
     }

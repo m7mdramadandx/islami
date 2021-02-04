@@ -34,7 +34,7 @@ class Hadiths : AppCompatActivity(), Listener {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         viewModel.listener = this
-        recycleViewAdapter = RecycleViewAdapter(isDashboard = false, isQuotes = false)
+        recycleViewAdapter = RecycleViewAdapter(isWrapped = false)
         recyclerView = findViewById(R.id.recycler_view)
         recyclerView?.layoutManager = LinearLayoutManager(this)
         recyclerView?.adapter = recycleViewAdapter

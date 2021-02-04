@@ -33,6 +33,10 @@ import com.yalantis.contextmenu.lib.MenuGravity
 import com.yalantis.contextmenu.lib.MenuObject
 import com.yalantis.contextmenu.lib.MenuParams
 import kotlinx.android.synthetic.main.dashboard.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.lang.reflect.Field
 
 
@@ -94,7 +98,7 @@ class Dashboard : AppCompatActivity(), Listener {
         seeAllStories.setOnClickListener { startActivity(Intent(this, StoryDashboard::class.java)) }
         seeAllQuotes.setOnClickListener { startActivity(Intent(this, QuoteDashboard::class.java)) }
         seeAllTrees.setOnClickListener { startActivity(Intent(this, FamilyTree::class.java)) }
-        topics.setOnClickListener { startActivity(Intent(this, Topics::class.java)) }
+        topics.setOnClickListener { startActivity(Intent(this, Collection::class.java)) }
         muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
         prophetsTree.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
         hadiths.setOnClickListener { startActivity(Intent(this, Hadiths::class.java)) }
@@ -121,7 +125,7 @@ class Dashboard : AppCompatActivity(), Listener {
 
     private fun observeDate() {
         viewModel.fetchStories(isEnglish).observe(this, { storiesAdapter.setStoriesDataList(it) })
-        viewModel.fetchCategory(isEnglish).observe(this, { quotesAdapter.setCategoryDataList(it) })
+        viewModel.fetchQuotes(isEnglish).observe(this, { quotesAdapter.setCategoryDataList(it) })
 
     }
 
@@ -178,11 +182,11 @@ class Dashboard : AppCompatActivity(), Listener {
                     0 -> startActivity(Intent(view.context, StoryDashboard::class.java))
                     1 -> startActivity(Intent(view.context, QuoteDashboard::class.java))
                     2 -> startActivity(Intent(view.context, FamilyTree::class.java))
-                    3 -> startActivity(Intent(view.context, Topics::class.java))
+                    3 -> startActivity(Intent(view.context, Collection::class.java))
                     4 -> alertDialog("aa", "Light theme", "Night theme", false)
                     5 -> alertDialog("aa", "العربية", "English", true)
                     6 -> startActivity(Intent(view.context, StoryDashboard::class.java))
-                    7 -> startActivity(Intent(view.context, Videos::class.java))
+                    7 -> startActivity(Intent(view.context, VideosList::class.java))
                     8 -> startActivity(Intent(view.context, SendFeedback::class.java))
                     9 -> startActivity(Intent(view.context, About::class.java))
                 }
@@ -306,31 +310,28 @@ class Dashboard : AppCompatActivity(), Listener {
     }
 
     fun firstSuggestedCard(view: View) {
-        val prophet = viewModel.fetchStory(isEnglish, "Muhammad")
-        val intent = Intent(this, Story::class.java)
-        val bundle = Bundle()
-        bundle.putString("prophetName", prophet.name)
-        bundle.putStringArrayList("text", prophet.text)
-        intent.putExtras(bundle)
-        startActivity(intent)
+        GlobalScope.launch(Dispatchers.IO) {
+            withContext(Dispatchers.Main) {
+                val story = viewModel.fetchStory(isEnglish, "muhammad")
+                val intent = Intent(applicationContext, Story::class.java)
+                intent.putExtra("story", story)
+                startActivity(intent)
+            }
+        }
     }
 
     fun secondSuggestedCard(view: View) {
-        val prophet = viewModel.fetchStory(isEnglish, "Job")
+//        val prophet = viewModel.fetchStory(isEnglish, "adam")
         val intent = Intent(this, Story::class.java)
         val bundle = Bundle()
-        bundle.putString("prophetName", prophet.name)
-        bundle.putStringArrayList("text", prophet.text)
         intent.putExtras(bundle)
         startActivity(intent)
     }
 
     fun thirdSuggestedCard(view: View) {
-        val prophet = viewModel.fetchStory(isEnglish, "Muhammad")
+//        val prophet = viewModel.fetchStory(isEnglish, "Muhammad")
         val intent = Intent(this, Story::class.java)
         val bundle = Bundle()
-        bundle.putString("prophetName", prophet.name)
-        bundle.putStringArrayList("text", prophet.text)
         intent.putExtras(bundle)
         startActivity(intent)
     }

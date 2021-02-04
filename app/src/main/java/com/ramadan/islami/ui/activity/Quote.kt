@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -15,28 +14,22 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.RecycleViewAdapter
-import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
-import kotlinx.android.synthetic.main.quote_layout.*
-import kotlinx.coroutines.*
+import com.ramadan.islami.data.model.Quote as QuoteModel
 
 
 @Suppress("DEPRECATION")
-class Quote : AppCompatActivity(), Listener {
+class Quote : AppCompatActivity() {
     private var versesRecyclerView: RecyclerView? = null
     private var hadithsRecyclerView: RecyclerView? = null
     private lateinit var versesAdapter: RecycleViewAdapter
     private lateinit var hadithsAdapter: RecycleViewAdapter
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
-    private var category: String? = ""
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
+    private lateinit var quote: QuoteModel
 
-    override fun onStart() {
-        super.onStart()
-        observeDate()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,11 +37,11 @@ class Quote : AppCompatActivity(), Listener {
         supportActionBar!!.setHomeButtonEnabled(true)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
-        category = intent?.getStringExtra("category")
-        supportActionBar!!.title = intent?.getStringExtra("title")
-        viewModel.listener = this
-        versesAdapter = RecycleViewAdapter(isDashboard = false, isQuotes = true)
-        hadithsAdapter = RecycleViewAdapter(isDashboard = false, isQuotes = true)
+        quote = intent?.getSerializableExtra("quotes") as QuoteModel
+        supportActionBar!!.title = quote.title
+//        viewModel.listener = this
+        versesAdapter = RecycleViewAdapter(isWrapped = true)
+        hadithsAdapter = RecycleViewAdapter(isWrapped = true)
         versesRecyclerView = findViewById(R.id.versesRecyclerView)
         hadithsRecyclerView = findViewById(R.id.hadithsRecyclerView)
         versesRecyclerView?.layoutManager =
@@ -60,6 +53,7 @@ class Quote : AppCompatActivity(), Listener {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
             if (!checkIfAlreadyPermission()) requestForSpecificPermission()
         }
+        observeDate()
     }
 
     private fun checkIfAlreadyPermission(): Boolean {
@@ -91,27 +85,23 @@ class Quote : AppCompatActivity(), Listener {
         }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     private fun observeDate() {
-        GlobalScope.launch {
-            viewModel.fetchQuote(isEnglish, category!!).also {
-                delay(300)
-                withContext(Dispatchers.Main) {
-                    versesAdapter.setQuotesDataList(it.verses)
-                    hadithsAdapter.setQuotesDataList(it.hadiths)
-                    if (it.verses.isNotEmpty()) progress.visibility = View.GONE
-                }
-            }
-        }
+        versesAdapter.setQuotesDataList(quote.verses)
+        hadithsAdapter.setQuotesDataList(quote.hadiths)
     }
 
-
-    override fun onStarted() {}
-
-    override fun onSuccess() {
-        Toast.makeText(this, getString(R.string.could_download), Toast.LENGTH_LONG).show()
-    }
-
-    override fun onFailure(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-    }
+//    override fun onStarted() {}
+//
+//    override fun onSuccess() {
+//        Toast.makeText(this, getString(R.string.could_download), Toast.LENGTH_LONG).show()
+//    }
+//
+//    override fun onFailure(message: String) {
+//        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+//    }
 }

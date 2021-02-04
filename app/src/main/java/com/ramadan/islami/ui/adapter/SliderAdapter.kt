@@ -2,31 +2,31 @@ package com.ramadan.islami.ui.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ramadan.islami.R
-import com.ramadan.islami.data.model.Category
 import com.ramadan.islami.ui.activity.Quote
 import com.ramadan.islami.ui.activity.Story
 import com.smarteist.autoimageslider.SliderViewAdapter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.slider_img.view.*
+import com.ramadan.islami.data.model.Quote as QuoteModel
+import com.ramadan.islami.data.model.Story as StoryModel
 
 
 class SliderAdapter(val context: Context) :
     SliderViewAdapter<SliderAdapter.CustomView>() {
-    private var storyList = mutableListOf<com.ramadan.islami.data.model.Story>()
-    private var categoryList = mutableListOf<Category>()
+    private var storyList = mutableListOf<StoryModel>()
+    private var categoryList = mutableListOf<QuoteModel>()
 
-    fun setStoriesDataList(data: MutableList<com.ramadan.islami.data.model.Story>) {
+    fun setStoriesDataList(data: MutableList<StoryModel>) {
         data.shuffle()
         storyList = data
         notifyDataSetChanged()
     }
 
-    fun setCategoryDataList(data: MutableList<Category>) {
+    fun setCategoryDataList(data: MutableList<QuoteModel>) {
         data.removeAt(1)
         data.shuffle()
         categoryList = data
@@ -50,32 +50,28 @@ class SliderAdapter(val context: Context) :
     override fun onBindViewHolder(viewHolder: CustomView, position: Int) {
         when {
             storyList.size > 0 -> return viewHolder.storyView(storyList[position])
-            categoryList.size > 0 -> return viewHolder.categoryView(categoryList[position])
+            categoryList.size > 0 -> return viewHolder.quotesView(categoryList[position])
         }
     }
 
     class CustomView(itemView: View) : ViewHolder(itemView) {
 
-        fun storyView(story: com.ramadan.islami.data.model.Story) {
+        fun storyView(story: StoryModel) {
             Picasso.get().load(story.imgUrl).error(R.drawable.error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.sliderImg)
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, Story::class.java)
-                val bundle = Bundle()
-                bundle.putString("storyTitle", story.displayName)
-                bundle.putStringArrayList("text", story.text)
-                intent.putExtras(bundle)
+                intent.putExtra("story", story)
                 itemView.context.startActivity(intent)
             }
         }
 
-        fun categoryView(category: Category) {
-            Picasso.get().load(category.imgUrl).error(R.drawable.error_img)
+        fun quotesView(quote: QuoteModel) {
+            Picasso.get().load(quote.image).error(R.drawable.error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.sliderImg)
             itemView.setOnClickListener {
                 Intent(itemView.context, Quote::class.java).apply {
-                    putExtra("title", category.displayName)
-                    putExtra("category", category.name)
+                    putExtra("quotes", quote)
                     itemView.context.startActivity(this)
                 }
             }

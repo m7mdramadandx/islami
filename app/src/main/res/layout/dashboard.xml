@@ -79,11 +79,11 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
 
-                    <include
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/muhammadStory"
-                        layout="@layout/card_item"
                         android:layout_width="200dp"
                         android:layout_height="100dp"
+                        android:onClick="firstSuggestedCard"
                         android:useDefaultMargins="true" />
 
                     <include

@@ -13,27 +13,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
+import com.ramadan.islami.data.model.Story
 import com.ramadan.islami.ui.adapter.StoryAdapter
+import com.ramadan.islami.utils.Utils
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuGravity
 import com.yalantis.contextmenu.lib.MenuObject
 import com.yalantis.contextmenu.lib.MenuParams
 import kotlinx.android.synthetic.main.recycle_view.*
 
-//import kotlinx.android.synthetic.main.story_layout.*
-
-
 class Story : AppCompatActivity() {
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
-    private var title: String? = null
-    var bundle: Bundle? = null
+    private lateinit var story: Story
     private lateinit var storyAdapter: StoryAdapter
     private lateinit var recyclerView: RecyclerView
-
-    override fun onStart() {
-        super.onStart()
-        initMenuFragment()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,18 +36,16 @@ class Story : AppCompatActivity() {
         storyAdapter = StoryAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = storyAdapter
-        bundle = intent.extras
-        title = bundle?.getString("storyTitle")
-        supportActionBar?.title = title
+        story = intent.getSerializableExtra("story") as Story
+        supportActionBar?.title = story.title
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         observeData()
-
+        initMenuFragment()
     }
 
     private fun observeData() {
-        storyAdapter.setStoriesDataList(bundle!!.getStringArrayList("text")!!,
-            bundle!!.getString("storyTitle") ?: title!!)
+        storyAdapter.setStoriesDataList(story.title, story.text)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -79,27 +70,38 @@ class Story : AppCompatActivity() {
             isClosableOutside = true,
             gravity = MenuGravity.END
         )
-
+        val utils = Utils(applicationContext)
         contextMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams).apply {
             menuItemClickListener = { view, position ->
-                if (position == 0) {
-                    val intent = Intent()
-                    intent.action = Intent.ACTION_VIEW
-                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                    intent.data = Uri.parse("https://translate.google.com/")
-                    startActivity(intent)
-                } else if (position == 1) {
-                    val intent = Intent()
-                    intent.action = Intent.ACTION_VIEW
-                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                    intent.data = Uri.parse("https://en.wikipedia.org/wiki/$title")
-                    startActivity(intent)
+                when (position) {
+                    0 -> {
+                        utils.showBrief(story.title, story.brief, view.context)
+                    }
+                    1 -> {
+                        val intent = Intent()
+                        intent.action = Intent.ACTION_VIEW
+                        intent.addCategory(Intent.CATEGORY_BROWSABLE)
+                        intent.data = Uri.parse("https://translate.google.com/")
+                        startActivity(intent)
+                    }
+                    2 -> {
+                        val intent = Intent()
+                        intent.action = Intent.ACTION_VIEW
+                        intent.addCategory(Intent.CATEGORY_BROWSABLE)
+                        intent.data = Uri.parse("https://en.wikipedia.org/wiki/$title")
+                        startActivity(intent)
+                    }
                 }
             }
         }
     }
 
     private fun getMenuObjects() = mutableListOf<MenuObject>().apply {
+        MenuObject(getString(R.string.brief)).apply {
+            setResourceValue(R.drawable.quote)
+            setBgColorValue((Color.rgb(23, 34, 59)))
+            add(this)
+        }
         MenuObject("Translate words").apply {
             setResourceValue(R.drawable.translate)
             setBgColorValue((Color.rgb(22, 36, 71)))

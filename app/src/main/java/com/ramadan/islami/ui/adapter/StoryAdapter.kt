@@ -16,7 +16,7 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
     private var text = ArrayList<String>()
     private var title: String? = null
 
-    fun setStoriesDataList(data: ArrayList<String>, storyTitle: String) {
+    fun setStoriesDataList(storyTitle: String, data: ArrayList<String>) {
         text = data
         title = storyTitle
         notifyDataSetChanged()
@@ -47,30 +47,25 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
             if (position % 2 == 0) itemView.expansionCard.setCardBackgroundColor(secondaryColor)
             itemView.expansionText.text = text
             itemView.storyTitle.text = "${mContext.getString(R.string.part)} ${(position + 1)}"
-            marks.forEach {
-                if (it == "$$title ${position + 1}")
-                    itemView.expansionCard.setCardBackgroundColor(accentColor)
-            }
+            val keyStore = "$$title ${position + 1}"
+            if (marks.contains(keyStore)) itemView.expansionCard.setCardBackgroundColor(accentColor)
+
             itemView.expansionLayout.addListener { expansionLayout, isExpanded ->
-                if (!isExpanded) {
-                    marks.forEach {
-                        if (it != "$$title ${position + 1}") {
-                            val dialogBuilder = AlertDialog.Builder(mContext)
-                            val view =
-                                LayoutInflater.from(mContext).inflate(R.layout.story_marker, null)
-                            dialogBuilder.setView(view)
-                            val alertDialog = dialogBuilder.create()
-                            alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                            alertDialog.show()
-                            view.findViewById<TextView>(R.id.yes).setOnClickListener {
-                                localeHelper.setMark(mContext, "$$title ${position + 1}")
-                                itemView.expansionCard.setCardBackgroundColor(accentColor)
-                                alertDialog.dismiss()
-                            }
-                            view.findViewById<TextView>(R.id.not_yet)
-                                .setOnClickListener { alertDialog.dismiss() }
-                        }
+                if (!isExpanded && !marks.contains(keyStore)) {
+                    val dialogBuilder = AlertDialog.Builder(mContext)
+                    val view =
+                        LayoutInflater.from(mContext).inflate(R.layout.story_marker, null)
+                    dialogBuilder.setView(view)
+                    val alertDialog = dialogBuilder.create()
+                    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    alertDialog.show()
+                    view.findViewById<TextView>(R.id.yes).setOnClickListener {
+                        localeHelper.setMark(mContext, "$$title ${position + 1}")
+                        itemView.expansionCard.setCardBackgroundColor(accentColor)
+                        alertDialog.dismiss()
                     }
+                    view.findViewById<TextView>(R.id.notYet)
+                        .setOnClickListener { alertDialog.dismiss() }
                 }
             }
         }

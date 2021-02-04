@@ -4,10 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestoreException
-import com.ramadan.islami.data.model.*
+import com.ramadan.islami.data.model.Information
+import com.ramadan.islami.data.model.Quote
+import com.ramadan.islami.data.model.Story
+import com.ramadan.islami.data.model.Video
 import com.ramadan.islami.data.repo.Repository
-import com.ramadan.islami.utils.defaultImg
 import kotlinx.coroutines.*
+import com.ramadan.islami.data.model.Collection as ModelCollection
 
 class ViewModel : ViewModel() {
     private val repo = Repository()
@@ -17,10 +20,9 @@ class ViewModel : ViewModel() {
         listener?.onStarted()
         val mutableData = MutableLiveData<MutableList<Story>>()
         GlobalScope.launch(Dispatchers.IO) {
-            delay(1000)
+            delay(300)
             withContext(Dispatchers.Main) {
-                repo.fetchAllStories(isEnglish)
-                    .observeForever { prophetList -> mutableData.value = prophetList }
+                repo.fetchAllStories(isEnglish).observeForever { mutableData.value = it }
                 if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
                 else listener?.onFailure("Failure")
             }
@@ -28,42 +30,26 @@ class ViewModel : ViewModel() {
         return mutableData
     }
 
-
-    fun fetchStory(isEnglish: Boolean, prophetName: String): Story {
+    suspend fun fetchStory(isEnglish: Boolean, storyName: String): Story {
         listener?.onStarted()
-        val prophet = Story("", "", defaultImg, ArrayList(0))
-        GlobalScope.launch(Dispatchers.IO) {
-            delay(1000)
-            withContext(Dispatchers.Main) {
-                repo.fetchStory(isEnglish, prophetName)
-                if (prophet.text.isNotEmpty()) listener?.onSuccess()
-                else listener?.onFailure("Failure")
-            }
-        }
-        return prophet
-    }
-
-    fun fetchCategory(isEnglish: Boolean): LiveData<MutableList<Category>> {
-        listener?.onStarted()
-        val mutableData = MutableLiveData<MutableList<Category>>()
-        GlobalScope.launch(Dispatchers.IO) {
-            delay(1000)
-            withContext(Dispatchers.Main) {
-                repo.fetchCategories(isEnglish)
-                    .observeForever { categoryList -> mutableData.value = categoryList }
-                if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
-                else listener?.onFailure("Failure")
-            }
-        }
-        return mutableData
-    }
-
-    suspend fun fetchQuote(isEnglish: Boolean, category: String): Quote {
-        listener?.onStarted()
-        val quote = repo.fetchQuote(isEnglish, category)
-        if (quote.verses.isNotEmpty()) listener?.onSuccess()
+        val story = repo.fetchStory(isEnglish, storyName)
+        if (story.text.isNotEmpty()) listener?.onSuccess()
         else listener?.onFailure("Failure")
-        return quote
+        return story
+    }
+
+    fun fetchQuotes(isEnglish: Boolean): LiveData<MutableList<Quote>> {
+        listener?.onStarted()
+        val mutableData = MutableLiveData<MutableList<Quote>>()
+        GlobalScope.launch(Dispatchers.IO) {
+            delay(300)
+            withContext(Dispatchers.Main) {
+                repo.fetchQuotes(isEnglish).observeForever { mutableData.value = it }
+                if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
+                else listener?.onFailure("Failure")
+            }
+        }
+        return mutableData
     }
 
     suspend fun fetchHadiths(isEnglish: Boolean): Quote {
@@ -74,11 +60,25 @@ class ViewModel : ViewModel() {
         return quote
     }
 
+    fun fetchCollection(isEnglish: Boolean): LiveData<MutableList<ModelCollection>> {
+        listener?.onStarted()
+        val mutableData = MutableLiveData<MutableList<ModelCollection>>()
+        GlobalScope.launch(Dispatchers.IO) {
+            delay(300)
+            withContext(Dispatchers.Main) {
+                repo.fetchCollection(isEnglish).observeForever { mutableData.value = it }
+                if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
+                else listener?.onFailure("Failure")
+            }
+        }
+        return mutableData
+    }
+
     fun fetchVideos(isEnglish: Boolean): LiveData<MutableList<Video>> {
         listener?.onStarted()
         val mutableData = MutableLiveData<MutableList<Video>>()
         GlobalScope.launch(Dispatchers.IO) {
-            delay(1000)
+            delay(300)
             withContext(Dispatchers.Main) {
                 repo.fetchVideos(isEnglish)
                     .observeForever { videosList -> mutableData.value = videosList }
@@ -93,7 +93,7 @@ class ViewModel : ViewModel() {
         listener?.onStarted()
         val mutableData = MutableLiveData<MutableList<Information>>()
         GlobalScope.launch(Dispatchers.IO) {
-            delay(1000)
+            delay(300)
             withContext(Dispatchers.Main) {
                 repo.fetchInformation(isEnglish)
                     .observeForever { infoList -> mutableData.value = infoList }

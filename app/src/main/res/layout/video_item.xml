@@ -8,8 +8,5 @@
     android:layout_marginHorizontal="2dp"
     android:layout_marginTop="16dp"
     android:layout_marginBottom="24dp"
-    android:elevation="18dp"
-    android:layoutDirection="ltr"
-    app:barrierAllowsGoneWidgets="true"
-    app:layout_insetEdge="bottom"
-    tools:actionBarNavMode="tabs" />
+    app:enableAutomaticInitialization="true"
+    android:layoutDirection="ltr" />

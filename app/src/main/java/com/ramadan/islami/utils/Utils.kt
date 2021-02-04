@@ -9,7 +9,10 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.ramadan.islami.R
 import com.ramadan.islami.R.string
@@ -86,6 +89,20 @@ class Utils(val context: Context) {
             }
             false
         }
+        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
+    }
+
+    fun showBrief(title: String, content: String, context: Context) {
+        val dialogBuilder = AlertDialog.Builder(context)
+        val view = LayoutInflater.from(context).inflate(R.layout.story_marker, null)
+        dialogBuilder.setView(view)
+        val alertDialog = dialogBuilder.create()
+        view.findViewById<LinearLayout>(R.id.actionBar).visibility = View.GONE
+        view.findViewById<TextView>(R.id.alertTitle).text = title
+        val alertContent = view.findViewById<TextView>(R.id.alertContent)
+        alertContent.visibility = View.VISIBLE
+        alertContent.text = content
         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
     }

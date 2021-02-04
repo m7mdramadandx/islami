@@ -107,5 +107,7 @@
     <string name="did_you_finished">Did you finished?</string>
     <string name="not_yet">not yet</string>
     <string name="yes">Yes</string>
+    <string name="brief">Brief</string>
+    <string name="could_you_rate_this_article">Could you rate this article?</string>
 
 </resources>

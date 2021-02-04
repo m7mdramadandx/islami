@@ -3,10 +3,10 @@ package com.ramadan.islami.data.model
 import java.io.Serializable
 
 
-class Story(
+class Information(
     val title: String,
     val name: String,
-    val imgUrl: String,
     val brief: String,
-    val text: ArrayList<String>,
+    val image: String,
+    val content: Map<String, String>,
 ) : Serializable

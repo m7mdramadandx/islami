@@ -64,21 +64,22 @@
             android:name="com.ramadan.islami.ui.activity.QuoteDashboard"
             android:label="@string/quotes" />
         <activity
-            android:name="com.ramadan.islami.ui.activity.Topics"
+            android:name="com.ramadan.islami.ui.activity.Collection"
             android:label="@string/topics" />
         <activity
             android:name="com.ramadan.islami.ui.activity.FamilyTree"
             android:label="@string/prophets_family_tree" />
         <activity
-            android:name=".ui.activity.Videos"
+            android:name=".ui.activity.VideosList"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
             android:hardwareAccelerated="true"
             android:label="@string/videos" />
         <activity
             android:name=".ui.activity.Hadiths"
             android:label="@string/hadiths" />
-        <activity android:name=".ui.activity.Information" />
+        <activity android:name=".ui.activity.InformationList" />
         <activity android:name=".ui.activity.Info" />
+        <activity android:name=".ui.activity.Video" />
     </application>
 
 </manifest>

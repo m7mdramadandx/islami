@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.ramadan.islami.ui.activity
 
 import android.os.Bundle
@@ -11,48 +9,46 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
-import com.ramadan.islami.ui.adapter.RecycleViewAdapter
+import com.ramadan.islami.ui.adapter.InfoAdapter
 import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycle_view.*
 
-class QuoteDashboard : AppCompatActivity(), Listener {
-    private lateinit var recycleViewAdapter: RecycleViewAdapter
+class InformationList : AppCompatActivity(), Listener {
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
-    private var recyclerView: RecyclerView? = null
+    private lateinit var infoAdapter: InfoAdapter
+    private lateinit var recyclerView: RecyclerView
 
     override fun onStart() {
         super.onStart()
-        observeDate()
+        observeData()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recycle_view)
-        supportActionBar!!.setHomeButtonEnabled(true)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = intent.getStringExtra("title")
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
-        viewModel.listener = this
-        recycleViewAdapter = RecycleViewAdapter(isWrapped = false)
         recyclerView = findViewById(R.id.recycler_view)
-        val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
-        recyclerView?.layoutManager = staggeredGridLayoutManager
-        recyclerView?.adapter = recycleViewAdapter
-        recyclerView?.setPadding(8, 32, 8, 16)
+        infoAdapter = InfoAdapter()
+        recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
+        recyclerView.adapter = infoAdapter
+        viewModel.listener = this
+    }
 
+    private fun observeData() {
+        viewModel.fetchInformation(isEnglish)
+            .observe(this, { infoAdapter.setInfoDataList(it) })
     }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
-    }
-
-    private fun observeDate() {
-        viewModel.fetchQuotes(isEnglish)
-            .observe(this, { recycleViewAdapter.setCategoryDataList(it) })
     }
 
     override fun onStarted() {}
