@@ -19,6 +19,9 @@ class SplashScreen : AppCompatActivity() {
         setContentView(R.layout.splash_screen)
         appTheme()
         supportActionBar?.hide()
+        FirebaseMessaging.getInstance().isAutoInitEnabled = true
+        FirebaseMessaging.getInstance().subscribeToTopic("allUsers")
+
         Handler().postDelayed({
 //            GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(this)
             startActivity(Intent(this, Dashboard::class.java))

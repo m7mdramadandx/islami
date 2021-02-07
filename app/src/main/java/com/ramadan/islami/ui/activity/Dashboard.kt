@@ -101,7 +101,6 @@ class Dashboard : AppCompatActivity(), Listener {
         topics.setOnClickListener { startActivity(Intent(this, Collection::class.java)) }
         muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
         prophetsTree.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
-        hadiths.setOnClickListener { startActivity(Intent(this, Hadiths::class.java)) }
         bigTree.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
 //        muhammadStory.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
 //        jobStory.setOnClickListener { startActivity(Intent(this, Videos::class.java)) }
@@ -208,7 +207,7 @@ class Dashboard : AppCompatActivity(), Listener {
             add(this)
         }
         MenuObject(getString(R.string.prophets_tree)).apply {
-            setResourceValue(R.drawable.family_tree)
+            setResourceValue(R.drawable.family_tree_img)
             setBgColorValue(primaryColor)
             add(this)
         }
@@ -321,19 +320,18 @@ class Dashboard : AppCompatActivity(), Listener {
     }
 
     fun secondSuggestedCard(view: View) {
-//        val prophet = viewModel.fetchStory(isEnglish, "adam")
-        val intent = Intent(this, Story::class.java)
-        val bundle = Bundle()
-        intent.putExtras(bundle)
-        startActivity(intent)
+        startActivity(Intent(this, Hadiths::class.java))
     }
 
     fun thirdSuggestedCard(view: View) {
-//        val prophet = viewModel.fetchStory(isEnglish, "Muhammad")
-        val intent = Intent(this, Story::class.java)
-        val bundle = Bundle()
-        intent.putExtras(bundle)
-        startActivity(intent)
+        GlobalScope.launch(Dispatchers.IO) {
+            withContext(Dispatchers.Main) {
+                val story = viewModel.fetchStory(isEnglish, "job")
+                val intent = Intent(applicationContext, Story::class.java)
+                intent.putExtra("story", story)
+                startActivity(intent)
+            }
+        }
     }
 
     override fun onStarted() {}

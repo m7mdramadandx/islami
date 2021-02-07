@@ -72,7 +72,7 @@
                 <GridLayout
                     android:id="@+id/gridView"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="120dp"
                     android:orientation="horizontal"
                     android:useDefaultMargins="true"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -81,23 +81,50 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/muhammadStory"
-                        android:layout_width="200dp"
-                        android:layout_height="100dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:onClick="firstSuggestedCard"
-                        android:useDefaultMargins="true" />
+                        ads:cardBackgroundColor="@android:color/transparent">
 
-                    <include
-                        android:id="@+id/hadiths"
-                        layout="@layout/card_item"
-                        android:layout_width="200dp"
-                        android:layout_height="100dp"
-                        android:useDefaultMargins="true" />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/muhammad" />
 
-                    <include
-                        android:id="@+id/jobStory"
-                        layout="@layout/card_item"
-                        android:layout_width="200dp"
-                        android:layout_height="100dp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="secondSuggestedCard"
+                        ads:cardBackgroundColor="@android:color/transparent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/muhammad" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:onClick="thirdSuggestedCard"
+                        ads:cardBackgroundColor="@android:color/transparent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/job" />
+                    </androidx.cardview.widget.CardView>
 
                 </GridLayout>
             </HorizontalScrollView>
@@ -266,26 +293,81 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
-                        <include
+                        <androidx.cardview.widget.CardView
                             android:id="@+id/muhammadTree"
-                            layout="@layout/card_item"
                             android:layout_width="200dp"
-                            android:layout_height="100dp"
-                            android:layout_gravity="center" />
+                            android:layout_height="wrap_content"
+                            android:useDefaultMargins="true"
+                            ads:cardBackgroundColor="#fff">
 
-                        <include
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="100dp"
+                                android:layout_gravity="center"
+                                android:adjustViewBounds="true"
+                                android:background="@android:color/transparent"
+                                android:paddingBottom="16dp"
+                                android:src="@drawable/aaa" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:text="@string/muhammad_family_tree"
+                                android:textColor="@color/colorSecondary" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
                             android:id="@+id/prophetsTree"
-                            layout="@layout/card_item"
                             android:layout_width="200dp"
-                            android:layout_height="100dp"
-                            android:layout_gravity="center" />
+                            android:layout_height="wrap_content"
+                            android:useDefaultMargins="true"
+                            ads:cardBackgroundColor="#fff">
 
-                        <include
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="100dp"
+                                android:layout_gravity="center"
+                                android:adjustViewBounds="true"
+                                android:background="@android:color/transparent"
+                                android:paddingBottom="16dp"
+                                android:src="@drawable/aaa" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:text="@string/prophets_family_tree"
+                                android:textColor="@color/colorSecondary" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
                             android:id="@+id/bigTree"
-                            layout="@layout/card_item"
                             android:layout_width="200dp"
-                            android:layout_height="100dp"
-                            android:layout_gravity="center" />
+                            android:layout_height="wrap_content"
+                            android:useDefaultMargins="true"
+                            ads:cardBackgroundColor="#fff">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="100dp"
+                                android:layout_gravity="center"
+                                android:adjustViewBounds="true"
+                                android:background="@android:color/transparent"
+                                android:paddingBottom="16dp"
+                                android:src="@drawable/aaa" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:text="@string/the_big_family_tree"
+                                android:textColor="@color/colorSecondary" />
+
+                        </androidx.cardview.widget.CardView>
+
                     </GridLayout>
 
                 </HorizontalScrollView>

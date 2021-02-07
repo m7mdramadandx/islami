@@ -83,5 +83,6 @@
     <string name="part_7">الجزء السابع</string>
     <string name="part_6">الجزء السادس</string>
     <string name="part">جزء رقم "</string>
+    <string name="channel_id">MyDefaultChannelID</string>
 
 </resources>

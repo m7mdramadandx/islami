@@ -109,5 +109,6 @@
     <string name="yes">Yes</string>
     <string name="brief">Brief</string>
     <string name="could_you_rate_this_article">Could you rate this article?</string>
+    <string name="channel_id">MyDefaultChannelID</string>
 
 </resources>

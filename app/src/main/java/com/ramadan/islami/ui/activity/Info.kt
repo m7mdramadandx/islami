@@ -35,7 +35,6 @@ class Info : AppCompatActivity() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             cover.tooltipText = info.brief
         }
-        info_title.text = info.title
         infoAdapter.setInfoContentDataList(info.content as MutableMap<String, String>)
     }
 
