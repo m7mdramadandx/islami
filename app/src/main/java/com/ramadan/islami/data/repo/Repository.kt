@@ -132,11 +132,12 @@ class Repository {
         rootCollection.document(language).collection("collection").document("information")
             .collection("information").get().await()
             .forEach {
+                val id: String = it.id.toUpperCase(Locale.ROOT)
                 val title: String = it.getString("title") ?: it.id.toUpperCase(Locale.ROOT)
-                val brief: String? = it.getString("brief")
+                val brief: String = it.getString("brief") ?: "brief"
                 val image: String = it.getString("image") ?: defaultImg
                 val content: Map<String, String> = it.get("content") as Map<String, String>
-                val info = Information(title, it.id, brief!!, image, content.toSortedMap())
+                val info = Information(id, title, brief, image, content.toSortedMap())
                 dataList.add(info)
             }
         mutableLiveData.value = dataList

@@ -7,16 +7,16 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <!--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
 
 
     <application
+        android:name=".Application"
         android:allowBackup="true"
-        android:appCategory="social"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:resizeableActivity="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -24,25 +24,21 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/ad_id" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/channel_id" />
 
         <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_launcher_round" />
-
-        <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
 
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notification" />
 
         <service
-            android:name=".utils.MessagingService"
+            android:name="com.ramadan.islami.utils.MessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -94,17 +90,17 @@
         <activity
             android:name="com.ramadan.islami.ui.activity.FamilyTree"
             android:label="@string/prophets_family_tree" />
+
         <activity
-            android:name=".ui.activity.VideosList"
-            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
-            android:hardwareAccelerated="true"
-            android:label="@string/videos" />
-        <activity
-            android:name=".ui.activity.Hadiths"
+            android:name="com.ramadan.islami.ui.activity.Hadiths"
             android:label="@string/hadiths" />
-        <activity android:name=".ui.activity.InformationList" />
-        <activity android:name=".ui.activity.Info" />
-        <activity android:name=".ui.activity.Video" />
+        <activity android:name="com.ramadan.islami.ui.activity.InformationList" />
+        <activity android:name="com.ramadan.islami.ui.activity.VideosList" />
+        <activity android:name="com.ramadan.islami.ui.activity.Info" />
+        <activity
+            android:name="com.ramadan.islami.ui.activity.Video"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true" />
     </application>
 
 </manifest>

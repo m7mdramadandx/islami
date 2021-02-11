@@ -4,8 +4,8 @@ import java.io.Serializable
 
 
 class Information(
+    val id: String,
     val title: String,
-    val name: String,
     val brief: String,
     val image: String,
     val content: Map<String, String>,

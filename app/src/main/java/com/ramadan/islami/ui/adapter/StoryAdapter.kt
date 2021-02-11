@@ -47,20 +47,19 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
             if (position % 2 == 0) itemView.expansionCard.setCardBackgroundColor(secondaryColor)
             itemView.expansionText.text = text
             itemView.storyTitle.text = "${mContext.getString(R.string.part)} ${(position + 1)}"
-            val keyStore = "$$title ${position + 1}"
+            val keyStore = "$title ${position + 1}"
             if (marks.contains(keyStore)) itemView.expansionCard.setCardBackgroundColor(accentColor)
 
             itemView.expansionLayout.addListener { expansionLayout, isExpanded ->
                 if (!isExpanded && !marks.contains(keyStore)) {
                     val dialogBuilder = AlertDialog.Builder(mContext)
-                    val view =
-                        LayoutInflater.from(mContext).inflate(R.layout.story_marker, null)
+                    val view = LayoutInflater.from(mContext).inflate(R.layout.story_marker, null)
                     dialogBuilder.setView(view)
                     val alertDialog = dialogBuilder.create()
                     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     alertDialog.show()
                     view.findViewById<TextView>(R.id.yes).setOnClickListener {
-                        localeHelper.setMark(mContext, "$$title ${position + 1}")
+                        localeHelper.setMark(mContext, keyStore)
                         itemView.expansionCard.setCardBackgroundColor(accentColor)
                         alertDialog.dismiss()
                     }

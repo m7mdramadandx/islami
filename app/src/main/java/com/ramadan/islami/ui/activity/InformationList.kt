@@ -1,5 +1,6 @@
 package com.ramadan.islami.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -15,12 +16,19 @@ import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycle_view.*
 
+
 class InformationList : AppCompatActivity(), Listener {
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
     private lateinit var infoAdapter: InfoAdapter
     private lateinit var recyclerView: RecyclerView
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        val intent_o = getIntent()
+    }
 
     override fun onStart() {
         super.onStart()
@@ -32,7 +40,7 @@ class InformationList : AppCompatActivity(), Listener {
         setContentView(R.layout.recycle_view)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = intent.getStringExtra("title")
+//        supportActionBar?.title = intent.getStringExtra("title")
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         recyclerView = findViewById(R.id.recycler_view)
         infoAdapter = InfoAdapter()
@@ -42,8 +50,7 @@ class InformationList : AppCompatActivity(), Listener {
     }
 
     private fun observeData() {
-        viewModel.fetchInformation(isEnglish)
-            .observe(this, { infoAdapter.setInfoDataList(it) })
+        viewModel.fetchInformation(isEnglish).observe(this, { infoAdapter.setInfoDataList(it) })
     }
 
     override fun onSupportNavigateUp(): Boolean {

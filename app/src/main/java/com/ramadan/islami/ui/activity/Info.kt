@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Information
 import com.ramadan.islami.ui.adapter.InfoAdapter
-import com.ramadan.islami.utils.defaultImg
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.information.*
 
@@ -20,6 +19,7 @@ class Info : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.information)
+
         info = intent.getSerializableExtra("info") as Information
         supportActionBar?.hide()
         recyclerView = findViewById(R.id.contentRecyclerView)
@@ -30,7 +30,7 @@ class Info : AppCompatActivity() {
     }
 
     private fun observeData() {
-        Picasso.get().load(info.image ?: defaultImg).placeholder(R.drawable.failure_img)
+        Picasso.get().load(info.image).placeholder(R.drawable.failure_img)
             .error(R.drawable.error_img).into(cover)
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             cover.tooltipText = info.brief

@@ -24,7 +24,7 @@ class LocaleHelper {
         newMark.addAll(getMark(context))
         newMark.add(part)
         editor.putStringSet(MARKS, newMark)
-        editor.apply()
+        editor.clear().apply()
     }
 
     fun getMark(context: Context): MutableSet<String> {

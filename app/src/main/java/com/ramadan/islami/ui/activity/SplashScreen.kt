@@ -7,7 +7,9 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.firebase.messaging.FirebaseMessaging
 import com.ramadan.islami.R
+import com.ramadan.islami.utils.BadgeUtils
 import com.ramadan.islami.utils.LocaleHelper
 
 
@@ -21,7 +23,8 @@ class SplashScreen : AppCompatActivity() {
         supportActionBar?.hide()
         FirebaseMessaging.getInstance().isAutoInitEnabled = true
         FirebaseMessaging.getInstance().subscribeToTopic("allUsers")
-
+//        AppUtill.savePreferenceLong("NOTICOUNT",0,this);
+        BadgeUtils().clearBadge(this);
         Handler().postDelayed({
 //            GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(this)
             startActivity(Intent(this, Dashboard::class.java))
