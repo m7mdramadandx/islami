@@ -1,0 +1,31 @@
+package com.ramadan.islami.utils
+
+import android.content.Context
+import android.util.Log
+import androidx.core.app.NotificationCompat
+import com.onesignal.OSNotificationReceivedEvent
+import com.onesignal.OneSignal
+import com.ramadan.islami.R
+
+
+internal class NotificationReceived : OneSignal.OSRemoteNotificationReceivedHandler {
+
+    override fun remoteNotificationReceived(
+        context: Context?,
+        notificationReceivedEvent: OSNotificationReceivedEvent?,
+    ) {
+        val notification = notificationReceivedEvent!!.notification
+        val data = notification.additionalData
+        Log.i("TOTO", "Received Notification Data: $data")
+        val mutableNotification = notification.mutableCopy()
+        mutableNotification.setExtender { builder: NotificationCompat.Builder ->
+            builder.setColor(context!!.resources.getColor(R.color.colorPrimary))
+                .setNumber(5)
+                .setChannelId(notification.notificationId)
+        }
+        // If complete isn't call within a time period of 25 seconds, OneSignal internal logic will show the original notification
+        // To omit displaying a notification, pass `null` to complete()
+        notificationReceivedEvent.complete(mutableNotification)
+    }
+}
+

@@ -25,25 +25,30 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/ad_id" />
 
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="@string/channel_id" />
+        <!--        <meta-data-->
+        <!--            android:name="com.google.firebase.messaging.default_notification_channel_id"-->
+        <!--            android:value="@string/channel_id" />-->
 
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent" />
+        <!--        <meta-data-->
+        <!--            android:name="com.google.firebase.messaging.default_notification_color"-->
+        <!--            android:resource="@color/colorAccent" />-->
 
+        <!--        <meta-data-->
+        <!--            android:name="com.google.firebase.messaging.default_notification_icon"-->
+        <!--            android:resource="@drawable/ic_notification" />-->
+        <!--        -->
+        <!-- name doesn't change, value = your class fully name spaced-->
         <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_notification" />
+            android:name="com.onesignal.NotificationServiceExtension"
+            android:value="com.ramadan.islami.utils.NotificationReceived" />
 
-        <service
-            android:name="com.ramadan.islami.utils.MessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
+<!--        <service-->
+<!--            android:name="com.ramadan.islami.utils.MessagingService"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
+<!--            </intent-filter>-->
+<!--        </service>-->
 
         <activity android:name="com.ramadan.islami.ui.activity.SplashScreen">
             <intent-filter>
