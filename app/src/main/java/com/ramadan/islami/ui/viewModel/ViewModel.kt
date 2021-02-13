@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestoreException
-import com.ramadan.islami.data.model.Information
 import com.ramadan.islami.data.model.Quote
 import com.ramadan.islami.data.model.Story
+import com.ramadan.islami.data.model.Topic
 import com.ramadan.islami.data.model.Video
 import com.ramadan.islami.data.repo.Repository
 import kotlinx.coroutines.*
@@ -89,14 +89,13 @@ class ViewModel : ViewModel() {
         return mutableData
     }
 
-    fun fetchInformation(isEnglish: Boolean): MutableLiveData<MutableList<Information>> {
+    fun fetchTopics(isEnglish: Boolean, topic: String): MutableLiveData<MutableList<Topic>> {
         listener?.onStarted()
-        val mutableData = MutableLiveData<MutableList<Information>>()
+        val mutableData = MutableLiveData<MutableList<Topic>>()
         GlobalScope.launch(Dispatchers.IO) {
             delay(300)
             withContext(Dispatchers.Main) {
-                repo.fetchInformation(isEnglish)
-                    .observeForever { infoList -> mutableData.value = infoList }
+                repo.fetchTopics(isEnglish, topic).observeForever { mutableData.value = it }
                 if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
                 else listener?.onFailure("Failure")
             }
@@ -104,13 +103,30 @@ class ViewModel : ViewModel() {
         return mutableData
     }
 
+    fun rateTopic(isEnglish: Boolean, collectionID: String, topicID: String, isGood: Boolean) {
+        listener?.onStarted()
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                repo.rateTopic(isEnglish, collectionID, topicID, isGood)
+                listener?.onSuccess()
+            } catch (e: FirebaseFirestoreException) {
+                listener?.onFailure(e.message!!)
+            }
+        }
+    }
+
     fun sendFeedback(msg: String) {
         listener?.onStarted()
-        try {
-            repo.sendFeedback(msg)
-            listener?.onSuccess()
-        } catch (e: FirebaseFirestoreException) {
-            listener?.onFailure(e.localizedMessage!!)
+        GlobalScope.launch(Dispatchers.IO) {
+            delay(1000)
+            withContext(Dispatchers.Main) {
+                try {
+                    repo.sendFeedback(msg)
+                    listener?.onSuccess()
+                } catch (e: FirebaseFirestoreException) {
+                    listener?.onFailure(e.localizedMessage!!)
+                }
+            }
         }
     }
 

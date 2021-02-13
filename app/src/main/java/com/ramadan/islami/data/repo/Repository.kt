@@ -2,6 +2,7 @@ package com.ramadan.islami.data.repo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.ramadan.islami.data.model.*
 import com.ramadan.islami.data.model.Collection
@@ -14,7 +15,6 @@ import kotlin.collections.MutableList
 import kotlin.collections.forEach
 import kotlin.collections.mapOf
 import kotlin.collections.mutableListOf
-import kotlin.collections.toSortedMap
 
 class Repository {
     private val tag = "Repository"
@@ -30,10 +30,9 @@ class Repository {
                 result.forEach { document ->
                     val title = document.getString("name") ?: document.id
                     val imgUrl = document.getString("image") ?: defaultImg
-                    val brief = document.getString("brief") ?: "defaultImg"
+                    val brief = document.getString("brief") ?: "brief"
                     val text = document.get("text") as ArrayList<String>?
-                    val story =
-                        Story(title.toUpperCase(Locale.ROOT), document.id, imgUrl, brief, text!!)
+                    val story = Story(document.id, title, imgUrl, brief, text!!)
                     dataList.add(story)
                 }
                 mutableData.value = dataList
@@ -49,11 +48,11 @@ class Repository {
                 result.forEach { document ->
                     if (storyName == document.id) {
                         val title: String = document.getString("name") ?: document.id
-                        val name: String = document.id
+                        val id: String = document.id
                         val imgUrl: String = document.getString("image") ?: defaultImg
-                        val brief: String = document.getString("brief") ?: "defaultImg"
+                        val brief: String = document.getString("brief") ?: "brief"
                         val text: ArrayList<String>? = document.get("text") as ArrayList<String>?
-                        story = Story(title.toUpperCase(Locale.ROOT), name, imgUrl, brief, text!!)
+                        story = Story(id, title, imgUrl, brief, text!!)
                         return@forEach
                     }
                 }
@@ -125,29 +124,46 @@ class Repository {
         return mutableLiveData
     }
 
-    suspend fun fetchInformation(isEnglish: Boolean): MutableLiveData<MutableList<Information>> {
-        val mutableLiveData = MutableLiveData<MutableList<Information>>()
-        val dataList: MutableList<Information> = mutableListOf()
+    suspend fun fetchTopics(
+        isEnglish: Boolean,
+        topic: String,
+    ): MutableLiveData<MutableList<Topic>> {
+        val mutableLiveData = MutableLiveData<MutableList<Topic>>()
+        val dataList: MutableList<Topic> = mutableListOf()
         if (isEnglish) language = "en"
-        rootCollection.document(language).collection("collection").document("information")
-            .collection("information").get().await()
+        rootCollection.document(language).collection("collection").document(topic)
+            .collection(topic).get().await()
             .forEach {
-                val id: String = it.id.toUpperCase(Locale.ROOT)
-                val title: String = it.getString("title") ?: it.id.toUpperCase(Locale.ROOT)
+                val id: String = it.id
+                val title: String = it.getString("title") ?: it.id
                 val brief: String = it.getString("brief") ?: "brief"
                 val image: String = it.getString("image") ?: defaultImg
+                val source: String = it.getString("source") ?: "source"
                 val content: Map<String, String> = it.get("content") as Map<String, String>
-                val info = Information(id, title, brief, image, content.toSortedMap())
-                dataList.add(info)
+                val _topic = Topic(id, title, brief, image, source, 0.0, content)
+                dataList.add(_topic)
             }
         mutableLiveData.value = dataList
         return mutableLiveData
     }
 
-    fun sendFeedback(msg: String) {
+    suspend fun rateTopic(
+        isEnglish: Boolean,
+        collectionID: String,
+        topicID: String,
+        isGood: Boolean,
+    ) {
+        if (isEnglish) language = "en"
+        val value: Double = if (isGood) 1.0 else -1.0
+        rootCollection.document(language).collection("collection").document(collectionID)
+            .collection(collectionID).document(topicID)
+            .update("rate", FieldValue.increment(value))
+            .await()
+
+    }
+
+    suspend fun sendFeedback(msg: String) {
         rootCollection.document("feedback").collection("messages")
-            .add(mapOf("msg" to msg))
-            .addOnCompleteListener { println("DONE") }
-            .addOnFailureListener { println(it.message) }
+            .add(mapOf("msg" to msg)).await()
     }
 }

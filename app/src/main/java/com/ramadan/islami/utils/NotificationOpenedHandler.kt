@@ -15,7 +15,7 @@ class NotificationOpenedHandler(base: Context?) : OneSignal.OSNotificationOpened
         val data = result!!.notification.additionalData
 
         when (data["intentName"]) {
-            "info" -> Intent(applicationContext, InformationList::class.java)
+            "info" -> Intent(applicationContext, TopicsList::class.java)
             "video" -> Intent(applicationContext, VideosList::class.java)
             "story" -> Intent(applicationContext, Story::class.java)
             "ramadan" -> Intent(applicationContext, Quote::class.java)

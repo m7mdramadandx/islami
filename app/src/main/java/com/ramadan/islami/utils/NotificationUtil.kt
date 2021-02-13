@@ -14,7 +14,7 @@ import android.os.Build
 import android.provider.MediaStore
 import androidx.core.app.NotificationCompat
 import com.ramadan.islami.R
-import com.ramadan.islami.ui.activity.InformationList
+import com.ramadan.islami.ui.activity.TopicsList
 import java.io.IOException
 import kotlin.random.Random
 
@@ -38,7 +38,7 @@ class NotificationUtil(private val context: Context) {
             (context.resources.getDrawable(R.drawable.failure_img) as BitmapDrawable).bitmap
         }
 
-        val intent = Intent(context, InformationList::class.java)
+        val intent = Intent(context, TopicsList::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(
             context, 0, intent,

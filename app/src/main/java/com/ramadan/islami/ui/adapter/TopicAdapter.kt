@@ -6,31 +6,33 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
-import com.ramadan.islami.data.model.Information
-import com.ramadan.islami.ui.activity.Info
+import com.ramadan.islami.ui.activity.Topic
 import kotlinx.android.synthetic.main.content_item.view.*
 import kotlinx.android.synthetic.main.tile_item.view.*
+import com.ramadan.islami.data.model.Topic as TopicModel
 
 
-class InfoAdapter() :
-    RecyclerView.Adapter<InfoAdapter.CustomView>() {
-    private var infoList = mutableListOf<Information>()
+class TopicAdapter() :
+    RecyclerView.Adapter<TopicAdapter.CustomView>() {
+    private var topicList = mutableListOf<TopicModel>()
     private var contentMap: MutableMap<String, String> = mutableMapOf()
+    var collectionId = String()
+    var brief = String()
 
-
-    fun setInfoDataList(data: MutableList<Information>) {
-        infoList = data
+    fun setTopicDataList(data: MutableList<TopicModel>, collectionId: String) {
+        topicList = data
+        this.collectionId = collectionId
         notifyDataSetChanged()
     }
 
-    fun setInfoContentDataList(data: MutableMap<String, String>) {
+    fun setTopicContentDataList(data: MutableMap<String, String>, brief: String) {
         contentMap = data
         notifyDataSetChanged()
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomView {
-        return if (infoList.size > 0) {
+        return if (topicList.size > 0) {
             val view: View = LayoutInflater.from(parent.context)
                 .inflate(R.layout.tile_item, parent, false)
             CustomView(view)
@@ -43,7 +45,7 @@ class InfoAdapter() :
 
     override fun getItemCount(): Int {
         return when {
-            infoList.size > 0 -> infoList.size
+            topicList.size > 0 -> topicList.size
             contentMap.isNotEmpty() -> contentMap.size
             else -> 0
         }
@@ -51,23 +53,24 @@ class InfoAdapter() :
 
     override fun onBindViewHolder(holder: CustomView, position: Int) {
         when {
-            infoList.size > 0 -> holder.infoView(infoList[position])
-            contentMap.isNotEmpty() -> holder.infoContentView(contentMap.toList()[position])
+            topicList.size > 0 -> holder.topicView(topicList[position])
+            contentMap.isNotEmpty() -> holder.topicContentView(contentMap.toList()[position])
         }
     }
 
     inner class CustomView(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun infoView(info: Information) {
-            itemView.tileTitle.text = info.title
+        fun topicView(topic: TopicModel) {
+            itemView.tileTitle.text = topic.title
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, Info::class.java)
-                intent.putExtra("info", info)
+                val intent = Intent(itemView.context, Topic::class.java)
+                intent.putExtra("topic", topic)
+                intent.putExtra("collectionId", collectionId)
                 itemView.context.startActivity(intent)
             }
         }
 
-        fun infoContentView(map: Pair<String, String>) {
-            val regex = "[0-9]".toRegex()
+        fun topicContentView(map: Pair<String, String>) {
+            val regex = "^[0-9]*".toRegex()
             val match = regex.find(map.first)
             itemView.subtitle.text = map.first.removePrefix(match!!.value)
             itemView.content.text = map.second

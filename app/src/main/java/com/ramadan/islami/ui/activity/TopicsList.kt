@@ -10,18 +10,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
-import com.ramadan.islami.ui.adapter.InfoAdapter
+import com.ramadan.islami.ui.adapter.TopicAdapter
 import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycle_view.*
 
 
-class InformationList : AppCompatActivity(), Listener {
+class TopicsList : AppCompatActivity(), Listener {
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
-    private lateinit var infoAdapter: InfoAdapter
+    private lateinit var topicAdapter: TopicAdapter
     private lateinit var recyclerView: RecyclerView
 
     override fun onNewIntent(intent: Intent?) {
@@ -40,17 +40,19 @@ class InformationList : AppCompatActivity(), Listener {
         setContentView(R.layout.recycle_view)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//        supportActionBar?.title = intent.getStringExtra("title")
+        supportActionBar?.title = intent.getStringExtra("title")
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         recyclerView = findViewById(R.id.recycler_view)
-        infoAdapter = InfoAdapter()
+        topicAdapter = TopicAdapter()
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
-        recyclerView.adapter = infoAdapter
+        recyclerView.adapter = topicAdapter
         viewModel.listener = this
     }
 
     private fun observeData() {
-        viewModel.fetchInformation(isEnglish).observe(this, { infoAdapter.setInfoDataList(it) })
+        val collectionId = intent.getStringExtra("collectionId").toString()
+        viewModel.fetchTopics(isEnglish, collectionId)
+            .observe(this, { topicAdapter.setTopicDataList(it, collectionId) })
     }
 
     override fun onSupportNavigateUp(): Boolean {

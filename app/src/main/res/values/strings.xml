@@ -7,7 +7,6 @@
     <string name="stories">Stories</string>
     <string name="quotes">Quotes</string>
     <string name="prophets_tree">Prophets Tree</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="topics">Important Topics</string>
     <string name="abraham">7) Abraham (200)</string>
     <string name="adam">Adam</string>
@@ -110,5 +109,10 @@
     <string name="brief">Brief</string>
     <string name="could_you_rate_this_article">Could you rate this article?</string>
     <string name="channel_id">MyDefaultChannelID</string>
+    <string name="english">English</string>
+    <string name="arabic">Arabic</string>
+    <string name="light_theme">Light theme</string>
+    <string name="night_theme">Night theme</string>
+    <string name="pick_one">pick the suitable for you</string>
 
 </resources>

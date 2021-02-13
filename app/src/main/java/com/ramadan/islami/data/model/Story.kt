@@ -4,8 +4,8 @@ import java.io.Serializable
 
 
 class Story(
+    val id: String,
     val title: String,
-    val name: String,
     val imgUrl: String,
     val brief: String,
     val text: ArrayList<String>,

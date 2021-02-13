@@ -182,9 +182,16 @@ class Dashboard : AppCompatActivity(), Listener {
                     1 -> startActivity(Intent(view.context, QuoteDashboard::class.java))
                     2 -> startActivity(Intent(view.context, FamilyTree::class.java))
                     3 -> startActivity(Intent(view.context, Collection::class.java))
-                    4 -> alertDialog("aa", "Light theme", "Night theme", false)
-                    5 -> alertDialog("aa", "العربية", "English", true)
-                    6 -> startActivity(Intent(view.context, StoryDashboard::class.java))
+                    4 -> alertDialog(getString(R.string.pick_one),
+                        getString(R.string.light_theme),
+                        getString(R.string.night_theme),
+                        false)
+                    5 -> alertDialog(getString(R.string.pick_one),
+                        getString(R.string.arabic),
+                        getString(R.string.english),
+                        true)
+                    6 ->
+                        startActivity(Intent(view.context, StoryDashboard::class.java))
                     7 -> startActivity(Intent(view.context, VideosList::class.java))
                     8 -> startActivity(Intent(view.context, SendFeedback::class.java))
                     9 -> startActivity(Intent(view.context, About::class.java))

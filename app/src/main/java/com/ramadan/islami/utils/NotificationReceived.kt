@@ -23,8 +23,6 @@ internal class NotificationReceived : OneSignal.OSRemoteNotificationReceivedHand
                 .setNumber(5)
                 .setChannelId(notification.notificationId)
         }
-        // If complete isn't call within a time period of 25 seconds, OneSignal internal logic will show the original notification
-        // To omit displaying a notification, pass `null` to complete()
         notificationReceivedEvent.complete(mutableNotification)
     }
 }

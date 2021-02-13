@@ -9,7 +9,7 @@ import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Collection
 import com.ramadan.islami.data.model.Quote
 import com.ramadan.islami.data.model.Story
-import com.ramadan.islami.ui.activity.InformationList
+import com.ramadan.islami.ui.activity.TopicsList
 import com.ramadan.islami.ui.activity.VideosList
 import com.ramadan.islami.utils.Utils
 import com.squareup.picasso.Picasso
@@ -123,9 +123,9 @@ class RecycleViewAdapter(val isWrapped: Boolean) :
                             itemView.context.startActivity(this)
                         }
                     }
-                    "information" -> {
-                        Intent(itemView.context, InformationList::class.java).apply {
-                            putExtra("id", collection.id)
+                    else -> {
+                        Intent(itemView.context, TopicsList::class.java).apply {
+                            putExtra("collectionId", collection.id)
                             putExtra("title", collection.title)
                             itemView.context.startActivity(this)
                         }

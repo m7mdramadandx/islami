@@ -99,9 +99,9 @@
         <activity
             android:name="com.ramadan.islami.ui.activity.Hadiths"
             android:label="@string/hadiths" />
-        <activity android:name="com.ramadan.islami.ui.activity.InformationList" />
+        <activity android:name="com.ramadan.islami.ui.activity.TopicsList" />
         <activity android:name="com.ramadan.islami.ui.activity.VideosList" />
-        <activity android:name="com.ramadan.islami.ui.activity.Info" />
+        <activity android:name="com.ramadan.islami.ui.activity.Topic" />
         <activity
             android:name="com.ramadan.islami.ui.activity.Video"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
