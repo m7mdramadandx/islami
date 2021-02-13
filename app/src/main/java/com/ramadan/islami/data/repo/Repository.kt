@@ -15,6 +15,7 @@ import kotlin.collections.MutableList
 import kotlin.collections.forEach
 import kotlin.collections.mapOf
 import kotlin.collections.mutableListOf
+import kotlin.collections.toSortedMap
 
 class Repository {
     private val tag = "Repository"
@@ -140,7 +141,7 @@ class Repository {
                 val image: String = it.getString("image") ?: defaultImg
                 val source: String = it.getString("source") ?: "source"
                 val content: Map<String, String> = it.get("content") as Map<String, String>
-                val _topic = Topic(id, title, brief, image, source, 0.0, content)
+                val _topic = Topic(id, title, brief, image, source, 0.0, content.toSortedMap())
                 dataList.add(_topic)
             }
         mutableLiveData.value = dataList
