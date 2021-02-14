@@ -95,9 +95,9 @@ class Dashboard : AppCompatActivity(), Listener {
         quotesSlider.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
         quotesSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
 
-        seeAllStories.setOnClickListener { startActivity(Intent(this, StoryDashboard::class.java)) }
-        seeAllQuotes.setOnClickListener { startActivity(Intent(this, QuoteDashboard::class.java)) }
-        seeAllTrees.setOnClickListener { startActivity(Intent(this, FamilyTree::class.java)) }
+        storiesCard.setOnClickListener { startActivity(Intent(this, StoryDashboard::class.java)) }
+        quotesCard.setOnClickListener { startActivity(Intent(this, QuoteDashboard::class.java)) }
+        familyTreeCard.setOnClickListener { startActivity(Intent(this, FamilyTree::class.java)) }
         topics.setOnClickListener { startActivity(Intent(this, Collection::class.java)) }
         muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
         prophetsTree.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }

@@ -42,13 +42,13 @@
             android:name="com.onesignal.NotificationServiceExtension"
             android:value="com.ramadan.islami.utils.NotificationReceived" />
 
-<!--        <service-->
-<!--            android:name="com.ramadan.islami.utils.MessagingService"-->
-<!--            android:exported="false">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
-<!--            </intent-filter>-->
-<!--        </service>-->
+        <!--        <service-->
+        <!--            android:name="com.ramadan.islami.utils.MessagingService"-->
+        <!--            android:exported="false">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
+        <!--            </intent-filter>-->
+        <!--        </service>-->
 
         <activity android:name="com.ramadan.islami.ui.activity.SplashScreen">
             <intent-filter>
@@ -101,7 +101,10 @@
             android:label="@string/hadiths" />
         <activity android:name="com.ramadan.islami.ui.activity.TopicsList" />
         <activity android:name="com.ramadan.islami.ui.activity.VideosList" />
-        <activity android:name="com.ramadan.islami.ui.activity.Topic" />
+        <activity
+            android:name="com.ramadan.islami.ui.activity.Topic"
+
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name="com.ramadan.islami.ui.activity.Video"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"

@@ -4,6 +4,7 @@ package com.ramadan.islami.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import android.widget.AbsListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
@@ -35,7 +36,6 @@ class StoryDashboard : AppCompatActivity(), Listener {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true);
-
         viewModel.listener = this
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         storyAdapter = RecycleViewAdapter(isWrapped = false)
@@ -43,7 +43,20 @@ class StoryDashboard : AppCompatActivity(), Listener {
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         recyclerView.layoutManager = staggeredGridLayoutManager
         recyclerView.adapter = storyAdapter
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0) supportActionBar?.hide() else supportActionBar?.show()
+            }
 
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                when (newState) {
+                    AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL -> supportActionBar?.hide()
+                    else -> supportActionBar?.show()
+                }
+            }
+        })
     }
 
     private fun observeDate() {

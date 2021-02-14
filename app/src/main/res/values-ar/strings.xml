@@ -84,6 +84,21 @@
     <string name="part_6">الجزء السادس</string>
     <string name="part">جزء رقم "</string>
     <string name="channel_id">MyDefaultChannelID</string>
-    <string name="english">English</string>
+    <string name="english">الانجليزية</string>
+    <string name="yes">نعم</string>
+    <string name="brief">نبذة</string>
+    <string name="not_yet">ليس بعد</string>
+    <string name="did_you_finished">هل انتهيت؟</string>
+    <string name="thanks_for_your_time">شكرا على وقتك</string>
+    <string name="no_words_to_send">لا توجد كلمات للارسال</string>
+    <string name="failed_to_download">فشل في التحميل</string>
+    <string name="saved">تم الحفظ</string>
+    <string name="could_download">نقرة طويلة لتحميل الصورة</string>
+    <string name="couldnot_download">لن تتمكن من تحميل الصور</string>
+    <string name="could_you_rate_this_article">قيم المقال</string>
+    <string name="arabic">العربية</string>
+    <string name="light_theme">الوضع المضيء</string>
+    <string name="night_theme">الوضع الليلي</string>
+    <string name="pick_one">اختر ما يناسبك</string>
 
 </resources>

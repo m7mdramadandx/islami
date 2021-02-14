@@ -4,6 +4,7 @@ package com.ramadan.islami.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import android.widget.AbsListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
@@ -42,6 +43,21 @@ class QuoteDashboard : AppCompatActivity(), Listener {
         recyclerView?.layoutManager = staggeredGridLayoutManager
         recyclerView?.adapter = recycleViewAdapter
         recyclerView?.setPadding(8, 32, 8, 16)
+
+        recyclerView?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0) supportActionBar?.hide() else supportActionBar?.show()
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                when (newState) {
+                    AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL -> supportActionBar?.hide()
+                    else -> supportActionBar?.show()
+                }
+            }
+        })
 
     }
 
