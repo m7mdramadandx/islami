@@ -66,7 +66,7 @@
             android:name="com.ramadan.islami.ui.activity.SendFeedback"
             android:label="@string/send_feedback" />
         <activity
-            android:name="com.ramadan.islami.ui.activity.About"
+            android:name="com.ramadan.islami.ui.activity.PrayerTimes"
             android:label="@string/about_app" />
         <activity
             android:name="com.ramadan.islami.ui.activity.Quote"

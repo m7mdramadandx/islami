@@ -13,6 +13,7 @@ import kotlin.collections.ArrayList
 import kotlin.collections.Map
 import kotlin.collections.MutableList
 import kotlin.collections.forEach
+import kotlin.collections.hashMapOf
 import kotlin.collections.mapOf
 import kotlin.collections.mutableListOf
 import kotlin.collections.toSortedMap
@@ -138,14 +139,30 @@ class Repository {
                 val id: String = it.id
                 val title: String = it.getString("title") ?: it.id
                 val brief: String = it.getString("brief") ?: "brief"
-                val image: String = it.getString("image") ?: defaultImg
                 val source: String = it.getString("source") ?: "source"
                 val content: Map<String, String> = it.get("content") as Map<String, String>
-                val _topic = Topic(id, title, brief, image, source, 0.0, content.toSortedMap())
-                dataList.add(_topic)
+                val topic1 = Topic(id, title, brief, source, 0.0, content.toSortedMap())
+                dataList.add(topic1)
             }
         mutableLiveData.value = dataList
         return mutableLiveData
+    }
+
+    suspend fun fetchTopic(
+        isEnglish: Boolean,
+        collectionID: String,
+        documentId: String,
+    ): Topic {
+        if (isEnglish) language = "en"
+        val data = rootCollection.document(language).collection("collection").document(collectionID)
+            .collection(collectionID).document(documentId).get().await()
+        val id: String = data.id
+        val title: String = data.getString("title") ?: data.id
+        val brief: String = data.getString("brief") ?: "brief"
+        val source: String = data.getString("source") ?: "source"
+        val content: Map<String, String> =
+            (data.get("content") ?: hashMapOf<String, String>()) as Map<String, String>
+        return Topic(id, title, brief, source, 0.0, content.toSortedMap())
     }
 
     suspend fun rateTopic(
@@ -160,7 +177,6 @@ class Repository {
             .collection(collectionID).document(topicID)
             .update("rate", FieldValue.increment(value))
             .await()
-
     }
 
     suspend fun sendFeedback(msg: String) {

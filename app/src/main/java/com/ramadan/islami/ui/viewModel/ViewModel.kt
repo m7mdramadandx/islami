@@ -103,6 +103,14 @@ class ViewModel : ViewModel() {
         return mutableData
     }
 
+    suspend fun fetchTopic(isEnglish: Boolean, collectionID: String, documentId: String): Topic {
+        listener?.onStarted()
+        val topic = repo.fetchTopic(isEnglish, collectionID, documentId)
+        if (topic.id.isNotEmpty()) listener?.onSuccess()
+        else listener?.onFailure("Failure")
+        return topic
+    }
+
     fun rateTopic(isEnglish: Boolean, collectionID: String, topicID: String, isGood: Boolean) {
         listener?.onStarted()
         GlobalScope.launch(Dispatchers.IO) {

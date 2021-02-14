@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.InterstitialAd
 import com.ramadan.islami.R
@@ -33,10 +34,7 @@ import com.yalantis.contextmenu.lib.MenuGravity
 import com.yalantis.contextmenu.lib.MenuObject
 import com.yalantis.contextmenu.lib.MenuParams
 import kotlinx.android.synthetic.main.dashboard.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import java.lang.reflect.Field
 
 
@@ -105,14 +103,12 @@ class Dashboard : AppCompatActivity(), Listener {
 //        muhammadStory.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
 //        jobStory.setOnClickListener { startActivity(Intent(this, Videos::class.java)) }
 
-//        MobileAds.initialize(this, getString(R.string.ad_id))
 //        val testDeviceIds = listOf("33BE2250B43518CCDA7DE426D04EE231")
 //        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
 //        MobileAds.setRequestConfiguration(configuration)
 
-//        mAdView = findViewById(R.id.adView)
+
 //        mAdView1 = findViewById(R.id.adView1)
-//        mAdView.loadAd(AdRequest.Builder().build())
 //        mAdView1.loadAd(AdRequest.Builder().build())
 //
 //        mInterstitialAd = InterstitialAd(this)
@@ -125,7 +121,13 @@ class Dashboard : AppCompatActivity(), Listener {
     private fun observeDate() {
         viewModel.fetchStories(isEnglish).observe(this, { storiesAdapter.setStoriesDataList(it) })
         viewModel.fetchQuotes(isEnglish).observe(this, { quotesAdapter.setCategoryDataList(it) })
-
+        GlobalScope.launch(Dispatchers.IO) {
+            delay(1000)
+            withContext(Dispatchers.Main) {
+                mAdView = findViewById(R.id.adView)
+                mAdView.loadAd(AdRequest.Builder().build())
+            }
+        }
     }
 
     private fun appLanguage() {
@@ -194,7 +196,7 @@ class Dashboard : AppCompatActivity(), Listener {
                         startActivity(Intent(view.context, StoryDashboard::class.java))
                     7 -> startActivity(Intent(view.context, VideosList::class.java))
                     8 -> startActivity(Intent(view.context, SendFeedback::class.java))
-                    9 -> startActivity(Intent(view.context, About::class.java))
+                    9 -> startActivity(Intent(view.context, PrayerTimes::class.java))
                 }
             }
         }

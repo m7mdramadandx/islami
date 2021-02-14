@@ -1,6 +1,7 @@
 package com.ramadan.islami
 
 import android.app.Application
+import com.google.android.gms.ads.MobileAds
 import com.onesignal.OneSignal
 import com.ramadan.islami.utils.NotificationOpenedHandler
 
@@ -17,6 +18,7 @@ class Application : Application() {
         OneSignal.unsubscribeWhenNotificationsAreDisabled(true)
         OneSignal.initWithContext(this)
         OneSignal.setAppId(ONESIGNAL_APP_ID)
+        MobileAds.initialize(this, getString(R.string.ad_id))
 
     }
 }

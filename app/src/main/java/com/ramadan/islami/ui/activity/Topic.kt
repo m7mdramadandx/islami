@@ -8,36 +8,46 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.google.android.material.appbar.AppBarLayout
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Topic
 import com.ramadan.islami.ui.adapter.TopicAdapter
 import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
+import kotlinx.android.synthetic.main.nestest_view.*
 import kotlinx.android.synthetic.main.topic.*
-import kotlinx.android.synthetic.main.xx.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class Topic : AppCompatActivity() {
-    private lateinit var topic: Topic
+    private var topic: Topic? = null
     private lateinit var topicAdapter: TopicAdapter
     private lateinit var recyclerView: RecyclerView
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
     val tag = "TOTO"
-    var appBarLayout: AppBarLayout? = null
+
+    override fun onStart() {
+        super.onStart()
+//        if (topic.id == "e") fetchNotification()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.topic)
-        topic = intent.getSerializableExtra("topic") as Topic
+        if (intent.getSerializableExtra("topic") == null) fetchNotification()
+        topic = (intent.getSerializableExtra("topic") ?: Topic("e",
+            "",
+            "e",
+            "e",
+            0.0,
+            hashMapOf())) as Topic
         val collectionId: String = intent.getStringExtra("collectionId").toString()
-        appBarLayout = findViewById(R.id.app_bar)
-
         val toolbar: Toolbar = findViewById(R.id.toolbar)
-        toolbar.title = topic.title
-        toolbar.titleMarginStart = 80
+        toolbar.title = topic?.title
         setSupportActionBar(toolbar)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -46,31 +56,40 @@ class Topic : AppCompatActivity() {
         topicAdapter = TopicAdapter()
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = topicAdapter
-        observeData()
         good.setOnCheckedChangeListener { button, isChecked ->
-            viewModel.rateTopic(isEnglish, collectionId, topic.id, isChecked)
+            viewModel.rateTopic(isEnglish, collectionId, topic!!.id, isChecked)
         }
         bad.setOnCheckedChangeListener { button, isChecked ->
-            viewModel.rateTopic(isEnglish, collectionId, topic.id, !isChecked)
+            viewModel.rateTopic(isEnglish, collectionId, topic!!.id, !isChecked)
         }
         toolbar_layout.setContentScrimColor(resources.getColor(R.color.colorPrimary))
         toolbar_layout.setCollapsedTitleTextColor(Color.WHITE)
-        toolbar_layout.setBackgroundColor(resources.getColor(R.color.silver_grey))
+        toolbar_layout.setBackgroundResource(R.drawable.asset)
         toolbar_layout.setExpandedTitleColor(resources.getColor(R.color.colorPrimary))
-
-
+        observeData()
     }
 
     private fun observeData() {
-//        Picasso.get().load(topic.image).placeholder(R.drawable.failure_img)
-//            .error(R.drawable.error_img).into(cover)
-        topicAdapter.setTopicContentDataList(topic.content as MutableMap<String, String>,
-            topic.brief)
+        topicAdapter.setTopicContentDataList(topic!!.content as MutableMap<String, String>,
+            topic!!.brief)
+        supportActionBar?.title = topic!!.title
+    }
+
+    private fun fetchNotification() {
+        val collectionID = intent.getStringExtra("collectionID").toString()
+        val documentID = intent.getStringExtra("documentID").toString()
+        GlobalScope.launch(Dispatchers.IO) {
+            topic = viewModel.fetchTopic(isEnglish, collectionID, documentID)
+            withContext(Dispatchers.Main) {
+                observeData()
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
+
 
 }

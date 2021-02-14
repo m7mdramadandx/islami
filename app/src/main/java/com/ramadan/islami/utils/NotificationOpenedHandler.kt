@@ -15,7 +15,7 @@ class NotificationOpenedHandler(base: Context?) : OneSignal.OSNotificationOpened
         val data = result!!.notification.additionalData
 
         when (data["intentName"]) {
-            "info" -> Intent(applicationContext, TopicsList::class.java)
+            "topic" -> Intent(applicationContext, Topic::class.java)
             "video" -> Intent(applicationContext, VideosList::class.java)
             "story" -> Intent(applicationContext, Story::class.java)
             "ramadan" -> Intent(applicationContext, Quote::class.java)
@@ -23,7 +23,8 @@ class NotificationOpenedHandler(base: Context?) : OneSignal.OSNotificationOpened
             else -> Intent(applicationContext, Dashboard::class.java)
         }.also {
             it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            it.putExtra("id", data["id"].toString())
+            it.putExtra("documentID", data["documentID"].toString())
+            it.putExtra("collectionID", data["collectionID"].toString())
             startActivity(it)
         }
     }
