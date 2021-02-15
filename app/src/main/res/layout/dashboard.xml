@@ -1,434 +1,400 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
     tools:context=".ui.activity.Dashboard">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:context=".ui.activity.Dashboard">
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:background="@drawable/background"
-            android:paddingHorizontal="8dp"
-            android:paddingVertical="16dp">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorBackground"
+            android:elevation="16dp"
+            ads:navigationIcon="@drawable/slide_menu"
+            ads:title="@string/app_name"
+            ads:titleTextAppearance="@style/dashboard_title"
+            >
 
-            <ImageButton
-                android:id="@+id/menuOptions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/slide_menu"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.appcompat.widget.Toolbar>
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/welcome_to_islami"
-                android:textColor="@color/titleColor"
-                android:textSize="28sp"
-                ads:layout_constraintStart_toStartOf="parent"
-                ads:layout_constraintTop_toBottomOf="@+id/menuOptions" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switchBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/language"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/colorAccent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="42dp">
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/suggested_to_you"
-                android:textColor="@color/titleColor"
-                android:textSize="21sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
-                app:layout_constraintStart_toStartOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:background="@drawable/background"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="16dp">
 
-                <GridLayout
-                    android:id="@+id/gridView"
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
-                    android:layout_height="120dp"
-                    android:orientation="horizontal"
-                    android:useDefaultMargins="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/suggested_to_you"
+                    android:textColor="@color/titleColor"
+                    app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <HorizontalScrollView
+                    android:id="@+id/horizontalScrollView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/muhammadStory"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="firstSuggestedCard"
-                        ads:cardBackgroundColor="@android:color/transparent">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:background="@android:color/transparent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/muhammad" />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="secondSuggestedCard"
-                        ads:cardBackgroundColor="@android:color/transparent">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:background="@android:color/transparent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/muhammad" />
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:onClick="thirdSuggestedCard"
-                        ads:cardBackgroundColor="@android:color/transparent">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:background="@android:color/transparent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/job" />
-                    </androidx.cardview.widget.CardView>
-
-                </GridLayout>
-            </HorizontalScrollView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingVertical="32dp">
-
-            <RelativeLayout
-                android:id="@+id/storiesCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorSecondary"
-                android:paddingVertical="8dp"
-                ads:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    style="@style/TextAppearance.AppCompat.Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/stories"
-                    android:textColor="@android:color/white" />
-
-                <ImageButton
-                    android:id="@+id/seeAllStories"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="8dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/expand" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    ads:cardBackgroundColor="@android:color/transparent">
-
-                    <com.smarteist.autoimageslider.SliderView
-                        android:id="@+id/storiesSlider"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_below="@id/seeAllStories"
-                        app:sliderIndicatorSelectedColor="@color/colorAccent"
-                        app:sliderIndicatorUnselectedColor="@android:color/white">
-
-                        <include
-                            android:id="@+id/progress"
-                            layout="@layout/loading_dialog"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center" />
-
-                    </com.smarteist.autoimageslider.SliderView>
-
-                </androidx.cardview.widget.CardView>
-
-            </RelativeLayout>
-
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/adView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="32dp"
-                ads:adSize="SMART_BANNER"
-                ads:adUnitId="@string/home_banner_id"
-                ads:layout_constraintTop_toBottomOf="@id/storiesCard"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-
-            <RelativeLayout
-                android:id="@+id/quotesCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@color/colorSecondary"
-                android:paddingVertical="8dp"
-                ads:layout_constraintEnd_toEndOf="parent"
-                ads:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/adView">
-
-                <TextView
-                    style="@style/TextAppearance.AppCompat.Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/quotes"
-                    android:textColor="@android:color/white" />
-
-
-                <ImageButton
-                    android:id="@+id/seeAllQuotes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="8dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/expand" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    ads:cardBackgroundColor="@android:color/transparent">
-
-                    <com.smarteist.autoimageslider.SliderView
-                        android:id="@+id/quotesSlider"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_below="@id/seeAllQuotes"
-                        app:sliderIndicatorSelectedColor="@color/colorAccent"
-                        app:sliderIndicatorUnselectedColor="@android:color/white">
-
-                        <include
-                            android:id="@+id/progress1"
-                            layout="@layout/loading_dialog"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center" />
-
-                    </com.smarteist.autoimageslider.SliderView>
-                </androidx.cardview.widget.CardView>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/familyTreeCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@color/colorSecondary"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/quotesCard">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/prophets_tree"
-                    android:textColor="@android:color/white"
-                    android:textSize="21sp" />
-
-                <ImageButton
-                    android:id="@+id/seeAllTrees"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/expand" />
-
-                <HorizontalScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/seeAllTrees">
-
                     <GridLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="120dp"
+                        android:orientation="horizontal"
+                        android:useDefaultMargins="true">
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/muhammadTree"
-                            android:layout_width="200dp"
+                            android:id="@+id/muhammadStory"
+                            android:layout_width="wrap_content"
+
                             android:layout_height="wrap_content"
-                            android:useDefaultMargins="true"
-                            ads:cardBackgroundColor="#fff">
+                            android:onClick="firstSuggestedCard">
 
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="100dp"
-                                android:layout_gravity="center"
-                                android:adjustViewBounds="true"
-                                android:background="@android:color/transparent"
-                                android:paddingBottom="16dp"
-                                android:src="@drawable/aaa" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:text="@string/muhammad_family_tree"
-                                android:textColor="@color/colorSecondary" />
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/muhammad" />
 
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/prophetsTree"
-                            android:layout_width="200dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:useDefaultMargins="true"
-                            ads:cardBackgroundColor="#fff">
+                            android:onClick="secondSuggestedCard">
 
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="100dp"
-                                android:layout_gravity="center"
-                                android:adjustViewBounds="true"
-                                android:background="@android:color/transparent"
-                                android:paddingBottom="16dp"
-                                android:src="@drawable/aaa" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:text="@string/prophets_family_tree"
-                                android:textColor="@color/colorSecondary" />
-
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/muhammad" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/bigTree"
-                            android:layout_width="200dp"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:useDefaultMargins="true"
-                            ads:cardBackgroundColor="#fff">
+                            android:onClick="thirdSuggestedCard">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="100dp"
-                                android:layout_gravity="center"
-                                android:adjustViewBounds="true"
-                                android:background="@android:color/transparent"
-                                android:paddingBottom="16dp"
-                                android:src="@drawable/aaa" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="bottom|center_horizontal"
-                                android:text="@string/the_big_family_tree"
-                                android:textColor="@color/colorSecondary" />
-
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/job" />
                         </androidx.cardview.widget.CardView>
 
                     </GridLayout>
-
                 </HorizontalScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/videosCard"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@color/colorSecondary"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/familyTreeCard">
+                android:orientation="vertical">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/topics"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/storiesCard"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="140dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/failure_img" />
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/bg_overlay" />
+                    android:layout_marginTop="24dp"
+                    android:background="@color/colorSecondary"
+                    android:paddingVertical="8dp">
 
                     <TextView
                         style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/stories"
+                        android:textColor="@android:color/white" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="8dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/expand" />
+
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|center_horizontal"
-                        android:paddingBottom="6dp"
-                        android:text="@string/topics"
-                        android:textAlignment="center"
-                        android:textColor="#fff" />
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="42dp"
+                        ads:cardBackgroundColor="@android:color/transparent">
 
-                </androidx.cardview.widget.CardView>
+                        <com.smarteist.autoimageslider.SliderView
+                            android:id="@+id/storiesSlider"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            app:sliderIndicatorSelectedColor="@color/colorAccent"
+                            app:sliderIndicatorUnselectedColor="@android:color/white">
 
-            </RelativeLayout>
+                            <include
+                                android:id="@+id/progress"
+                                layout="@layout/loading_dialog"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center" />
 
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/adView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="32dp"
-                ads:adSize="SMART_BANNER"
-                ads:adUnitId="@string/home_banner_id"
-                ads:layout_constraintEnd_toEndOf="parent"
-                ads:layout_constraintStart_toStartOf="parent"
-                ads:layout_constraintTop_toBottomOf="@id/videosCard" />
+                        </com.smarteist.autoimageslider.SliderView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
-</ScrollView>
+                    </androidx.cardview.widget.CardView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/quotesCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/colorSecondary"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/quotes"
+                        android:textColor="@android:color/white" />
+
+
+                    <ImageButton
+                        android:id="@+id/seeAllQuotes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="8dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/expand" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="42dp"
+                        ads:cardBackgroundColor="@android:color/transparent">
+
+                        <com.smarteist.autoimageslider.SliderView
+                            android:id="@+id/quotesSlider"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:layout_below="@id/seeAllQuotes"
+                            app:sliderIndicatorSelectedColor="@color/colorAccent"
+                            app:sliderIndicatorUnselectedColor="@android:color/white">
+
+                            <include
+                                android:id="@+id/progress1"
+                                layout="@layout/loading_dialog"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center" />
+
+                        </com.smarteist.autoimageslider.SliderView>
+                    </androidx.cardview.widget.CardView>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/familyTreeCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/colorSecondary"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/prophets_tree"
+                        android:textColor="@android:color/white"
+                        android:textSize="21sp" />
+
+                    <ImageButton
+                        android:id="@+id/seeAllTrees"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/expand" />
+
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/seeAllTrees">
+
+                        <GridLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:useDefaultMargins="true">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/muhammadTree"
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:useDefaultMargins="true"
+                                ads:cardBackgroundColor="#fff">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="center"
+                                    android:adjustViewBounds="true"
+                                    android:background="@android:color/transparent"
+                                    android:paddingBottom="16dp"
+                                    android:src="@drawable/aaa" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom|center_horizontal"
+                                    android:text="@string/muhammad_family_tree"
+                                    android:textColor="@color/colorSecondary" />
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/prophetsTree"
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:useDefaultMargins="true"
+                                ads:cardBackgroundColor="#fff">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="center"
+                                    android:adjustViewBounds="true"
+                                    android:background="@android:color/transparent"
+                                    android:paddingBottom="16dp"
+                                    android:src="@drawable/aaa" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom|center_horizontal"
+                                    android:text="@string/prophets_family_tree"
+                                    android:textColor="@color/colorSecondary" />
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/bigTree"
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:useDefaultMargins="true"
+                                ads:cardBackgroundColor="#fff">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="center"
+                                    android:adjustViewBounds="true"
+                                    android:background="@android:color/transparent"
+                                    android:paddingBottom="16dp"
+                                    android:src="@drawable/aaa" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom|center_horizontal"
+                                    android:text="@string/the_big_family_tree"
+                                    android:textColor="@color/colorSecondary" />
+
+                            </androidx.cardview.widget.CardView>
+
+                        </GridLayout>
+
+                    </HorizontalScrollView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/videosCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/colorSecondary"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="12dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/topics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minHeight="140dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/failure_img" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_overlay" />
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:paddingBottom="6dp"
+                            android:text="@string/topics"
+                            android:textAlignment="center"
+                            android:textColor="#fff" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/home_banner_id" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

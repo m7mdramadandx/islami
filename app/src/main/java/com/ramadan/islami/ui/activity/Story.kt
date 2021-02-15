@@ -74,9 +74,7 @@ class Story : AppCompatActivity() {
         contextMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams).apply {
             menuItemClickListener = { view, position ->
                 when (position) {
-                    0 -> {
-                        utils.showBrief(story.title, story.brief, view.context)
-                    }
+                    0 -> utils.showBrief(story.title, story.brief, view.context)
                     1 -> {
                         val intent = Intent()
                         intent.action = Intent.ACTION_VIEW

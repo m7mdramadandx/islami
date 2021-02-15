@@ -24,7 +24,7 @@ class SplashScreen : AppCompatActivity() {
         FirebaseMessaging.getInstance().isAutoInitEnabled = true
         FirebaseMessaging.getInstance().subscribeToTopic("allUsers")
 //        AppUtill.savePreferenceLong("NOTICOUNT",0,this);
-        BadgeUtils().clearBadge(this);
+        BadgeUtils().clearBadge(this)
         Handler().postDelayed({
 //            GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(this)
             startActivity(Intent(this, Dashboard::class.java))

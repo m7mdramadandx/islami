@@ -80,9 +80,10 @@ class RecycleViewAdapter(val isWrapped: Boolean) :
                 .placeholder(R.drawable.load_img).into(itemView.cardImg)
             itemView.cardName.text = story.title
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, ActivityStory::class.java)
-                intent.putExtra("story", story)
-                itemView.context.startActivity(intent)
+                Intent(itemView.context, ActivityStory::class.java).apply {
+                    putExtra("story", story)
+                    itemView.context.startActivity(this)
+                }
             }
         }
 
@@ -101,18 +102,14 @@ class RecycleViewAdapter(val isWrapped: Boolean) :
         fun quoteView(quotes: String) {
             Picasso.get().load(quotes).error(R.drawable.error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.cardImg)
-            if (isWrapped) {
-                itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
-            }
+            if (isWrapped) itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
             itemView.setOnClickListener { util.showImg(quotes, itemView.context) }
         }
 
         fun collectionView(collection: Collection) {
             Picasso.get().load(collection.image).error(R.drawable.error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.cardImg)
-            if (isWrapped) {
-                itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
-            }
+            if (isWrapped) itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
             itemView.cardName.text = collection.title
             itemView.setOnClickListener {
                 when (collection.id) {

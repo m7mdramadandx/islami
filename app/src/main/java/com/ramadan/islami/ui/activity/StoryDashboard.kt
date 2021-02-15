@@ -35,13 +35,14 @@ class StoryDashboard : AppCompatActivity(), Listener {
         setContentView(R.layout.recycle_view)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true);
+        supportActionBar?.setDisplayShowHomeEnabled(true)
         viewModel.listener = this
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         storyAdapter = RecycleViewAdapter(isWrapped = false)
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         recyclerView.layoutManager = staggeredGridLayoutManager
+        recyclerView.setHasFixedSize(true)
         recyclerView.adapter = storyAdapter
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

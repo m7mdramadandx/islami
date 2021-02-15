@@ -30,21 +30,11 @@ class Topic : AppCompatActivity() {
     private val localeHelper = LocaleHelper()
     val tag = "TOTO"
 
-    override fun onStart() {
-        super.onStart()
-//        if (topic.id == "e") fetchNotification()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.topic)
         if (intent.getSerializableExtra("topic") == null) fetchNotification()
-        topic = (intent.getSerializableExtra("topic") ?: Topic("e",
-            "",
-            "e",
-            "e",
-            0.0,
-            hashMapOf())) as Topic
+        topic = (intent.getSerializableExtra("topic") ?: Topic("e", "", "e", "e", 0.0, hashMapOf())) as Topic
         val collectionId: String = intent.getStringExtra("collectionId").toString()
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         toolbar.title = topic?.title

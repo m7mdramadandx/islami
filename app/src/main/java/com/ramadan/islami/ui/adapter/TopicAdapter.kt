@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.tile_item.view.*
 import com.ramadan.islami.data.model.Topic as TopicModel
 
 
-class TopicAdapter() :
+class TopicAdapter :
     RecyclerView.Adapter<TopicAdapter.CustomView>() {
     private var topicList = mutableListOf<TopicModel>()
     private var contentMap: MutableMap<String, String> = mutableMapOf()

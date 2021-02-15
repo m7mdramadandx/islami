@@ -44,7 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
-        android:background="@color/silver_grey">
+        android:background="@color/silver_grey"
+        app:expansion_openOnlyOne="true">
 
         <com.ramadan.islami.utils.LinedTextView
             android:id="@+id/expansionText"

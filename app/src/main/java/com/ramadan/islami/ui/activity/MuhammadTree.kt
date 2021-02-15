@@ -60,7 +60,7 @@ class MuhammadTree : AppCompatActivity() {
         graph.addEdge(Node(getString(R.string.khadija)), Node(getString(R.string.ruqayyah)))
         graph.addEdge(Node(getString(R.string.ruqayyah)), Node(getString(R.string.abd_allah2)))
 
-        val graphAdapter = GraphAdapter(graph);
+        val graphAdapter = GraphAdapter(graph)
         graphView?.adapter = graphAdapter
         val configuration: BuchheimWalkerConfiguration = BuchheimWalkerConfiguration.Builder()
             .setSiblingSeparation(100)

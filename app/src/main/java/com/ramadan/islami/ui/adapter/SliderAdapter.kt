@@ -1,6 +1,5 @@
 package com.ramadan.islami.ui.adapter
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +14,7 @@ import com.ramadan.islami.data.model.Quote as QuoteModel
 import com.ramadan.islami.data.model.Story as StoryModel
 
 
-class SliderAdapter(val context: Context) :
-    SliderViewAdapter<SliderAdapter.CustomView>() {
+class SliderAdapter : SliderViewAdapter<SliderAdapter.CustomView>() {
     private var storyList = mutableListOf<StoryModel>()
     private var categoryList = mutableListOf<QuoteModel>()
 

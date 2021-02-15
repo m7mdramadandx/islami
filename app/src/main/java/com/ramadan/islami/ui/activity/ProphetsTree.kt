@@ -49,7 +49,7 @@ class ProphetsTree : AppCompatActivity() {
         graph.addEdge(utils.aron, utils.elias)
         graph.addEdge(utils.aron, utils.elisha)
 
-        val graphAdapter = GraphAdapter(graph);
+        val graphAdapter = GraphAdapter(graph)
 
         graphView?.adapter = graphAdapter
         val configuration: BuchheimWalkerConfiguration = BuchheimWalkerConfiguration.Builder()

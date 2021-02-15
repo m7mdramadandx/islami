@@ -2,21 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ramadan.islami">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
-    <!--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
-
 
     <application
         android:name=".Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:logo="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -24,31 +21,9 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/ad_id" />
-
-        <!--        <meta-data-->
-        <!--            android:name="com.google.firebase.messaging.default_notification_channel_id"-->
-        <!--            android:value="@string/channel_id" />-->
-
-        <!--        <meta-data-->
-        <!--            android:name="com.google.firebase.messaging.default_notification_color"-->
-        <!--            android:resource="@color/colorAccent" />-->
-
-        <!--        <meta-data-->
-        <!--            android:name="com.google.firebase.messaging.default_notification_icon"-->
-        <!--            android:resource="@drawable/ic_notification" />-->
-        <!--        -->
-        <!-- name doesn't change, value = your class fully name spaced-->
         <meta-data
             android:name="com.onesignal.NotificationServiceExtension"
             android:value="com.ramadan.islami.utils.NotificationReceived" />
-
-        <!--        <service-->
-        <!--            android:name="com.ramadan.islami.utils.MessagingService"-->
-        <!--            android:exported="false">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
-        <!--            </intent-filter>-->
-        <!--        </service>-->
 
         <activity android:name="com.ramadan.islami.ui.activity.SplashScreen">
             <intent-filter>
@@ -61,7 +36,7 @@
         <activity
             android:name="com.ramadan.islami.ui.activity.Dashboard"
             android:hardwareAccelerated="true"
-            android:label="@string/app_name" />
+            android:theme="@style/AppTheme_NoActionBar" />
         <activity
             android:name="com.ramadan.islami.ui.activity.SendFeedback"
             android:label="@string/send_feedback" />
@@ -95,7 +70,6 @@
         <activity
             android:name="com.ramadan.islami.ui.activity.FamilyTree"
             android:label="@string/prophets_family_tree" />
-
         <activity
             android:name="com.ramadan.islami.ui.activity.Hadiths"
             android:label="@string/hadiths" />
@@ -103,8 +77,7 @@
         <activity android:name="com.ramadan.islami.ui.activity.VideosList" />
         <activity
             android:name="com.ramadan.islami.ui.activity.Topic"
-
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/AppTheme_NoActionBar" />
         <activity
             android:name="com.ramadan.islami.ui.activity.Video"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"

@@ -30,7 +30,7 @@ class BigTree : AppCompatActivity() {
         graph.addEdge(node1, node3)
         graph.addEdge(node4, node5)
 
-        val graphAdapter = GraphAdapter(graph);
+        val graphAdapter = GraphAdapter(graph)
 
         graphView?.adapter = graphAdapter
         graphView?.setLayout(SugiyamaAlgorithm())

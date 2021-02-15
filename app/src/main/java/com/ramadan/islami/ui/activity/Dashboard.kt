@@ -3,12 +3,11 @@ package com.ramadan.islami.ui.activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.content.res.AssetManager
 import android.content.res.Configuration
 import android.graphics.Color
-import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -16,11 +15,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.res.ResourcesCompat
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.SliderAdapter
 import com.ramadan.islami.ui.viewModel.Listener
@@ -35,18 +34,17 @@ import com.yalantis.contextmenu.lib.MenuObject
 import com.yalantis.contextmenu.lib.MenuParams
 import kotlinx.android.synthetic.main.dashboard.*
 import kotlinx.coroutines.*
-import java.lang.reflect.Field
 
 
 class Dashboard : AppCompatActivity(), Listener {
     private lateinit var mAdView: AdView
-    private lateinit var mAdView1: AdView
     private lateinit var mInterstitialAd: InterstitialAd
     private val localeHelper = LocaleHelper()
     private lateinit var storiesSlider: SliderView
-    private lateinit var storiesAdapter: SliderAdapter
     private lateinit var quotesSlider: SliderView
-    private lateinit var quotesAdapter: SliderAdapter
+    private val storiesAdapter = SliderAdapter()
+    private val quotesAdapter = SliderAdapter()
+    private val APP_URL = ""
 
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
@@ -55,7 +53,6 @@ class Dashboard : AppCompatActivity(), Listener {
     override fun onStart() {
         super.onStart()
         observeDate()
-        appLanguage()
         initMenuFragment()
 //        overrideDefaultFont("fonts/aref_regular.ttf", assets)
     }
@@ -64,30 +61,24 @@ class Dashboard : AppCompatActivity(), Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dashboard)
-        supportActionBar?.hide()
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener { showContextMenuDialogFragment() }
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         viewModel.listener = this
-
-        val typeface = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            resources.getFont(R.font.aref_regular)
-        } else {
-            ResourcesCompat.getFont(this, R.font.aref_regular)
-        }
-        textView.typeface = typeface
-        menuOptions.setOnClickListener { showContextMenuDialogFragment() }
+        window.decorView.layoutDirection = View.LAYOUT_DIRECTION_LOCALE
         storiesSlider = findViewById(R.id.storiesSlider)
-        storiesAdapter = SliderAdapter(this)
         storiesSlider.setSliderAdapter(storiesAdapter)
-        storiesSlider.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LOCALE
+        storiesSlider.autoCycleDirection = SliderView.LAYOUT_DIRECTION_RTL
         storiesSlider.startAutoCycle()
         storiesSlider.isAutoCycle = true
         storiesSlider.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
         storiesSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
 
         quotesSlider = findViewById(R.id.quotesSlider)
-        quotesAdapter = SliderAdapter(this)
         quotesSlider.setSliderAdapter(quotesAdapter)
-        quotesSlider.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LOCALE
+        quotesSlider.autoCycleDirection = SliderView.LAYOUT_DIRECTION_RTL
         quotesSlider.startAutoCycle()
         quotesSlider.isAutoCycle = true
         quotesSlider.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
@@ -100,21 +91,27 @@ class Dashboard : AppCompatActivity(), Listener {
         muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
         prophetsTree.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
         bigTree.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
-//        muhammadStory.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
-//        jobStory.setOnClickListener { startActivity(Intent(this, Videos::class.java)) }
 
-//        val testDeviceIds = listOf("33BE2250B43518CCDA7DE426D04EE231")
-//        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
-//        MobileAds.setRequestConfiguration(configuration)
+        val testDeviceIds = listOf("33BE2250B43518CCDA7DE426D04EE231")
+        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
+        MobileAds.setRequestConfiguration(configuration)
 
+//        mInterstitialAd.adListener = object : AdListener() {}+
+        val adRequest = AdRequest.Builder().build()
 
-//        mAdView1 = findViewById(R.id.adView1)
-//        mAdView1.loadAd(AdRequest.Builder().build())
-//
-//        mInterstitialAd = InterstitialAd(this)
-//        mInterstitialAd.adUnitId = getString(R.string.Interstitial_ad_unit_id)
-//        mInterstitialAd.loadAd(AdRequest.Builder().build())
-//        mInterstitialAd.adListener = object : AdListener() {}
+        InterstitialAd.load(this,
+            "ca-app-pub-3940256099942544/1033173712",
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Log.d("TOTO", adError.message);
+                }
+
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    Log.d("TOTO", "Ad was loaded");
+                    mInterstitialAd = interstitialAd
+                }
+            })
 
     }
 
@@ -126,18 +123,16 @@ class Dashboard : AppCompatActivity(), Listener {
             withContext(Dispatchers.Main) {
                 mAdView = findViewById(R.id.adView)
                 mAdView.loadAd(AdRequest.Builder().build())
-            }
-        }
-    }
+//                mInterstitialAd = InterstitialAd(applicationContext)
+//                mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
+//                mInterstitialAd.loadAd(AdRequest.Builder().build())
+//                if (mInterstitialAd.isLoaded) {
+//                    mInterstitialAd.show()
+//                } else {
+//                    Log.e("TOTO", "The interstitial wasn't loaded yet.")
+//                }
 
-    private fun appLanguage() {
-        if (isEnglish) switchBtn.isChecked = true
-        switchBtn.setOnCheckedChangeListener { button, isChecked ->
-            when {
-                isChecked -> localeHelper.persist(applicationContext, "en")
-                else -> localeHelper.persist(applicationContext, "ar")
             }
-            startActivity(Intent(this, Dashboard::class.java)).also { finish() }
         }
     }
 
@@ -156,18 +151,10 @@ class Dashboard : AppCompatActivity(), Listener {
         return true
     }
 
-    private fun overrideDefaultFont(
-        customFontFileNameInAssets: String,
-        assets: AssetManager,
-    ) {
-        //Load custom Font from File
-        val customFontTypeface: Typeface =
-            Typeface.createFromAsset(assets, customFontFileNameInAssets)
-        //Get Fontface.Default Field by reflection
-        val typeFaceClass: Class<*> = Class.forName("android.graphics.Typeface")
-        val defaultFontTypefaceField: Field = typeFaceClass.getField("SERIF")
-        defaultFontTypefaceField.isAccessible = true
-        defaultFontTypefaceField.set(null, customFontTypeface)
+    private fun showContextMenuDialogFragment() {
+        if (supportFragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
+            contextMenuDialogFragment.show(supportFragmentManager, ContextMenuDialogFragment.TAG)
+        }
     }
 
     private fun initMenuFragment() {
@@ -175,7 +162,7 @@ class Dashboard : AppCompatActivity(), Listener {
             actionBarSize = resources.getDimension(R.dimen.tool_bar_height).toInt(),
             menuObjects = getMenuObjects(),
             isClosableOutside = true,
-            gravity = MenuGravity.START
+            gravity = MenuGravity.START,
         )
         contextMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams).apply {
             menuItemClickListener = { view, position ->
@@ -184,17 +171,27 @@ class Dashboard : AppCompatActivity(), Listener {
                     1 -> startActivity(Intent(view.context, QuoteDashboard::class.java))
                     2 -> startActivity(Intent(view.context, FamilyTree::class.java))
                     3 -> startActivity(Intent(view.context, Collection::class.java))
-                    4 -> alertDialog(getString(R.string.pick_one),
-                        getString(R.string.light_theme),
-                        getString(R.string.night_theme),
-                        false)
-                    5 -> alertDialog(getString(R.string.pick_one),
-                        getString(R.string.arabic),
-                        getString(R.string.english),
-                        true)
-                    6 ->
-                        startActivity(Intent(view.context, StoryDashboard::class.java))
-                    7 -> startActivity(Intent(view.context, VideosList::class.java))
+                    4 -> {
+                        alertDialog(getString(R.string.pick_one),
+                            getString(R.string.light_theme),
+                            getString(R.string.night_theme),
+                            false)
+                    }
+                    5 -> {
+                        alertDialog(getString(R.string.pick_one),
+                            getString(R.string.arabic),
+                            getString(R.string.english),
+                            true)
+                    }
+                    6 -> startActivity(Intent(view.context, StoryDashboard::class.java))
+                    7 -> {
+                        Intent(Intent.ACTION_SEND).also {
+                            it.type = "text/plain"
+                            it.putExtra(Intent.EXTRA_TEXT,
+                                "I suggest this app for you : ${APP_URL}")
+                            startActivity(it)
+                        }
+                    }
                     8 -> startActivity(Intent(view.context, SendFeedback::class.java))
                     9 -> startActivity(Intent(view.context, PrayerTimes::class.java))
                 }
@@ -257,11 +254,6 @@ class Dashboard : AppCompatActivity(), Listener {
         }
     }
 
-    private fun showContextMenuDialogFragment() {
-        if (supportFragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
-            contextMenuDialogFragment.show(supportFragmentManager, ContextMenuDialogFragment.TAG)
-        }
-    }
 
     private fun alertDialog(
         title: String,
@@ -328,9 +320,7 @@ class Dashboard : AppCompatActivity(), Listener {
         }
     }
 
-    fun secondSuggestedCard(view: View) {
-        startActivity(Intent(this, Hadiths::class.java))
-    }
+    fun secondSuggestedCard(view: View) = startActivity(Intent(this, Hadiths::class.java))
 
     fun thirdSuggestedCard(view: View) {
         GlobalScope.launch(Dispatchers.IO) {

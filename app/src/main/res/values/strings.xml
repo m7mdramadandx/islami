@@ -3,6 +3,8 @@
 
     <string name="ad_id" translatable="false">ca-app-pub-5169956365910255~4844827484</string>
     <string name="home_banner_id" translatable="false">ca-app-pub-3940256099942544/8865242552</string>
+    <string name="Interstitial_ad_unit_id" translatable="false">ca-app-pub-5169956365910255/3505716698</string>
+    <string name="Interstitial_ad_unit_id_" translatable="false">ca-app-pub-3940256099942544/8691691433</string>
 
     <string name="stories">Stories</string>
     <string name="quotes">Quotes</string>
