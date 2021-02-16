@@ -46,7 +46,7 @@ class TopicsList : AppCompatActivity(), Listener {
         topicAdapter = TopicAdapter()
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = topicAdapter
-        viewModel.listener = this
+        ViewModel.listener = this
     }
 
     private fun observeData() {

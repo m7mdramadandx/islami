@@ -10,7 +10,6 @@
     tools:context=".ui.activity.Dashboard">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -24,15 +23,13 @@
             android:elevation="16dp"
             ads:navigationIcon="@drawable/slide_menu"
             ads:title="@string/app_name"
-            ads:titleTextAppearance="@style/dashboard_title"
-            >
+            ads:titleTextAppearance="@style/dashboard_title">
 
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="42dp">
@@ -56,67 +53,18 @@
                     android:layout_marginBottom="8dp"
                     android:text="@string/suggested_to_you"
                     android:textColor="@color/titleColor"
-                    app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+                    app:layout_constraintBottom_toTopOf="@+id/suggestionRecyclerView"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <HorizontalScrollView
-                    android:id="@+id/horizontalScrollView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/suggestionRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="8dp"
+                    ads:layout_constraintBottom_toBottomOf="parent"
+                    ads:layout_constraintEnd_toEndOf="parent"
+                    ads:layout_constraintStart_toStartOf="parent" />
 
-                    <GridLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="120dp"
-                        android:orientation="horizontal"
-                        android:useDefaultMargins="true">
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/muhammadStory"
-                            android:layout_width="wrap_content"
-
-                            android:layout_height="wrap_content"
-                            android:onClick="firstSuggestedCard">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/muhammad" />
-
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:onClick="secondSuggestedCard">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/muhammad" />
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:onClick="thirdSuggestedCard">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:adjustViewBounds="true"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/job" />
-                        </androidx.cardview.widget.CardView>
-
-                    </GridLayout>
-                </HorizontalScrollView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
@@ -343,7 +291,6 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/videosCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"

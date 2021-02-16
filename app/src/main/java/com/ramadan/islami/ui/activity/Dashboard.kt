@@ -40,21 +40,19 @@ class Dashboard : AppCompatActivity(), Listener {
     private lateinit var mAdView: AdView
     private lateinit var mInterstitialAd: InterstitialAd
     private val localeHelper = LocaleHelper()
+    private var isEnglish: Boolean = true
     private lateinit var storiesSlider: SliderView
     private lateinit var quotesSlider: SliderView
     private val storiesAdapter = SliderAdapter()
     private val quotesAdapter = SliderAdapter()
     private val APP_URL = ""
-
     private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
-    private var isEnglish: Boolean = true
 
     override fun onStart() {
         super.onStart()
         observeDate()
         initMenuFragment()
-//        overrideDefaultFont("fonts/aref_regular.ttf", assets)
     }
 
 
@@ -66,7 +64,7 @@ class Dashboard : AppCompatActivity(), Listener {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener { showContextMenuDialogFragment() }
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
-        viewModel.listener = this
+        ViewModel.listener = this
         window.decorView.layoutDirection = View.LAYOUT_DIRECTION_LOCALE
         storiesSlider = findViewById(R.id.storiesSlider)
         storiesSlider.setSliderAdapter(storiesAdapter)
@@ -104,11 +102,11 @@ class Dashboard : AppCompatActivity(), Listener {
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.d("TOTO", adError.message);
+                    Log.d("TOTO", adError.message)
                 }
 
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                    Log.d("TOTO", "Ad was loaded");
+                    Log.d("TOTO", "Ad was loaded")
                     mInterstitialAd = interstitialAd
                 }
             })
@@ -172,13 +170,13 @@ class Dashboard : AppCompatActivity(), Listener {
                     2 -> startActivity(Intent(view.context, FamilyTree::class.java))
                     3 -> startActivity(Intent(view.context, Collection::class.java))
                     4 -> {
-                        alertDialog(getString(R.string.pick_one),
+                        alertDialog("Theme setting",
                             getString(R.string.light_theme),
                             getString(R.string.night_theme),
                             false)
                     }
                     5 -> {
-                        alertDialog(getString(R.string.pick_one),
+                        alertDialog("Language setting",
                             getString(R.string.arabic),
                             getString(R.string.english),
                             true)
@@ -239,17 +237,17 @@ class Dashboard : AppCompatActivity(), Listener {
         }
         MenuObject(getString(R.string.share)).apply {
             setResourceValue(R.drawable.share)
-            setBgColorValue(primaryColor)
+            setBgColorValue(primaryColorDark)
             add(this)
         }
         MenuObject(getString(R.string.send_feedback)).apply {
             setResourceValue(R.drawable.feedback)
-            setBgColorValue(primaryColorDark)
+            setBgColorValue(primaryColor)
             add(this)
         }
         MenuObject(getString(R.string.about_app)).apply {
             setResourceValue(R.drawable.info)
-            setBgColorValue(primaryColor)
+            setBgColorValue(primaryColorDark)
             add(this)
         }
     }
@@ -305,30 +303,6 @@ class Dashboard : AppCompatActivity(), Listener {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                     }
                 }
-            }
-        }
-    }
-
-    fun firstSuggestedCard(view: View) {
-        GlobalScope.launch(Dispatchers.IO) {
-            withContext(Dispatchers.Main) {
-                val story = viewModel.fetchStory(isEnglish, "muhammad")
-                val intent = Intent(applicationContext, Story::class.java)
-                intent.putExtra("story", story)
-                startActivity(intent)
-            }
-        }
-    }
-
-    fun secondSuggestedCard(view: View) = startActivity(Intent(this, Hadiths::class.java))
-
-    fun thirdSuggestedCard(view: View) {
-        GlobalScope.launch(Dispatchers.IO) {
-            withContext(Dispatchers.Main) {
-                val story = viewModel.fetchStory(isEnglish, "job")
-                val intent = Intent(applicationContext, Story::class.java)
-                intent.putExtra("story", story)
-                startActivity(intent)
             }
         }
     }

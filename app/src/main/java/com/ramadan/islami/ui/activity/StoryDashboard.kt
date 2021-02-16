@@ -36,7 +36,7 @@ class StoryDashboard : AppCompatActivity(), Listener {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        viewModel.listener = this
+        ViewModel.listener = this
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         storyAdapter = RecycleViewAdapter(isWrapped = false)
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)

@@ -1,7 +1,5 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="tool_bar_height">56dp</dimen>
-    <dimen name="max_card_height">140dp</dimen>
-    <dimen name="max_card_height_1">180dp</dimen>
 
 </resources>

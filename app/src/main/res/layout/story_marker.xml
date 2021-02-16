@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginHorizontal="16dp"
+    android:layout_marginHorizontal="32dp"
     app:cardCornerRadius="25dp">
 
     <LinearLayout
@@ -22,7 +22,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginVertical="10dp"
-            android:text="@string/did_you_finished" />
+            android:text="@string/did_you_finished"
+            android:textColor="@color/titleColor" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="64dp"
+            android:background="@color/colorAccent" />
 
         <LinearLayout
             android:id="@+id/actionBar"

@@ -18,7 +18,7 @@ class SendFeedback : AppCompatActivity(), Listener {
         setContentView(R.layout.send_feedback)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        viewModel.listener = this
+        ViewModel.listener = this
         sendBtn.setOnClickListener {
             if (msgEditText.text.toString().isNotEmpty())
                 viewModel.sendFeedback(msgEditText.text.toString())

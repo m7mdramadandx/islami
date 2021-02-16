@@ -3,8 +3,6 @@
 
     <string name="ad_id" translatable="false">ca-app-pub-5169956365910255~4844827484</string>
     <string name="home_banner_id" translatable="false">ca-app-pub-3940256099942544/8865242552</string>
-    <string name="Interstitial_ad_unit_id" translatable="false">ca-app-pub-5169956365910255/3505716698</string>
-    <string name="Interstitial_ad_unit_id_" translatable="false">ca-app-pub-3940256099942544/8691691433</string>
 
     <string name="stories">Stories</string>
     <string name="quotes">Quotes</string>
@@ -32,7 +30,6 @@
     <string name="lot">6) Lot</string>
     <string name="methuselah">5) Methuselah</string>
     <string name="moses">15) Moses (120)</string>
-    <string name="muhammad1">25) MUHAMMAD (63)</string>
     <string name="muhammad">MUHAMMAD</string>
     <string name="noah">3) Noah (950)</string>
     <string name="solomon">18) Solomon (52)</string>
@@ -44,7 +41,6 @@
     <string name="abd_allah">Abd Allah</string>
     <string name="abd_allah1">Abd Allah1</string>
     <string name="abd_allah2">Abd Allah2</string>
-    <string name="aminah_bint_wahab">Aminah Bint Wahab</string>
     <string name="khadija">khadija</string>
     <string name="sawada">sawada</string>
     <string name="aisha">aisha</string>
@@ -64,18 +60,13 @@
     <string name="umm_kalthum">umm_kalthum</string>
     <string name="umm_kalthum1">umm_kalthum1</string>
     <string name="ruqayyah">ruqayyah</string>
-    <string name="ali">ali</string>
-    <string name="umamah">umamah</string>
     <string name="hussein">hussein</string>
     <string name="hassan">hassan</string>
     <string name="muhsin">muhsin</string>
     <string name="arabized_arabs">Arabized Arabs</string>
     <!-- Strings used for fragments for navigation -->
 
-    <string name="welcome_to_islami">Welcome to islami</string>
     <string name="suggested_to_you">Suggested to you</string>
-    <string name="save">Save</string>
-    <string name="cancel">Dismiss</string>
     <string name="hadiths">Hadiths</string>
     <string name="quranic_verses">Quranic verses</string>
     <string name="prophets_family_tree">Prophets Family Tree</string>
@@ -89,15 +80,7 @@
     <string name="share">Share</string>
     <string name="view_images">View images</string>
     <string name="send">Send</string>
-    <string name="videos">videos</string>
     <string name="please_give_details_on_the_issue_or_provide_general_feedback">Please provide details of the issue or provide general feedback</string>
-    <string name="part_6">Part 6</string>
-    <string name="part_7">Part 7</string>
-    <string name="part_5">Part 5</string>
-    <string name="part_4">Part 4</string>
-    <string name="part_3">Part 3</string>
-    <string name="part_2">Part 2</string>
-    <string name="part_1">Part 1</string>
     <string name="could_download">download image by long press</string>
     <string name="couldnot_download">you will not able to download images</string>
     <string name="saved">Saved</string>
@@ -110,7 +93,6 @@
     <string name="yes">Yes</string>
     <string name="brief">Brief</string>
     <string name="could_you_rate_this_article">Could you rate this article?</string>
-    <string name="channel_id">MyDefaultChannelID</string>
     <string name="english">English</string>
     <string name="arabic">Arabic</string>
     <string name="light_theme">Light theme</string>

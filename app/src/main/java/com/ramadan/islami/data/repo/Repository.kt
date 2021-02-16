@@ -20,8 +20,27 @@ import kotlin.collections.toSortedMap
 
 class Repository {
     private val tag = "Repository"
-    private val rootCollection = FirebaseFirestore.getInstance().collection("root")
     var language = "ar"
+
+    suspend fun fetchSuggestion(isEnglish: Boolean): LiveData<MutableList<Story>> {
+        val mutableData = MutableLiveData<MutableList<Story>>()
+        val dataList: MutableList<Story> = mutableListOf()
+        if (isEnglish) language = "en"
+        rootCollection.document(language).collection("suggestion").get()
+            .addOnSuccessListener { result ->
+                result.forEach { document ->
+                    val id: String = document.id
+                    val title = document.getString("title") ?: document.id
+                    val image = document.getString("image") ?: defaultImg
+                    val brief = document.getString("brief") ?: "brief"
+                    val arrayList = document.get("arrayList") as ArrayList<String>
+                    val story = Story(id, title, image, brief, arrayList)
+                    dataList.add(story)
+                }
+                mutableData.value = dataList
+            }.addOnFailureListener { e -> println("Error!! + $e") }.await()
+        return mutableData
+    }
 
     suspend fun fetchAllStories(isEnglish: Boolean): LiveData<MutableList<Story>> {
         val mutableData = MutableLiveData<MutableList<Story>>()
@@ -30,11 +49,12 @@ class Repository {
         rootCollection.document(language).collection("stories").get()
             .addOnSuccessListener { result ->
                 result.forEach { document ->
+                    val id: String = document.id
                     val title = document.getString("name") ?: document.id
                     val imgUrl = document.getString("image") ?: defaultImg
                     val brief = document.getString("brief") ?: "brief"
-                    val text = document.get("text") as ArrayList<String>?
-                    val story = Story(document.id, title, imgUrl, brief, text!!)
+                    val text = document.get("text") as ArrayList<String>
+                    val story = Story(id, title, imgUrl, brief, text)
                     dataList.add(story)
                 }
                 mutableData.value = dataList
@@ -49,12 +69,12 @@ class Repository {
             .addOnSuccessListener { result ->
                 result.forEach { document ->
                     if (storyName == document.id) {
-                        val title: String = document.getString("name") ?: document.id
                         val id: String = document.id
+                        val title: String = document.getString("name") ?: document.id
                         val imgUrl: String = document.getString("image") ?: defaultImg
                         val brief: String = document.getString("brief") ?: "brief"
-                        val text: ArrayList<String>? = document.get("text") as ArrayList<String>?
-                        story = Story(id, title, imgUrl, brief, text!!)
+                        val text: ArrayList<String> = document.get("text") as ArrayList<String>
+                        story = Story(id, title, imgUrl, brief, text)
                         return@forEach
                     }
                 }
@@ -168,13 +188,13 @@ class Repository {
     suspend fun rateTopic(
         isEnglish: Boolean,
         collectionID: String,
-        topicID: String,
+        documentID: String,
         isGood: Boolean,
     ) {
         if (isEnglish) language = "en"
         val value: Double = if (isGood) 1.0 else -1.0
         rootCollection.document(language).collection("collection").document(collectionID)
-            .collection(collectionID).document(topicID)
+            .collection(collectionID).document(documentID)
             .update("rate", FieldValue.increment(value))
             .await()
     }
@@ -182,5 +202,9 @@ class Repository {
     suspend fun sendFeedback(msg: String) {
         rootCollection.document("feedback").collection("messages")
             .add(mapOf("msg" to msg)).await()
+    }
+
+    companion object {
+        private val rootCollection = FirebaseFirestore.getInstance().collection("root")
     }
 }

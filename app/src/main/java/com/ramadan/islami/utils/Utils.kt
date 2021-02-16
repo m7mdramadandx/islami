@@ -2,7 +2,6 @@ package com.ramadan.islami.utils
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
@@ -17,7 +16,6 @@ import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.ramadan.islami.R
 import com.ramadan.islami.R.string
-import com.ramadan.islami.ui.activity.TopicsList
 import com.squareup.picasso.Picasso
 import de.blox.graphview.Node
 import java.io.File
@@ -25,11 +23,6 @@ import java.io.FileOutputStream
 import java.io.OutputStream
 import kotlin.random.Random
 
-fun Context.informationList() =
-    Intent(this, TopicsList::class.java).also {
-        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(it)
-    }
 
 class Utils(val context: Context) {
 

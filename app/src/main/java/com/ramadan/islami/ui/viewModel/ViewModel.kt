@@ -13,8 +13,20 @@ import kotlinx.coroutines.*
 import com.ramadan.islami.data.model.Collection as ModelCollection
 
 class ViewModel : ViewModel() {
-    private val repo = Repository()
-    var listener: Listener? = null
+
+    fun fetchSuggestion(isEnglish: Boolean): LiveData<MutableList<Story>> {
+        listener?.onStarted()
+        val mutableData = MutableLiveData<MutableList<Story>>()
+        GlobalScope.launch(Dispatchers.IO) {
+            delay(300)
+            withContext(Dispatchers.Main) {
+                repo.fetchSuggestion(isEnglish).observeForever { mutableData.value = it }
+                if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
+                else listener?.onFailure("Try Again ")
+            }
+        }
+        return mutableData
+    }
 
     fun fetchStories(isEnglish: Boolean): LiveData<MutableList<Story>> {
         listener?.onStarted()
@@ -24,7 +36,7 @@ class ViewModel : ViewModel() {
             withContext(Dispatchers.Main) {
                 repo.fetchAllStories(isEnglish).observeForever { mutableData.value = it }
                 if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
-                else listener?.onFailure("Failure")
+                else listener?.onFailure("Try Again ")
             }
         }
         return mutableData
@@ -34,7 +46,7 @@ class ViewModel : ViewModel() {
         listener?.onStarted()
         val story = repo.fetchStory(isEnglish, storyName)
         if (story.text.isNotEmpty()) listener?.onSuccess()
-        else listener?.onFailure("Failure")
+        else listener?.onFailure("Try Again ")
         return story
     }
 
@@ -46,7 +58,7 @@ class ViewModel : ViewModel() {
             withContext(Dispatchers.Main) {
                 repo.fetchQuotes(isEnglish).observeForever { mutableData.value = it }
                 if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
-                else listener?.onFailure("Failure")
+                else listener?.onFailure("Try Again ")
             }
         }
         return mutableData
@@ -56,7 +68,7 @@ class ViewModel : ViewModel() {
         listener?.onStarted()
         val quote = repo.fetchHadiths(isEnglish)
         if (quote.hadiths.isNotEmpty()) listener?.onSuccess()
-        else listener?.onFailure("Failure")
+        else listener?.onFailure("Try Again ")
         return quote
     }
 
@@ -68,7 +80,7 @@ class ViewModel : ViewModel() {
             withContext(Dispatchers.Main) {
                 repo.fetchCollection(isEnglish).observeForever { mutableData.value = it }
                 if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
-                else listener?.onFailure("Failure")
+                else listener?.onFailure("Try Again ")
             }
         }
         return mutableData
@@ -83,7 +95,7 @@ class ViewModel : ViewModel() {
                 repo.fetchVideos(isEnglish)
                     .observeForever { videosList -> mutableData.value = videosList }
                 if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
-                else listener?.onFailure("Failure")
+                else listener?.onFailure("Try Again ")
             }
         }
         return mutableData
@@ -95,9 +107,10 @@ class ViewModel : ViewModel() {
         GlobalScope.launch(Dispatchers.IO) {
             delay(300)
             withContext(Dispatchers.Main) {
-                repo.fetchTopics(isEnglish, topic).observeForever { mutableData.value = it }
+                repo.fetchTopics(isEnglish, topic)
+                    .observeForever { mutableData.value = it }
                 if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
-                else listener?.onFailure("Failure")
+                else listener?.onFailure("Try Again ")
             }
         }
         return mutableData
@@ -107,7 +120,7 @@ class ViewModel : ViewModel() {
         listener?.onStarted()
         val topic = repo.fetchTopic(isEnglish, collectionID, documentId)
         if (topic.id.isNotEmpty()) listener?.onSuccess()
-        else listener?.onFailure("Failure")
+        else listener?.onFailure("Try Again ")
         return topic
     }
 
@@ -136,6 +149,11 @@ class ViewModel : ViewModel() {
                 }
             }
         }
+    }
+
+    companion object {
+        private val repo = Repository()
+        var listener: Listener? = null
     }
 
 }

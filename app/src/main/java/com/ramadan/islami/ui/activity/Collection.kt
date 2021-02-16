@@ -37,7 +37,7 @@ class Collection : AppCompatActivity(), Listener {
         collectionAdapter = RecycleViewAdapter(isWrapped = false)
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = collectionAdapter
-        viewModel.listener = this
+        ViewModel.listener = this
     }
 
     private fun observeData() {

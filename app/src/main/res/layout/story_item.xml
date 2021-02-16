@@ -8,7 +8,6 @@
     android:padding="4dp">
 
     <com.github.florent37.expansionpanel.ExpansionHeader
-        android:id="@+id/expansionHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:expansion_headerIndicator="@id/headerIndicator"
@@ -44,10 +43,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
-        android:background="@color/silver_grey"
-        app:expansion_openOnlyOne="true">
+        android:background="@color/silver_grey">
 
-        <com.ramadan.islami.utils.LinedTextView
+        <TextView
             android:id="@+id/expansionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
