@@ -7,7 +7,6 @@ import com.onesignal.OSNotificationOpenedResult
 import com.onesignal.OneSignal
 import com.ramadan.islami.ui.activity.*
 
-
 class NotificationOpenedHandler(base: Context?) : OneSignal.OSNotificationOpenedHandler,
     ContextWrapper(base) {
 

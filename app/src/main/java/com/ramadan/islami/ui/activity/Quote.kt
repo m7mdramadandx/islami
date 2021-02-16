@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -25,7 +25,7 @@ class Quote : AppCompatActivity() {
     private var hadithsRecyclerView: RecyclerView? = null
     private lateinit var versesAdapter: RecycleViewAdapter
     private lateinit var hadithsAdapter: RecycleViewAdapter
-    private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(ViewModel::class.java) }
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
     private lateinit var quote: QuoteModel

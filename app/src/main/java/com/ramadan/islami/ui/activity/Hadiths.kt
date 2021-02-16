@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.recycle_view.*
 import kotlinx.coroutines.*
 
 class Hadiths : AppCompatActivity(), Listener {
-    private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(ViewModel::class.java) }
     private lateinit var recycleViewAdapter: RecycleViewAdapter
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()

@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.ramadan.islami.ui.activity
 
 import android.content.Intent
@@ -10,11 +8,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Story
 import com.ramadan.islami.ui.adapter.StoryAdapter
+import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.Utils
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuGravity
@@ -23,6 +23,7 @@ import com.yalantis.contextmenu.lib.MenuParams
 import kotlinx.android.synthetic.main.recycle_view.*
 
 class Story : AppCompatActivity() {
+    private val viewModel by lazy { ViewModelProvider(this).get(ViewModel::class.java) }
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
     private lateinit var story: Story
     private lateinit var storyAdapter: StoryAdapter

@@ -20,10 +20,16 @@ import com.ramadan.islami.ui.activity.Story as ActivityStory
 
 class RecycleViewAdapter(val isWrapped: Boolean) :
     RecyclerView.Adapter<RecycleViewAdapter.CustomView>() {
+    private var suggestionList = mutableListOf<Story>()
     private var storiesList = mutableListOf<Story>()
     private var categoryList = mutableListOf<Quote>()
     private var quotesList = ArrayList<String>()
     private var collectionList = mutableListOf<Collection>()
+
+    fun suggestionDataList(data: MutableList<Story>) {
+        suggestionList = data
+        notifyDataSetChanged()
+    }
 
     fun setStoriesDataList(data: MutableList<Story>) {
         storiesList = data
@@ -55,6 +61,7 @@ class RecycleViewAdapter(val isWrapped: Boolean) :
 
     override fun getItemCount(): Int {
         return when {
+            suggestionList.size > 0 -> suggestionList.size
             storiesList.size > 0 -> storiesList.size
             categoryList.size > 0 -> categoryList.size
             quotesList.size > 0 -> quotesList.size
@@ -65,6 +72,7 @@ class RecycleViewAdapter(val isWrapped: Boolean) :
 
     override fun onBindViewHolder(holder: CustomView, position: Int) {
         when {
+            suggestionList.size > 0 -> holder.suggestionView(suggestionList[position])
             storiesList.size > 0 -> holder.storyView(storiesList[position])
             categoryList.size > 0 -> holder.quotesList(categoryList[position])
             quotesList.size > 0 -> holder.quoteView(quotesList[position])
@@ -74,6 +82,18 @@ class RecycleViewAdapter(val isWrapped: Boolean) :
 
     inner class CustomView(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val util = Utils(itemView.context)
+
+        fun suggestionView(story: Story) {
+            Picasso.get().load(story.imgUrl).error(R.drawable.failure_img)
+                .placeholder(R.drawable.load_img).into(itemView.cardImg)
+            itemView.cardName.text = story.title
+            itemView.setOnClickListener {
+                Intent(itemView.context, ActivityStory::class.java).apply {
+                    putExtra("story", story)
+                    itemView.context.startActivity(this)
+                }
+            }
+        }
 
         fun storyView(story: Story) {
             Picasso.get().load(story.imgUrl).error(R.drawable.failure_img)

@@ -82,6 +82,7 @@
             android:name="com.ramadan.islami.ui.activity.Video"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
             android:hardwareAccelerated="true" />
+
     </application>
 
 </manifest>

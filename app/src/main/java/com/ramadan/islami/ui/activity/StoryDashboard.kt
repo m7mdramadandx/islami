@@ -1,13 +1,10 @@
-@file:Suppress("DEPRECATION")
-
 package com.ramadan.islami.ui.activity
 
 import android.os.Bundle
 import android.view.View
-import android.widget.AbsListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -19,8 +16,8 @@ import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycle_view.*
 
 class StoryDashboard : AppCompatActivity(), Listener {
+    private val viewModel by lazy { ViewModelProvider(this).get(ViewModel::class.java) }
     private lateinit var storyAdapter: RecycleViewAdapter
-    private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
 
@@ -28,7 +25,6 @@ class StoryDashboard : AppCompatActivity(), Listener {
         super.onStart()
         observeDate()
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,14 +44,6 @@ class StoryDashboard : AppCompatActivity(), Listener {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (dy > 0) supportActionBar?.hide() else supportActionBar?.show()
-            }
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                when (newState) {
-                    AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL -> supportActionBar?.hide()
-                    else -> supportActionBar?.show()
-                }
             }
         })
     }

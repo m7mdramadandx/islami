@@ -113,10 +113,7 @@
 
                             <include
                                 android:id="@+id/progress"
-                                layout="@layout/loading_dialog"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center" />
+                                layout="@layout/loading_dialog" />
 
                         </com.smarteist.autoimageslider.SliderView>
 
@@ -166,10 +163,7 @@
 
                             <include
                                 android:id="@+id/progress1"
-                                layout="@layout/loading_dialog"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center" />
+                                layout="@layout/loading_dialog"/>
 
                         </com.smarteist.autoimageslider.SliderView>
                     </androidx.cardview.widget.CardView>

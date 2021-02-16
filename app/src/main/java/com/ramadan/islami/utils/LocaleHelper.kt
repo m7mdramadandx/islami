@@ -59,7 +59,7 @@ class LocaleHelper {
 
     fun getDefaultLanguage(context: Context): String {
         val prefs = getDefaultSharedPreferences(context)
-        return prefs.getString(SELECTED_LANGUAGE, "en").toString()
+        return prefs.getString(SELECTED_LANGUAGE, "ar").toString()
     }
 
     private fun updateResources(context: Context, language: String): Context {

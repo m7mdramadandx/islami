@@ -17,7 +17,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.ramadan.islami.R
@@ -37,20 +39,21 @@ import kotlinx.coroutines.*
 
 
 class Dashboard : AppCompatActivity(), Listener {
-    private lateinit var mAdView: AdView
+    private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
+    private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
     private lateinit var mInterstitialAd: InterstitialAd
-    private val localeHelper = LocaleHelper()
-    private var isEnglish: Boolean = true
+    private lateinit var mAdView: AdView
     private lateinit var storiesSlider: SliderView
     private lateinit var quotesSlider: SliderView
     private val storiesAdapter = SliderAdapter()
     private val quotesAdapter = SliderAdapter()
-    private val APP_URL = ""
-    private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
-    private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
+    private val localeHelper = LocaleHelper()
+    private var isEnglish: Boolean = true
+    private val appURL = ""
 
     override fun onStart() {
         super.onStart()
+        isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         observeDate()
         initMenuFragment()
     }
@@ -63,7 +66,6 @@ class Dashboard : AppCompatActivity(), Listener {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener { showContextMenuDialogFragment() }
-        isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         ViewModel.listener = this
         window.decorView.layoutDirection = View.LAYOUT_DIRECTION_LOCALE
         storiesSlider = findViewById(R.id.storiesSlider)
@@ -89,14 +91,7 @@ class Dashboard : AppCompatActivity(), Listener {
         muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
         prophetsTree.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
         bigTree.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
-
-        val testDeviceIds = listOf("33BE2250B43518CCDA7DE426D04EE231")
-        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
-        MobileAds.setRequestConfiguration(configuration)
-
-//        mInterstitialAd.adListener = object : AdListener() {}+
         val adRequest = AdRequest.Builder().build()
-
         InterstitialAd.load(this,
             "ca-app-pub-3940256099942544/1033173712",
             adRequest,
@@ -104,10 +99,9 @@ class Dashboard : AppCompatActivity(), Listener {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
                     Log.d("TOTO", adError.message)
                 }
-
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                    Log.d("TOTO", "Ad was loaded")
                     mInterstitialAd = interstitialAd
+//                    mInterstitialAd.show(this@Dashboard)
                 }
             })
 
@@ -121,14 +115,6 @@ class Dashboard : AppCompatActivity(), Listener {
             withContext(Dispatchers.Main) {
                 mAdView = findViewById(R.id.adView)
                 mAdView.loadAd(AdRequest.Builder().build())
-//                mInterstitialAd = InterstitialAd(applicationContext)
-//                mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
-//                mInterstitialAd.loadAd(AdRequest.Builder().build())
-//                if (mInterstitialAd.isLoaded) {
-//                    mInterstitialAd.show()
-//                } else {
-//                    Log.e("TOTO", "The interstitial wasn't loaded yet.")
-//                }
 
             }
         }
@@ -186,7 +172,7 @@ class Dashboard : AppCompatActivity(), Listener {
                         Intent(Intent.ACTION_SEND).also {
                             it.type = "text/plain"
                             it.putExtra(Intent.EXTRA_TEXT,
-                                "I suggest this app for you : ${APP_URL}")
+                                "I suggest this app for you : ${appURL}")
                             startActivity(it)
                         }
                     }
@@ -255,8 +241,8 @@ class Dashboard : AppCompatActivity(), Listener {
 
     private fun alertDialog(
         title: String,
-        option1: String,
-        option2: String,
+        optionOne: String,
+        optionTwo: String,
         isLanguageSetting: Boolean,
     ) {
         val dialogBuilder = AlertDialog.Builder(this)
@@ -268,12 +254,12 @@ class Dashboard : AppCompatActivity(), Listener {
         alertDialog.setCancelable(true)
         view.findViewById<TextView>(R.id.title).text = title
         val group = view.findViewById<RadioGroup>(R.id.group)
-        val option1 = view.findViewById<RadioButton>(R.id.option1).also { it.text = option1 }
-        val option2 = view.findViewById<RadioButton>(R.id.option2).also { it.text = option2 }
+        val option1 = view.findViewById<RadioButton>(R.id.option1).also { it.text = optionOne }
+        val option2 = view.findViewById<RadioButton>(R.id.option2).also { it.text = optionTwo }
         if (isLanguageSetting) {
             if (localeHelper.getDefaultLanguage(this) == "ar") option1.isChecked = true
             else option2.isChecked = true
-            group.setOnCheckedChangeListener { group, checkedId ->
+            group.setOnCheckedChangeListener { _, checkedId ->
                 when (checkedId) {
                     R.id.option1 -> localeHelper.persist(this, "ar")
                     R.id.option2 -> localeHelper.persist(this, "en")
@@ -288,7 +274,7 @@ class Dashboard : AppCompatActivity(), Listener {
                 "night" -> option2.isChecked = true
                 else -> option3.isChecked = true
             }
-            group.setOnCheckedChangeListener { group, checkedId ->
+            group.setOnCheckedChangeListener { _, checkedId ->
                 when (checkedId) {
                     R.id.option1 -> {
                         localeHelper.setTheme(this, "light")

@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.ui.viewModel.ViewModel
 import kotlinx.android.synthetic.main.send_feedback.*
 
 class SendFeedback : AppCompatActivity(), Listener {
-    private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(ViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
