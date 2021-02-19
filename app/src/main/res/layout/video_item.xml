@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/youtube_player_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:layout_marginHorizontal="2dp"
     android:layout_marginTop="16dp"
     android:layout_marginBottom="24dp"
-    app:enableAutomaticInitialization="true"
-    android:layoutDirection="ltr" />
+    android:layoutDirection="ltr"
+    app:enableAutomaticInitialization="true" />

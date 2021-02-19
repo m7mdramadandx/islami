@@ -38,7 +38,7 @@ class VideosList : AppCompatActivity(), Listener {
         videoAdapter = VideoAdapter(lifecycle)
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = videoAdapter
-        ViewModel.listener = this
+        viewModel.listener = this
     }
 
     private fun observeData() {

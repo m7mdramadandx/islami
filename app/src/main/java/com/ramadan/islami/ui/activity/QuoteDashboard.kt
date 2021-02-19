@@ -33,7 +33,7 @@ class QuoteDashboard : AppCompatActivity(), Listener {
         supportActionBar!!.setHomeButtonEnabled(true)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
-        ViewModel.listener = this
+        viewModel.listener = this
         recycleViewAdapter = RecycleViewAdapter(isWrapped = false)
         recyclerView = findViewById(R.id.recycler_view)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)

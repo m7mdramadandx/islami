@@ -7,7 +7,7 @@ import com.ramadan.islami.R
 class PrayerTimes : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.about)
+        setContentView(R.layout.prayer_times)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }

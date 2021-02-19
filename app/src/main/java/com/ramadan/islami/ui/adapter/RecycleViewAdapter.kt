@@ -98,7 +98,7 @@ class RecycleViewAdapter(val isWrapped: Boolean) :
         fun storyView(story: Story) {
             Picasso.get().load(story.imgUrl).error(R.drawable.failure_img)
                 .placeholder(R.drawable.load_img).into(itemView.cardImg)
-            itemView.cardName.text = story.title
+            itemView.cardName.text = story.title.toUpperCase()
             itemView.setOnClickListener {
                 Intent(itemView.context, ActivityStory::class.java).apply {
                     putExtra("story", story)

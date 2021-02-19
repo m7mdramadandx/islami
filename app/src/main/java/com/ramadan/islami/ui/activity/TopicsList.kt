@@ -1,6 +1,5 @@
 package com.ramadan.islami.ui.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -24,12 +23,6 @@ class TopicsList : AppCompatActivity(), Listener {
     private lateinit var topicAdapter: TopicAdapter
     private lateinit var recyclerView: RecyclerView
 
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        setIntent(intent)
-        val intent_o = getIntent()
-    }
-
     override fun onStart() {
         super.onStart()
         observeData()
@@ -46,7 +39,7 @@ class TopicsList : AppCompatActivity(), Listener {
         topicAdapter = TopicAdapter()
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = topicAdapter
-        ViewModel.listener = this
+        viewModel.listener = this
     }
 
     private fun observeData() {

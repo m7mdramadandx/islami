@@ -33,7 +33,7 @@ class Quote : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.quote_layout)
+        setContentView(R.layout.quotes)
         supportActionBar!!.setHomeButtonEnabled(true)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"

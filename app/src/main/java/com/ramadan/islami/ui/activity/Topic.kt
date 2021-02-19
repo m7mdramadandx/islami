@@ -1,4 +1,5 @@
 package com.ramadan.islami.ui.activity
+
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -32,8 +33,8 @@ class Topic : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.topic)
-        if (intent.getSerializableExtra("topic") == null) fetchNotification()
-        topic = (intent.getSerializableExtra("topic") ?: Topic("e", "", "e", "e", 0.0, hashMapOf())) as Topic
+        if (intent.hasExtra("topic")) topic = intent.getSerializableExtra("topic") as Topic
+        else fetchNotification()
         val collectionId: String = intent.getStringExtra("collectionId").toString()
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         toolbar.title = topic?.title
@@ -45,10 +46,10 @@ class Topic : AppCompatActivity() {
         topicAdapter = TopicAdapter()
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = topicAdapter
-        good.setOnCheckedChangeListener { button, isChecked ->
+        good.setOnCheckedChangeListener { _, isChecked ->
             viewModel.rateTopic(isEnglish, collectionId, topic!!.id, isChecked)
         }
-        bad.setOnCheckedChangeListener { button, isChecked ->
+        bad.setOnCheckedChangeListener { _, isChecked ->
             viewModel.rateTopic(isEnglish, collectionId, topic!!.id, !isChecked)
         }
         toolbar_layout.setContentScrimColor(resources.getColor(R.color.colorPrimary))

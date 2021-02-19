@@ -30,7 +30,7 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/nestest_view" />
+    <include layout="@layout/content_nestest_view" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

@@ -13,6 +13,8 @@ import kotlinx.coroutines.*
 import com.ramadan.islami.data.model.Collection as ModelCollection
 
 class ViewModel : ViewModel() {
+    private val repo by lazy { Repository() }
+    var listener: Listener? = null
 
     fun fetchSuggestion(isEnglish: Boolean): LiveData<MutableList<Story>> {
         listener?.onStarted()
@@ -149,11 +151,6 @@ class ViewModel : ViewModel() {
                 }
             }
         }
-    }
-
-    companion object {
-        private val repo = Repository()
-        var listener: Listener? = null
     }
 
 }

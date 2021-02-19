@@ -16,13 +16,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.ramadan.islami.R
+import com.ramadan.islami.ui.adapter.RecycleViewAdapter
 import com.ramadan.islami.ui.adapter.SliderAdapter
 import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.ui.viewModel.ViewModel
@@ -39,12 +42,14 @@ import kotlinx.coroutines.*
 
 
 class Dashboard : AppCompatActivity(), Listener {
-    private val viewModel by lazy { ViewModelProviders.of(this).get(ViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(ViewModel::class.java) }
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
     private lateinit var mInterstitialAd: InterstitialAd
     private lateinit var mAdView: AdView
+    private lateinit var suggestionRCV: RecyclerView
     private lateinit var storiesSlider: SliderView
     private lateinit var quotesSlider: SliderView
+    private lateinit var recycleViewAdapter: RecycleViewAdapter
     private val storiesAdapter = SliderAdapter()
     private val quotesAdapter = SliderAdapter()
     private val localeHelper = LocaleHelper()
@@ -66,8 +71,13 @@ class Dashboard : AppCompatActivity(), Listener {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener { showContextMenuDialogFragment() }
-        ViewModel.listener = this
+        viewModel.listener = this
         window.decorView.layoutDirection = View.LAYOUT_DIRECTION_LOCALE
+        recycleViewAdapter = RecycleViewAdapter(false)
+        suggestionRCV = findViewById(R.id.suggestionRecyclerView)
+        suggestionRCV.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        suggestionRCV.adapter = recycleViewAdapter
         storiesSlider = findViewById(R.id.storiesSlider)
         storiesSlider.setSliderAdapter(storiesAdapter)
         storiesSlider.autoCycleDirection = SliderView.LAYOUT_DIRECTION_RTL
@@ -99,6 +109,7 @@ class Dashboard : AppCompatActivity(), Listener {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
                     Log.d("TOTO", adError.message)
                 }
+
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
                     mInterstitialAd = interstitialAd
 //                    mInterstitialAd.show(this@Dashboard)
@@ -108,6 +119,8 @@ class Dashboard : AppCompatActivity(), Listener {
     }
 
     private fun observeDate() {
+        viewModel.fetchSuggestion(isEnglish)
+            .observe(this, { recycleViewAdapter.suggestionDataList(it) })
         viewModel.fetchStories(isEnglish).observe(this, { storiesAdapter.setStoriesDataList(it) })
         viewModel.fetchQuotes(isEnglish).observe(this, { quotesAdapter.setCategoryDataList(it) })
         GlobalScope.launch(Dispatchers.IO) {

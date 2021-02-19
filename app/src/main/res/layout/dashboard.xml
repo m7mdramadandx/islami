@@ -61,6 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:layout_marginStart="8dp"
+                    android:orientation="horizontal"
                     ads:layout_constraintBottom_toBottomOf="parent"
                     ads:layout_constraintEnd_toEndOf="parent"
                     ads:layout_constraintStart_toStartOf="parent" />
@@ -163,7 +164,7 @@
 
                             <include
                                 android:id="@+id/progress1"
-                                layout="@layout/loading_dialog"/>
+                                layout="@layout/loading_dialog" />
 
                         </com.smarteist.autoimageslider.SliderView>
                     </androidx.cardview.widget.CardView>
