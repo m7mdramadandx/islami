@@ -128,6 +128,8 @@ class Utils(val context: Context) {
 }
 
 
-val defaultImg: String =
+const val defaultImg: String =
     "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/islami_background_256.png?alt=media&token=72e1403c-2e25-4c8c-b1c0-2cf383153c01"
-
+const val debug_tag = "TOTO"
+const val lat = 31.107364
+const val lon = 29.783520

@@ -73,7 +73,7 @@ class Dashboard : AppCompatActivity(), Listener {
         toolbar.setNavigationOnClickListener { showContextMenuDialogFragment() }
         viewModel.listener = this
         window.decorView.layoutDirection = View.LAYOUT_DIRECTION_LOCALE
-        recycleViewAdapter = RecycleViewAdapter(false)
+        recycleViewAdapter = RecycleViewAdapter(true)
         suggestionRCV = findViewById(R.id.suggestionRecyclerView)
         suggestionRCV.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -94,7 +94,8 @@ class Dashboard : AppCompatActivity(), Listener {
         quotesSlider.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
         quotesSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
 
-        storiesCard.setOnClickListener { startActivity(Intent(this, StoryDashboard::class.java)) }
+        storiesCard.setOnClickListener { startActivity(Intent(this, MainActivity::class.java))}
+//        storiesCard.setOnClickListener { startActivity(Intent(this, StoryDashboard::class.java)) }
         quotesCard.setOnClickListener { startActivity(Intent(this, QuoteDashboard::class.java)) }
         familyTreeCard.setOnClickListener { startActivity(Intent(this, FamilyTree::class.java)) }
         topics.setOnClickListener { startActivity(Intent(this, Collection::class.java)) }
@@ -127,7 +128,7 @@ class Dashboard : AppCompatActivity(), Listener {
             delay(1000)
             withContext(Dispatchers.Main) {
                 mAdView = findViewById(R.id.adView)
-                mAdView.loadAd(AdRequest.Builder().build())
+//                mAdView.loadAd(AdRequest.Builder().build())
 
             }
         }

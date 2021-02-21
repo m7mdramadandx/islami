@@ -13,7 +13,7 @@ import com.ramadan.islami.data.model.Topic
 import com.ramadan.islami.ui.adapter.TopicAdapter
 import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
-import kotlinx.android.synthetic.main.nestest_view.*
+import kotlinx.android.synthetic.main.content_nestest_view.*
 import kotlinx.android.synthetic.main.topic.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
