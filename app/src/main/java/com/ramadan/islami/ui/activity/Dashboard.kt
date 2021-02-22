@@ -94,7 +94,7 @@ class Dashboard : AppCompatActivity(), Listener {
         quotesSlider.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
         quotesSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
 
-        storiesCard.setOnClickListener { startActivity(Intent(this, MainActivity::class.java))}
+        storiesCard.setOnClickListener { startActivity(Intent(this, PrayerTimes::class.java))}
 //        storiesCard.setOnClickListener { startActivity(Intent(this, StoryDashboard::class.java)) }
         quotesCard.setOnClickListener { startActivity(Intent(this, HadithOfDay::class.java)) }
 //        quotesCard.setOnClickListener { startActivity(Intent(this, QuoteDashboard::class.java)) }

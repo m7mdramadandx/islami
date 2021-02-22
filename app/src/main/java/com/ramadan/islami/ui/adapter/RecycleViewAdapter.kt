@@ -59,16 +59,6 @@ class RecycleViewAdapter(val isWrapped: Boolean) :
         return CustomView(view)
     }
 
-    override fun getItemCount(): Int {
-        return when {
-            suggestionList.size > 0 -> suggestionList.size
-            storiesList.size > 0 -> storiesList.size
-            categoryList.size > 0 -> categoryList.size
-            quotesList.size > 0 -> quotesList.size
-            collectionList.size > 0 -> collectionList.size
-            else -> 1
-        }
-    }
 
     override fun onBindViewHolder(holder: CustomView, position: Int) {
         when {
@@ -80,6 +70,16 @@ class RecycleViewAdapter(val isWrapped: Boolean) :
         }
     }
 
+    override fun getItemCount(): Int {
+        return when {
+            suggestionList.size > 0 -> suggestionList.size
+            storiesList.size > 0 -> storiesList.size
+            categoryList.size > 0 -> categoryList.size
+            quotesList.size > 0 -> quotesList.size
+            collectionList.size > 0 -> collectionList.size
+            else -> 1
+        }
+    }
     inner class CustomView(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val util = Utils(itemView.context)
 

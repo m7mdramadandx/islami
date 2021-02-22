@@ -43,18 +43,18 @@ class TopicAdapter :
         }
     }
 
-    override fun getItemCount(): Int {
-        return when {
-            topicList.size > 0 -> topicList.size
-            contentMap.isNotEmpty() -> contentMap.size
-            else -> 0
-        }
-    }
 
     override fun onBindViewHolder(holder: CustomView, position: Int) {
         when {
             topicList.size > 0 -> holder.topicView(topicList[position])
             contentMap.isNotEmpty() -> holder.topicContentView(contentMap.toList()[position])
+        }
+    }
+    override fun getItemCount(): Int {
+        return when {
+            topicList.size > 0 -> topicList.size
+            contentMap.isNotEmpty() -> contentMap.size
+            else -> 0
         }
     }
 

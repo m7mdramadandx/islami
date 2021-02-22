@@ -5,7 +5,7 @@
     <color name="colorAccent">#E1B34F</color>
     <color name="silver_grey">#272727</color>
     <color name="colorBackground">#151515</color>
-    <color name="colorText">#fff</color>
+    <color name="textColor">#fff</color>
     <color name="actionbar_background">#17223b</color>
     <color name="actionbar_text">#ffffff</color>
     <color name="titleColor">#FFFFFF</color>

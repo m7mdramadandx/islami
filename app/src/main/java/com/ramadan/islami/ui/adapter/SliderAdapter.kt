@@ -37,18 +37,19 @@ class SliderAdapter : SliderViewAdapter<SliderAdapter.CustomView>() {
         return CustomView(inflate)
     }
 
+
+    override fun onBindViewHolder(holder: CustomView, position: Int) {
+        when {
+            storyList.size > 0 -> return holder.storyView(storyList[position])
+            categoryList.size > 0 -> return holder.quotesView(categoryList[position])
+        }
+    }
+
     override fun getCount(): Int {
         return when {
             storyList.size > 0 -> 6
             categoryList.size > 0 -> categoryList.size
             else -> 1
-        }
-    }
-
-    override fun onBindViewHolder(viewHolder: CustomView, position: Int) {
-        when {
-            storyList.size > 0 -> return viewHolder.storyView(storyList[position])
-            categoryList.size > 0 -> return viewHolder.quotesView(categoryList[position])
         }
     }
 
