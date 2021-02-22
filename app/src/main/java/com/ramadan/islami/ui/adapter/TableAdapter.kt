@@ -1,5 +1,6 @@
 package com.ramadan.islami.ui.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,7 @@ class TableAdapter : RecyclerView.Adapter<TableAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when {
-            prayerList.isNotEmpty() -> holder.prayerListView(prayerList[position])
+            prayerList.isNotEmpty() -> holder.prayerListView(prayerList[position], position)
             calenderList.isNotEmpty() -> holder.calenderView(calenderList[position])
         }
     }
@@ -46,7 +47,8 @@ class TableAdapter : RecyclerView.Adapter<TableAdapter.ViewHolder>() {
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun prayerListView(prayerData: PrayerData) {
+        fun prayerListView(prayerData: PrayerData, position: Int) {
+            if (position % 2 == 0) itemView.table_row_layout.setBackgroundColor(Color.WHITE)
             (prayerData.date.hijri.weekday.ar + "  " + prayerData.date.gregorian.date).also {
                 itemView.day.text = it
             }

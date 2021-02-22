@@ -5,21 +5,23 @@
     android:orientation="vertical">
 
     <TableLayout
-        android:id="@+id/table_heading_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:id="@+id/table_row_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/silver_grey"
+            android:divider="@color/colorPrimary"
+            android:dividerPadding="5dp"
+            android:showDividers="middle">
 
             <TextView
                 android:id="@+id/day"
                 style="@style/table_row_item"
                 android:layout_width="0dp"
-                android:layout_weight="2"
-                android:background="@color/colorPrimary"
-                android:textColor="@color/colorAccent" />
+                android:layout_weight="1.5" />
 
             <TextView
                 android:id="@+id/fajr"
