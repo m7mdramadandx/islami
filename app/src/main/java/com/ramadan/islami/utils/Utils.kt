@@ -21,6 +21,8 @@ import de.blox.graphview.Node
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.random.Random
 
 
@@ -133,3 +135,8 @@ const val defaultImg: String =
 const val debug_tag = "TOTO"
 const val lat = 31.107364
 const val lon = 29.783520
+
+fun dateOfDay(): String {
+    val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
+    return simpleDateFormat.format(Date())
+}

@@ -4,5 +4,10 @@ import com.ramadan.islami.data.api.ApiHelper
 
 class MainRepository(private val apiHelper: ApiHelper) {
 
-    fun getPrayers() = apiHelper.getPrayers()
+//    suspend fun gregorianCalender() = apiHelper.gregorianCalender()
+    suspend fun allahNames() = apiHelper.allahNames()
+    suspend fun gregorianCalender() = apiHelper.gregorianCalender()
+    suspend fun hijriCalender() = apiHelper.hijriCalender()
+    suspend fun fetchPrayers() = apiHelper.fetchPrayers()
+    suspend fun hadithOfDay() = apiHelper.hadithOfDay()
 }

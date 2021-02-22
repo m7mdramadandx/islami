@@ -96,7 +96,8 @@ class Dashboard : AppCompatActivity(), Listener {
 
         storiesCard.setOnClickListener { startActivity(Intent(this, MainActivity::class.java))}
 //        storiesCard.setOnClickListener { startActivity(Intent(this, StoryDashboard::class.java)) }
-        quotesCard.setOnClickListener { startActivity(Intent(this, QuoteDashboard::class.java)) }
+        quotesCard.setOnClickListener { startActivity(Intent(this, HadithOfDay::class.java)) }
+//        quotesCard.setOnClickListener { startActivity(Intent(this, QuoteDashboard::class.java)) }
         familyTreeCard.setOnClickListener { startActivity(Intent(this, FamilyTree::class.java)) }
         topics.setOnClickListener { startActivity(Intent(this, Collection::class.java)) }
         muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
@@ -191,7 +192,7 @@ class Dashboard : AppCompatActivity(), Listener {
                         }
                     }
                     8 -> startActivity(Intent(view.context, SendFeedback::class.java))
-                    9 -> startActivity(Intent(view.context, PrayerTimes::class.java))
+                    9 -> startActivity(Intent(view.context, HadithOfDay::class.java))
                 }
             }
         }

@@ -1,7 +1,14 @@
 package com.ramadan.islami.data.api
 
+import com.ramadan.islami.utils.dateOfDay
+import com.ramadan.islami.utils.lon
+
 
 class ApiHelper(private val apiService: ApiService) {
-
-    fun getPrayers() = apiService.getAllCurrencies("EUR")
+    private val dateOfDay = dateOfDay()
+    suspend fun gregorianCalender() = apiService.gregorianCalender(dateOfDay)
+    suspend fun allahNames() = apiService.allahNames()
+    suspend fun hijriCalender() = apiService.hijriCalender(dateOfDay)
+    suspend fun fetchPrayers() = apiService.fetchPrayers(lon)
+    suspend fun hadithOfDay() = apiService.hadithOfDay()
 }

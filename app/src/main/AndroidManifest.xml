@@ -41,8 +41,8 @@
             android:name="com.ramadan.islami.ui.activity.SendFeedback"
             android:label="@string/send_feedback" />
         <activity
-            android:name="com.ramadan.islami.ui.activity.PrayerTimes"
-            android:label="@string/about_app" />
+            android:name="com.ramadan.islami.ui.activity.HadithOfDay"
+            android:label="@string/hadith_of_day" />
         <activity
             android:name="com.ramadan.islami.ui.activity.Quote"
             android:label="@string/quotes" />

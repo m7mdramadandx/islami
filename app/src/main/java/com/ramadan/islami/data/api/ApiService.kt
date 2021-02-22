@@ -1,26 +1,28 @@
 package com.ramadan.islami.data.api
 
-import androidx.lifecycle.LiveData
-import com.ramadan.islami.data.model.CurrenciesLatest
+import com.ramadan.islami.data.model.*
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface ApiService {
-//    @Headers(
-//        "x-rapidapi-key: ff73aa9784msh863eecbf81de47cp17a05fjsned709bd1b164",
-//        "x-rapidapi-host: aladhan.p.rapidapi.com"
-//    )
-//    @GET("{result}/")
-//    suspend fun getPrayers(): Prayer
+    @GET("v1/qibla/")
+    suspend fun qibla(@Query("") date: String): Qibla
 
+    @GET("asmaAlHusna")
+    suspend fun allahNames(): AllahNames
 
-    // baseUrl + v1/cryptocurrency/listings/latest + query parameter.
-    // Annotation @Query is used to define query parameter for request. Finally the request url will
-    // look like that https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?convert=EUR.
-//    @GET("v6/a48e48e01f6aded2534dd59f/latest/EGP")
-    @GET("v1/cryptocurrency/listings/latest")
-//    fun getAllCurrencies(): Call<Prayer>
-    fun getAllCurrencies(@Query("convert") currency: String): LiveData<ApiResponse<CoinMarketCap<List<CurrenciesLatest>>>>
+    @GET("v1/hToG")
+    suspend fun gregorianCalender(@Query("date") date: String): Calender
 
+    @GET("v1/gToH")
+    suspend fun hijriCalender(@Query("date") date: String): Calender
+
+    @GET("v1/calendar?method=5&latitude=31.107364")
+    suspend fun fetchPrayers(@Query("longitude") longitude: Double): Prayer
+
+    @Headers("X-API-Key: SqD712P3E82xnwOAEOkGd5JZH8s9wRR24TqNFzjk")
+    @GET("v1/hadiths/random")
+    suspend fun hadithOfDay(): Hadith
 
 }
