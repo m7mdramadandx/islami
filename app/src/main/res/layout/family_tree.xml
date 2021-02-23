@@ -14,28 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/muhammadTree"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            card_view:cardBackgroundColor="@color/colorSecondary">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@android:color/transparent"
-                android:paddingHorizontal="64dp"
-                android:src="@drawable/aaa" />
-
-            <TextView
-                style="@style/TextAppearance.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:text="@string/muhammad_family_tree"
-                android:textColor="#fff" />
-        </androidx.cardview.widget.CardView>
+        <include layout="@layout/family_tree_card" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/prophets_family_tree"

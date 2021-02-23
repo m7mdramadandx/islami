@@ -100,5 +100,6 @@
     <string name="pick_one">Pick the suitable for you</string>
     <string name="follow_the_system">follow the system</string>
     <string name="hadith_of_day">Hadith Of Day</string>
+    <string name="mn"> </string>
 
 </resources>

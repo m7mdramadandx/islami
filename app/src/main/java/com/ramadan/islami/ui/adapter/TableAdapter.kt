@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Calender
 import com.ramadan.islami.data.model.PrayerData
+import com.ramadan.islami.utils.dateOfDay
 import kotlinx.android.synthetic.main.table_row.view.*
 
 class TableAdapter : RecyclerView.Adapter<TableAdapter.ViewHolder>() {
@@ -48,16 +49,20 @@ class TableAdapter : RecyclerView.Adapter<TableAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun prayerListView(prayerData: PrayerData, position: Int) {
-            if (position % 2 == 0) itemView.table_row_layout.setBackgroundColor(Color.WHITE)
-            (prayerData.date.hijri.weekday.ar + "  " + prayerData.date.gregorian.date).also {
+            if (dateOfDay() == prayerData.date.gregorian.date) {
+                itemView.table_row_layout.setBackgroundColor(Color.LTGRAY)
+            } else {
+                itemView.table_row_layout.setBackgroundColor(itemView.resources.getColor(R.color.silver_grey))
+            }
+            (prayerData.date.hijri.weekday.ar + "\n" + prayerData.date.gregorian.date).also {
                 itemView.day.text = it
             }
-            itemView.sunrise.text = prayerData.timings.sunrise
-            itemView.fajr.text = prayerData.timings.fajr
-            itemView.dhuhr.text = prayerData.timings.dhuhr
-            itemView.asr.text = prayerData.timings.asr
-            itemView.maghrib.text = prayerData.timings.maghrib
-            itemView.isha.text = prayerData.timings.isha
+            itemView.fajr.text = prayerData.timings.fajr.removeSuffix("(EET)")
+            itemView.sunrise.text = prayerData.timings.sunrise.removeSuffix("(EET)")
+            itemView.dhuhr.text = prayerData.timings.dhuhr.removeSuffix("(EET)")
+            itemView.asr.text = prayerData.timings.asr.removeSuffix("(EET)")
+            itemView.maghrib.text = prayerData.timings.maghrib.removeSuffix("(EET)")
+            itemView.isha.text = prayerData.timings.isha.removeSuffix("(EET)")
         }
 
         fun calenderView(calender: Calender) {

@@ -12,7 +12,7 @@ data class AllahNames(
         val transliteration: String,
     )
 
-    data class En(
-        val meaning: String,
-    )
 }
+data class En(
+    val meaning: String,
+)

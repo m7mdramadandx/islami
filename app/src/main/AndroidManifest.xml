@@ -50,13 +50,13 @@
             android:name="com.ramadan.islami.ui.activity.Story"
             android:label="@string/stories" />
         <activity
-            android:name="com.ramadan.islami.ui.activity.MuhammadTree"
+            android:name="com.ramadan.islami.ui.activity.DateConversion"
             android:label="@string/muhammad_family_tree" />
         <activity
-            android:name="com.ramadan.islami.ui.activity.ProphetsTree"
+            android:name="com.ramadan.islami.ui.activity.AllahNames"
             android:label="@string/prophets_tree" />
         <activity
-            android:name="com.ramadan.islami.ui.activity.BigTree"
+            android:name="com.ramadan.islami.ui.activity.Qibla"
             android:label="@string/the_big_family_tree" />
         <activity
             android:name="com.ramadan.islami.ui.activity.StoryDashboard"

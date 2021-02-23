@@ -6,7 +6,7 @@ import com.ramadan.islami.data.repo.MainRepository
 import com.ramadan.islami.utils.Resource
 import kotlinx.coroutines.Dispatchers
 
-class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
+class ApiViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
 //    fun allahNames() = liveData(Dispatchers.Main) {
 //        emit(Resource.loading(null))

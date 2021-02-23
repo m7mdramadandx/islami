@@ -56,7 +56,7 @@ class SliderAdapter : SliderViewAdapter<SliderAdapter.CustomView>() {
     class CustomView(itemView: View) : ViewHolder(itemView) {
 
         fun storyView(story: StoryModel) {
-            Picasso.get().load(story.imgUrl).error(R.drawable.error_img)
+            Picasso.get().load(story.image).error(R.drawable.error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.sliderImg)
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, Story::class.java)

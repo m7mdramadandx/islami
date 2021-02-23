@@ -7,11 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.viewModel.Listener
-import com.ramadan.islami.ui.viewModel.ViewModel
+import com.ramadan.islami.ui.viewModel.DataViewModel
 import kotlinx.android.synthetic.main.send_feedback.*
 
 class SendFeedback : AppCompatActivity(), Listener {
-    private val viewModel by lazy { ViewModelProvider(this).get(ViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

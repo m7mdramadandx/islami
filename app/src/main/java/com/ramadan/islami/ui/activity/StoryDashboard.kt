@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.RecycleViewAdapter
+import com.ramadan.islami.ui.viewModel.DataViewModel
 import com.ramadan.islami.ui.viewModel.Listener
-import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycle_view.*
 
 class StoryDashboard : AppCompatActivity(), Listener {
-    private val viewModel by lazy { ViewModelProvider(this).get(ViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private lateinit var storyAdapter: RecycleViewAdapter
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
@@ -34,7 +34,7 @@ class StoryDashboard : AppCompatActivity(), Listener {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         viewModel.listener = this
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
-        storyAdapter = RecycleViewAdapter(isWrapped = false)
+        storyAdapter = RecycleViewAdapter()
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         recyclerView.layoutManager = staggeredGridLayoutManager

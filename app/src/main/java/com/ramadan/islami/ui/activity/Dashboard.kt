@@ -19,17 +19,22 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.ramadan.islami.R
+import com.ramadan.islami.data.api.ApiHelper
+import com.ramadan.islami.data.api.RetrofitBuilder
 import com.ramadan.islami.ui.adapter.RecycleViewAdapter
 import com.ramadan.islami.ui.adapter.SliderAdapter
+import com.ramadan.islami.ui.viewModel.ApiViewModel
+import com.ramadan.islami.ui.viewModel.DataViewModel
 import com.ramadan.islami.ui.viewModel.Listener
-import com.ramadan.islami.ui.viewModel.ViewModel
-import com.ramadan.islami.utils.LocaleHelper
+import com.ramadan.islami.ui.viewModel.ViewModelFactory
+import com.ramadan.islami.utils.*
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
@@ -42,14 +47,23 @@ import kotlinx.coroutines.*
 
 
 class Dashboard : AppCompatActivity(), Listener {
-    private val viewModel by lazy { ViewModelProvider(this).get(ViewModel::class.java) }
+    private val dataViewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
+    private val apiViewModel by lazy {
+        ViewModelProvider(this,
+            ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").hijriCalender()))
+        ).get(ApiViewModel::class.java)
+    }
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
     private lateinit var mInterstitialAd: InterstitialAd
     private lateinit var mAdView: AdView
     private lateinit var suggestionRCV: RecyclerView
+    private lateinit var dailyRCV: RecyclerView
+    private lateinit var familyTreeRCV: RecyclerView
     private lateinit var storiesSlider: SliderView
     private lateinit var quotesSlider: SliderView
-    private lateinit var recycleViewAdapter: RecycleViewAdapter
+    private lateinit var suggestionAdapter: RecycleViewAdapter
+    private lateinit var dailyAdapter: RecycleViewAdapter
+    private lateinit var familyTreeAdapter: RecycleViewAdapter
     private val storiesAdapter = SliderAdapter()
     private val quotesAdapter = SliderAdapter()
     private val localeHelper = LocaleHelper()
@@ -71,13 +85,24 @@ class Dashboard : AppCompatActivity(), Listener {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener { showContextMenuDialogFragment() }
-        viewModel.listener = this
+        dataViewModel.listener = this
         window.decorView.layoutDirection = View.LAYOUT_DIRECTION_LOCALE
-        recycleViewAdapter = RecycleViewAdapter(true)
+        suggestionAdapter = RecycleViewAdapter()
+        dailyAdapter = RecycleViewAdapter()
+        familyTreeAdapter = RecycleViewAdapter()
+
         suggestionRCV = findViewById(R.id.suggestionRecyclerView)
-        suggestionRCV.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        suggestionRCV.adapter = recycleViewAdapter
+        suggestionRCV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
+        suggestionRCV.adapter = suggestionAdapter
+
+        dailyRCV = findViewById(R.id.dailyRecyclerView)
+        dailyRCV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
+        dailyRCV.adapter = dailyAdapter
+
+        familyTreeRCV = findViewById(R.id.familyTreeRecyclerView)
+        familyTreeRCV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
+        familyTreeRCV.adapter = familyTreeAdapter
+
         storiesSlider = findViewById(R.id.storiesSlider)
         storiesSlider.setSliderAdapter(storiesAdapter)
         storiesSlider.autoCycleDirection = SliderView.LAYOUT_DIRECTION_RTL
@@ -94,15 +119,10 @@ class Dashboard : AppCompatActivity(), Listener {
         quotesSlider.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
         quotesSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
 
-        storiesCard.setOnClickListener { startActivity(Intent(this, PrayerTimes::class.java))}
-//        storiesCard.setOnClickListener { startActivity(Intent(this, StoryDashboard::class.java)) }
-        quotesCard.setOnClickListener { startActivity(Intent(this, HadithOfDay::class.java)) }
-//        quotesCard.setOnClickListener { startActivity(Intent(this, QuoteDashboard::class.java)) }
+        storiesCard.setOnClickListener { startActivity(Intent(this, StoryDashboard::class.java)) }
+        quotesCard.setOnClickListener { startActivity(Intent(this, QuoteDashboard::class.java)) }
         familyTreeCard.setOnClickListener { startActivity(Intent(this, FamilyTree::class.java)) }
         topics.setOnClickListener { startActivity(Intent(this, Collection::class.java)) }
-        muhammadTree.setOnClickListener { startActivity(Intent(this, MuhammadTree::class.java)) }
-        prophetsTree.setOnClickListener { startActivity(Intent(this, ProphetsTree::class.java)) }
-        bigTree.setOnClickListener { startActivity(Intent(this, BigTree::class.java)) }
         val adRequest = AdRequest.Builder().build()
         InterstitialAd.load(this,
             "ca-app-pub-3940256099942544/1033173712",
@@ -121,10 +141,24 @@ class Dashboard : AppCompatActivity(), Listener {
     }
 
     private fun observeDate() {
-        viewModel.fetchSuggestion(isEnglish)
-            .observe(this, { recycleViewAdapter.suggestionDataList(it) })
-        viewModel.fetchStories(isEnglish).observe(this, { storiesAdapter.setStoriesDataList(it) })
-        viewModel.fetchQuotes(isEnglish).observe(this, { quotesAdapter.setCategoryDataList(it) })
+        apiViewModel.hijriCalender().observe(this, {
+            when (it.status) {
+                ResStatus.LOADING -> hijriDate.text = "تاريخ اليوم"
+                ResStatus.SUCCESS -> {
+                    (it.data!!.data.hijri.weekday.ar + getString(R.string.mn) + it.data.data.hijri.month.ar + "\t" + it.data.data.hijri.year)
+                        .also { date -> hijriDate.text = date }
+                }
+                ResStatus.ERROR -> Log.e(debug_tag, it.message.toString())
+            }
+        })
+
+        suggestionAdapter.setSuggestionDataList(suggestionMutableList)
+        dataViewModel.fetchStories(isEnglish)
+            .observe(this, { storiesAdapter.setStoriesDataList(it) })
+        dailyAdapter.setDailyDataList(dailyMutableList)
+        dataViewModel.fetchQuotes(isEnglish)
+            .observe(this, { quotesAdapter.setCategoryDataList(it) })
+        familyTreeAdapter.setFamilyTreeDataList(familyTreeMutableList)
         GlobalScope.launch(Dispatchers.IO) {
             delay(1000)
             withContext(Dispatchers.Main) {
@@ -152,7 +186,8 @@ class Dashboard : AppCompatActivity(), Listener {
 
     private fun showContextMenuDialogFragment() {
         if (supportFragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
-            contextMenuDialogFragment.show(supportFragmentManager, ContextMenuDialogFragment.TAG)
+            contextMenuDialogFragment.show(supportFragmentManager,
+                ContextMenuDialogFragment.TAG)
         }
     }
 
@@ -283,7 +318,8 @@ class Dashboard : AppCompatActivity(), Listener {
             }
         } else {
             val option3 =
-                view.findViewById<RadioButton>(R.id.option3).also { it.visibility = View.VISIBLE }
+                view.findViewById<RadioButton>(R.id.option3)
+                    .also { it.visibility = View.VISIBLE }
             when (localeHelper.getDefaultTheme(this)) {
                 "light" -> option1.isChecked = true
                 "night" -> option2.isChecked = true

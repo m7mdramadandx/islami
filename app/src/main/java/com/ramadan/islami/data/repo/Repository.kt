@@ -62,13 +62,13 @@ class Repository {
         return mutableData
     }
 
-    suspend fun fetchStory(isEnglish: Boolean, storyName: String): Story {
-        var story = Story(storyName, storyName, defaultImg, "brief", ArrayList(0))
+    suspend fun fetchStory(isEnglish: Boolean, storyID: String): Story {
+        var story = Story(storyID, storyID, defaultImg, "brief", ArrayList(0))
         if (isEnglish) language = "en"
         rootCollection.document(language).collection("stories").get()
             .addOnSuccessListener { result ->
                 result.forEach { document ->
-                    if (storyName == document.id) {
+                    if (storyID == document.id) {
                         val id: String = document.id
                         val title: String = document.getString("name") ?: document.id
                         val imgUrl: String = document.getString("image") ?: defaultImg

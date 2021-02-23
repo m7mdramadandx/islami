@@ -12,7 +12,7 @@ import com.ramadan.islami.data.repo.Repository
 import kotlinx.coroutines.*
 import com.ramadan.islami.data.model.Collection as ModelCollection
 
-class ViewModel : ViewModel() {
+class DataViewModel : ViewModel() {
     private val repo by lazy { Repository() }
     var listener: Listener? = null
 
@@ -44,9 +44,9 @@ class ViewModel : ViewModel() {
         return mutableData
     }
 
-    suspend fun fetchStory(isEnglish: Boolean, storyName: String): Story {
+    suspend fun fetchStory(isEnglish: Boolean, storyID: String): Story {
         listener?.onStarted()
-        val story = repo.fetchStory(isEnglish, storyName)
+        val story = repo.fetchStory(isEnglish, storyID)
         if (story.text.isNotEmpty()) listener?.onSuccess()
         else listener?.onFailure("Try Again ")
         return story

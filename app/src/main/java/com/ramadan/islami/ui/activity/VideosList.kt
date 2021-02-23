@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.VideoAdapter
 import com.ramadan.islami.ui.viewModel.Listener
-import com.ramadan.islami.ui.viewModel.ViewModel
+import com.ramadan.islami.ui.viewModel.DataViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycle_view.*
 
 class VideosList : AppCompatActivity(), Listener {
-    private val viewModel by lazy { ViewModelProvider(this).get(ViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
     private lateinit var videoAdapter: VideoAdapter

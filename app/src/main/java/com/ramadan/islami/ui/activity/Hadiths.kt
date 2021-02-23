@@ -1,26 +1,31 @@
 package com.ramadan.islami.ui.activity
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.RecycleViewAdapter
+import com.ramadan.islami.ui.viewModel.DataViewModel
 import com.ramadan.islami.ui.viewModel.Listener
-import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycle_view.*
 import kotlinx.coroutines.*
 
 class Hadiths : AppCompatActivity(), Listener {
-    private val viewModel by lazy { ViewModelProvider(this).get(ViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private lateinit var recycleViewAdapter: RecycleViewAdapter
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
-    private var recyclerView: RecyclerView? = null
+    private lateinit var recyclerView: RecyclerView
 
     override fun onStart() {
         super.onStart()
@@ -30,25 +35,54 @@ class Hadiths : AppCompatActivity(), Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recycle_view)
+        isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         viewModel.listener = this
-        recycleViewAdapter = RecycleViewAdapter(isWrapped = false)
+        recycleViewAdapter = RecycleViewAdapter()
         recyclerView = findViewById(R.id.recycler_view)
-        recyclerView?.layoutManager = LinearLayoutManager(this)
-        recyclerView?.adapter = recycleViewAdapter
-        recyclerView?.setPadding(8, 32, 8, 16)
+        recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
+        recyclerView.adapter = recycleViewAdapter
+        recyclerView.setPadding(16, 32, 16, 16)
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
+            if (!checkIfAlreadyPermission()) requestForSpecificPermission()
+        }
+    }
 
+    private fun checkIfAlreadyPermission(): Boolean {
+        val result =
+            ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        return result == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestForSpecificPermission() {
+        ActivityCompat.requestPermissions(this,
+            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE),
+            101)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray,
+    ) {
+        when (requestCode) {
+            101 -> if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, getString(R.string.could_download), Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, getString(R.string.couldnot_download), Toast.LENGTH_LONG)
+                    .show()
+            }
+            else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        }
     }
 
     private suspend fun observeDate() {
         GlobalScope.launch(Dispatchers.IO) {
             viewModel.fetchHadiths(isEnglish).also {
-                delay(500)
                 withContext(Dispatchers.Main) {
                     recycleViewAdapter.setQuotesDataList(it.hadiths)
-                    if (it.hadiths.isNotEmpty()) progress.visibility = View.GONE
                     Toast.makeText(this@Hadiths,
                         getString(R.string.could_download),
                         Toast.LENGTH_LONG).show()

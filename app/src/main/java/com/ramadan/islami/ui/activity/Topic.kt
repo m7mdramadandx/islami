@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Topic
 import com.ramadan.islami.ui.adapter.TopicAdapter
-import com.ramadan.islami.ui.viewModel.ViewModel
+import com.ramadan.islami.ui.viewModel.DataViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.content_nestest_view.*
 import kotlinx.android.synthetic.main.topic.*
@@ -22,26 +22,25 @@ import kotlinx.coroutines.withContext
 
 
 class Topic : AppCompatActivity() {
-    private val viewModel by lazy { ViewModelProvider(this).get(ViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private var topic: Topic? = null
     private lateinit var topicAdapter: TopicAdapter
     private lateinit var recyclerView: RecyclerView
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
-    val tag = "TOTO"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.topic)
+        isEnglish = localeHelper.getDefaultLanguage(this) == "en"
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         if (intent.hasExtra("topic")) topic = intent.getSerializableExtra("topic") as Topic
         else fetchNotification()
         val collectionId: String = intent.getStringExtra("collectionId").toString()
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         toolbar.title = topic?.title
         setSupportActionBar(toolbar)
-        supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         recyclerView = findViewById(R.id.contentRecyclerView)
         topicAdapter = TopicAdapter()
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
@@ -55,13 +54,14 @@ class Topic : AppCompatActivity() {
         toolbar_layout.setContentScrimColor(resources.getColor(R.color.colorPrimary))
         toolbar_layout.setCollapsedTitleTextColor(Color.WHITE)
         toolbar_layout.setBackgroundResource(R.drawable.asset)
+        toolbar_layout.setExpandedTitleColor(Color.WHITE)
         toolbar_layout.setExpandedTitleColor(resources.getColor(R.color.colorPrimary))
         observeData()
     }
 
     private fun observeData() {
-        topicAdapter.setTopicContentDataList(topic!!.content as MutableMap<String, String>,
-            topic!!.brief)
+        topicAdapter
+            .setTopicContentDataList(topic!!.content as MutableMap<String, String>, topic!!.brief)
         supportActionBar?.title = topic!!.title
     }
 
@@ -70,9 +70,7 @@ class Topic : AppCompatActivity() {
         val documentID = intent.getStringExtra("documentID").toString()
         GlobalScope.launch(Dispatchers.IO) {
             topic = viewModel.fetchTopic(isEnglish, collectionID, documentID)
-            withContext(Dispatchers.Main) {
-                observeData()
-            }
+            withContext(Dispatchers.Main) { observeData() }
         }
     }
 
@@ -80,6 +78,5 @@ class Topic : AppCompatActivity() {
         onBackPressed()
         return true
     }
-
 
 }

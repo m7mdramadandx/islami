@@ -85,5 +85,6 @@
     <string name="light_theme">الوضع المضيء</string>
     <string name="night_theme">الوضع الليلي</string>
     <string name="pick_one">اختر ما يناسبك</string>
+    <string name="mn"> من </string>
 
 </resources>

@@ -14,40 +14,59 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Story
 import com.ramadan.islami.ui.adapter.StoryAdapter
-import com.ramadan.islami.ui.viewModel.ViewModel
+import com.ramadan.islami.ui.viewModel.DataViewModel
+import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.Utils
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuGravity
 import com.yalantis.contextmenu.lib.MenuObject
 import com.yalantis.contextmenu.lib.MenuParams
 import kotlinx.android.synthetic.main.recycle_view.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Story : AppCompatActivity() {
-    private val viewModel by lazy { ViewModelProvider(this).get(ViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
     private lateinit var story: Story
     private lateinit var storyAdapter: StoryAdapter
     private lateinit var recyclerView: RecyclerView
+    private var isEnglish: Boolean = true
+    private val localeHelper = LocaleHelper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recycle_view)
+        isEnglish = localeHelper.getDefaultLanguage(this) == "en"
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        if (intent.hasExtra("story")) {
+            story = intent.getSerializableExtra("story") as Story
+            observeData()
+        } else fetchNotification()
         recyclerView = findViewById(R.id.recycler_view)
         progress.visibility = View.GONE
         storyAdapter = StoryAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = storyAdapter
-        story = intent.getSerializableExtra("story") as Story
-        supportActionBar?.title = story.title
-        supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        observeData()
         initMenuFragment()
     }
 
     private fun observeData() {
         storyAdapter.setStoriesDataList(story.title, story.text)
+        supportActionBar?.title = story.title
     }
+
+    private fun fetchNotification() {
+        val storyID = intent.getStringExtra("storyID").toString()
+        GlobalScope.launch(Dispatchers.IO) {
+            story = viewModel.fetchStory(isEnglish, storyID)
+            withContext(Dispatchers.Main) { observeData() }
+        }
+    }
+
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
@@ -115,7 +134,8 @@ class Story : AppCompatActivity() {
 
     private fun showContextMenuDialogFragment() {
         if (supportFragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
-            contextMenuDialogFragment.show(supportFragmentManager, ContextMenuDialogFragment.TAG)
+            contextMenuDialogFragment.show(supportFragmentManager,
+                ContextMenuDialogFragment.TAG)
         }
     }
 

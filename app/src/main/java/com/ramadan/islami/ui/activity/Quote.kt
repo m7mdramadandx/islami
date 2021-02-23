@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.RecycleViewAdapter
-import com.ramadan.islami.ui.viewModel.ViewModel
+import com.ramadan.islami.ui.viewModel.DataViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.data.model.Quote as QuoteModel
 
@@ -25,7 +25,7 @@ class Quote : AppCompatActivity() {
     private var hadithsRecyclerView: RecyclerView? = null
     private lateinit var versesAdapter: RecycleViewAdapter
     private lateinit var hadithsAdapter: RecycleViewAdapter
-    private val viewModel by lazy { ViewModelProvider(this).get(ViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
     private lateinit var quote: QuoteModel
@@ -40,8 +40,8 @@ class Quote : AppCompatActivity() {
         quote = intent?.getSerializableExtra("quotes") as QuoteModel
         supportActionBar!!.title = quote.title
 //        viewModel.listener = this
-        versesAdapter = RecycleViewAdapter(isWrapped = true)
-        hadithsAdapter = RecycleViewAdapter(isWrapped = true)
+        versesAdapter = RecycleViewAdapter()
+        hadithsAdapter = RecycleViewAdapter()
         versesRecyclerView = findViewById(R.id.versesRecyclerView)
         hadithsRecyclerView = findViewById(R.id.hadithsRecyclerView)
         versesRecyclerView?.layoutManager =

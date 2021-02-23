@@ -16,6 +16,7 @@ import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.ramadan.islami.R
 import com.ramadan.islami.R.string
+import com.ramadan.islami.data.model.Collection
 import com.squareup.picasso.Picasso
 import de.blox.graphview.Node
 import java.io.File
@@ -132,6 +133,7 @@ class Utils(val context: Context) {
 
 const val defaultImg: String =
     "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/islami_background_256.png?alt=media&token=72e1403c-2e25-4c8c-b1c0-2cf383153c01"
+
 const val debug_tag = "TOTO"
 const val lat = 31.107364
 const val lon = 29.783520
@@ -140,3 +142,20 @@ fun dateOfDay(): String {
     val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
     return simpleDateFormat.format(Date())
 }
+
+val suggestionMutableList: MutableList<Collection> = mutableListOf(
+    Collection("hadithOfDay", "hadithOfDay", defaultImg),
+    Collection("muhammadStory", "muhammadStory", defaultImg),
+    Collection("hadith", "hadith", defaultImg),
+)
+val dailyMutableList: MutableList<Collection> = mutableListOf(
+    Collection("prayerTimes", "prayerTimes", defaultImg),
+    Collection("qibla", "qibla", defaultImg),
+    Collection("allahNames", "allah names", defaultImg),
+    Collection("dateConversion", "dateConversion", defaultImg),
+)
+val familyTreeMutableList: MutableList<Collection> = mutableListOf(
+    Collection("muhammadTree", "muhammadTree", defaultImg),
+    Collection("prophetsTree", "prophetsTree", defaultImg),
+    Collection("bigTree", "bigTree", defaultImg),
+)

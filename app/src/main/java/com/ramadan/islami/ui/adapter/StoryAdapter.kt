@@ -3,6 +3,7 @@ package com.ramadan.islami.ui.adapter
 import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.utils.LocaleHelper
+import com.ramadan.islami.utils.debug_tag
 import kotlinx.android.synthetic.main.story_item.view.*
 
 class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
@@ -37,34 +39,39 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
 
     inner class CustomView(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val localeHelper = LocaleHelper()
-        private val mContext = itemView.context
-        private val marks = localeHelper.getMark(mContext)
-        private val secondaryColor = Color.rgb(23, 34, 59)
-        private val accentColor = Color.rgb(175, 135, 50)
-
+        private val ctx = itemView.context
+        private val marks = localeHelper.getMark(ctx)
 
         fun expandView(text: String, position: Int) {
-            if (position % 2 == 0) itemView.expansionCard.setCardBackgroundColor(secondaryColor)
-            itemView.expansionText.text = text
-            itemView.storyTitle.text = "${mContext.getString(R.string.part)} ${(position + 1)}"
             val keyStore = "$title ${position + 1}"
-            if (marks.contains(keyStore)) itemView.expansionCard.setCardBackgroundColor(accentColor)
-
-            itemView.expansionLayout.addListener { expansionLayout, isExpanded ->
+            when {
+                position % 2 == 0 -> {
+                    itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorSecondary))
+                }
+                marks.contains(keyStore) -> {
+                    itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorAccent))
+                }
+                else -> itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
+            }
+            itemView.expansionText.text = text
+            itemView.storyTitle.text = "${ctx.getString(R.string.part)} ${(position + 1)}"
+            itemView.expansionLayout.addListener { _, isExpanded ->
                 if (!isExpanded && !marks.contains(keyStore)) {
-                    val dialogBuilder = AlertDialog.Builder(mContext)
-                    val view = LayoutInflater.from(mContext).inflate(R.layout.story_marker, null)
+                    val dialogBuilder = AlertDialog.Builder(ctx)
+                    val view = LayoutInflater.from(ctx).inflate(R.layout.story_marker, null)
                     dialogBuilder.setView(view)
                     val alertDialog = dialogBuilder.create()
                     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     alertDialog.show()
                     view.findViewById<TextView>(R.id.yes).setOnClickListener {
-                        localeHelper.setMark(mContext, keyStore)
-                        itemView.expansionCard.setCardBackgroundColor(accentColor)
+                        localeHelper.setMark(ctx, keyStore)
+                        itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorAccent))
                         alertDialog.dismiss()
                     }
                     view.findViewById<TextView>(R.id.notYet)
                         .setOnClickListener { alertDialog.dismiss() }
+                } else {
+                    Log.i(debug_tag, "...")
                 }
             }
         }

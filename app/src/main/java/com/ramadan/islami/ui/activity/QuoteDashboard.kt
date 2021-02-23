@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.RecycleViewAdapter
+import com.ramadan.islami.ui.viewModel.DataViewModel
 import com.ramadan.islami.ui.viewModel.Listener
-import com.ramadan.islami.ui.viewModel.ViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycle_view.*
 
 class QuoteDashboard : AppCompatActivity(), Listener {
     private lateinit var recycleViewAdapter: RecycleViewAdapter
-    private val viewModel by lazy { ViewModelProvider(this).get(ViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
     private var recyclerView: RecyclerView? = null
@@ -34,7 +34,7 @@ class QuoteDashboard : AppCompatActivity(), Listener {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         viewModel.listener = this
-        recycleViewAdapter = RecycleViewAdapter(isWrapped = false)
+        recycleViewAdapter = RecycleViewAdapter()
         recyclerView = findViewById(R.id.recycler_view)
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView?.layoutManager = staggeredGridLayoutManager
