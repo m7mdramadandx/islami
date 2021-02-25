@@ -8,12 +8,26 @@
     android:paddingVertical="16dp"
     tools:context=".ui.activity.HadithOfDay">
 
+
     <TextView
         android:id="@+id/hadithTitle"
         style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="eeeeeeeee" />
+
+    <TextView
+        android:id="@+id/hadithBody"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/asset"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="eeeeeeeee"
+        android:textColor="#fff" />
 
 
 </LinearLayout>

@@ -4,6 +4,7 @@
     android:id="@+id/familyTreeCard"
     android:layout_width="wrap_content"
     android:layout_height="200dp"
+    android:layout_gravity="center"
     card_view:cardBackgroundColor="@color/colorSecondary">
 
     <ImageView

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_dashboard">
+
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="com.ramadan.islami.ui.activity.Dashboard"
+        android:label="@string/app_name"
+        tools:layout="@layout/dashboard" />
+
+    <fragment
+        android:id="@+id/nav_stories"
+        android:name="com.ramadan.islami.ui.activity.StoryDashboard"
+        android:label="@string/stories"
+        tools:layout="@layout/recycler_view" />
+
+    <fragment
+        android:id="@+id/nav_daily"
+        android:name="com.ramadan.islami.ui.activity.Daily"
+        android:label="@string/daily"
+        tools:layout="@layout/recycler_view" />
+    <fragment
+        android:id="@+id/nav_quotes"
+        android:name="com.ramadan.islami.ui.activity.QuoteDashboard"
+        android:label="@string/quotes"
+        tools:layout="@layout/recycler_view" />
+
+    <fragment
+        android:id="@+id/nav_topics"
+        android:name="com.ramadan.islami.ui.activity.Collection"
+        android:label="@string/topics"
+        tools:layout="@layout/recycler_view" />
+
+
+    <fragment
+        android:id="@+id/nav_family_tree"
+        android:name="com.ramadan.islami.ui.activity.FamilyTree"
+        android:label="@string/family_tree"
+        tools:layout="@layout/recycler_view" />
+
+</navigation>

@@ -10,17 +10,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
-import com.ramadan.islami.utils.familyTreeMutableList
+import com.ramadan.islami.utils.dailyMutableList
 
+class Daily : Fragment() {
 
-class FamilyTree : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private var recyclerViewAdapter = RecyclerViewAdapter()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        observeData()
+    }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
 //        isEnglish = localeHelper.getDefaultLanguage(context) == "en"
-        observeData()
     }
 
     override fun onCreateView(
@@ -37,7 +42,7 @@ class FamilyTree : Fragment() {
     }
 
     private fun observeData() {
-        recyclerViewAdapter.setFamilyTreeDataList(familyTreeMutableList)
+        recyclerViewAdapter.setDailyDataList(dailyMutableList)
     }
 
 }

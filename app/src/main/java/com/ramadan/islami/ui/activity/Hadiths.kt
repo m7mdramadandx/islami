@@ -13,16 +13,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
-import com.ramadan.islami.ui.adapter.RecycleViewAdapter
+import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.viewModel.DataViewModel
 import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.utils.LocaleHelper
-import kotlinx.android.synthetic.main.recycle_view.*
+import kotlinx.android.synthetic.main.recycler_view.*
 import kotlinx.coroutines.*
 
 class Hadiths : AppCompatActivity(), Listener {
     private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
-    private lateinit var recycleViewAdapter: RecycleViewAdapter
+    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
     private lateinit var recyclerView: RecyclerView
@@ -34,15 +34,15 @@ class Hadiths : AppCompatActivity(), Listener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.recycle_view)
+        setContentView(R.layout.recycler_view)
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         viewModel.listener = this
-        recycleViewAdapter = RecycleViewAdapter()
-        recyclerView = findViewById(R.id.recycler_view)
+        recyclerViewAdapter = RecyclerViewAdapter()
+        recyclerView = findViewById(R.id.global_recycler_view)
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
-        recyclerView.adapter = recycleViewAdapter
+        recyclerView.adapter = recyclerViewAdapter
         recyclerView.setPadding(16, 32, 16, 16)
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
             if (!checkIfAlreadyPermission()) requestForSpecificPermission()
@@ -82,7 +82,7 @@ class Hadiths : AppCompatActivity(), Listener {
         GlobalScope.launch(Dispatchers.IO) {
             viewModel.fetchHadiths(isEnglish).also {
                 withContext(Dispatchers.Main) {
-                    recycleViewAdapter.setQuotesDataList(it.hadiths)
+                    recyclerViewAdapter.setQuotesDataList(it.hadiths)
                     Toast.makeText(this@Hadiths,
                         getString(R.string.could_download),
                         Toast.LENGTH_LONG).show()

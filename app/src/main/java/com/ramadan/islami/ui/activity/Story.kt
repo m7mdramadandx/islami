@@ -21,7 +21,7 @@ import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuGravity
 import com.yalantis.contextmenu.lib.MenuObject
 import com.yalantis.contextmenu.lib.MenuParams
-import kotlinx.android.synthetic.main.recycle_view.*
+import kotlinx.android.synthetic.main.recycler_view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -38,20 +38,20 @@ class Story : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.recycle_view)
+        setContentView(R.layout.recycler_view)
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        if (intent.hasExtra("story")) {
-            story = intent.getSerializableExtra("story") as Story
-            observeData()
-        } else fetchNotification()
-        recyclerView = findViewById(R.id.recycler_view)
+        recyclerView = findViewById(R.id.global_recycler_view)
         progress.visibility = View.GONE
         storyAdapter = StoryAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = storyAdapter
         initMenuFragment()
+        if (intent.hasExtra("story")) {
+            story = intent.getSerializableExtra("story") as Story
+            observeData()
+        } else fetchNotification()
     }
 
     private fun observeData() {

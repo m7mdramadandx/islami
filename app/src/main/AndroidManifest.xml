@@ -25,65 +25,50 @@
             android:name="com.onesignal.NotificationServiceExtension"
             android:value="com.ramadan.islami.utils.NotificationReceived" />
 
-        <activity android:name="com.ramadan.islami.ui.activity.SplashScreen">
+        <activity android:name=".ui.activity.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:label="@string/dashboard"
+            android:theme="@style/AppTheme_NoActionBar" />
 
         <activity
-            android:name="com.ramadan.islami.ui.activity.Dashboard"
-            android:hardwareAccelerated="true"
-            android:theme="@style/AppTheme_NoActionBar" />
-        <activity
-            android:name="com.ramadan.islami.ui.activity.SendFeedback"
-            android:label="@string/send_feedback" />
-        <activity
-            android:name="com.ramadan.islami.ui.activity.HadithOfDay"
+            android:name=".ui.activity.HadithOfDay"
             android:label="@string/hadith_of_day" />
         <activity
-            android:name="com.ramadan.islami.ui.activity.Quote"
+            android:name=".ui.activity.Quote"
             android:label="@string/quotes" />
         <activity
-            android:name="com.ramadan.islami.ui.activity.Story"
+            android:name=".ui.activity.Story"
             android:label="@string/stories" />
         <activity
-            android:name="com.ramadan.islami.ui.activity.DateConversion"
+            android:name=".ui.activity.DateConversion"
             android:label="@string/muhammad_family_tree" />
         <activity
-            android:name="com.ramadan.islami.ui.activity.AllahNames"
+            android:name=".ui.activity.AllahNames"
             android:label="@string/prophets_tree" />
         <activity
-            android:name="com.ramadan.islami.ui.activity.Qibla"
+            android:name=".ui.activity.Qibla"
             android:label="@string/the_big_family_tree" />
+
         <activity
-            android:name="com.ramadan.islami.ui.activity.StoryDashboard"
-            android:label="@string/stories" />
-        <activity
-            android:name="com.ramadan.islami.ui.activity.QuoteDashboard"
-            android:label="@string/quotes" />
-        <activity
-            android:name="com.ramadan.islami.ui.activity.Collection"
-            android:label="@string/topics" />
-        <activity
-            android:name="com.ramadan.islami.ui.activity.FamilyTree"
-            android:label="@string/prophets_family_tree" />
-        <activity
-            android:name="com.ramadan.islami.ui.activity.Hadiths"
+            android:name=".ui.activity.Hadiths"
             android:label="@string/hadiths" />
-        <activity android:name="com.ramadan.islami.ui.activity.TopicsList" />
-        <activity android:name="com.ramadan.islami.ui.activity.VideosList" />
+        <activity android:name=".ui.activity.TopicList" />
+        <activity android:name=".ui.activity.VideosList" />
         <activity
-            android:name="com.ramadan.islami.ui.activity.Topic"
+            android:name=".ui.activity.Topic"
             android:theme="@style/AppTheme_NoActionBar" />
         <activity
-            android:name="com.ramadan.islami.ui.activity.Video"
+            android:name=".ui.activity.Video"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
             android:hardwareAccelerated="true" />
         <activity android:name=".ui.activity.PrayerTimes" />
-
     </application>
 
 </manifest>

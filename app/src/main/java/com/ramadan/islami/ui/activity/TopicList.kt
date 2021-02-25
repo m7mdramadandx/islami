@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.TopicAdapter
-import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.ui.viewModel.DataViewModel
+import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.utils.LocaleHelper
-import kotlinx.android.synthetic.main.recycle_view.*
+import kotlinx.android.synthetic.main.recycler_view.*
 
 
-class TopicsList : AppCompatActivity(), Listener {
+class TopicList : AppCompatActivity(), Listener {
     private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
@@ -30,12 +30,9 @@ class TopicsList : AppCompatActivity(), Listener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.recycle_view)
-        supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = intent.getStringExtra("title")
+        setContentView(R.layout.recycler_view)
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"
-        recyclerView = findViewById(R.id.recycler_view)
+        recyclerView = findViewById(R.id.global_recycler_view)
         topicAdapter = TopicAdapter()
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = topicAdapter
@@ -48,10 +45,6 @@ class TopicsList : AppCompatActivity(), Listener {
             .observe(this, { topicAdapter.setTopicDataList(it, collectionId) })
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
-    }
 
     override fun onStarted() {}
 

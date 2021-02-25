@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.VideoAdapter
-import kotlinx.android.synthetic.main.recycle_view.*
+import kotlinx.android.synthetic.main.recycler_view.*
 import com.ramadan.islami.data.model.Video as VideoModel
 
 class Video : AppCompatActivity() {
@@ -18,12 +18,12 @@ class Video : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.recycle_view)
+        setContentView(R.layout.recycler_view)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         video = intent.getSerializableExtra("videos") as VideoModel
         supportActionBar?.title = video.title
-        recyclerView = findViewById(R.id.recycler_view)
+        recyclerView = findViewById(R.id.global_recycler_view)
         videoAdapter = VideoAdapter(lifecycle)
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = videoAdapter

@@ -11,12 +11,12 @@ import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
 import com.ramadan.islami.data.model.AllahNames
-import com.ramadan.islami.ui.adapter.RecycleViewAdapter
+import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.viewModel.ApiViewModel
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.utils.ResStatus
 import com.ramadan.islami.utils.debug_tag
-import kotlinx.android.synthetic.main.recycle_view.*
+import kotlinx.android.synthetic.main.recycler_view.*
 
 
 class AllahNames : AppCompatActivity() {
@@ -27,7 +27,7 @@ class AllahNames : AppCompatActivity() {
         ).get(ApiViewModel::class.java)
     }
     private lateinit var recyclerView: RecyclerView
-    private lateinit var recycleViewAdapter: RecycleViewAdapter
+    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
 
     override fun onStart() {
         super.onStart()
@@ -36,12 +36,13 @@ class AllahNames : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.recycle_view)
+        setContentView(R.layout.recycler_view)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        recyclerView = findViewById(R.id.recycler_view)
+        recyclerViewAdapter = RecyclerViewAdapter()
+        recyclerView = findViewById(R.id.global_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = recycleViewAdapter
+        recyclerView.adapter = recyclerViewAdapter
     }
 
     private fun observeDate() {
@@ -50,7 +51,7 @@ class AllahNames : AppCompatActivity() {
                 ResStatus.LOADING -> progress.visibility = View.VISIBLE
                 ResStatus.SUCCESS -> {
                     progress.visibility = View.GONE
-                    recycleViewAdapter.setAllahNamesDataList(it.data!!.data as MutableList<AllahNames.Data>)
+                    recyclerViewAdapter.setAllahNamesDataList(it.data!!.data as MutableList<AllahNames.Data>)
                 }
                 ResStatus.ERROR -> {
                     progress.visibility = View.GONE

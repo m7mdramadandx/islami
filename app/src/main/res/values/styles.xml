@@ -54,11 +54,11 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="dashboard_title" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/titleColor</item>
+        <item name="android:textColor">#fff</item>
         <item name="android:textSize">32sp</item>
         <item name="android:fontFamily">@font/aref_bold</item>
         <item name="android:drawableStart">@drawable/ic_notification</item>
-        <!--        <item name="android:drawable">@drawable/logo</item>-->
+        <item name="android:drawable">@drawable/logo</item>
 
     </style>
 
@@ -69,7 +69,7 @@
         <item name="android:textSize">10sp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:padding">2dp</item>
-<!--        <item name="android:background">@color/silver_grey</item>-->
+        <!--        <item name="android:background">@color/silver_grey</item>-->
     </style>
 
     <style name="table_header" parent="@android:style/TextAppearance.Small">

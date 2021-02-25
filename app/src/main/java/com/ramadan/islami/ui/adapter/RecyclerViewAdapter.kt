@@ -2,6 +2,7 @@ package com.ramadan.islami.ui.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +14,11 @@ import com.ramadan.islami.data.model.Quote
 import com.ramadan.islami.data.model.Story
 import com.ramadan.islami.ui.activity.*
 import com.ramadan.islami.utils.Utils
+import com.ramadan.islami.utils.debug_tag
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.allah_names.view.*
+import kotlinx.android.synthetic.main.allah_name_item.view.*
 import kotlinx.android.synthetic.main.card_item.view.*
+import kotlinx.android.synthetic.main.family_tree_card.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 import com.ramadan.islami.ui.activity.AllahNames as AllahNamesActivity
@@ -23,7 +26,7 @@ import com.ramadan.islami.ui.activity.Quote as QuoteActivity
 import com.ramadan.islami.ui.activity.Story as ActivityStory
 
 
-class RecycleViewAdapter : RecyclerView.Adapter<RecycleViewAdapter.CustomView>() {
+class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>() {
     private var suggestionList = mutableListOf<Collection>()
     private var storiesList = mutableListOf<Story>()
     private var dailyList = mutableListOf<Collection>()
@@ -77,7 +80,7 @@ class RecycleViewAdapter : RecyclerView.Adapter<RecycleViewAdapter.CustomView>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomView {
         val view: View = when {
             allahNames.isNotEmpty() -> {
-                LayoutInflater.from(parent.context).inflate(R.layout.allah_names, parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.allah_name_item, parent, false)
             }
             familyTreeList.isNotEmpty() -> LayoutInflater.from(parent.context)
                 .inflate(R.layout.family_tree_card, parent, false)
@@ -193,7 +196,7 @@ class RecycleViewAdapter : RecyclerView.Adapter<RecycleViewAdapter.CustomView>()
                         }
                     }
                     else -> {
-                        Intent(ctx, TopicsList::class.java).apply {
+                        Intent(ctx, TopicList::class.java).apply {
                             putExtra("collectionId", collection.id)
                             putExtra("title", collection.title)
                             ctx.startActivity(this)
@@ -204,7 +207,7 @@ class RecycleViewAdapter : RecyclerView.Adapter<RecycleViewAdapter.CustomView>()
         }
 
         fun familyTreeView(collection: Collection) {
-            itemView.cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
+            itemView.familyTreeName.text = collection.title.toUpperCase(Locale.ENGLISH)
             itemView.setOnClickListener {
                 when (collection.id) {
                     "muhammadTree" -> ctx.startActivity(Intent(ctx, PrayerTimes::class.java))
@@ -215,9 +218,10 @@ class RecycleViewAdapter : RecyclerView.Adapter<RecycleViewAdapter.CustomView>()
         }
 
         fun allahNamesView(allahNames: AllahNames.Data) {
-            itemView.number.text = allahNames.number.toString()
-            itemView.name.text = allahNames.name
-            itemView.meaning.text = allahNames.en.meaning
+            Log.e(debug_tag, allahNames.toString())
+            itemView.number.text = allahNames.number.toString() ?: "0"
+            itemView.name.text = allahNames.name ?: "l"
+            itemView.meaning.text = allahNames.en.meaning ?: "2"
         }
 
     }

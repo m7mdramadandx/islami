@@ -13,9 +13,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
+import com.ramadan.islami.data.model.PrayerData
 import com.ramadan.islami.ui.viewModel.ApiViewModel
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.utils.ResStatus
+import com.ramadan.islami.utils.dateOfDay
 import com.ramadan.islami.utils.debug_tag
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuObject
@@ -29,6 +31,7 @@ class DateConversion : AppCompatActivity() {
             ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").hijriCalender()))
         ).get(ApiViewModel::class.java)
     }
+    private lateinit var result: PrayerData
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
 
     override fun onStart() {
@@ -50,8 +53,16 @@ class DateConversion : AppCompatActivity() {
             when (it.status) {
                 ResStatus.LOADING -> progress.visibility = View.VISIBLE
                 ResStatus.SUCCESS -> {
+                    it.data!!.data.forEach { prayerData ->
+                        if (dateOfDay() == prayerData.date.gregorian.date) {
+                            result = prayerData
+                        }
+                    }
                     progress.visibility = View.GONE
-                    title = it.data!!.data.first().date.hijri.month.ar
+//                    title = it.data!!.data.first().date.hijri.month.ar
+                    calender.setDate(24022021, true, true)
+                    calender.firstDayOfWeek = result.date.hijri.date.toInt()
+//                    calender.
                 }
                 ResStatus.ERROR -> {
                     progress.visibility = View.GONE

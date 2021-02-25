@@ -9,26 +9,6 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.activity.Dashboard">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorBackground"
-            android:elevation="16dp"
-            ads:navigationIcon="@drawable/slide_menu"
-            ads:title="@string/app_name"
-            ads:titleTextAppearance="@style/dashboard_title">
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -42,7 +22,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="320dp"
+                android:layout_height="280dp"
                 android:background="@drawable/background"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="16dp">
@@ -288,7 +268,6 @@
                         tools:listitem="@layout/family_tree_card" />
 
                 </RelativeLayout>
-
 
 
             </LinearLayout>

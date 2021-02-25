@@ -27,9 +27,9 @@ class SplashScreen : AppCompatActivity() {
         BadgeUtils().clearBadge(this)
         Handler().postDelayed({
 //            GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(this)
-            startActivity(Intent(this, Dashboard::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }, 1500)
+        }, 1000)
     }
 
     private fun appTheme() {
