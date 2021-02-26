@@ -9,11 +9,31 @@
         android:id="@+id/nav_dashboard"
         android:name="com.ramadan.islami.ui.activity.Dashboard"
         android:label="@string/app_name"
-        tools:layout="@layout/dashboard" />
+        tools:layout="@layout/dashboard">
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_stories"
+            app:destination="@id/nav_stories" />
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_daily"
+            app:destination="@id/nav_daily" />
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_quotes"
+            app:destination="@id/nav_quotes" />
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_topics"
+            app:destination="@id/nav_topics" />
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_family_tree"
+            app:destination="@id/nav_family_tree" />
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_feedback"
+            app:destination="@id/nav_feedback" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_stories"
-        android:name="com.ramadan.islami.ui.activity.StoryDashboard"
+        android:name="com.ramadan.islami.ui.activity.Stories"
         android:label="@string/stories"
         tools:layout="@layout/recycler_view" />
 
@@ -24,13 +44,13 @@
         tools:layout="@layout/recycler_view" />
     <fragment
         android:id="@+id/nav_quotes"
-        android:name="com.ramadan.islami.ui.activity.QuoteDashboard"
+        android:name="com.ramadan.islami.ui.activity.Quotes"
         android:label="@string/quotes"
         tools:layout="@layout/recycler_view" />
 
     <fragment
         android:id="@+id/nav_topics"
-        android:name="com.ramadan.islami.ui.activity.Collection"
+        android:name="com.ramadan.islami.ui.activity.Topics"
         android:label="@string/topics"
         tools:layout="@layout/recycler_view" />
 
@@ -40,5 +60,11 @@
         android:name="com.ramadan.islami.ui.activity.FamilyTree"
         android:label="@string/family_tree"
         tools:layout="@layout/recycler_view" />
+
+    <fragment
+        android:id="@+id/nav_feedback"
+        android:name="com.ramadan.islami.ui.activity.Feedback"
+        android:label="@string/send_feedback"
+        tools:layout="@layout/feedback" />
 
 </navigation>

@@ -17,7 +17,7 @@ import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycler_view.*
 
-class QuoteDashboard : Fragment(), Listener {
+class Quotes : Fragment(), Listener {
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private var isEnglish: Boolean = true

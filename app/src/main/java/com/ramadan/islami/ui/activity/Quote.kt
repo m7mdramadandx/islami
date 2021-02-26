@@ -19,7 +19,6 @@ import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.data.model.Quote as QuoteModel
 
 
-@Suppress("DEPRECATION")
 class Quote : AppCompatActivity() {
     private var versesRecyclerView: RecyclerView? = null
     private var hadithsRecyclerView: RecyclerView? = null
@@ -33,7 +32,7 @@ class Quote : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.quotes)
+        setContentView(R.layout.quote)
         supportActionBar!!.setHomeButtonEnabled(true)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         isEnglish = localeHelper.getDefaultLanguage(this) == "en"

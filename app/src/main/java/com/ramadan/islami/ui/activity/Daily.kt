@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.utils.dailyMutableList
@@ -15,17 +17,14 @@ import com.ramadan.islami.utils.dailyMutableList
 class Daily : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private var recyclerViewAdapter = RecyclerViewAdapter()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        observeData()
-    }
+    private lateinit var progress: ProgressBar
+    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
 
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-//        isEnglish = localeHelper.getDefaultLanguage(context) == "en"
+        recyclerViewAdapter = RecyclerViewAdapter()
+        observeData()
     }
 
     override fun onCreateView(
@@ -34,9 +33,10 @@ class Daily : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         val root = inflater.inflate(R.layout.recycler_view, container, false)
+        progress = root.findViewById(R.id.progress)
+        progress.visibility = View.GONE
         recyclerView = root.findViewById(R.id.global_recycler_view)
-        recyclerViewAdapter = RecyclerViewAdapter()
-        recyclerView.layoutManager = LinearLayoutManager(root.context)
+        recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = recyclerViewAdapter
         return root
     }
@@ -44,5 +44,6 @@ class Daily : Fragment() {
     private fun observeData() {
         recyclerViewAdapter.setDailyDataList(dailyMutableList)
     }
+
 
 }

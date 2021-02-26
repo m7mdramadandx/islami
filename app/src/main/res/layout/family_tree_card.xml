@@ -13,6 +13,7 @@
         android:layout_gravity="center"
         android:background="@android:color/transparent"
         android:paddingHorizontal="64dp"
+        android:paddingBottom="24dp"
         android:src="@drawable/aaa" />
 
     <TextView
@@ -21,5 +22,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
+        android:text="frfrf"
         android:textColor="#fff" />
 </androidx.cardview.widget.CardView>

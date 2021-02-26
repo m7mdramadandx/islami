@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.activity.Quote
-import com.ramadan.islami.ui.activity.Story
+import com.ramadan.islami.ui.activity.StoryDetails
 import com.smarteist.autoimageslider.SliderViewAdapter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.slider_img.view.*
@@ -59,7 +59,7 @@ class SliderAdapter : SliderViewAdapter<SliderAdapter.CustomView>() {
             Picasso.get().load(story.image).error(R.drawable.error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.sliderImg)
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, Story::class.java)
+                val intent = Intent(itemView.context, StoryDetails::class.java)
                 intent.putExtra("story", story)
                 itemView.context.startActivity(intent)
             }

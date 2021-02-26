@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
     android:scrollbars="vertical|horizontal"
-    app:hasClickableChildren="true">
+    app:hasClickableChildren="true"
+    tools:context=".ui.activity.DateConversion">
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="128dp" />
+
+    <TextView
+        android:id="@+id/dateView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        android:layout_marginTop="66dp"
+        android:layout_toLeftOf="@+id/button1"
+        android:text="Date"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -50,71 +70,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-
-    <!--    <TableLayout-->
-    <!--        android:id="@+id/table_heading_layout"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:background="@color/colorSecondary">-->
-
-    <!--        <TableRow-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:nestedScrollingEnabled="true">-->
-
-    <!--            <TextView-->
-    <!--                style="@style/table_header"-->
-    <!--                android:layout_width="0dp"-->
-    <!--                android:layout_weight="1.3"-->
-    <!--                android:text="Day" />-->
-
-    <!--            <TextView-->
-    <!--                style="@style/table_header"-->
-    <!--                android:layout_width="0dp"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:text="day" />-->
-
-    <!--            <TextView-->
-    <!--                style="@style/table_header"-->
-    <!--                android:layout_width="0dp"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:text="month" />-->
-
-    <!--            <TextView-->
-    <!--                style="@style/table_header"-->
-    <!--                android:layout_width="0dp"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:text="year" />-->
-
-    <!--            <TextView-->
-    <!--                style="@style/table_header"-->
-    <!--                android:layout_width="0dp"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:text="date" />-->
-
-    <!--            <TextView-->
-    <!--                style="@style/table_header"-->
-    <!--                android:layout_width="0dp"-->
-    <!--                android:layout_weight="1"-->
-    <!--                android:text="holiday" />-->
-
-
-    <!--        </TableRow>-->
-    <!--    </TableLayout>-->
-
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-    <!--        android:id="@+id/table_recycler_view"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:animationCache="true"-->
-    <!--        tools:listitem="@layout/table_row" />-->
-
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="128dp" />
 </LinearLayout>
 
 

@@ -27,7 +27,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class Story : AppCompatActivity() {
+class StoryDetails : AppCompatActivity() {
     private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
     private lateinit var story: Story

@@ -26,15 +26,16 @@ import com.ramadan.islami.ui.viewModel.ApiViewModel
 import com.ramadan.islami.ui.viewModel.DataViewModel
 import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
-import com.ramadan.islami.utils.LocaleHelper
-import com.ramadan.islami.utils.ResStatus
-import com.ramadan.islami.utils.debug_tag
+import com.ramadan.islami.utils.*
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import kotlinx.android.synthetic.main.dashboard.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class Dashboard : Fragment(), Listener {
@@ -59,12 +60,21 @@ class Dashboard : Fragment(), Listener {
     private val storiesAdapter = SliderAdapter()
     private val quotesAdapter = SliderAdapter()
     private val localeHelper = LocaleHelper()
-    private var isEnglish: Boolean = true
+    private var isEnglish: Boolean = false
     private val appURL = ""
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         isEnglish = localeHelper.getDefaultLanguage(context) == "en"
+        suggestionAdapter = RecyclerViewAdapter()
+        dailyAdapter = RecyclerViewAdapter()
+        familyTreeAdapter = RecyclerViewAdapter()
+        observeData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        isEnglish = localeHelper.getDefaultLanguage(requireContext()) == "en"
         observeData()
     }
 
@@ -74,10 +84,8 @@ class Dashboard : Fragment(), Listener {
         savedInstanceState: Bundle?,
     ): View? {
         val root = inflater.inflate(R.layout.dashboard, container, false)
+        mAdView = root.findViewById(R.id.adView)
         dataViewModel.listener = this
-        suggestionAdapter = RecyclerViewAdapter()
-        dailyAdapter = RecyclerViewAdapter()
-        familyTreeAdapter = RecyclerViewAdapter()
 
         suggestionRCV = root.findViewById(R.id.suggestionRecyclerView)
         suggestionRCV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
@@ -133,27 +141,22 @@ class Dashboard : Fragment(), Listener {
             when (it.status) {
                 ResStatus.LOADING -> hijriDate.text = "تاريخ اليوم"
                 ResStatus.SUCCESS -> {
-                    (it.data!!.data.hijri.weekday.ar + getString(R.string.mn) + it.data.data.hijri.month.ar + "\t" + it.data.data.hijri.year)
+                    (it.data!!.data.hijri.weekday.ar + getString(R.string.mn) + it.data.data.hijri.day + it.data.data.hijri.month.ar + "\t" + it.data.data.hijri.year)
                         .also { date -> hijriDate.text = date }
                 }
                 ResStatus.ERROR -> Log.e(debug_tag, it.message.toString())
             }
         })
 
-//        suggestionAdapter.setSuggestionDataList(suggestionMutableList)
+        suggestionAdapter.setSuggestionDataList(suggestionMutableList)
         dataViewModel.fetchStories(isEnglish)
             .observe(this, { storiesAdapter.setStoriesDataList(it) })
-//        dailyAdapter.setDailyDataList(dailyMutableList)
+        dailyAdapter.setDailyDataList(dailyMutableList)
         dataViewModel.fetchQuotes(isEnglish)
             .observe(this, { quotesAdapter.setCategoryDataList(it) })
-//        familyTreeAdapter.setFamilyTreeDataList(familyTreeMutableList)
+        familyTreeAdapter.setFamilyTreeDataList(familyTreeMutableList)
         GlobalScope.launch(Dispatchers.IO) {
-            delay(1000)
-            withContext(Dispatchers.Main) {
-//                mAdView = findViewById(R.id.adView)
-//                mAdView.loadAd(AdRequest.Builder().build())
-
-            }
+            withContext(Dispatchers.Main) { mAdView.loadAd(AdRequest.Builder().build()) }
         }
     }
 
@@ -166,7 +169,7 @@ class Dashboard : Fragment(), Listener {
 //        super.onConfigurationChanged(newConfig)
 //        localeHelper.setLocale(this, localeHelper.getDefaultLanguage(this))
 //    }
-
+//
 //    override fun onSupportNavigateUp(): Boolean {
 //        onBackPressed()
 //        return true
@@ -273,62 +276,6 @@ class Dashboard : Fragment(), Listener {
 //            setResourceValue(R.drawable.info)
 //            setBgColorValue(primaryColorDark)
 //            add(this)
-//        }
-//    }
-
-//
-//    private fun alertDialog(
-//        title: String,
-//        optionOne: String,
-//        optionTwo: String,
-//        isLanguageSetting: Boolean,
-//    ) {
-//        val dialogBuilder = AlertDialog.Builder(this)
-//        val view = View.inflate(this, R.layout.alert_dialog, null)
-//        dialogBuilder.setView(view)
-//        val alertDialog = dialogBuilder.create()
-//        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//        alertDialog.show()
-//        alertDialog.setCancelable(true)
-//        view.findViewById<TextView>(R.id.title).text = title
-//        val group = view.findViewById<RadioGroup>(R.id.group)
-//        val option1 = view.findViewById<RadioButton>(R.id.option1).also { it.text = optionOne }
-//        val option2 = view.findViewById<RadioButton>(R.id.option2).also { it.text = optionTwo }
-//        if (isLanguageSetting) {
-//            if (localeHelper.getDefaultLanguage(this) == "ar") option1.isChecked = true
-//            else option2.isChecked = true
-//            group.setOnCheckedChangeListener { _, checkedId ->
-//                when (checkedId) {
-//                    R.id.option1 -> localeHelper.persist(this, "ar")
-//                    R.id.option2 -> localeHelper.persist(this, "en")
-//                }
-//                startActivity(Intent(this, Dashboard::class.java)).also { finish() }
-//            }
-//        } else {
-//            val option3 =
-//                view.findViewById<RadioButton>(R.id.option3)
-//                    .also { it.visibility = View.VISIBLE }
-//            when (localeHelper.getDefaultTheme(this)) {
-//                "light" -> option1.isChecked = true
-//                "night" -> option2.isChecked = true
-//                else -> option3.isChecked = true
-//            }
-//            group.setOnCheckedChangeListener { _, checkedId ->
-//                when (checkedId) {
-//                    R.id.option1 -> {
-//                        localeHelper.setTheme(this, "light")
-//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-//                    }
-//                    R.id.option2 -> {
-//                        localeHelper.setTheme(this, "night")
-//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-//                    }
-//                    R.id.option3 -> {
-//                        localeHelper.setTheme(this, "follow_system")
-//                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-//                    }
-//                }
-//            }
 //        }
 //    }
 

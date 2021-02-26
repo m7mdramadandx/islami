@@ -1,5 +1,8 @@
 package com.ramadan.islami.ui.activity
 
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -8,6 +11,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.ramadan.islami.R
@@ -23,6 +27,7 @@ import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuObject
 import com.yalantis.contextmenu.lib.MenuParams
 import kotlinx.android.synthetic.main.date_conversion.*
+import java.util.*
 
 
 class DateConversion : AppCompatActivity() {
@@ -33,6 +38,7 @@ class DateConversion : AppCompatActivity() {
     }
     private lateinit var result: PrayerData
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
+    private lateinit var _calender: Calendar
 
     override fun onStart() {
         super.onStart()
@@ -45,7 +51,6 @@ class DateConversion : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         initMenuFragment()
-
     }
 
     private fun observeDate() {
@@ -54,15 +59,21 @@ class DateConversion : AppCompatActivity() {
                 ResStatus.LOADING -> progress.visibility = View.VISIBLE
                 ResStatus.SUCCESS -> {
                     it.data!!.data.forEach { prayerData ->
-                        if (dateOfDay() == prayerData.date.gregorian.date) {
-                            result = prayerData
-                        }
+                        if (dateOfDay() == prayerData.date.gregorian.date) result = prayerData
                     }
                     progress.visibility = View.GONE
 //                    title = it.data!!.data.first().date.hijri.month.ar
-                    calender.setDate(24022021, true, true)
-                    calender.firstDayOfWeek = result.date.hijri.date.toInt()
-//                    calender.
+                    _calender = Calendar.getInstance()
+//                    showDate(year, month+1, day);
+                    showDate(
+                        result.date.hijri.year.toInt(),
+                        result.date.hijri.month.number,
+                        result.date.hijri.day.toInt(),
+                    )
+                    calender.date = _calender.timeInMillis
+//                    calender.date = result.date.hijri.date.toLong()
+//                    Log.e(debug_tag, result.date.hijri.date.toLong().toString())
+//                    Log.e(debug_tag, result.date.hijri.year.toLong().toString())
                 }
                 ResStatus.ERROR -> {
                     progress.visibility = View.GONE
@@ -70,6 +81,38 @@ class DateConversion : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private val myDateListener: OnDateSetListener =
+        OnDateSetListener { arg0, arg1, arg2, arg3 -> // TODO Auto-generated method stub
+            // arg1 = year
+            // arg2 = month
+            // arg3 = day
+            showDate(arg1, arg2 + 1, arg3)
+        }
+
+    private fun showDate(year: Int, month: Int, day: Int) {
+        dateView.text = StringBuilder().append(day).append("/")
+            .append(month).append("/").append(year)
+    }
+
+    override fun onCreateDialog(id: Int): Dialog? {
+        return if (id == 999) {
+            DatePickerDialog(
+                this,
+                myDateListener,
+                result.date.hijri.year.toInt(),
+                result.date.hijri.month.number,
+                result.date.hijri.day.toInt(),
+            )
+        } else null
+    }
+
+    fun setDate(view: View?) {
+        showDialog(999)
+        Toast.makeText(applicationContext, "ca",
+            Toast.LENGTH_SHORT)
+            .show()
     }
 
 

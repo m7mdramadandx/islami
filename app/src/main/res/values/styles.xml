@@ -12,6 +12,9 @@
         <item name="android:textColor">@color/textColor</item>
         <item name="android:textColorHighlight">@color/colorAccent</item>
         <item name="fontFamily">@font/aref_font_family</item>
+        <item name="navigationIconTint">@color/colorAccent</item>
+        <item name="android:navigationIcon">@drawable/slide_menu</item>
+
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/MyActionBar</item>
         <item name="actionMenuTextColor">@color/actionbar_text</item>

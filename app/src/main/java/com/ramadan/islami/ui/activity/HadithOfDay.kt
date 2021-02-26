@@ -2,6 +2,7 @@ package com.ramadan.islami.ui.activity
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.ramadan.islami.R
@@ -38,11 +39,18 @@ class HadithOfDay : AppCompatActivity() {
         viewModel.hadithOfDay().observe(this, {
             when (it.status) {
                 ResStatus.SUCCESS -> {
+                    progress.visibility = View.GONE
+                    hadithBody.visibility = View.VISIBLE
                     hadithTitle.text = it.data!!.hadith[1].chapterTitle
-                    hadithBody.text = it.data.hadith[1].body
+                    hadithBody.text = it.data.hadith[1].body.removeSurrounding("<p>", "</p>")
                 }
-                ResStatus.ERROR -> Log.e(debug_tag, it.message.toString())
-                ResStatus.LOADING -> Log.e(debug_tag, "LOADING")
+                ResStatus.ERROR -> {
+                    progress.visibility = View.GONE
+                    Log.e(debug_tag, it.message.toString())
+                }
+                ResStatus.LOADING -> {
+                    Log.e(debug_tag, "LOADING")
+                }
             }
         })
     }

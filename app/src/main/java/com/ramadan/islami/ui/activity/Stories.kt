@@ -18,17 +18,16 @@ import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycler_view.*
 
-class Collection : Fragment(), Listener {
+class Stories : Fragment(), Listener {
     private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
+    private lateinit var storyAdapter: RecyclerViewAdapter
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
-    private lateinit var collectionAdapter: RecyclerViewAdapter
-    private lateinit var recyclerView: RecyclerView
 
     override fun onAttach(context: Context) {
-        super.onAttach(context)
         isEnglish = localeHelper.getDefaultLanguage(context) == "en"
-        observeData()
+        super.onAttach(context)
+        observeDate()
     }
 
     override fun onCreateView(
@@ -37,20 +36,28 @@ class Collection : Fragment(), Listener {
         savedInstanceState: Bundle?,
     ): View? {
         val root = inflater.inflate(R.layout.recycler_view, container, false)
-        recyclerView = root.findViewById(R.id.global_recycler_view)
-        collectionAdapter = RecyclerViewAdapter()
-        recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
-        recyclerView.adapter = collectionAdapter
         viewModel.listener = this
+        storyAdapter = RecyclerViewAdapter()
+        val recyclerView: RecyclerView = root.findViewById(R.id.global_recycler_view)
+        val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        recyclerView.layoutManager = staggeredGridLayoutManager
+        recyclerView.setHasFixedSize(true)
+        recyclerView.adapter = storyAdapter
+//        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//                if (dy > 0) supportActionBar?.hide() else supportActionBar?.show()
+//            }
+//        })
         return root
     }
 
-    private fun observeData() {
-        viewModel.fetchCollection(isEnglish)
-            .observe(this, { collectionAdapter.setCollectionsDataList(it) })
+    private fun observeDate() {
+        viewModel.fetchStories(isEnglish).observe(this, { storyAdapter.setStoriesDataList(it) })
     }
 
-    override fun onStarted() {}
+    override fun onStarted() {
+    }
 
     override fun onSuccess() {
         progress.visibility = View.GONE

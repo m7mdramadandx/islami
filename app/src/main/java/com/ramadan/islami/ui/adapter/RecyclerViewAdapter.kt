@@ -23,7 +23,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import com.ramadan.islami.ui.activity.AllahNames as AllahNamesActivity
 import com.ramadan.islami.ui.activity.Quote as QuoteActivity
-import com.ramadan.islami.ui.activity.Story as ActivityStory
+import com.ramadan.islami.ui.activity.StoryDetails as ActivityStory
 
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>() {
@@ -79,7 +79,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomView {
         val view: View = when {
-            allahNames.isNotEmpty() -> {
+            allahNames.size > 1 -> {
                 LayoutInflater.from(parent.context).inflate(R.layout.allah_name_item, parent, false)
             }
             familyTreeList.isNotEmpty() -> LayoutInflater.from(parent.context)
@@ -113,7 +113,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             collectionList.isNotEmpty() -> collectionList.size
             familyTreeList.isNotEmpty() -> familyTreeList.size
             allahNames.isNotEmpty() -> allahNames.size
-            else -> 1
+            else -> 0
         }
     }
 
@@ -189,7 +189,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             itemView.setOnClickListener {
                 when (collection.id) {
                     "videos" -> {
-                        Intent(ctx, VideosList::class.java).apply {
+                        Intent(ctx, VideoList::class.java).apply {
                             putExtra("id", collection.id)
                             putExtra("title", collection.title)
                             ctx.startActivity(this)
@@ -217,11 +217,11 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             }
         }
 
-        fun allahNamesView(allahNames: AllahNames.Data) {
+        fun allahNamesView(allahNames: AllahNames.Data?) {
             Log.e(debug_tag, allahNames.toString())
-            itemView.number.text = allahNames.number.toString() ?: "0"
-            itemView.name.text = allahNames.name ?: "l"
-            itemView.meaning.text = allahNames.en.meaning ?: "2"
+            itemView.allahNameNumber.text = allahNames?.number.toString() ?: "0"
+            itemView.allahName.text = allahNames?.name ?: "l"
+            itemView.allahNameMeaning.text = allahNames?.en?.meaning ?: "2"
         }
 
     }

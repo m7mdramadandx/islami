@@ -11,9 +11,8 @@
         android:animationCache="true"
         app:stackFromEnd="true" />
 
-    <include
+    <ProgressBar
         android:id="@+id/progress"
-        layout="@layout/loading_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

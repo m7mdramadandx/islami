@@ -6,14 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
-import com.ramadan.islami.ui.activity.Topic
+import com.ramadan.islami.ui.activity.TopicDetails
 import kotlinx.android.synthetic.main.content_item.view.*
 import kotlinx.android.synthetic.main.tile_item.view.*
 import com.ramadan.islami.data.model.Topic as TopicModel
 
 
-class TopicAdapter :
-    RecyclerView.Adapter<TopicAdapter.CustomView>() {
+class TopicAdapter : RecyclerView.Adapter<TopicAdapter.CustomView>() {
     private var topicList = mutableListOf<TopicModel>()
     private var contentMap: MutableMap<String, String> = mutableMapOf()
     var collectionId = String()
@@ -50,6 +49,7 @@ class TopicAdapter :
             contentMap.isNotEmpty() -> holder.topicContentView(contentMap.toList()[position])
         }
     }
+
     override fun getItemCount(): Int {
         return when {
             topicList.size > 0 -> topicList.size
@@ -62,7 +62,7 @@ class TopicAdapter :
         fun topicView(topic: TopicModel) {
             itemView.tileTitle.text = topic.title
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, Topic::class.java)
+                val intent = Intent(itemView.context, TopicDetails::class.java)
                 intent.putExtra("topic", topic)
                 intent.putExtra("collectionId", collectionId)
                 itemView.context.startActivity(intent)

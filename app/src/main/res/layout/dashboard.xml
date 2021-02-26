@@ -9,11 +9,9 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.activity.Dashboard">
 
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="42dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,8 +29,9 @@
                     android:id="@+id/hijriDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="?actionBarSize"
+                    android:layout_marginTop="8dp"
                     android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -125,7 +124,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="collection"
+                        android:text="Daily Routine"
                         android:textColor="@android:color/white"
                         android:textSize="21sp" />
 
@@ -194,6 +193,14 @@
                         </com.smarteist.autoimageslider.SliderView>
                     </androidx.cardview.widget.CardView>
                 </RelativeLayout>
+
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    ads:adSize="SMART_BANNER"
+                    ads:adUnitId="@string/home_banner_id" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -269,19 +276,10 @@
 
                 </RelativeLayout>
 
-
             </LinearLayout>
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="@string/home_banner_id" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

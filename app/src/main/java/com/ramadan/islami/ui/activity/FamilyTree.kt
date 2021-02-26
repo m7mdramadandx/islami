@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,11 +16,12 @@ import com.ramadan.islami.utils.familyTreeMutableList
 
 class FamilyTree : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private var recyclerViewAdapter = RecyclerViewAdapter()
+    private lateinit var progress: ProgressBar
+    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-//        isEnglish = localeHelper.getDefaultLanguage(context) == "en"
+        recyclerViewAdapter = RecyclerViewAdapter()
         observeData()
     }
 
@@ -29,8 +31,9 @@ class FamilyTree : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         val root = inflater.inflate(R.layout.recycler_view, container, false)
+        progress = root.findViewById(R.id.progress)
+        progress.visibility = View.GONE
         recyclerView = root.findViewById(R.id.global_recycler_view)
-        recyclerViewAdapter = RecyclerViewAdapter()
         recyclerView.layoutManager = LinearLayoutManager(root.context)
         recyclerView.adapter = recyclerViewAdapter
         return root

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:paddingHorizontal="16dp"
     android:paddingVertical="24dp"
-    tools:context=".ui.activity.SendFeedback">
+    tools:context=".ui.activity.Feedback">
 
     <TextView
         android:layout_width="match_parent"
@@ -25,9 +25,8 @@
         android:padding="8dp"
         android:textAlignment="inherit" />
 
-    <include
+    <ProgressBar
         android:id="@+id/progress"
-        layout="@layout/loading_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
