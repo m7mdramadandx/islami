@@ -20,6 +20,7 @@ class NotificationOpenedHandler(base: Context?) : OneSignal.OSNotificationOpened
             "story" -> Intent(applicationContext, StoryDetails::class.java)
             "ramadan" -> Intent(applicationContext, Quote::class.java)
             "hadiths" -> Intent(applicationContext, Hadiths::class.java)
+            "hadithOfDay" -> Intent(applicationContext, HadithOfDay::class.java)
             else -> Intent(applicationContext, Dashboard::class.java)
         }.also {
             it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP

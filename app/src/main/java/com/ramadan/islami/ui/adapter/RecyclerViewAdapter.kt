@@ -26,7 +26,7 @@ import com.ramadan.islami.ui.activity.StoryDetails as ActivityStory
 
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>() {
-    var isDashboard = true
+    private var isDashboard = true
     private var suggestionList = mutableListOf<Collection>()
     private var storiesList = mutableListOf<Story>()
     private var dailyList = mutableListOf<Collection>()
@@ -56,7 +56,8 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         notifyDataSetChanged()
     }
 
-    fun setQuotesDataList(data: ArrayList<String>) {
+    fun setQuotesDataList(data: ArrayList<String>, isDashboard: Boolean) {
+        this.isDashboard = isDashboard
         data.shuffle()
         quotesList = data
         notifyDataSetChanged()
@@ -125,7 +126,6 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         fun suggestionView(collection: Collection) {
             Picasso.get().load(collection.image).error(R.drawable.failure_img)
                 .placeholder(R.drawable.load_img).into(itemView.cardImage)
-            itemView.cardImage.maxWidth = 150
             itemView.cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
             itemView.setOnClickListener {
                 when (collection.id) {
@@ -184,7 +184,9 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         fun quoteView(quotes: String) {
             Picasso.get().load(quotes).error(R.drawable.error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.cardImage)
-            itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
+            if (isDashboard) {
+                itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
+            }
             itemView.setOnClickListener { util.showImg(quotes, ctx) }
         }
 

@@ -124,15 +124,15 @@ class DateConversion : AppCompatActivity() {
     }
 
     private fun setHijriDate(year: Int, month: Int, day: Int) {
-        val hijriDate = StringBuilder().append(day).append("/")
-            .append(month + 1).append("/").append(year)
+        val hijriDate = StringBuilder().append(day).append("-")
+            .append(month + 1).append("-").append(year)
         hijri.text = hijriDate
         fetchGregorian(hijriDate.toString())
     }
 
     private fun setGregorianDate(year: Int, month: Int, day: Int) {
-        val gregorianDate = StringBuilder().append(day).append("/")
-            .append(month + 1).append("/").append(year)
+        val gregorianDate = StringBuilder().append(day).append("-")
+            .append(month + 1).append("-").append(year)
         gregorian.text = gregorianDate
         fetchHijri(gregorianDate.toString())
     }
