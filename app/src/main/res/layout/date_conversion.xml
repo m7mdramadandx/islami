@@ -63,9 +63,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        app:mcv_arrowColor="@color/colorPrimary"
-        app:mcv_selectionColor="@color/colorAccent"
-        app:mcv_tileSize="21sp" />
+        app:mcv_arrowColor="?attr/colorPrimary"
+        app:mcv_dateTextAppearance="@style/CustomDayTextAppearance"
+        app:mcv_firstDayOfWeek="saturday"
+        app:mcv_headerTextAppearance="?android:attr/textAppearanceMedium"
+        app:mcv_monthLabels="@array/custom_months"
+        app:mcv_selectionColor="?attr/colorPrimary"
+        app:mcv_showOtherDates="all"
+        app:mcv_tileSize="36dp"
+        app:mcv_weekDayLabels="@array/custom_weekdays"
+        app:mcv_weekDayTextAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>
 

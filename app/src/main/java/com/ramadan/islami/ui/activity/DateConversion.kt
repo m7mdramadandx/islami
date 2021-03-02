@@ -107,6 +107,7 @@ class DateConversion : AppCompatActivity() {
         })
     }
 
+
     private fun fetchGregorian(hijriDate: String) {
         viewModel.gregorianCalender(hijriDate).observe(this, {
             when (it.status) {

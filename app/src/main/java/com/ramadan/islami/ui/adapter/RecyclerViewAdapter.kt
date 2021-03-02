@@ -58,6 +58,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
 
     fun setQuotesDataList(data: ArrayList<String>, isDashboard: Boolean) {
         this.isDashboard = isDashboard
+        data.removeAt(1)
         data.shuffle()
         quotesList = data
         notifyDataSetChanged()
@@ -218,7 +219,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         fun familyTreeView(collection: Collection) {
             itemView.familyTreeName.text = collection.title.toUpperCase(Locale.ENGLISH)
             if (isDashboard) {
-                itemView.familyTreeCard.setCardBackgroundColor(Color.WHITE)
+                itemView.familyTreeCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorBackground))
                 itemView.familyTreeImage.maxWidth =
                     ctx.resources.getDimension(R.dimen.familyTree).toInt()
             }

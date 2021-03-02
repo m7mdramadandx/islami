@@ -114,4 +114,29 @@
     <string name="hijri">Hijri</string>
     <string name="gregorian">Gregorian</string>
     <string name="prayerTimesTitle">Prayer times for </string>
+
+    <string-array name="custom_weekdays">
+        <item>Su</item>
+        <item>M</item>
+        <item>Tu</item>
+        <item>W</item>
+        <item>Th</item>
+        <item>F</item>
+        <item>Sa</item>
+    </string-array>
+
+    <string-array name="custom_months">
+        <item>Muharram</item>
+        <item>Safar</item>
+        <item>Rabi\' I</item>
+        <item>Rabi\' II</item>
+        <item>Jumada I</item>
+        <item>Jumada II</item>
+        <item>Rajab</item>
+        <item>Sha\'ban</item>
+        <item>Ramadan</item>
+        <item>Shawwal</item>
+        <item>Dhu al-Qi‘dah</item>
+        <item>Dhu al-Hijjah</item>
+    </string-array>
 </resources>
