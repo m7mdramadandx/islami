@@ -20,12 +20,10 @@ import kotlin.collections.toSortedMap
 
 class Repository {
     private val tag = "Repository"
-    var language = "ar"
 
-    suspend fun fetchSuggestion(isEnglish: Boolean): LiveData<MutableList<Story>> {
+    suspend fun fetchSuggestion(language: String): LiveData<MutableList<Story>> {
         val mutableData = MutableLiveData<MutableList<Story>>()
         val dataList: MutableList<Story> = mutableListOf()
-        if (isEnglish) language = "en"
         rootCollection.document(language).collection("suggestion").get()
             .addOnSuccessListener { result ->
                 result.forEach { document ->
@@ -42,10 +40,9 @@ class Repository {
         return mutableData
     }
 
-    suspend fun fetchAllStories(isEnglish: Boolean): LiveData<MutableList<Story>> {
+    suspend fun fetchAllStories(language: String): LiveData<MutableList<Story>> {
         val mutableData = MutableLiveData<MutableList<Story>>()
         val dataList: MutableList<Story> = mutableListOf()
-        if (isEnglish) language = "en"
         rootCollection.document(language).collection("stories").get()
             .addOnSuccessListener { result ->
                 result.forEach { document ->
@@ -62,9 +59,8 @@ class Repository {
         return mutableData
     }
 
-    suspend fun fetchStory(isEnglish: Boolean, storyID: String): Story {
+    suspend fun fetchStory(language: String, storyID: String): Story {
         var story = Story(storyID, storyID, defaultImg, "brief", ArrayList(0))
-        if (isEnglish) language = "en"
         rootCollection.document(language).collection("stories").get()
             .addOnSuccessListener { result ->
                 result.forEach { document ->
@@ -82,10 +78,9 @@ class Repository {
         return story
     }
 
-    suspend fun fetchQuotes(isEnglish: Boolean): LiveData<MutableList<Quote>> {
+    suspend fun fetchQuotes(language: String): LiveData<MutableList<Quote>> {
         val mutableLiveData = MutableLiveData<MutableList<Quote>>()
         val dataList: MutableList<Quote> = mutableListOf()
-        if (isEnglish) language = "en"
         rootCollection.document(language).collection("quotes").get().await()
             .forEach { snapshot ->
                 val id: String = snapshot.id
@@ -100,9 +95,8 @@ class Repository {
         return mutableLiveData
     }
 
-    suspend fun fetchHadiths(isEnglish: Boolean): Quote {
+    suspend fun fetchHadiths(language: String): Quote {
         val quote: Quote
-        if (isEnglish) language = "en"
         val data = rootCollection.document(language).collection("quotes")
             .document("hadiths").get().await()
         val id: String = data.id
@@ -113,10 +107,9 @@ class Repository {
         return quote
     }
 
-    suspend fun fetchCollection(isEnglish: Boolean): MutableLiveData<MutableList<Collection>> {
+    suspend fun fetchCollection(language: String): MutableLiveData<MutableList<Collection>> {
         val mutableLiveData = MutableLiveData<MutableList<Collection>>()
         val dataList: MutableList<Collection> = mutableListOf()
-        if (isEnglish) language = "en"
         rootCollection.document(language).collection("collection").get().await()
             .forEach {
                 val id: String = it.id
@@ -129,10 +122,9 @@ class Repository {
         return mutableLiveData
     }
 
-    suspend fun fetchVideos(isEnglish: Boolean): MutableLiveData<MutableList<Video>> {
+    suspend fun fetchVideos(language: String): MutableLiveData<MutableList<Video>> {
         val mutableLiveData = MutableLiveData<MutableList<Video>>()
         val dataList: MutableList<Video> = mutableListOf()
-        if (isEnglish) language = "en"
         rootCollection.document(language).collection("collection").document("videos")
             .collection("videos").get().await()
             .forEach {
@@ -147,12 +139,11 @@ class Repository {
     }
 
     suspend fun fetchTopics(
-        isEnglish: Boolean,
+        language: String,
         topic: String,
     ): MutableLiveData<MutableList<Topic>> {
         val mutableLiveData = MutableLiveData<MutableList<Topic>>()
         val dataList: MutableList<Topic> = mutableListOf()
-        if (isEnglish) language = "en"
         rootCollection.document(language).collection("collection").document(topic)
             .collection(topic).get().await()
             .forEach {
@@ -169,11 +160,10 @@ class Repository {
     }
 
     suspend fun fetchTopic(
-        isEnglish: Boolean,
+        language: String,
         collectionID: String,
         documentId: String,
     ): Topic {
-        if (isEnglish) language = "en"
         val data = rootCollection.document(language).collection("collection").document(collectionID)
             .collection(collectionID).document(documentId).get().await()
         val id: String = data.id
@@ -186,12 +176,11 @@ class Repository {
     }
 
     suspend fun rateTopic(
-        isEnglish: Boolean,
+        language: String,
         collectionID: String,
         documentID: String,
         isGood: Boolean,
     ) {
-        if (isEnglish) language = "en"
         val value: Double = if (isGood) 1.0 else -1.0
         rootCollection.document(language).collection("collection").document(collectionID)
             .collection(collectionID).document(documentID)

@@ -7,6 +7,6 @@
     <color name="colorBackground">#151515</color>
     <color name="textColor">#fff</color>
     <color name="actionbar_background">#17223b</color>
-    <color name="actionbar_text">#ffffff</color>
+    <color name="actionbar_text">#eeeeee</color>
     <color name="titleColor">#FFFFFF</color>
 </resources>

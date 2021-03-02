@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -11,20 +12,17 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
+import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.viewModel.DataViewModel
 import com.ramadan.islami.ui.viewModel.Listener
-import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycler_view.*
 import kotlinx.coroutines.*
 
 class Hadiths : AppCompatActivity(), Listener {
     private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
-    private var isEnglish: Boolean = true
-    private val localeHelper = LocaleHelper()
     private lateinit var recyclerView: RecyclerView
 
     override fun onStart() {
@@ -35,13 +33,12 @@ class Hadiths : AppCompatActivity(), Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recycler_view)
-        isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         viewModel.listener = this
         recyclerViewAdapter = RecyclerViewAdapter()
         recyclerView = findViewById(R.id.global_recycler_view)
-        recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = recyclerViewAdapter
         recyclerView.setPadding(16, 32, 16, 16)
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
@@ -71,7 +68,7 @@ class Hadiths : AppCompatActivity(), Listener {
             101 -> if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, getString(R.string.could_download), Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, getString(R.string.couldnot_download), Toast.LENGTH_LONG)
+                Toast.makeText(this, getString(R.string.couldnotDownload), Toast.LENGTH_LONG)
                     .show()
             }
             else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -80,9 +77,10 @@ class Hadiths : AppCompatActivity(), Listener {
 
     private suspend fun observeDate() {
         GlobalScope.launch(Dispatchers.IO) {
-            viewModel.fetchHadiths(isEnglish).also {
+            viewModel.fetchHadiths(language).also {
                 withContext(Dispatchers.Main) {
                     recyclerViewAdapter.setQuotesDataList(it.hadiths)
+                    progress.visibility = View.GONE
                     Toast.makeText(this@Hadiths,
                         getString(R.string.could_download),
                         Toast.LENGTH_LONG).show()

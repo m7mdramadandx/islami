@@ -16,54 +16,71 @@ import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.ramadan.islami.R
 import com.ramadan.islami.R.string
-import com.ramadan.islami.data.model.Collection
 import com.squareup.picasso.Picasso
-import de.blox.graphview.Node
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.random.Random
+import com.ramadan.islami.data.model.Collection as CollectionModel
 
 
 class Utils(val context: Context) {
 
+    val suggestionMutableList: MutableList<CollectionModel> = mutableListOf(
+        CollectionModel("hadithOfDay", context.getString(string.hadithOfDay), defaultImg),
+        CollectionModel("muhammadStory", context.getString(string.muhammad), defaultImg),
+        CollectionModel("hadiths", context.getString(string.hadiths), defaultImg),
+    )
+    val dailyMutableList: MutableList<CollectionModel> = mutableListOf(
+        CollectionModel("prayerTimes", context.getString(string.prayerTimes), defaultImg),
+        CollectionModel("qibla", context.getString(string.qibla), defaultImg),
+        CollectionModel("allahNames", context.getString(string.allahNames), defaultImg),
+        CollectionModel("dateConversion", context.getString(string.dateConversion), defaultImg),
+    )
+    val familyTreeMutableList: MutableList<CollectionModel> = mutableListOf(
+        CollectionModel("muhammadTree", context.getString(string.muhammadFamilyTree), defaultImg),
+        CollectionModel("prophetsTree", context.getString(string.prophetsFamilyTree), defaultImg),
+        CollectionModel("bigTree", context.getString(string.bigFamilyTree), defaultImg),
+    )
+
+
     private val dirPath = Environment.getExternalStoragePublicDirectory(
-        Environment.DIRECTORY_PICTURES).path + "/" + context.getString(R.string.app_name)
+        Environment.DIRECTORY_PICTURES).path + "/" + context.getString(string.app_name)
 
     val input = "abc"
     var array = Array(input.length) { input[it].toString() }
 
 
-    val adam = Node(context.getString(string.adam))
-    val empty = Node("\t\t\t\t\t\t\t\t")
-    val arabized_arabs = Node(context.getString(string.arabized_arabs))
-    val dashed = Node("--")
-    val aron = Node(context.getString(string.aron))
-    val abraham = Node(context.getString(string.abraham))
-    val david = Node(context.getString(string.david))
-    val dhul_kifl = Node(context.getString(string.dhul_kifl))
-    val elisha = Node(context.getString(string.elisha))
-    val elias = Node(context.getString(string.elias))
-    val heber = Node(context.getString(string.heber))
-    val idriss = Node(context.getString(string.idriss))
-    val isaac = Node(context.getString(string.isaac))
-    val ishmael = Node(context.getString(string.ishmael))
-    val jacob = Node(context.getString(string.jacob))
-    val jonah = Node(context.getString(string.jonah))
-    val jesus = Node(context.getString(string.jesus))
-    val jethri = Node(context.getString(string.jethri))
-    val job = Node(context.getString(string.job))
-    val joseph = Node(context.getString(string.joseph))
-    val john = Node(context.getString(string.john))
-    val lot = Node(context.getString(string.lot))
-    val methuselah = Node(context.getString(string.methuselah))
-    val moses = Node(context.getString(string.moses))
-    val muhammad = Node(context.getString(string.muhammad))
-    val noah = Node(context.getString(string.noah))
-    val solomon = Node(context.getString(string.solomon))
-    val zacharia = Node(context.getString(string.zacharia))
+//    val adam = Node(context.getString(string.adam))
+//    val empty = Node("\t\t\t\t\t\t\t\t")
+//    val arabized_arabs = Node(context.getString(string.arabized_arabs))
+//    val dashed = Node("--")
+//    val aron = Node(context.getString(string.aron))
+//    val abraham = Node(context.getString(string.abraham))
+//    val david = Node(context.getString(string.david))
+//    val dhul_kifl = Node(context.getString(string.dhul_kifl))
+//    val elisha = Node(context.getString(string.elisha))
+//    val elias = Node(context.getString(string.elias))
+//    val heber = Node(context.getString(string.heber))
+//    val idriss = Node(context.getString(string.idriss))
+//    val isaac = Node(context.getString(string.isaac))
+//    val ishmael = Node(context.getString(string.ishmael))
+//    val jacob = Node(context.getString(string.jacob))
+//    val jonah = Node(context.getString(string.jonah))
+//    val jesus = Node(context.getString(string.jesus))
+//    val jethri = Node(context.getString(string.jethri))
+//    val job = Node(context.getString(string.job))
+//    val joseph = Node(context.getString(string.joseph))
+//    val john = Node(context.getString(string.john))
+//    val lot = Node(context.getString(string.lot))
+//    val methuselah = Node(context.getString(string.methuselah))
+//    val moses = Node(context.getString(string.moses))
+//    val muhammad = Node(context.getString(string.muhammad))
+//    val noah = Node(context.getString(string.noah))
+//    val solomon = Node(context.getString(string.solomon))
+//    val zacharia = Node(context.getString(string.zacharia))
 
 
     fun showImg(imgUrl: String, context: Context) {
@@ -87,7 +104,7 @@ class Utils(val context: Context) {
                 Snackbar.make(it, context.getString(string.saved), Snackbar.LENGTH_LONG).show()
             } catch (e: Exception) {
                 Snackbar.make(it,
-                    context.getString(string.failed_to_download),
+                    context.getString(string.failedToDownload),
                     Snackbar.LENGTH_LONG).show()
             }
             false
@@ -143,19 +160,3 @@ fun dateOfDay(): String {
     return simpleDateFormat.format(Date())
 }
 
-val suggestionMutableList: MutableList<Collection> = mutableListOf(
-    Collection("hadithOfDay", "hadithOfDay", defaultImg),
-    Collection("muhammadStory", "muhammadStory", defaultImg),
-    Collection("hadith", "hadith", defaultImg),
-)
-val dailyMutableList: MutableList<Collection> = mutableListOf(
-    Collection("prayerTimes", "prayerTimes", defaultImg),
-    Collection("qibla", "qibla", defaultImg),
-    Collection("allahNames", "allah names", defaultImg),
-    Collection("dateConversion", "dateConversion", defaultImg),
-)
-val familyTreeMutableList: MutableList<Collection> = mutableListOf(
-    Collection("muhammadTree", "muhammadTree", defaultImg),
-    Collection("prophetsTree", "prophetsTree", defaultImg),
-    Collection("bigTree", "bigTree", defaultImg),
-)

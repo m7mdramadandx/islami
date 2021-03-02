@@ -1,4 +1,4 @@
-package com.ramadan.islami.ui.activity
+package com.ramadan.islami.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,6 +19,7 @@ class Feedback : Fragment(), Listener {
     private lateinit var sendBtn: Button
     private lateinit var msgEditText: EditText
     private lateinit var progress: ProgressBar
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,7 +34,7 @@ class Feedback : Fragment(), Listener {
             if (msgEditText.text.toString().isNotEmpty())
                 viewModel.sendFeedback(msgEditText.text.toString())
             else
-                onFailure(getString(R.string.no_words_to_send))
+                onFailure(getString(R.string.noWordsToSend))
         }
         return root
     }

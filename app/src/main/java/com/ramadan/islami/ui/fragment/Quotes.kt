@@ -1,4 +1,4 @@
-package com.ramadan.islami.ui.activity
+package com.ramadan.islami.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,17 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
+import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.viewModel.DataViewModel
 import com.ramadan.islami.ui.viewModel.Listener
-import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycler_view.*
 
 class Quotes : Fragment(), Listener {
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
-    private var isEnglish: Boolean = true
-    private val localeHelper = LocaleHelper()
     private var recyclerView: RecyclerView? = null
 
     override fun onStart() {
@@ -35,7 +33,6 @@ class Quotes : Fragment(), Listener {
         savedInstanceState: Bundle?,
     ): View? {
         val root = inflater.inflate(R.layout.recycler_view, container, false)
-        isEnglish = localeHelper.getDefaultLanguage(root.context) == "en"
         viewModel.listener = this
         recyclerViewAdapter = RecyclerViewAdapter()
         recyclerView = root.findViewById(R.id.global_recycler_view)
@@ -55,7 +52,7 @@ class Quotes : Fragment(), Listener {
 
 
     private fun observeDate() {
-        viewModel.fetchQuotes(isEnglish)
+        viewModel.fetchQuotes(language)
             .observe(this, { recyclerViewAdapter.setCategoryDataList(it) })
     }
 

@@ -1,4 +1,4 @@
-package com.ramadan.islami.ui.activity
+package com.ramadan.islami.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
-import com.ramadan.islami.utils.familyTreeMutableList
+import com.ramadan.islami.utils.Utils
 
 
 class FamilyTree : Fragment() {
@@ -40,7 +40,7 @@ class FamilyTree : Fragment() {
     }
 
     private fun observeData() {
-        recyclerViewAdapter.setFamilyTreeDataList(familyTreeMutableList)
+        recyclerViewAdapter.setFamilyTreeDataList(Utils(requireContext()).familyTreeMutableList, false)
     }
 
 }

@@ -9,16 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
+import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.VideoAdapter
 import com.ramadan.islami.ui.viewModel.DataViewModel
 import com.ramadan.islami.ui.viewModel.Listener
-import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycler_view.*
 
 class VideoList : AppCompatActivity(), Listener {
     private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
-    private var isEnglish: Boolean = true
-    private val localeHelper = LocaleHelper()
     private lateinit var videoAdapter: VideoAdapter
     private lateinit var recyclerView: RecyclerView
 
@@ -33,7 +31,6 @@ class VideoList : AppCompatActivity(), Listener {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = intent.getStringExtra("title")
-        isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         recyclerView = findViewById(R.id.global_recycler_view)
         videoAdapter = VideoAdapter(lifecycle)
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
@@ -42,8 +39,7 @@ class VideoList : AppCompatActivity(), Listener {
     }
 
     private fun observeData() {
-        viewModel.fetchVideos(isEnglish)
-            .observe(this, { videoAdapter.setVideoSectionsList(it) })
+        viewModel.fetchVideos(language).observe(this, { videoAdapter.setVideoSectionsList(it) })
     }
 
     override fun onSupportNavigateUp(): Boolean {

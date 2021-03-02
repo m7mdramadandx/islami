@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ramadan.islami">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -35,10 +37,11 @@
         </activity>
         <activity
             android:name=".ui.activity.MainActivity"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme_NoActionBar" />
         <activity
             android:name=".ui.activity.HadithOfDay"
-            android:label="@string/hadith_of_day" />
+            android:label="@string/hadithOfDay" />
         <activity
             android:name=".ui.activity.Quote"
             android:label="@string/quotes" />
@@ -47,28 +50,29 @@
             android:label="@string/stories" />
         <activity
             android:name=".ui.activity.DateConversion"
-            android:label="@string/muhammad_family_tree" />
+            android:label="@string/dateConversion"
+            android:theme="@style/AppTheme_Material" />
         <activity
             android:name=".ui.activity.AllahNames"
             android:label="@string/allahNames" />
-        <activity
-            android:name=".ui.activity.Qibla"
-            android:label="@string/qibla" />
         <activity
             android:name=".ui.activity.PrayerTimes"
             android:label="@string/prayerTimes" />
         <activity
             android:name=".ui.activity.Hadiths"
             android:label="@string/hadiths" />
-        <activity android:name=".ui.activity.TopicList" />
-        <activity android:name=".ui.activity.VideoList" />
+        <activity
+            android:name=".ui.activity.Qibla"
+            android:label="@string/qibla" />
         <activity
             android:name=".ui.activity.TopicDetails"
-            android:theme="@style/AppTheme_NoActionBar" />
+            android:theme="@style/AppTheme_Material_NoActionBar" />
         <activity
             android:name=".ui.activity.Video"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
             android:hardwareAccelerated="true" />
+        <activity android:name=".ui.activity.VideoList" />
+        <activity android:name=".ui.activity.TopicList" />
     </application>
 
 </manifest>

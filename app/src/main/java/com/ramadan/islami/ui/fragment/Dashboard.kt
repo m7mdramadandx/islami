@@ -1,4 +1,4 @@
-package com.ramadan.islami.ui.activity
+package com.ramadan.islami.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -14,12 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
+import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.adapter.SliderAdapter
 import com.ramadan.islami.ui.viewModel.ApiViewModel
@@ -30,7 +28,6 @@ import com.ramadan.islami.utils.*
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
-import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import kotlinx.android.synthetic.main.dashboard.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -46,8 +43,6 @@ class Dashboard : Fragment(), Listener {
             ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").hijriCalender()))
         ).get(ApiViewModel::class.java)
     }
-    private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
-    private lateinit var mInterstitialAd: InterstitialAd
     private lateinit var mAdView: AdView
     private lateinit var suggestionRCV: RecyclerView
     private lateinit var dailyRCV: RecyclerView
@@ -60,21 +55,19 @@ class Dashboard : Fragment(), Listener {
     private val storiesAdapter = SliderAdapter()
     private val quotesAdapter = SliderAdapter()
     private val localeHelper = LocaleHelper()
-    private var isEnglish: Boolean = false
-    private val appURL = ""
+    private lateinit var utils: Utils
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        isEnglish = localeHelper.getDefaultLanguage(context) == "en"
         suggestionAdapter = RecyclerViewAdapter()
         dailyAdapter = RecyclerViewAdapter()
         familyTreeAdapter = RecyclerViewAdapter()
+        utils = Utils(context)
         observeData()
     }
 
     override fun onResume() {
         super.onResume()
-        isEnglish = localeHelper.getDefaultLanguage(requireContext()) == "en"
         observeData()
     }
 
@@ -119,25 +112,12 @@ class Dashboard : Fragment(), Listener {
 //        quotesCard.setOnClickListener { startActivity(Intent(this, QuoteDashboard::class.java)) }
 //        familyTreeCard.setOnClickListener { startActivity(Intent(this, FamilyTree::class.java)) }
 //        topics.setOnClickListener { startActivity(Intent(this, Collection::class.java)) }
-        val adRequest = AdRequest.Builder().build()
-        InterstitialAd.load(root.context,
-            "ca-app-pub-3940256099942544/1033173712",
-            adRequest,
-            object : InterstitialAdLoadCallback() {
-                override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.d("TOTO", adError.message)
-                }
 
-                override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                    mInterstitialAd = interstitialAd
-//                    mInterstitialAd.show(this@Dashboard)
-                }
-            })
         return root
     }
 
     private fun observeData() {
-        apiViewModel.hijriCalender().observe(this, {
+        apiViewModel.hijriCalender(dateOfDay()).observe(this, {
             when (it.status) {
                 ResStatus.LOADING -> hijriDate.text = "تاريخ اليوم"
                 ResStatus.SUCCESS -> {
@@ -148,13 +128,13 @@ class Dashboard : Fragment(), Listener {
             }
         })
 
-        suggestionAdapter.setSuggestionDataList(suggestionMutableList)
-        dataViewModel.fetchStories(isEnglish)
+        suggestionAdapter.setSuggestionDataList(utils.suggestionMutableList)
+        dataViewModel.fetchStories(language)
             .observe(this, { storiesAdapter.setStoriesDataList(it) })
-        dailyAdapter.setDailyDataList(dailyMutableList)
-        dataViewModel.fetchQuotes(isEnglish)
+        dailyAdapter.setDailyDataList(utils.dailyMutableList)
+        dataViewModel.fetchQuotes(language)
             .observe(this, { quotesAdapter.setCategoryDataList(it) })
-        familyTreeAdapter.setFamilyTreeDataList(familyTreeMutableList)
+        familyTreeAdapter.setFamilyTreeDataList(utils.familyTreeMutableList, true)
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) { mAdView.loadAd(AdRequest.Builder().build()) }
         }

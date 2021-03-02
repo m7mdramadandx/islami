@@ -22,6 +22,28 @@
 
     </style>
 
+    <style name="AppTheme_Material" parent="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
+        <item name="android:actionMenuTextColor">@color/actionbar_text</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="cardViewStyle">@style/CardViewStyle</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColorHighlight">@color/colorAccent</item>
+        <item name="fontFamily">@font/aref_font_family</item>
+        <item name="navigationIconTint">@color/colorAccent</item>
+        <item name="android:navigationIcon">@drawable/slide_menu</item>
+
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="actionMenuTextColor">@color/actionbar_text</item>
+        <item name="android:fontFamily">@font/aref_font_family</item>
+
+    </style>
+
     <style name="CardViewStyle" parent="CardView">
         <item name="cardCornerRadius">10dp</item>
         <item name="cardUseCompatPadding">true</item>
@@ -48,6 +70,11 @@
     </style>
 
     <style name="AppTheme_NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme_Material_NoActionBar" parent="AppTheme_Material">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

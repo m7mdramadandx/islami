@@ -3,16 +3,9 @@ package com.ramadan.islami.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.View
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -35,9 +28,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fixedBanner: AdView
     private val appURL = ""
 
+    companion object {
+        var language: String = "ar"
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        if (localeHelper.getDefaultLanguage(this) == "en") language = "en"
         val toolbar: Toolbar = findViewById(R.id.toolbar)
 //        toolbar.setTitleTextColor(resources.R.color.colorPrimary)
         setSupportActionBar(toolbar)
@@ -60,18 +59,6 @@ class MainActivity : AppCompatActivity() {
         listener =
             NavController.OnDestinationChangedListener { controller, destination, arguments ->
                 when (destination.id) {
-                    R.id.nav_language -> {
-                        alertDialog("Language setting",
-                            getString(R.string.arabic),
-                            getString(R.string.english),
-                            true)
-                    }
-                    R.id.nav_theme -> {
-                        alertDialog("Theme setting",
-                            getString(R.string.light_theme),
-                            getString(R.string.night_theme),
-                            false)
-                    }
                     R.id.nav_share -> {
                         Intent(Intent.ACTION_SEND).also {
                             it.type = "text/plain"
@@ -93,11 +80,6 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         navController.addOnDestinationChangedListener(listener)
     }
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        menuInflater.inflate(R.menu.main, menu)
-//        return true
-//    }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
@@ -114,58 +96,4 @@ class MainActivity : AppCompatActivity() {
         localeHelper.setLocale(this, localeHelper.getDefaultLanguage(this))
     }
 
-    private fun alertDialog(
-        title: String,
-        optionOne: String,
-        optionTwo: String,
-        isLanguageSetting: Boolean,
-    ) {
-        val dialogBuilder = AlertDialog.Builder(this)
-        val view = View.inflate(this, R.layout.alert_dialog, null)
-        dialogBuilder.setView(view)
-        val alertDialog = dialogBuilder.create()
-        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        alertDialog.show()
-        alertDialog.setCancelable(true)
-        view.findViewById<TextView>(R.id.title).text = title
-        val group = view.findViewById<RadioGroup>(R.id.group)
-        val option1 = view.findViewById<RadioButton>(R.id.option1).also { it.text = optionOne }
-        val option2 = view.findViewById<RadioButton>(R.id.option2).also { it.text = optionTwo }
-        if (isLanguageSetting) {
-            if (localeHelper.getDefaultLanguage(this) == "ar") option1.isChecked = true
-            else option2.isChecked = true
-            group.setOnCheckedChangeListener { _, checkedId ->
-                when (checkedId) {
-                    R.id.option1 -> localeHelper.persist(this, "ar")
-                    R.id.option2 -> localeHelper.persist(this, "en")
-                }
-                startActivity(Intent(this, MainActivity::class.java)).also { finish() }
-            }
-        } else {
-            val option3 =
-                view.findViewById<RadioButton>(R.id.option3)
-                    .also { it.visibility = View.VISIBLE }
-            when (localeHelper.getDefaultTheme(this)) {
-                "light" -> option1.isChecked = true
-                "night" -> option2.isChecked = true
-                else -> option3.isChecked = true
-            }
-            group.setOnCheckedChangeListener { _, checkedId ->
-                when (checkedId) {
-                    R.id.option1 -> {
-                        localeHelper.setTheme(this, "light")
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    }
-                    R.id.option2 -> {
-                        localeHelper.setTheme(this, "night")
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    }
-                    R.id.option3 -> {
-                        localeHelper.setTheme(this, "follow_system")
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                    }
-                }
-            }
-        }
-    }
 }

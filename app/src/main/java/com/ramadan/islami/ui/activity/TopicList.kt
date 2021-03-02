@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
+import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.TopicAdapter
 import com.ramadan.islami.ui.viewModel.DataViewModel
 import com.ramadan.islami.ui.viewModel.Listener
@@ -41,7 +42,7 @@ class TopicList : AppCompatActivity(), Listener {
 
     private fun observeData() {
         val collectionId = intent.getStringExtra("collectionId").toString()
-        viewModel.fetchTopics(isEnglish, collectionId)
+        viewModel.fetchTopics(language, collectionId)
             .observe(this, { topicAdapter.setTopicDataList(it, collectionId) })
     }
 

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
-    tools:context=".ui.activity.Dashboard">
+    tools:context=".ui.fragment.Dashboard">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -243,7 +243,6 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/familyTreeCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"

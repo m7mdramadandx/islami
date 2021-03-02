@@ -1,4 +1,4 @@
-package com.ramadan.islami.ui.activity
+package com.ramadan.islami.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -12,20 +12,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
+import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.viewModel.DataViewModel
 import com.ramadan.islami.ui.viewModel.Listener
-import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycler_view.*
 
 class Stories : Fragment(), Listener {
     private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private lateinit var storyAdapter: RecyclerViewAdapter
-    private var isEnglish: Boolean = true
-    private val localeHelper = LocaleHelper()
 
     override fun onAttach(context: Context) {
-        isEnglish = localeHelper.getDefaultLanguage(context) == "en"
         super.onAttach(context)
         observeDate()
     }
@@ -53,7 +50,7 @@ class Stories : Fragment(), Listener {
     }
 
     private fun observeDate() {
-        viewModel.fetchStories(isEnglish).observe(this, { storyAdapter.setStoriesDataList(it) })
+        viewModel.fetchStories(language).observe(this, { storyAdapter.setStoriesDataList(it) })
     }
 
     override fun onStarted() {

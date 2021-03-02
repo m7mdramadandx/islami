@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.viewModel.DataViewModel
-import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.data.model.Quote as QuoteModel
 
 
@@ -25,8 +24,6 @@ class Quote : AppCompatActivity() {
     private lateinit var versesAdapter: RecyclerViewAdapter
     private lateinit var hadithsAdapter: RecyclerViewAdapter
     private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
-    private var isEnglish: Boolean = true
-    private val localeHelper = LocaleHelper()
     private lateinit var quote: QuoteModel
 
 
@@ -35,7 +32,6 @@ class Quote : AppCompatActivity() {
         setContentView(R.layout.quote)
         supportActionBar!!.setHomeButtonEnabled(true)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         quote = intent?.getSerializableExtra("quotes") as QuoteModel
         supportActionBar!!.title = quote.title
 //        viewModel.listener = this
@@ -77,7 +73,7 @@ class Quote : AppCompatActivity() {
             101 -> if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, getString(R.string.could_download), Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, getString(R.string.couldnot_download), Toast.LENGTH_LONG)
+                Toast.makeText(this, getString(R.string.couldnotDownload), Toast.LENGTH_LONG)
                     .show()
             }
             else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)

@@ -30,26 +30,18 @@
             android:icon="@drawable/family_tree"
             android:title="@string/prophets_tree" />
     </group>
-
-    <group
-        android:id="@+id/settings"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_language"
-            android:icon="@drawable/language"
-            android:title="@string/language" />
-        <item
-            android:id="@+id/nav_theme"
-            android:icon="@drawable/theme"
-            android:title="@string/themes" />
-    </group>
     <group
         android:id="@+id/extra"
-        android:checkableBehavior="single">
+        android:checkableBehavior="single"
+        android:menuCategory="secondary">
         <item
             android:id="@+id/nav_feedback"
             android:icon="@drawable/feedback"
             android:title="@string/send_feedback" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/share"
+            android:title="@string/settings" />
         <item
             android:id="@+id/nav_rate"
             android:icon="@drawable/rating"

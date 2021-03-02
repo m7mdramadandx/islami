@@ -1,4 +1,4 @@
-package com.ramadan.islami.ui.activity
+package com.ramadan.islami.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
-import com.ramadan.islami.utils.dailyMutableList
+import com.ramadan.islami.utils.Utils
 
 class Daily : Fragment() {
 
@@ -36,13 +36,13 @@ class Daily : Fragment() {
         progress = root.findViewById(R.id.progress)
         progress.visibility = View.GONE
         recyclerView = root.findViewById(R.id.global_recycler_view)
-        recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
+        recyclerView.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = recyclerViewAdapter
         return root
     }
 
     private fun observeData() {
-        recyclerViewAdapter.setDailyDataList(dailyMutableList)
+        recyclerViewAdapter.setDailyDataList(Utils(requireContext()).dailyMutableList)
     }
 
 

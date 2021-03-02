@@ -3,25 +3,26 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/familyTreeCard"
     android:layout_width="wrap_content"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     card_view:cardBackgroundColor="@color/colorSecondary">
 
     <ImageView
+        android:id="@+id/familyTreeImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@android:color/transparent"
-        android:paddingHorizontal="64dp"
-        android:paddingBottom="24dp"
-        android:src="@drawable/aaa" />
+        android:adjustViewBounds="true"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="24dp"
+        android:src="@drawable/family_tree_img" />
 
     <TextView
         android:id="@+id/familyTreeName"
-        style="@style/TextAppearance.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:text="frfrf"
-        android:textColor="#fff" />
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold" />
 </androidx.cardview.widget.CardView>

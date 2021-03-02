@@ -16,13 +16,13 @@ class DataViewModel : ViewModel() {
     private val repo by lazy { Repository() }
     var listener: Listener? = null
 
-    fun fetchSuggestion(isEnglish: Boolean): LiveData<MutableList<Story>> {
+    fun fetchSuggestion(language: String): LiveData<MutableList<Story>> {
         listener?.onStarted()
         val mutableData = MutableLiveData<MutableList<Story>>()
         GlobalScope.launch(Dispatchers.IO) {
             delay(300)
             withContext(Dispatchers.Main) {
-                repo.fetchSuggestion(isEnglish).observeForever { mutableData.value = it }
+                repo.fetchSuggestion(language).observeForever { mutableData.value = it }
                 if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
                 else listener?.onFailure("Try Again ")
             }
@@ -30,13 +30,13 @@ class DataViewModel : ViewModel() {
         return mutableData
     }
 
-    fun fetchStories(isEnglish: Boolean): LiveData<MutableList<Story>> {
+    fun fetchStories(language: String): LiveData<MutableList<Story>> {
         listener?.onStarted()
         val mutableData = MutableLiveData<MutableList<Story>>()
         GlobalScope.launch(Dispatchers.IO) {
             delay(300)
             withContext(Dispatchers.Main) {
-                repo.fetchAllStories(isEnglish).observeForever { mutableData.value = it }
+                repo.fetchAllStories(language).observeForever { mutableData.value = it }
                 if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
                 else listener?.onFailure("Try Again ")
             }
@@ -44,21 +44,21 @@ class DataViewModel : ViewModel() {
         return mutableData
     }
 
-    suspend fun fetchStory(isEnglish: Boolean, storyID: String): Story {
+    suspend fun fetchStory(language: String, storyID: String): Story {
         listener?.onStarted()
-        val story = repo.fetchStory(isEnglish, storyID)
+        val story = repo.fetchStory(language, storyID)
         if (story.text.isNotEmpty()) listener?.onSuccess()
         else listener?.onFailure("Try Again ")
         return story
     }
 
-    fun fetchQuotes(isEnglish: Boolean): LiveData<MutableList<Quote>> {
+    fun fetchQuotes(language: String): LiveData<MutableList<Quote>> {
         listener?.onStarted()
         val mutableData = MutableLiveData<MutableList<Quote>>()
         GlobalScope.launch(Dispatchers.IO) {
             delay(300)
             withContext(Dispatchers.Main) {
-                repo.fetchQuotes(isEnglish).observeForever { mutableData.value = it }
+                repo.fetchQuotes(language).observeForever { mutableData.value = it }
                 if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
                 else listener?.onFailure("Try Again ")
             }
@@ -66,21 +66,21 @@ class DataViewModel : ViewModel() {
         return mutableData
     }
 
-    suspend fun fetchHadiths(isEnglish: Boolean): Quote {
+    suspend fun fetchHadiths(language: String): Quote {
         listener?.onStarted()
-        val quote = repo.fetchHadiths(isEnglish)
+        val quote = repo.fetchHadiths(language)
         if (quote.hadiths.isNotEmpty()) listener?.onSuccess()
         else listener?.onFailure("Try Again ")
         return quote
     }
 
-    fun fetchCollection(isEnglish: Boolean): LiveData<MutableList<ModelCollection>> {
+    fun fetchCollection(language: String): LiveData<MutableList<ModelCollection>> {
         listener?.onStarted()
         val mutableData = MutableLiveData<MutableList<ModelCollection>>()
         GlobalScope.launch(Dispatchers.IO) {
             delay(300)
             withContext(Dispatchers.Main) {
-                repo.fetchCollection(isEnglish).observeForever { mutableData.value = it }
+                repo.fetchCollection(language).observeForever { mutableData.value = it }
                 if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
                 else listener?.onFailure("Try Again ")
             }
@@ -88,13 +88,13 @@ class DataViewModel : ViewModel() {
         return mutableData
     }
 
-    fun fetchVideos(isEnglish: Boolean): LiveData<MutableList<Video>> {
+    fun fetchVideos(language: String): LiveData<MutableList<Video>> {
         listener?.onStarted()
         val mutableData = MutableLiveData<MutableList<Video>>()
         GlobalScope.launch(Dispatchers.IO) {
             delay(300)
             withContext(Dispatchers.Main) {
-                repo.fetchVideos(isEnglish)
+                repo.fetchVideos(language)
                     .observeForever { videosList -> mutableData.value = videosList }
                 if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
                 else listener?.onFailure("Try Again ")
@@ -103,13 +103,13 @@ class DataViewModel : ViewModel() {
         return mutableData
     }
 
-    fun fetchTopics(isEnglish: Boolean, topic: String): MutableLiveData<MutableList<Topic>> {
+    fun fetchTopics(language: String, topic: String): MutableLiveData<MutableList<Topic>> {
         listener?.onStarted()
         val mutableData = MutableLiveData<MutableList<Topic>>()
         GlobalScope.launch(Dispatchers.IO) {
             delay(300)
             withContext(Dispatchers.Main) {
-                repo.fetchTopics(isEnglish, topic)
+                repo.fetchTopics(language, topic)
                     .observeForever { mutableData.value = it }
                 if (mutableData.value!!.isNotEmpty()) listener?.onSuccess()
                 else listener?.onFailure("Try Again ")
@@ -118,19 +118,19 @@ class DataViewModel : ViewModel() {
         return mutableData
     }
 
-    suspend fun fetchTopic(isEnglish: Boolean, collectionID: String, documentId: String): Topic {
+    suspend fun fetchTopic(language: String, collectionID: String, documentId: String): Topic {
         listener?.onStarted()
-        val topic = repo.fetchTopic(isEnglish, collectionID, documentId)
+        val topic = repo.fetchTopic(language, collectionID, documentId)
         if (topic.id.isNotEmpty()) listener?.onSuccess()
         else listener?.onFailure("Try Again ")
         return topic
     }
 
-    fun rateTopic(isEnglish: Boolean, collectionID: String, topicID: String, isGood: Boolean) {
+    fun rateTopic(language: String, collectionID: String, topicID: String, isGood: Boolean) {
         listener?.onStarted()
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                repo.rateTopic(isEnglish, collectionID, topicID, isGood)
+                repo.rateTopic(language, collectionID, topicID, isGood)
                 listener?.onSuccess()
             } catch (e: FirebaseFirestoreException) {
                 listener?.onFailure(e.message!!)

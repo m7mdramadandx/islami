@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/allahNameCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginTop="16dp"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginTop="4dp"
     card_view:cardBackgroundColor="@color/colorPrimary">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/allahNameNumber"
@@ -26,14 +28,14 @@
             android:id="@+id/allahName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="3"
             android:textColor="#fff" />
 
         <TextView
             android:id="@+id/allahNameMeaning"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="5"
+            android:layout_weight="7"
             android:textColor="#fff" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

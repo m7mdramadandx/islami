@@ -1,8 +1,5 @@
 package com.ramadan.islami.ui.activity
 
-import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
-import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -11,9 +8,9 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
@@ -21,13 +18,15 @@ import com.ramadan.islami.data.model.PrayerData
 import com.ramadan.islami.ui.viewModel.ApiViewModel
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.utils.ResStatus
-import com.ramadan.islami.utils.dateOfDay
 import com.ramadan.islami.utils.debug_tag
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuObject
 import com.yalantis.contextmenu.lib.MenuParams
 import kotlinx.android.synthetic.main.date_conversion.*
+import net.alhazmy13.hijridatepicker.date.gregorian.GregorianDatePickerDialog
+import net.alhazmy13.hijridatepicker.date.hijri.HijriDatePickerDialog
 import java.util.*
+import com.ramadan.islami.data.model.Calender as CalenderModel
 
 
 class DateConversion : AppCompatActivity() {
@@ -37,12 +36,14 @@ class DateConversion : AppCompatActivity() {
         ).get(ApiViewModel::class.java)
     }
     private lateinit var result: PrayerData
+    private lateinit var calenderModel: CalenderModel
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
-    private lateinit var _calender: Calendar
+    private lateinit var calendar: Calendar
+    private lateinit var hijriToday: UmmalquraCalendar
+    private lateinit var gregorianToday: Calendar
 
     override fun onStart() {
         super.onStart()
-        observeDate()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,30 +51,53 @@ class DateConversion : AppCompatActivity() {
         setContentView(R.layout.date_conversion)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        gregorianToday = Calendar.getInstance()
+        hijriToday = UmmalquraCalendar()
+        calendarView.setSelectedDate(hijriToday)
+//        calendarView.setOnDateChangeListener { calendarView, i, i2, i3 ->
+////            hijri.text = i2.toString()
+//        }
+        hijri.setOnClickListener {
+            val dpd = HijriDatePickerDialog.newInstance(
+                { view, year, monthOfYear, dayOfMonth ->
+                    setHijriDate(year, monthOfYear, dayOfMonth)
+                },
+                hijriToday[UmmalquraCalendar.YEAR],
+                hijriToday[UmmalquraCalendar.MONTH],
+                hijriToday[UmmalquraCalendar.DAY_OF_MONTH])
+            dpd.vibrate(true)
+            dpd.accentColor = resources.getColor(R.color.colorPrimary)
+            dpd.setOkText(R.string.ok)
+            dpd.setCancelText(R.string.cancel)
+            dpd.show(supportFragmentManager, "HijriDatePickerDialog")
+        }
+        gregorian.setOnClickListener {
+            val dpd = GregorianDatePickerDialog.newInstance(
+                { view, year, monthOfYear, dayOfMonth ->
+                    setGregorianDate(year, monthOfYear, dayOfMonth)
+                },
+                gregorianToday[Calendar.YEAR],
+                gregorianToday[Calendar.MONTH],
+                gregorianToday[Calendar.DAY_OF_MONTH],
+            )
+            dpd.vibrate(true)
+            dpd.accentColor = resources.getColor(R.color.colorPrimary)
+            dpd.setOkText(R.string.ok)
+            dpd.setCancelText(R.string.cancel)
+            dpd.show(supportFragmentManager, "GregorianDatePickerDialog")
+
+        }
         initMenuFragment()
     }
 
-    private fun observeDate() {
-        viewModel.fetchPrayers().observe(this, {
+    private fun fetchHijri(gregorianDate: String) {
+        viewModel.hijriCalender(gregorianDate).observe(this, {
             when (it.status) {
                 ResStatus.LOADING -> progress.visibility = View.VISIBLE
                 ResStatus.SUCCESS -> {
-                    it.data!!.data.forEach { prayerData ->
-                        if (dateOfDay() == prayerData.date.gregorian.date) result = prayerData
-                    }
                     progress.visibility = View.GONE
-//                    title = it.data!!.data.first().date.hijri.month.ar
-                    _calender = Calendar.getInstance()
-//                    showDate(year, month+1, day);
-                    showDate(
-                        result.date.hijri.year.toInt(),
-                        result.date.hijri.month.number,
-                        result.date.hijri.day.toInt(),
-                    )
-                    calender.date = _calender.timeInMillis
-//                    calender.date = result.date.hijri.date.toLong()
-//                    Log.e(debug_tag, result.date.hijri.date.toLong().toString())
-//                    Log.e(debug_tag, result.date.hijri.year.toLong().toString())
+                    hijri.text = it.data!!.data.hijri.date
+                    Log.e(debug_tag, it.data.data.hijri.date)
                 }
                 ResStatus.ERROR -> {
                     progress.visibility = View.GONE
@@ -83,36 +107,34 @@ class DateConversion : AppCompatActivity() {
         })
     }
 
-    private val myDateListener: OnDateSetListener =
-        OnDateSetListener { arg0, arg1, arg2, arg3 -> // TODO Auto-generated method stub
-            // arg1 = year
-            // arg2 = month
-            // arg3 = day
-            showDate(arg1, arg2 + 1, arg3)
-        }
-
-    private fun showDate(year: Int, month: Int, day: Int) {
-        dateView.text = StringBuilder().append(day).append("/")
-            .append(month).append("/").append(year)
+    private fun fetchGregorian(hijriDate: String) {
+        viewModel.gregorianCalender(hijriDate).observe(this, {
+            when (it.status) {
+                ResStatus.LOADING -> progress.visibility = View.VISIBLE
+                ResStatus.SUCCESS -> {
+                    progress.visibility = View.GONE
+                    gregorian.text = it.data!!.data.gregorian.date
+                }
+                ResStatus.ERROR -> {
+                    progress.visibility = View.GONE
+                    Log.e(debug_tag, it.message.toString())
+                }
+            }
+        })
     }
 
-    override fun onCreateDialog(id: Int): Dialog? {
-        return if (id == 999) {
-            DatePickerDialog(
-                this,
-                myDateListener,
-                result.date.hijri.year.toInt(),
-                result.date.hijri.month.number,
-                result.date.hijri.day.toInt(),
-            )
-        } else null
+    private fun setHijriDate(year: Int, month: Int, day: Int) {
+        val hijriDate = StringBuilder().append(day).append("/")
+            .append(month + 1).append("/").append(year)
+        hijri.text = hijriDate
+        fetchGregorian(hijriDate.toString())
     }
 
-    fun setDate(view: View?) {
-        showDialog(999)
-        Toast.makeText(applicationContext, "ca",
-            Toast.LENGTH_SHORT)
-            .show()
+    private fun setGregorianDate(year: Int, month: Int, day: Int) {
+        val gregorianDate = StringBuilder().append(day).append("/")
+            .append(month + 1).append("/").append(year)
+        gregorian.text = gregorianDate
+        fetchHijri(gregorianDate.toString())
     }
 
 
@@ -133,7 +155,8 @@ class DateConversion : AppCompatActivity() {
 
     private fun showContextMenuDialogFragment() {
         if (supportFragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
-            contextMenuDialogFragment.show(supportFragmentManager, ContextMenuDialogFragment.TAG)
+            contextMenuDialogFragment.show(supportFragmentManager,
+                ContextMenuDialogFragment.TAG)
         }
     }
 

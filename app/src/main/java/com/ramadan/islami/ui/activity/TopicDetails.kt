@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Topic
+import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.TopicAdapter
 import com.ramadan.islami.ui.viewModel.DataViewModel
-import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.content_nested_view.*
 import kotlinx.android.synthetic.main.topic.*
 import kotlinx.coroutines.Dispatchers
@@ -26,13 +26,10 @@ class TopicDetails : AppCompatActivity() {
     private var topic: Topic? = null
     private lateinit var topicAdapter: TopicAdapter
     private lateinit var recyclerView: RecyclerView
-    private var isEnglish: Boolean = true
-    private val localeHelper = LocaleHelper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.topic)
-        isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         if (intent.hasExtra("topic")) topic = intent.getSerializableExtra("topic") as Topic
@@ -46,10 +43,10 @@ class TopicDetails : AppCompatActivity() {
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = topicAdapter
         good.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.rateTopic(isEnglish, collectionId, topic!!.id, isChecked)
+            viewModel.rateTopic(language, collectionId, topic!!.id, isChecked)
         }
         bad.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.rateTopic(isEnglish, collectionId, topic!!.id, !isChecked)
+            viewModel.rateTopic(language, collectionId, topic!!.id, !isChecked)
         }
         toolbar_layout.setContentScrimColor(resources.getColor(R.color.colorPrimary))
         toolbar_layout.setCollapsedTitleTextColor(Color.WHITE)
@@ -69,7 +66,7 @@ class TopicDetails : AppCompatActivity() {
         val collectionID = intent.getStringExtra("collectionID").toString()
         val documentID = intent.getStringExtra("documentID").toString()
         GlobalScope.launch(Dispatchers.IO) {
-            topic = viewModel.fetchTopic(isEnglish, collectionID, documentID)
+            topic = viewModel.fetchTopic(language, collectionID, documentID)
             withContext(Dispatchers.Main) { observeData() }
         }
     }

@@ -6,6 +6,7 @@ import android.content.Intent
 import com.onesignal.OSNotificationOpenedResult
 import com.onesignal.OneSignal
 import com.ramadan.islami.ui.activity.*
+import com.ramadan.islami.ui.fragment.Dashboard
 
 class NotificationOpenedHandler(base: Context?) : OneSignal.OSNotificationOpenedHandler,
     ContextWrapper(base) {

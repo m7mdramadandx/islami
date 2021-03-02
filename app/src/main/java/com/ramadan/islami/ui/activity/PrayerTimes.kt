@@ -1,13 +1,20 @@
 package com.ramadan.islami.ui.activity
 
 //import com.ramadan.islami.data.model.Qibla
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.location.LocationServices
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
@@ -20,18 +27,17 @@ import com.ramadan.islami.utils.debug_tag
 import kotlinx.android.synthetic.main.table_layout.*
 
 class PrayerTimes : AppCompatActivity() {
-
     private val viewModel by lazy {
         ViewModelProvider(this,
             ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").hijriCalender()))
         ).get(ApiViewModel::class.java)
     }
+    private val ACCESS_FINE_LOCATION_REQ_CODE = 35
     private lateinit var tableAdapter: TableAdapter
     private lateinit var recyclerView: RecyclerView
 
     override fun onStart() {
         super.onStart()
-        observeDate()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,15 +47,60 @@ class PrayerTimes : AppCompatActivity() {
         tableAdapter = TableAdapter()
         recyclerView.adapter = tableAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
+            if (!checkIfAlreadyPermission()) {
+                requestForSpecificPermission()
+            } else {
+                val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+                fusedLocationClient.lastLocation.addOnSuccessListener {
+                    observeDate(it.latitude, it.longitude)
+                }
+                fusedLocationClient.lastLocation.addOnFailureListener {
+                    Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
     }
 
-    private fun observeDate() {
-        viewModel.fetchPrayers().observe(this, {
+
+    private fun checkIfAlreadyPermission(): Boolean {
+        val result =
+            ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+        return result == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestForSpecificPermission() {
+        ActivityCompat.requestPermissions(this,
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), ACCESS_FINE_LOCATION_REQ_CODE)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray,
+    ) {
+        when (requestCode) {
+            ACCESS_FINE_LOCATION_REQ_CODE -> if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "guides", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, getString(R.string.couldnotDownload), Toast.LENGTH_LONG)
+                    .show()
+            }
+            else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        }
+    }
+
+
+    private fun observeDate(lat: Double, lon: Double) {
+        viewModel.fetchPrayers(lat, lon).observe(this, {
             when (it.status) {
                 ResStatus.LOADING -> progress.visibility = View.VISIBLE
                 ResStatus.SUCCESS -> {
                     progress.visibility = View.GONE
-                    title = it.data!!.data.first().date.gregorian.month.en
+                    val month = it.data!!.data.first().date.gregorian.month.en
+                    title = "${getString(R.string.prayerTimesTitle)} $month"
                     tableAdapter.setPrayerDataList(it.data.data as MutableList<PrayerData>)
                 }
                 ResStatus.ERROR -> {
@@ -59,13 +110,4 @@ class PrayerTimes : AppCompatActivity() {
             }
         })
     }
-
-//    private fun retrieveList(users: Prayers) {
-//        println(users.data)
-//        println(users[1])
-//        adapter.apply {
-//            addUsers(users)
-//            notifyDataSetChanged()
-//        }
-//    }
 }

@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 
 class ApiViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
-//    fun allahNames() = liveData(Dispatchers.Main) {
+    //    fun allahNames() = liveData(Dispatchers.Main) {
 //        emit(Resource.loading(null))
 //        try {
 //            emit(Resource.success(mainRepository.allahNames()))
@@ -25,28 +25,28 @@ class ApiViewModel(private val mainRepository: MainRepository) : ViewModel() {
         }
     }
 
-    fun gregorianCalender() = liveData(Dispatchers.Main) {
+    fun gregorianCalender(dateOfDay: String) = liveData(Dispatchers.Main) {
         emit(Resource.loading(null))
         try {
-            emit(Resource.success(mainRepository.gregorianCalender()))
+            emit(Resource.success(mainRepository.gregorianCalender(dateOfDay)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!"))
         }
     }
 
-    fun hijriCalender() = liveData(Dispatchers.Main) {
+    fun hijriCalender(dateOfDay: String) = liveData(Dispatchers.Main) {
         emit(Resource.loading(null))
         try {
-            emit(Resource.success(mainRepository.hijriCalender()))
+            emit(Resource.success(mainRepository.hijriCalender(dateOfDay)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!"))
         }
     }
 
-    fun fetchPrayers() = liveData(Dispatchers.Main) {
+    fun fetchPrayers(lat: Double, lon: Double) = liveData(Dispatchers.Main) {
         emit(Resource.loading(null))
         try {
-            emit(Resource.success(mainRepository.fetchPrayers()))
+            emit(Resource.success(mainRepository.fetchPrayers(lat, lon)))
         } catch (exception: Exception) {
             emit(Resource.error(null, exception.message ?: "Error Occurred!"))
         }

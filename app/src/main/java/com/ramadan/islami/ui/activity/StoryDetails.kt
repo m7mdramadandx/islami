@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Story
+import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.StoryAdapter
 import com.ramadan.islami.ui.viewModel.DataViewModel
-import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.Utils
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuGravity
@@ -33,13 +33,10 @@ class StoryDetails : AppCompatActivity() {
     private lateinit var story: Story
     private lateinit var storyAdapter: StoryAdapter
     private lateinit var recyclerView: RecyclerView
-    private var isEnglish: Boolean = true
-    private val localeHelper = LocaleHelper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recycler_view)
-        isEnglish = localeHelper.getDefaultLanguage(this) == "en"
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         recyclerView = findViewById(R.id.global_recycler_view)
@@ -62,7 +59,7 @@ class StoryDetails : AppCompatActivity() {
     private fun fetchNotification() {
         val storyID = intent.getStringExtra("storyID").toString()
         GlobalScope.launch(Dispatchers.IO) {
-            story = viewModel.fetchStory(isEnglish, storyID)
+            story = viewModel.fetchStory(language, storyID)
             withContext(Dispatchers.Main) { observeData() }
         }
     }

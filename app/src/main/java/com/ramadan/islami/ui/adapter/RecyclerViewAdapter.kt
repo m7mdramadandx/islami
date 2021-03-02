@@ -2,7 +2,7 @@ package com.ramadan.islami.ui.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +14,6 @@ import com.ramadan.islami.data.model.Quote
 import com.ramadan.islami.data.model.Story
 import com.ramadan.islami.ui.activity.*
 import com.ramadan.islami.utils.Utils
-import com.ramadan.islami.utils.debug_tag
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.allah_name_item.view.*
 import kotlinx.android.synthetic.main.card_item.view.*
@@ -27,6 +26,7 @@ import com.ramadan.islami.ui.activity.StoryDetails as ActivityStory
 
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>() {
+    var isDashboard = true
     private var suggestionList = mutableListOf<Collection>()
     private var storiesList = mutableListOf<Story>()
     private var dailyList = mutableListOf<Collection>()
@@ -67,7 +67,8 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         notifyDataSetChanged()
     }
 
-    fun setFamilyTreeDataList(data: MutableList<Collection>) {
+    fun setFamilyTreeDataList(data: MutableList<Collection>, isDashboard: Boolean) {
+        this.isDashboard = isDashboard
         familyTreeList = data
         notifyDataSetChanged()
     }
@@ -99,7 +100,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             quotesList.isNotEmpty() -> holder.quoteView(quotesList[position])
             collectionList.isNotEmpty() -> holder.collectionView(collectionList[position])
             familyTreeList.isNotEmpty() -> holder.familyTreeView(familyTreeList[position])
-            allahNames.isNotEmpty() -> holder.allahNamesView(allahNames[position])
+            allahNames.isNotEmpty() -> holder.allahNamesView(allahNames[position], position)
         }
     }
 
@@ -123,7 +124,8 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
 
         fun suggestionView(collection: Collection) {
             Picasso.get().load(collection.image).error(R.drawable.failure_img)
-                .placeholder(R.drawable.load_img).into(itemView.cardImg)
+                .placeholder(R.drawable.load_img).into(itemView.cardImage)
+            itemView.cardImage.maxWidth = 150
             itemView.cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
             itemView.setOnClickListener {
                 when (collection.id) {
@@ -139,7 +141,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
 
         fun storyView(story: Story) {
             Picasso.get().load(story.image).error(R.drawable.failure_img)
-                .placeholder(R.drawable.load_img).into(itemView.cardImg)
+                .placeholder(R.drawable.load_img).into(itemView.cardImage)
             itemView.cardName.text = story.title.toUpperCase(Locale.ENGLISH)
             itemView.setOnClickListener {
                 Intent(ctx, ActivityStory::class.java).apply {
@@ -151,7 +153,12 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
 
         fun dailyView(collection: Collection) {
             itemView.cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
-            itemView.cardImg.maxHeight = 140
+            if (isDashboard) {
+                itemView.cardItem.setCardBackgroundColor(Color.WHITE)
+                itemView.cardImage.maxWidth =
+                    ctx.resources.getDimension(R.dimen.familyTree).toInt()
+                itemView.cardImage.maxHeight = 140
+            }
             itemView.setOnClickListener {
                 when (collection.id) {
                     "prayerTimes" -> ctx.startActivity(Intent(ctx, PrayerTimes::class.java))
@@ -164,7 +171,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
 
         fun quotesList(quote: Quote) {
             Picasso.get().load(quote.image).error(R.drawable.error_img)
-                .placeholder(R.drawable.failure_img).into(itemView.cardImg)
+                .placeholder(R.drawable.failure_img).into(itemView.cardImage)
             itemView.cardName.text = quote.title
             itemView.setOnClickListener {
                 Intent(ctx, QuoteActivity::class.java).apply {
@@ -176,14 +183,14 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
 
         fun quoteView(quotes: String) {
             Picasso.get().load(quotes).error(R.drawable.error_img)
-                .placeholder(R.drawable.failure_img).into(itemView.cardImg)
+                .placeholder(R.drawable.failure_img).into(itemView.cardImage)
             itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
             itemView.setOnClickListener { util.showImg(quotes, ctx) }
         }
 
         fun collectionView(collection: Collection) {
             Picasso.get().load(collection.image).error(R.drawable.error_img)
-                .placeholder(R.drawable.failure_img).into(itemView.cardImg)
+                .placeholder(R.drawable.failure_img).into(itemView.cardImage)
             itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
             itemView.cardName.text = collection.title
             itemView.setOnClickListener {
@@ -208,6 +215,11 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
 
         fun familyTreeView(collection: Collection) {
             itemView.familyTreeName.text = collection.title.toUpperCase(Locale.ENGLISH)
+            if (isDashboard) {
+                itemView.familyTreeCard.setCardBackgroundColor(Color.WHITE)
+                itemView.familyTreeImage.maxWidth =
+                    ctx.resources.getDimension(R.dimen.familyTree).toInt()
+            }
             itemView.setOnClickListener {
                 when (collection.id) {
                     "muhammadTree" -> ctx.startActivity(Intent(ctx, PrayerTimes::class.java))
@@ -217,8 +229,12 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             }
         }
 
-        fun allahNamesView(allahNames: AllahNames.Data?) {
-            Log.e(debug_tag, allahNames.toString())
+        fun allahNamesView(allahNames: AllahNames.Data?, position: Int) {
+            if (position % 2 == 0) {
+                itemView.allahNameCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorSecondary))
+            } else {
+                itemView.allahNameCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
+            }
             itemView.allahNameNumber.text = allahNames?.number.toString() ?: "0"
             itemView.allahName.text = allahNames?.name ?: "l"
             itemView.allahNameMeaning.text = allahNames?.en?.meaning ?: "2"
