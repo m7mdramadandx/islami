@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
+import com.ramadan.islami.data.listener.DataListener
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.viewModel.DataViewModel
-import com.ramadan.islami.ui.viewModel.Listener
 import kotlinx.android.synthetic.main.recycler_view.*
 
-class Topics : Fragment(), Listener {
+class Topics : Fragment(), DataListener {
     private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private lateinit var collectionAdapter: RecyclerViewAdapter
     private lateinit var recyclerView: RecyclerView
@@ -38,7 +38,7 @@ class Topics : Fragment(), Listener {
         collectionAdapter = RecyclerViewAdapter()
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = collectionAdapter
-        viewModel.listener = this
+        viewModel.dataListener = this
         return root
     }
 

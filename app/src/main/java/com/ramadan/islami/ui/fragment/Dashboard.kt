@@ -2,40 +2,41 @@ package com.ramadan.islami.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
+import com.ramadan.islami.data.listener.DataListener
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.adapter.SliderAdapter
 import com.ramadan.islami.ui.viewModel.ApiViewModel
 import com.ramadan.islami.ui.viewModel.DataViewModel
-import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
-import com.ramadan.islami.utils.*
+import com.ramadan.islami.utils.Utils
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
-import kotlinx.android.synthetic.main.dashboard.*
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class Dashboard : Fragment(), Listener {
+class Dashboard : Fragment(), DataListener {
 
     private val dataViewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private val apiViewModel by lazy {
@@ -54,8 +55,8 @@ class Dashboard : Fragment(), Listener {
     private lateinit var familyTreeAdapter: RecyclerViewAdapter
     private val storiesAdapter = SliderAdapter()
     private val quotesAdapter = SliderAdapter()
-    private val localeHelper = LocaleHelper()
     private lateinit var utils: Utils
+    private lateinit var hijriToday: UmmalquraCalendar
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -63,6 +64,14 @@ class Dashboard : Fragment(), Listener {
         dailyAdapter = RecyclerViewAdapter()
         familyTreeAdapter = RecyclerViewAdapter()
         utils = Utils(context)
+        hijriToday = UmmalquraCalendar()
+//        hijriToday.set(
+//            hijriToday[UmmalquraCalendar.YEAR],
+//            hijriToday[UmmalquraCalendar.MONTH],
+//            hijriToday[UmmalquraCalendar.DAY_OF_MONTH],
+//            hijriToday[UmmalquraCalendar.HOUR_OF_DAY],
+//            hijriToday[UmmalquraCalendar.MINUTE],
+//        )
         observeData()
     }
 
@@ -76,9 +85,11 @@ class Dashboard : Fragment(), Listener {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val root = inflater.inflate(R.layout.dashboard, container, false)
+        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
         mAdView = root.findViewById(R.id.adView)
-        dataViewModel.listener = this
+        dataViewModel.dataListener = this
+        val hijriDate = root.findViewById<TextView>(R.id.hijriDate)
+        hijriDate.text = hijriToday.time.toString()
 
         suggestionRCV = root.findViewById(R.id.suggestionRecyclerView)
         suggestionRCV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
@@ -117,16 +128,16 @@ class Dashboard : Fragment(), Listener {
     }
 
     private fun observeData() {
-        apiViewModel.hijriCalender(dateOfDay()).observe(this, {
-            when (it.status) {
-                ResStatus.LOADING -> hijriDate.text = "تاريخ اليوم"
-                ResStatus.SUCCESS -> {
-                    (it.data!!.data.hijri.weekday.ar + getString(R.string.mn) + it.data.data.hijri.day + it.data.data.hijri.month.ar + "\t" + it.data.data.hijri.year)
-                        .also { date -> hijriDate.text = date }
-                }
-                ResStatus.ERROR -> Log.e(debug_tag, it.message.toString())
-            }
-        })
+//        apiViewModel.hijriCalender(dateOfDay()).observe(this, {
+//            when (it.status) {
+//                ResStatus.LOADING -> hijriDate.text = "تاريخ اليوم"
+//                ResStatus.SUCCESS -> {
+//                    (it.data!!.data.hijri.weekday.ar + getString(R.string.mn) + it.data.data.hijri.day + it.data.data.hijri.month.ar + "\t" + it.data.data.hijri.year)
+//                        .also { date -> hijriDate.text = date }
+//                }
+//                ResStatus.ERROR -> Log.e(debug_tag, it.message.toString())
+//            }
+//        })
 
         suggestionAdapter.setSuggestionDataList(utils.suggestionMutableList)
         dataViewModel.fetchStories(language)
@@ -139,28 +150,6 @@ class Dashboard : Fragment(), Listener {
             withContext(Dispatchers.Main) { mAdView.loadAd(AdRequest.Builder().build()) }
         }
     }
-
-//    override fun attachBaseContext(base: Context?) {
-//        super.attachBaseContext(localeHelper.setLocale(base!!,
-//            localeHelper.getDefaultLanguage(base)))
-//    }
-//
-//    override fun onConfigurationChanged(newConfig: Configuration) {
-//        super.onConfigurationChanged(newConfig)
-//        localeHelper.setLocale(this, localeHelper.getDefaultLanguage(this))
-//    }
-//
-//    override fun onSupportNavigateUp(): Boolean {
-//        onBackPressed()
-//        return true
-//    }
-
-//    private fun showContextMenuDialogFragment() {
-//        if (supportFragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
-//            contextMenuDialogFragment.show(supportFragmentManager,
-//                ContextMenuDialogFragment.TAG)
-//        }
-//    }
 
 //    private fun initMenuFragment() {
 //        val menuParams = MenuParams(

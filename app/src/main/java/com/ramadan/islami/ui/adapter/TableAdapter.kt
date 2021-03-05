@@ -69,4 +69,5 @@ class TableAdapter : RecyclerView.Adapter<TableAdapter.ViewHolder>() {
         }
 
     }
+
 }

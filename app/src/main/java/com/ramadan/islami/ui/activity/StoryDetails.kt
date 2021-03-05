@@ -17,6 +17,7 @@ import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.StoryAdapter
 import com.ramadan.islami.ui.viewModel.DataViewModel
 import com.ramadan.islami.utils.Utils
+import com.ramadan.islami.utils.showBrief
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuGravity
 import com.yalantis.contextmenu.lib.MenuObject
@@ -91,7 +92,7 @@ class StoryDetails : AppCompatActivity() {
         contextMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams).apply {
             menuItemClickListener = { view, position ->
                 when (position) {
-                    0 -> utils.showBrief(story.title, story.brief, view.context)
+                    0 -> showBrief(story.title, story.brief, view.context)
                     1 -> {
                         val intent = Intent()
                         intent.action = Intent.ACTION_VIEW

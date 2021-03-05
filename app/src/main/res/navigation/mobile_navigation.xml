@@ -9,7 +9,14 @@
         android:id="@+id/nav_dashboard"
         android:name="com.ramadan.islami.ui.fragment.Dashboard"
         android:label="@string/app_name"
-        tools:layout="@layout/dashboard">
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/action_nav_dashboard_to_nav_quran"
+            app:destination="@id/nav_quran"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_nav_dashboard_to_nav_stories"
             app:destination="@id/nav_stories" />
@@ -35,6 +42,26 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_quran"
+        android:name="com.ramadan.islami.ui.fragment.QuranSuraFragment"
+        android:label="@string/quran"
+        tools:layout="@layout/fragment_quran_sura">
+        <action
+            android:id="@+id/action_navigation_quran_to_quran_ayah_fragment"
+            app:destination="@id/quran_ayah_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/quran_ayah_fragment"
+        android:name="com.ramadan.islami.ui.fragment.QuranAyahFragment"
+        android:label="Ayah Quran"
+        tools:layout="@layout/fragment_quran_ayah">
+        <argument
+            android:name="sura"
+            app:argType="com.ramadan.islami.data.model.Surah" />
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_stories"
         android:name="com.ramadan.islami.ui.fragment.Stories"
         android:label="@string/stories"
@@ -45,6 +72,7 @@
         android:name="com.ramadan.islami.ui.fragment.Daily"
         android:label="@string/daily"
         tools:layout="@layout/recycler_view" />
+
     <fragment
         android:id="@+id/nav_quotes"
         android:name="com.ramadan.islami.ui.fragment.Quotes"
@@ -57,7 +85,6 @@
         android:label="@string/topics"
         tools:layout="@layout/recycler_view" />
 
-
     <fragment
         android:id="@+id/nav_family_tree"
         android:name="com.ramadan.islami.ui.fragment.FamilyTree"
@@ -68,11 +95,12 @@
         android:id="@+id/nav_feedback"
         android:name="com.ramadan.islami.ui.fragment.Feedback"
         android:label="@string/send_feedback"
-        tools:layout="@layout/feedback" />
+        tools:layout="@layout/fragmnet_feedback" />
+
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.ramadan.islami.ui.fragment.Settings"
         android:label="@string/settings"
-        tools:layout="@layout/settings" />
+        tools:layout="@layout/fragmnet_settings" />
 
 </navigation>

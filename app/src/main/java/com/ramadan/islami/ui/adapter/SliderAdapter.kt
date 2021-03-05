@@ -9,7 +9,7 @@ import com.ramadan.islami.ui.activity.Quote
 import com.ramadan.islami.ui.activity.StoryDetails
 import com.smarteist.autoimageslider.SliderViewAdapter
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.slider_img.view.*
+import kotlinx.android.synthetic.main.item_slider_img.view.*
 import com.ramadan.islami.data.model.Quote as QuoteModel
 import com.ramadan.islami.data.model.Story as StoryModel
 
@@ -33,7 +33,7 @@ class SliderAdapter : SliderViewAdapter<SliderAdapter.CustomView>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): CustomView {
         val inflate: View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.slider_img, parent, false)
+            .inflate(R.layout.item_slider_img, parent, false)
         return CustomView(inflate)
     }
 

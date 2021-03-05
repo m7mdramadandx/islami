@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:animationCache="true"
             android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/content_item" />
+            tools:listitem="@layout/Item_content" />
 
         <RadioGroup
             android:layout_width="match_parent"

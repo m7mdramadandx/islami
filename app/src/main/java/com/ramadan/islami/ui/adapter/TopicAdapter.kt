@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.activity.TopicDetails
-import kotlinx.android.synthetic.main.content_item.view.*
-import kotlinx.android.synthetic.main.tile_item.view.*
+import kotlinx.android.synthetic.main.item_content.view.*
+import kotlinx.android.synthetic.main.item_tile.view.*
 import com.ramadan.islami.data.model.Topic as TopicModel
 
 
@@ -33,11 +33,11 @@ class TopicAdapter : RecyclerView.Adapter<TopicAdapter.CustomView>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomView {
         return if (topicList.size > 0) {
             val view: View = LayoutInflater.from(parent.context)
-                .inflate(R.layout.tile_item, parent, false)
+                .inflate(R.layout.item_tile, parent, false)
             CustomView(view)
         } else {
             val view: View = LayoutInflater.from(parent.context)
-                .inflate(R.layout.content_item, parent, false)
+                .inflate(R.layout.item_content, parent, false)
             CustomView(view)
         }
     }

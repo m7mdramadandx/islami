@@ -11,10 +11,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ramadan.islami.R
+import com.ramadan.islami.data.listener.DataListener
 import com.ramadan.islami.ui.viewModel.DataViewModel
-import com.ramadan.islami.ui.viewModel.Listener
 
-class Feedback : Fragment(), Listener {
+class Feedback : Fragment(), DataListener {
     private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private lateinit var sendBtn: Button
     private lateinit var msgEditText: EditText
@@ -25,8 +25,8 @@ class Feedback : Fragment(), Listener {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val root = inflater.inflate(R.layout.feedback, container, false)
-        viewModel.listener = this
+        val root = inflater.inflate(R.layout.fragmnet_feedback, container, false)
+        viewModel.dataListener = this
         sendBtn = root.findViewById(R.id.sendBtn)
         msgEditText = root.findViewById(R.id.msgEditText)
         progress = root.findViewById(R.id.progress)

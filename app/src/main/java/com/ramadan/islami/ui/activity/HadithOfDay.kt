@@ -12,7 +12,7 @@ import com.ramadan.islami.ui.viewModel.ApiViewModel
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.utils.ResStatus
 import com.ramadan.islami.utils.debug_tag
-import kotlinx.android.synthetic.main.hadith_of_day.*
+import kotlinx.android.synthetic.main.activity_hadith_of_day.*
 
 class HadithOfDay : AppCompatActivity() {
 
@@ -24,7 +24,7 @@ class HadithOfDay : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.hadith_of_day)
+        setContentView(R.layout.activity_hadith_of_day)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setupObservers()

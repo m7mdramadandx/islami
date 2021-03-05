@@ -29,7 +29,7 @@ class Quote : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.quote)
+        setContentView(R.layout.activity_quote)
         supportActionBar!!.setHomeButtonEnabled(true)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         quote = intent?.getSerializableExtra("quotes") as QuoteModel
@@ -86,8 +86,8 @@ class Quote : AppCompatActivity() {
     }
 
     private fun observeDate() {
-        versesAdapter.setQuotesDataList(quote.verses)
-        hadithsAdapter.setQuotesDataList(quote.hadiths)
+        versesAdapter.setQuotesDataList(quote.verses, false)
+        hadithsAdapter.setQuotesDataList(quote.hadiths, false)
     }
 
 //    override fun onStarted() {}

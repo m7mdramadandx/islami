@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.debug_tag
-import kotlinx.android.synthetic.main.story_item.view.*
+import kotlinx.android.synthetic.main.item_story.view.*
 
 class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
     private var text = ArrayList<String>()
@@ -26,7 +26,7 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoryAdapter.CustomView {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.story_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_story, parent, false)
         return CustomView(view)
     }
 

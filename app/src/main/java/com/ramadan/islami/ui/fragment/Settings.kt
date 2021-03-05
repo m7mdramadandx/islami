@@ -32,7 +32,7 @@ class Settings : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val root = inflater.inflate(R.layout.settings, container, false)
+        val root = inflater.inflate(R.layout.fragmnet_settings, container, false)
         val language = root.findViewById<CardView>(R.id.language)
         language.setOnClickListener {
             alertDialog("Language setting",

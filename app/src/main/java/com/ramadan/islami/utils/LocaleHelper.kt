@@ -17,6 +17,13 @@ class LocaleHelper {
         private const val MARKS = "marks"
     }
 
+
+    fun getAyahFontSize(context: Context): String? {
+        val prefs: SharedPreferences = getDefaultSharedPreferences(context)
+        return prefs.getString("ayah_text_preference", null)
+    }
+
+
     fun setMark(context: Context, part: String) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
         val editor = prefs.edit()
@@ -29,7 +36,7 @@ class LocaleHelper {
 
     fun getMark(context: Context): MutableSet<String> {
         val prefs = getDefaultSharedPreferences(context)
-        return prefs.getStringSet(MARKS, emptySet())!!
+        return prefs.getStringSet(MARKS, emptySet()) as MutableSet<String>
     }
 
     fun setTheme(context: Context, theme: String?) {

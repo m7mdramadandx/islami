@@ -9,15 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
+import com.ramadan.islami.data.listener.DataListener
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.TopicAdapter
 import com.ramadan.islami.ui.viewModel.DataViewModel
-import com.ramadan.islami.ui.viewModel.Listener
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycler_view.*
 
 
-class TopicList : AppCompatActivity(), Listener {
+class TopicList : AppCompatActivity(), DataListener {
     private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
@@ -37,7 +37,7 @@ class TopicList : AppCompatActivity(), Listener {
         topicAdapter = TopicAdapter()
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = topicAdapter
-        viewModel.listener = this
+        viewModel.dataListener = this
     }
 
     private fun observeData() {

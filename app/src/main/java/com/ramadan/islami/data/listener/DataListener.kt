@@ -1,6 +1,6 @@
-package com.ramadan.islami.ui.viewModel
+package com.ramadan.islami.data.listener
 
-interface Listener {
+interface DataListener {
     fun onStarted()
     fun onSuccess()
     fun onFailure(message: String)

@@ -13,8 +13,8 @@ import com.ramadan.islami.data.model.Topic
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.TopicAdapter
 import com.ramadan.islami.ui.viewModel.DataViewModel
+import kotlinx.android.synthetic.main.activity_topic.*
 import kotlinx.android.synthetic.main.content_nested_view.*
-import kotlinx.android.synthetic.main.topic.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -29,7 +29,7 @@ class TopicDetails : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.topic)
+        setContentView(R.layout.activity_topic)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         if (intent.hasExtra("topic")) topic = intent.getSerializableExtra("topic") as Topic

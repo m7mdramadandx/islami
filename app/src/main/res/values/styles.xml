@@ -35,7 +35,6 @@
         <item name="android:textColorHighlight">@color/colorAccent</item>
         <item name="fontFamily">@font/aref_font_family</item>
         <item name="navigationIconTint">@color/colorAccent</item>
-        <item name="android:navigationIcon">@drawable/slide_menu</item>
 
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/MyActionBar</item>
@@ -85,10 +84,7 @@
 
     <style name="dashboard_title" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">#fff</item>
-        <item name="android:textSize">32sp</item>
         <item name="android:fontFamily">@font/aref_bold</item>
-        <item name="android:drawableStart">@drawable/ic_notification</item>
-        <item name="android:drawable">@drawable/logo</item>
     </style>
 
     <style name="table_row_item" parent="@android:style/TextAppearance.Small">

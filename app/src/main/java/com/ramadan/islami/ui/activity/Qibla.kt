@@ -17,7 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationServices
 import com.ramadan.islami.R
-import kotlinx.android.synthetic.main.qibla.*
+import kotlinx.android.synthetic.main.activity_qibla.*
 import kotlin.math.roundToInt
 
 class Qibla : AppCompatActivity() {
@@ -37,7 +37,7 @@ class Qibla : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.qibla)
+        setContentView(R.layout.activity_qibla)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         needleAnimation = RotateAnimation(currentNeedleDegree,

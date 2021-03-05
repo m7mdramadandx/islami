@@ -54,7 +54,7 @@
                     ads:layout_constraintBottom_toBottomOf="parent"
                     ads:layout_constraintEnd_toEndOf="parent"
                     ads:layout_constraintStart_toStartOf="parent"
-                    tools:listitem="@layout/card_item" />
+                    tools:listitem="@layout/item_card" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -142,7 +142,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="42dp"
                         android:paddingHorizontal="8dp"
-                        tools:listitem="@layout/card_item" />
+                        tools:listitem="@layout/item_card" />
 
                 </RelativeLayout>
 
@@ -271,7 +271,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="42dp"
                         android:paddingHorizontal="8dp"
-                        tools:listitem="@layout/family_tree_card" />
+                        tools:listitem="@layout/item_family_tree" />
 
                 </RelativeLayout>
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
@@ -9,6 +8,10 @@
             android:id="@+id/nav_dashboard"
             android:icon="@drawable/dashboard"
             android:title="@string/dashboard" />
+        <item
+            android:id="@+id/nav_quran"
+            android:icon="@drawable/qibla"
+            android:title="@string/quran" />
         <item
             android:id="@+id/nav_stories"
             android:icon="@drawable/story"

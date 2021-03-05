@@ -1,5 +1,6 @@
 package com.ramadan.islami.utils
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Bitmap
@@ -13,6 +14,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
 import com.ramadan.islami.R
 import com.ramadan.islami.R.string
@@ -45,106 +48,73 @@ class Utils(val context: Context) {
         CollectionModel("bigTree", context.getString(string.bigFamilyTree), defaultImg),
     )
 
+}
 
-    private val dirPath = Environment.getExternalStoragePublicDirectory(
-        Environment.DIRECTORY_PICTURES).path + "/" + context.getString(string.app_name)
+private val dirPath = Environment.getExternalStoragePublicDirectory(
+    Environment.DIRECTORY_PICTURES).path + "/islami"
 
-    val input = "abc"
-    var array = Array(input.length) { input[it].toString() }
+val input = "abc"
+var array = Array(input.length) { input[it].toString() }
 
-
-//    val adam = Node(context.getString(string.adam))
-//    val empty = Node("\t\t\t\t\t\t\t\t")
-//    val arabized_arabs = Node(context.getString(string.arabized_arabs))
-//    val dashed = Node("--")
-//    val aron = Node(context.getString(string.aron))
-//    val abraham = Node(context.getString(string.abraham))
-//    val david = Node(context.getString(string.david))
-//    val dhul_kifl = Node(context.getString(string.dhul_kifl))
-//    val elisha = Node(context.getString(string.elisha))
-//    val elias = Node(context.getString(string.elias))
-//    val heber = Node(context.getString(string.heber))
-//    val idriss = Node(context.getString(string.idriss))
-//    val isaac = Node(context.getString(string.isaac))
-//    val ishmael = Node(context.getString(string.ishmael))
-//    val jacob = Node(context.getString(string.jacob))
-//    val jonah = Node(context.getString(string.jonah))
-//    val jesus = Node(context.getString(string.jesus))
-//    val jethri = Node(context.getString(string.jethri))
-//    val job = Node(context.getString(string.job))
-//    val joseph = Node(context.getString(string.joseph))
-//    val john = Node(context.getString(string.john))
-//    val lot = Node(context.getString(string.lot))
-//    val methuselah = Node(context.getString(string.methuselah))
-//    val moses = Node(context.getString(string.moses))
-//    val muhammad = Node(context.getString(string.muhammad))
-//    val noah = Node(context.getString(string.noah))
-//    val solomon = Node(context.getString(string.solomon))
-//    val zacharia = Node(context.getString(string.zacharia))
-
-
-    fun showImg(imgUrl: String, context: Context) {
-        val dialogBuilder = AlertDialog.Builder(context)
-        val view = LayoutInflater.from(context).inflate(R.layout.img_dialog, null)
-        dialogBuilder.setView(view)
-        val alertDialog = dialogBuilder.create()
-        val imageView: ImageView = view.findViewById(R.id.quoteImg)
-        Picasso.get()
-            .load(imgUrl).error(R.drawable.failure_img).placeholder(R.drawable.load_img)
-            .into(imageView)
-        var bitmap: Bitmap? = null
+fun showImg(imgUrl: String, context: Context) {
+    val dialogBuilder = AlertDialog.Builder(context)
+    val view = LayoutInflater.from(context).inflate(R.layout.img_dialog, null)
+    dialogBuilder.setView(view)
+    val alertDialog = dialogBuilder.create()
+    val imageView: ImageView = view.findViewById(R.id.quoteImg)
+    Picasso.get()
+        .load(imgUrl).error(R.drawable.failure_img).placeholder(R.drawable.load_img)
+        .into(imageView)
+    var bitmap: Bitmap? = null
+    try {
+        bitmap = (imageView.drawable as BitmapDrawable).bitmap
+    } catch (e: Exception) {
+        Log.e("ERROR", e.localizedMessage!!)
+    }
+    imageView.setOnLongClickListener {
         try {
-            bitmap = (imageView.drawable as BitmapDrawable).bitmap
+            saveImage(bitmap!!)
+            Snackbar.make(it, context.getString(string.saved), Snackbar.LENGTH_LONG).show()
         } catch (e: Exception) {
-            Log.e("ERROR", e.localizedMessage!!)
+            Snackbar.make(it,
+                context.getString(string.failedToDownload),
+                Snackbar.LENGTH_LONG).show()
         }
-        imageView.setOnLongClickListener {
-            try {
-                saveImage(bitmap!!)
-                Snackbar.make(it, context.getString(string.saved), Snackbar.LENGTH_LONG).show()
-            } catch (e: Exception) {
-                Snackbar.make(it,
-                    context.getString(string.failedToDownload),
-                    Snackbar.LENGTH_LONG).show()
-            }
-            false
-        }
-        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        alertDialog.show()
+        false
     }
+    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    alertDialog.show()
+}
 
-    fun showBrief(title: String, content: String, context: Context) {
-        val dialogBuilder = AlertDialog.Builder(context)
-        val view = LayoutInflater.from(context).inflate(R.layout.story_marker, null)
-        dialogBuilder.setView(view)
-        val alertDialog = dialogBuilder.create()
-        view.findViewById<LinearLayout>(R.id.actionBar).visibility = View.GONE
-        view.findViewById<TextView>(R.id.alertTitle).text = title
-        val alertContent = view.findViewById<TextView>(R.id.alertContent)
-        alertContent.visibility = View.VISIBLE
-        alertContent.text = content
-        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        alertDialog.show()
+fun showBrief(title: String, content: String, context: Context) {
+    val dialogBuilder = AlertDialog.Builder(context)
+    val view = LayoutInflater.from(context).inflate(R.layout.story_marker, null)
+    dialogBuilder.setView(view)
+    val alertDialog = dialogBuilder.create()
+    view.findViewById<LinearLayout>(R.id.actionBar).visibility = View.GONE
+    view.findViewById<TextView>(R.id.alertTitle).text = title
+    val alertContent = view.findViewById<TextView>(R.id.alertContent)
+    alertContent.visibility = View.VISIBLE
+    alertContent.text = content
+    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    alertDialog.show()
+}
+
+
+private fun saveImage(bitmap: Bitmap) {
+    try {
+        val dir = File(dirPath)
+        if (!dir.exists()) dir.mkdirs()
+        val file = File("$dirPath/${Random.nextDouble()}.jpg")
+        file.createNewFile()
+        val outStream: OutputStream?
+        outStream = FileOutputStream(file)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
+        outStream.flush()
+        outStream.close()
+    } catch (e: Exception) {
+        println(e.message)
     }
-
-
-    private fun saveImage(bitmap: Bitmap) {
-        try {
-            val dir = File(dirPath)
-            if (!dir.exists()) dir.mkdirs()
-            val file = File("$dirPath/${Random.nextDouble()}.jpg")
-            file.createNewFile()
-            val outStream: OutputStream?
-            outStream = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
-            outStream.flush()
-            outStream.close()
-        } catch (e: Exception) {
-            println(e.message)
-        }
-    }
-
-
 }
 
 
@@ -160,3 +130,69 @@ fun dateOfDay(): String {
     return simpleDateFormat.format(Date())
 }
 
+const val MUSLIM_SALAT_URL = "http://muslimsalat.com/"
+const val GITHUB_URL = "https://api.github.com/"
+
+fun ImageView.loadImage(url: String?) {
+//    val option = RequestOptions()
+//        .circleCrop()
+
+    Picasso.get()
+        .load(url)
+        .into(this)
+}
+
+//@BindingAdapter("android:imageCircleUrl")
+fun loadImageUrl(view: ImageView, url: String?) {
+    view.loadImage(url)
+}
+
+fun View.changeNavigation(direction: NavDirections) {
+    Navigation.findNavController(this).navigate(direction)
+}
+
+// Date Format
+@SuppressLint("SimpleDateFormat")
+private val m24HourSDF = SimpleDateFormat("HH:mm")
+
+@SuppressLint("SimpleDateFormat")
+private val m12HourSDF = SimpleDateFormat("hh:mm aa")
+
+@SuppressLint("SimpleDateFormat")
+fun convertTo24HrFormat(date: String): String = m24HourSDF.format(m12HourSDF.parse(date)!!)
+
+fun convertToDateFormat(date: String) = m24HourSDF.parse(date)!!
+
+@SuppressLint("SimpleDateFormat")
+val getCurrentTimeFormat: String = SimpleDateFormat("hh:mm aa").format(Date())
+
+@SuppressLint("SimpleDateFormat")
+val getCurrentDayFormat: String = SimpleDateFormat("EEEE").format(Date())
+
+@SuppressLint("SimpleDateFormat")
+val getCurrentDateNormalFormat: String = SimpleDateFormat("dd MMMM yyyy").format(Date())
+
+@SuppressLint("SimpleDateFormat")
+fun getDayFormat(date: Date): String = SimpleDateFormat("EEEE").format(date)
+
+@SuppressLint("SimpleDateFormat")
+fun getDateNormalFormat(date: Date): String = SimpleDateFormat("dd MMMM yyyy").format(date)
+
+@SuppressLint("SimpleDateFormat")
+fun getDateFormat(date: Date): String = SimpleDateFormat("yyyy-MM-dd").format(date)
+
+fun removeColon(string: String) = string.filterNot { it == ':' }.toInt()
+
+fun convertFromLongToTime(mills: Long): String {
+    val hours = (mills / (1000 * 60 * 60)).toString()
+    val minutes = ((mills / (1000 * 60)) % 60).toString()
+    val seconds = ((mills / 1000) % 60 % 60).toString()
+
+    return "${(if (hours.length == 1) "0$hours" else hours)}:${(if (minutes.length == 1) "0$minutes" else minutes)}:${(if (seconds.length == 1) "0$seconds" else seconds)}"
+}
+
+fun getDifferentMillsTime(time: String): Long =
+    convertToDateFormat(time).time - convertToDateFormat(convertTo24HrFormat(getCurrentTimeFormat)).time
+
+fun getDifferentMillsTimeBA(before: String, after: String): Long =
+    convertToDateFormat(after).time - convertToDateFormat(before).time

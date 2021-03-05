@@ -11,8 +11,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.activity.Video
-import kotlinx.android.synthetic.main.tile_item.view.*
-import kotlinx.android.synthetic.main.video_item.view.*
+import kotlinx.android.synthetic.main.item_tile.view.*
+import kotlinx.android.synthetic.main.item_video.view.*
 import com.ramadan.islami.data.model.Video as VideoModel
 
 internal class VideoAdapter(private val lifecycle: Lifecycle) :
@@ -34,11 +34,11 @@ internal class VideoAdapter(private val lifecycle: Lifecycle) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomView {
         return if (videosSectionsList.size > 0) {
             val view: View = LayoutInflater.from(parent.context)
-                .inflate(R.layout.tile_item, parent, false)
+                .inflate(R.layout.item_tile, parent, false)
             CustomView(view)
         } else {
             val youTubePlayerView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.video_item, parent, false)
+                .inflate(R.layout.item_video, parent, false)
 //            lifecycle.addObserver(youTubePlayerView)
             CustomView(youTubePlayerView)
         }

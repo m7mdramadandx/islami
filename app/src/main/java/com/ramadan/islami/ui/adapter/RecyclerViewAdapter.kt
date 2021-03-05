@@ -14,10 +14,11 @@ import com.ramadan.islami.data.model.Quote
 import com.ramadan.islami.data.model.Story
 import com.ramadan.islami.ui.activity.*
 import com.ramadan.islami.utils.Utils
+import com.ramadan.islami.utils.showImg
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.allah_name_item.view.*
-import kotlinx.android.synthetic.main.card_item.view.*
-import kotlinx.android.synthetic.main.family_tree_card.view.*
+import kotlinx.android.synthetic.main.item_allah_name.view.*
+import kotlinx.android.synthetic.main.item_card.view.*
+import kotlinx.android.synthetic.main.item_family_tree.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 import com.ramadan.islami.ui.activity.AllahNames as AllahNamesActivity
@@ -83,11 +84,11 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomView {
         val view: View = when {
             allahNames.size > 1 -> {
-                LayoutInflater.from(parent.context).inflate(R.layout.allah_name_item, parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.item_allah_name, parent, false)
             }
             familyTreeList.isNotEmpty() -> LayoutInflater.from(parent.context)
-                .inflate(R.layout.family_tree_card, parent, false)
-            else -> LayoutInflater.from(parent.context).inflate(R.layout.card_item, parent, false)
+                .inflate(R.layout.item_family_tree, parent, false)
+            else -> LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
         }
         return CustomView(view)
     }
@@ -188,7 +189,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             if (isDashboard) {
                 itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
             }
-            itemView.setOnClickListener { util.showImg(quotes, ctx) }
+            itemView.setOnClickListener { showImg(quotes, ctx) }
         }
 
         fun collectionView(collection: Collection) {

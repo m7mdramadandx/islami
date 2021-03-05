@@ -22,7 +22,7 @@ import com.ramadan.islami.utils.debug_tag
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuObject
 import com.yalantis.contextmenu.lib.MenuParams
-import kotlinx.android.synthetic.main.date_conversion.*
+import kotlinx.android.synthetic.main.activity_date_conversion.*
 import net.alhazmy13.hijridatepicker.date.gregorian.GregorianDatePickerDialog
 import net.alhazmy13.hijridatepicker.date.hijri.HijriDatePickerDialog
 import java.util.*
@@ -48,7 +48,7 @@ class DateConversion : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.date_conversion)
+        setContentView(R.layout.activity_date_conversion)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         gregorianToday = Calendar.getInstance()

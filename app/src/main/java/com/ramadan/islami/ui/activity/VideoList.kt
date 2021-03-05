@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
+import com.ramadan.islami.data.listener.DataListener
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.VideoAdapter
 import com.ramadan.islami.ui.viewModel.DataViewModel
-import com.ramadan.islami.ui.viewModel.Listener
 import kotlinx.android.synthetic.main.recycler_view.*
 
-class VideoList : AppCompatActivity(), Listener {
+class VideoList : AppCompatActivity(), DataListener {
     private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
     private lateinit var videoAdapter: VideoAdapter
     private lateinit var recyclerView: RecyclerView
@@ -35,7 +35,7 @@ class VideoList : AppCompatActivity(), Listener {
         videoAdapter = VideoAdapter(lifecycle)
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = videoAdapter
-        viewModel.listener = this
+        viewModel.dataListener = this
     }
 
     private fun observeData() {

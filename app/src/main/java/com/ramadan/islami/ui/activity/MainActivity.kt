@@ -1,12 +1,17 @@
 package com.ramadan.islami.ui.activity
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -19,6 +24,7 @@ import com.google.android.gms.ads.AdView
 import com.google.android.material.navigation.NavigationView
 import com.ramadan.islami.R
 import com.ramadan.islami.utils.LocaleHelper
+import kotlinx.android.synthetic.main.main_content.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -30,6 +36,8 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         var language: String = "ar"
+        const val PERMISSION_ACCESS_FINE_LOCATION: Int = 101
+
     }
 
 
@@ -94,6 +102,71 @@ class MainActivity : AppCompatActivity() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         localeHelper.setLocale(this, localeHelper.getDefaultLanguage(this))
+    }
+
+
+    private fun checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                AlertDialog.Builder(this)
+                    .setTitle("Location Permission")
+                    .setMessage("This app require access the location.")
+                    .setPositiveButton("Ask me") { _, _ ->
+                        requestLocationPermission()
+                    }
+                    .setNegativeButton("No") { _, _ ->
+                        notifyDetailFragment(false)
+                    }
+                    .show()
+            } else {
+                requestLocationPermission()
+            }
+        } else {
+            notifyDetailFragment(true)
+        }
+    }
+
+    private fun requestLocationPermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+            PERMISSION_ACCESS_FINE_LOCATION
+        )
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray,
+    ) {
+        when (requestCode) {
+            PERMISSION_ACCESS_FINE_LOCATION -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    notifyDetailFragment(true)
+                } else {
+                    notifyDetailFragment(false)
+                }
+            }
+        }
+    }
+
+    private fun notifyDetailFragment(permissionGranted: Boolean) {
+        if (permissionGranted) {
+            val activeFragment = nav_host_fragment.childFragmentManager.primaryNavigationFragment
+//            if (activeFragment is HomeFragment) {
+//                activeFragment.onPermissionSuccess()
+//            }
+        } else {
+            finish()
+        }
     }
 
 }
