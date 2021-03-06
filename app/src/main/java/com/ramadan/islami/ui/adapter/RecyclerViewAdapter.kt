@@ -53,13 +53,13 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
     }
 
     fun setCategoryDataList(data: MutableList<Quote>) {
+        data.removeAt(1)
         categoryList = data
         notifyDataSetChanged()
     }
 
     fun setQuotesDataList(data: ArrayList<String>, isDashboard: Boolean) {
         this.isDashboard = isDashboard
-        data.removeAt(1)
         data.shuffle()
         quotesList = data
         notifyDataSetChanged()
