@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.paulrybitskyi.persistentsearchview.PersistentSearchView
 import com.ramadan.islami.R
 import com.ramadan.islami.data.listener.SurahRecyclerListener
+import com.ramadan.islami.data.model.Quran.Surah
 import com.ramadan.islami.ui.adapter.QuranRecyclerView
 import com.ramadan.islami.ui.viewModel.QuranSuraViewModel
 import com.ramadan.islami.utils.changeNavigation

@@ -57,8 +57,8 @@
         android:label="Ayah Quran"
         tools:layout="@layout/fragment_quran_ayah">
         <argument
-            android:name="sura"
-            app:argType="com.ramadan.islami.data.model.Surah" />
+            android:name="surah"
+            app:argType="com.ramadan.islami.data.model.Quran.Surah" />
     </fragment>
 
     <fragment
