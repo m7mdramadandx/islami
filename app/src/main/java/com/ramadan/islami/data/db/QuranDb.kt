@@ -2,8 +2,8 @@ package com.ramadan.islami.data.db
 
 import android.content.Context
 import com.google.gson.Gson
-import com.ramadan.islami.data.model.FullQuran
-import com.ramadan.islami.data.model.Surah
+import com.ramadan.islami.data.model.Quran
+import com.ramadan.islami.data.model.Quran.Surah
 import java.io.BufferedInputStream
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -12,12 +12,12 @@ import java.nio.charset.Charset
 
 class QuranDb {
 
-    fun getFullQuranSurahs(context: Context): List<Surah>? {
+    fun retrieveQuran(context: Context): List<Surah>? {
         return try {
             val fileIn: InputStream = context.assets.open("quran.json")
             val bufferedIn: BufferedInputStream = BufferedInputStream(fileIn)
             val reader: Reader = InputStreamReader(bufferedIn, Charset.forName("UTF-8"))
-            Gson().fromJson<FullQuran>(reader, FullQuran::class.java).getData()!!.getSurahs()
+            Gson().fromJson<Quran>(reader, Quran::class.java).data.surahs
         } catch (e: Exception) {
             null
         }

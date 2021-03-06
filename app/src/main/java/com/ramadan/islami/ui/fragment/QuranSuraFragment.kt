@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.paulrybitskyi.persistentsearchview.PersistentSearchView
 import com.ramadan.islami.R
 import com.ramadan.islami.data.listener.SurahRecyclerListener
-import com.ramadan.islami.data.model.Surah
-import com.ramadan.islami.ui.adapter.SurahRecyclerAdapter
+import com.ramadan.islami.ui.adapter.QuranRecyclerView
 import com.ramadan.islami.ui.viewModel.QuranSuraViewModel
 import com.ramadan.islami.utils.changeNavigation
 
@@ -22,13 +21,13 @@ class QuranSuraFragment : Fragment(), SurahRecyclerListener {
 
     private val viewModel by lazy { ViewModelProvider(this).get(QuranSuraViewModel::class.java) }
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: SurahRecyclerAdapter
+    private lateinit var view: QuranRecyclerView
     private lateinit var searchView: PersistentSearchView
 
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        adapter = SurahRecyclerAdapter(this)
+        view = QuranRecyclerView(this)
     }
 
     override fun onCreateView(
@@ -39,7 +38,7 @@ class QuranSuraFragment : Fragment(), SurahRecyclerListener {
         val root = inflater.inflate(R.layout.fragment_quran_sura, container, false)
         recyclerView = root.findViewById(R.id.rv_quran_sura)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = adapter
+        recyclerView.adapter = view
         searchView = root.findViewById(R.id.persistent_search_view)
         getDataSura()
         return root
@@ -61,7 +60,7 @@ class QuranSuraFragment : Fragment(), SurahRecyclerListener {
 
     private fun getSuraSearch(search: String) {
         val list = viewModel.getAllSura(requireContext(), search)
-        adapter.updateList(list)
+        view.updateList(list)
     }
 
 

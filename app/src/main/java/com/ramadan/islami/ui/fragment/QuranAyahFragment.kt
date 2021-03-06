@@ -10,9 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
-import com.ramadan.islami.data.model.Surah
 import com.ramadan.islami.ui.activity.MainActivity
-import com.ramadan.islami.ui.adapter.AyahRecyclerAdapter
 import com.ramadan.islami.ui.viewModel.QuranAyahViewModel
 
 class QuranAyahFragment : Fragment() {

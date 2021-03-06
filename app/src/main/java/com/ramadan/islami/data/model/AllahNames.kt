@@ -10,9 +10,12 @@ data class AllahNames(
         val name: String,
         val number: Int,
         val transliteration: String,
-    )
+    ) {
+        data class En(
+            val meaning: String,
+        )
+
+    }
 
 }
-data class En(
-    val meaning: String,
-)
+
