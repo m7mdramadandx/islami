@@ -7,15 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.data.listener.SurahRecyclerListener
 import com.ramadan.islami.data.model.Quran
+import com.ramadan.islami.data.model.Surah
 import kotlinx.android.synthetic.main.item_quran_ayah.view.*
 import kotlinx.android.synthetic.main.item_quran_surah.view.*
 
 class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
     var listener: SurahRecyclerListener? = null
-    private var surahList: MutableList<Quran.Surah> = mutableListOf()
+    private var surahList: MutableList<Surah> = mutableListOf()
     private var ayahList: MutableList<Quran.Ayah> = mutableListOf()
 
-    fun setSuraDataList(list: MutableList<Quran.Surah>, listener: SurahRecyclerListener) {
+    fun setSuraDataList(list: MutableList<Surah>, listener: SurahRecyclerListener) {
         this.listener = listener
         this.surahList = list
         notifyDataSetChanged()
@@ -51,7 +52,7 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
     }
 
     inner class CustomView(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun surahView(surah: Quran.Surah) {
+        fun surahView(surah: Surah) {
             itemView.apply {
                 surahNumber.text = surah.number.toString()
                 surahName.text = surah.name

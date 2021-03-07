@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.paulrybitskyi.persistentsearchview.PersistentSearchView
 import com.ramadan.islami.R
 import com.ramadan.islami.data.listener.SurahRecyclerListener
-import com.ramadan.islami.data.model.Quran.Surah
+import com.ramadan.islami.data.model.Surah
 import com.ramadan.islami.ui.adapter.QuranAdapter
 import com.ramadan.islami.ui.viewModel.QuranSuraViewModel
 import com.ramadan.islami.utils.changeNavigation
 
 
-class QuranSuraFragment : Fragment(), SurahRecyclerListener {
+class SurahFragment : Fragment(), SurahRecyclerListener {
 
     private val viewModel by lazy { ViewModelProvider(this).get(QuranSuraViewModel::class.java) }
     private lateinit var recyclerView: RecyclerView
@@ -65,8 +65,8 @@ class QuranSuraFragment : Fragment(), SurahRecyclerListener {
     }
 
 
-    override fun onClick(view: View, sura: Surah) {
-        val action = QuranSuraFragmentDirections.actionNavigationQuranToQuranAyahFragment(sura)
+    override fun onClick(view: View, _surah: Surah) {
+        val action = SurahFragmentDirections.actionNavQuranToAyahFragment(_surah)
         view.changeNavigation(action)
     }
 }

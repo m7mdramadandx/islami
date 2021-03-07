@@ -2,7 +2,7 @@ package com.ramadan.islami.data.repo
 
 import android.content.Context
 import com.ramadan.islami.data.db.QuranDb
-import com.ramadan.islami.data.model.Quran.Surah
+import com.ramadan.islami.data.model.Surah
 
 class QuranRepository {
 

@@ -1,18 +1,18 @@
 package com.ramadan.islami.data.model
 
-data class Quran(
+import java.io.Serializable
+
+class Quran(
     val code: Int,
     val `data`: Data,
     val status: String,
-
-    ) {
-
-    data class Data(
+) : Serializable {
+    class Data(
         val edition: Edition,
         val surahs: List<Surah>,
     )
 
-    data class Edition(
+    class Edition(
         val englishName: String,
         val format: String,
         val identifier: String,
@@ -21,16 +21,7 @@ data class Quran(
         val type: String,
     )
 
-    data class Surah(
-        val ayahs: List<Ayah>,
-        val englishName: String,
-        val englishNameTranslation: String,
-        val name: String,
-        val number: Int,
-        val revelationType: String,
-    )
-
-    data class Ayah(
+    class Ayah(
         val hizbQuarter: Int,
         val juz: Int,
         val manzil: Int,
@@ -43,3 +34,13 @@ data class Quran(
     )
 
 }
+
+class Surah(
+    val ayahs: List<Quran.Ayah>,
+    val englishName: String,
+    val englishNameTranslation: String,
+    val name: String,
+    val number: Int,
+    val revelationType: String,
+) : Serializable
+

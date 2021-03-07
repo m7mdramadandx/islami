@@ -3,7 +3,7 @@ package com.ramadan.islami.data.db
 import android.content.Context
 import com.google.gson.Gson
 import com.ramadan.islami.data.model.Quran
-import com.ramadan.islami.data.model.Quran.Surah
+import com.ramadan.islami.data.model.Surah
 import java.io.BufferedInputStream
 import java.io.InputStream
 import java.io.InputStreamReader

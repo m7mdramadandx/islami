@@ -10,14 +10,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
-import com.ramadan.islami.data.model.Quran
+import com.ramadan.islami.data.model.Surah
 import com.ramadan.islami.ui.activity.MainActivity
 import com.ramadan.islami.ui.adapter.QuranAdapter
 import com.ramadan.islami.ui.viewModel.QuranAyahViewModel
 
-class QuranAyahFragment : Fragment() {
+class AyahFragment : Fragment() {
 
-    private lateinit var surah: Quran.Surah
+    private lateinit var surah: Surah
     private lateinit var adapter: QuranAdapter
     private lateinit var recyclerView: RecyclerView
     private val viewModel by lazy { ViewModelProvider(this).get(QuranAyahViewModel::class.java) }
@@ -34,7 +34,7 @@ class QuranAyahFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_quran_ayah, container, false)
         recyclerView = root.findViewById(R.id.rv_quran_ayah)
-        arguments?.let { surah = QuranAyahFragmentArgs.fromBundle(it).surah }
+        arguments?.let { surah = AyahFragmentArgs.fromBundle(it).surah!! }
         (activity as MainActivity).supportActionBar?.title = surah.name
         adapter.setAyahDataList(surah.ayahs.toMutableList())
         recyclerView.layoutManager = LinearLayoutManager(activity)

@@ -7,7 +7,7 @@ import com.ramadan.islami.data.repo.QuranRepository
 class QuranAyahViewModel : ViewModel() {
 
     fun getAyahBySura(context: Context, suraID: String) =
-        QuranRepository.retrieveAllSurahs(context, suraID)
+        QuranRepository.retrieveAllQuran(context, suraID)
 
 //    fun getFontSize() = pref.getAyahFontSize(context)
 }
