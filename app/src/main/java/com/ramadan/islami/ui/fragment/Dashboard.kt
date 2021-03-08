@@ -18,13 +18,13 @@ import com.google.android.gms.ads.AdView
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
-import com.ramadan.islami.data.listener.DataListener
+import com.ramadan.islami.data.listener.FirebaseListener
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.adapter.SliderAdapter
-import com.ramadan.islami.ui.viewModel.ApiViewModel
-import com.ramadan.islami.ui.viewModel.DataViewModel
+import com.ramadan.islami.ui.viewModel.FirebaseViewModel
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
+import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.Utils
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
@@ -37,13 +37,13 @@ import kotlinx.coroutines.withContext
 import java.util.*
 
 
-class Dashboard : Fragment(), DataListener {
+class Dashboard : Fragment(), FirebaseListener {
 
-    private val dataViewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
+    private val dataViewModel by lazy { ViewModelProvider(this).get(FirebaseViewModel::class.java) }
     private val apiViewModel by lazy {
         ViewModelProvider(this,
-            ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").hijriCalender()))
-        ).get(ApiViewModel::class.java)
+            ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").apiService()))
+        ).get(WebServiceViewModel::class.java)
     }
     private lateinit var mAdView: AdView
     private lateinit var suggestionRCV: RecyclerView
@@ -66,13 +66,13 @@ class Dashboard : Fragment(), DataListener {
         familyTreeAdapter = RecyclerViewAdapter()
         utils = Utils(context)
         hijriToday = UmmalquraCalendar(Locale.getDefault())
-//        hijriToday.set(
-//            hijriToday[UmmalquraCalendar.YEAR],
-//            hijriToday[UmmalquraCalendar.MONTH],
-//            hijriToday[UmmalquraCalendar.DAY_OF_MONTH],
-//            hijriToday[UmmalquraCalendar.HOUR_OF_DAY],
-//            hijriToday[UmmalquraCalendar.MINUTE],
-//        )
+        hijriToday.set(
+            hijriToday[UmmalquraCalendar.YEAR],
+            hijriToday[UmmalquraCalendar.MONTH],
+            hijriToday[UmmalquraCalendar.DAY_OF_MONTH],
+            hijriToday[UmmalquraCalendar.HOUR_OF_DAY],
+            hijriToday[UmmalquraCalendar.MINUTE],
+        )
         observeData()
     }
 
@@ -88,9 +88,10 @@ class Dashboard : Fragment(), DataListener {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
         mAdView = root.findViewById(R.id.adView)
-        dataViewModel.dataListener = this
+        dataViewModel.firebaseListener = this
         val hijriDate = root.findViewById<TextView>(R.id.hijriDate)
-        hijriDate.text = hijriToday.time.toString()
+        hijriDate.text = "${UmmalquraCalendar.YEAR} , ${UmmalquraCalendar.MONTH} ,"
+
 
         suggestionRCV = root.findViewById(R.id.suggestionRecyclerView)
         suggestionRCV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)

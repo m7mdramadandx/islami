@@ -41,10 +41,22 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme_NoActionBar" />
+            android:theme="@style/AppTheme_NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".ui.activity.HadithOfDay"
-            android:label="@string/hadithOfDay" />
+            android:label="@string/hadithOfDay">
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <action android:name="android.intent.action.TRANSLATE" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".ui.activity.Quote"
             android:label="@string/quotes" />
@@ -76,7 +88,7 @@
             android:hardwareAccelerated="true" />
         <activity android:name=".ui.activity.VideoList" />
         <activity android:name=".ui.activity.TopicList" />
-        <activity android:name=".ui.activity.AyahActivity" />
+
     </application>
 
 </manifest>

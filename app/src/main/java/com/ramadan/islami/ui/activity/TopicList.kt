@@ -9,16 +9,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
-import com.ramadan.islami.data.listener.DataListener
+import com.ramadan.islami.data.listener.FirebaseListener
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.TopicAdapter
-import com.ramadan.islami.ui.viewModel.DataViewModel
+import com.ramadan.islami.ui.viewModel.FirebaseViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import kotlinx.android.synthetic.main.recycler_view.*
 
 
-class TopicList : AppCompatActivity(), DataListener {
-    private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
+class TopicList : AppCompatActivity(), FirebaseListener {
+    private val viewModel by lazy { ViewModelProvider(this).get(FirebaseViewModel::class.java) }
     private var isEnglish: Boolean = true
     private val localeHelper = LocaleHelper()
     private lateinit var topicAdapter: TopicAdapter
@@ -37,7 +37,7 @@ class TopicList : AppCompatActivity(), DataListener {
         topicAdapter = TopicAdapter()
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = topicAdapter
-        viewModel.dataListener = this
+        viewModel.firebaseListener = this
     }
 
     private fun observeData() {

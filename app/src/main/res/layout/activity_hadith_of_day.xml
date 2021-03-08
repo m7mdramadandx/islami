@@ -28,18 +28,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hadithTitle">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/hadithBody"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:autoSizeTextType="uniform"
-            android:background="@color/colorSecondary"
+            android:background="@drawable/asset"
             android:gravity="center"
             android:nestedScrollingEnabled="true"
             android:padding="24dp"
             android:textColor="#fff"
-            android:visibility="gone" />
+            android:textIsSelectable="true"
+            android:visibility="gone"
+            app:autoSizeTextType="uniform" />
 
     </androidx.cardview.widget.CardView>
 

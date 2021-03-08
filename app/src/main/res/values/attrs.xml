@@ -35,4 +35,11 @@
         <attr name="dividerColor" format="color" />
         <attr name="dividerHeight" format="dimension" />
     </declare-styleable>
+
+    <array name="autoSize_text_sizes">
+        <item>20sp</item>
+        <item>22sp</item>
+        <item>24sp</item>
+        <item>26sp</item>
+    </array>
 </resources>

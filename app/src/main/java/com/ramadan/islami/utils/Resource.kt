@@ -1,9 +1,9 @@
 package com.ramadan.islami.utils
 
-import com.ramadan.islami.utils.ResStatus.*
+import com.ramadan.islami.utils.ResponseStatus.*
 
 
-data class Resource<out T>(val status: ResStatus, val data: T?, val message: String?) {
+data class Resource<out T>(val status: ResponseStatus, val data: T?, val message: String?) {
     companion object {
         fun <T> loading(data: T?): Resource<T> =
             Resource(LOADING, data, null)

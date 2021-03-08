@@ -13,15 +13,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
-import com.ramadan.islami.data.listener.DataListener
+import com.ramadan.islami.data.listener.FirebaseListener
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
-import com.ramadan.islami.ui.viewModel.DataViewModel
+import com.ramadan.islami.ui.viewModel.FirebaseViewModel
 import kotlinx.android.synthetic.main.recycler_view.*
 import kotlinx.coroutines.*
 
-class Hadiths : AppCompatActivity(), DataListener {
-    private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
+class Hadiths : AppCompatActivity(), FirebaseListener {
+    private val viewModel by lazy { ViewModelProvider(this).get(FirebaseViewModel::class.java) }
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     private lateinit var recyclerView: RecyclerView
 
@@ -35,7 +35,7 @@ class Hadiths : AppCompatActivity(), DataListener {
         setContentView(R.layout.recycler_view)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        viewModel.dataListener = this
+        viewModel.firebaseListener = this
         recyclerViewAdapter = RecyclerViewAdapter()
         recyclerView = findViewById(R.id.global_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

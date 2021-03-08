@@ -15,7 +15,7 @@ import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Story
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.StoryAdapter
-import com.ramadan.islami.ui.viewModel.DataViewModel
+import com.ramadan.islami.ui.viewModel.FirebaseViewModel
 import com.ramadan.islami.utils.Utils
 import com.ramadan.islami.utils.showBrief
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class StoryDetails : AppCompatActivity() {
-    private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(FirebaseViewModel::class.java) }
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
     private lateinit var story: Story
     private lateinit var storyAdapter: StoryAdapter

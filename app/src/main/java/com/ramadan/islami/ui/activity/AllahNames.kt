@@ -12,9 +12,9 @@ import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
 import com.ramadan.islami.data.model.AllahNames
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
-import com.ramadan.islami.ui.viewModel.ApiViewModel
+import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
-import com.ramadan.islami.utils.ResStatus
+import com.ramadan.islami.utils.ResponseStatus
 import com.ramadan.islami.utils.debug_tag
 import kotlinx.android.synthetic.main.recycler_view.*
 
@@ -23,8 +23,8 @@ class AllahNames : AppCompatActivity() {
 
     private val viewModel by lazy {
         ViewModelProvider(this,
-            ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").hijriCalender()))
-        ).get(ApiViewModel::class.java)
+            ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").apiService()))
+        ).get(WebServiceViewModel::class.java)
     }
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
@@ -48,12 +48,12 @@ class AllahNames : AppCompatActivity() {
     private fun observeDate() {
         viewModel.allahNames().observe(this, {
             when (it.status) {
-                ResStatus.LOADING -> progress.visibility = View.VISIBLE
-                ResStatus.SUCCESS -> {
+                ResponseStatus.LOADING -> progress.visibility = View.VISIBLE
+                ResponseStatus.SUCCESS -> {
                     progress.visibility = View.GONE
                     recyclerViewAdapter.setAllahNamesDataList(it.data!!.data as MutableList<AllahNames.Data>)
                 }
-                ResStatus.ERROR -> {
+                ResponseStatus.ERROR -> {
                     progress.visibility = View.GONE
                     Log.e(debug_tag, it.message.toString())
                 }

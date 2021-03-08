@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitBuilder(private val baseUrl: String) {
 
-    fun hijriCalender(): ApiService {
+    fun apiService(): ApiService {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())

@@ -14,7 +14,6 @@ data class AllahNames(
         data class En(
             val meaning: String,
         )
-
     }
 
 }

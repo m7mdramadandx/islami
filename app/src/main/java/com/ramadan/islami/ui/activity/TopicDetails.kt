@@ -12,7 +12,7 @@ import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Topic
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.TopicAdapter
-import com.ramadan.islami.ui.viewModel.DataViewModel
+import com.ramadan.islami.ui.viewModel.FirebaseViewModel
 import kotlinx.android.synthetic.main.activity_topic.*
 import kotlinx.android.synthetic.main.content_nested_view.*
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +22,7 @@ import kotlinx.coroutines.withContext
 
 
 class TopicDetails : AppCompatActivity() {
-    private val viewModel by lazy { ViewModelProvider(this).get(DataViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(FirebaseViewModel::class.java) }
     private var topic: Topic? = null
     private lateinit var topicAdapter: TopicAdapter
     private lateinit var recyclerView: RecyclerView

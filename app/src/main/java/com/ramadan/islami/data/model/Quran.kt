@@ -8,17 +8,7 @@ class Quran(
     val status: String,
 ) : Serializable {
     class Data(
-        val edition: Edition,
         val surahs: List<Surah>,
-    )
-
-    class Edition(
-        val englishName: String,
-        val format: String,
-        val identifier: String,
-        val language: String,
-        val name: String,
-        val type: String,
     )
 
     class Ayah(
@@ -32,7 +22,6 @@ class Quran(
         val sajda: Any,
         val text: String,
     )
-
 }
 
 class Surah(

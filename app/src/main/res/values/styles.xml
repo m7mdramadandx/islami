@@ -1,9 +1,6 @@
 <resources>
 
     <style name="AppTheme" parent="@style/Theme.AppCompat.DayNight.DarkActionBar">
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
-        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
-        <item name="android:actionMenuTextColor">@color/actionbar_text</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="android:colorBackground">@color/colorBackground</item>
@@ -13,19 +10,11 @@
         <item name="android:textColorHighlight">@color/colorAccent</item>
         <item name="fontFamily">@font/aref_font_family</item>
         <item name="navigationIconTint">@color/colorAccent</item>
-        <item name="android:navigationIcon">@drawable/slide_menu</item>
-
-        <!-- Support library compatibility -->
-        <item name="actionBarStyle">@style/MyActionBar</item>
-        <item name="actionMenuTextColor">@color/actionbar_text</item>
         <item name="android:fontFamily">@font/aref_font_family</item>
 
     </style>
 
     <style name="AppTheme_Material" parent="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
-        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
-        <item name="android:actionMenuTextColor">@color/actionbar_text</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="android:colorBackground">@color/colorBackground</item>
@@ -35,42 +24,19 @@
         <item name="android:textColorHighlight">@color/colorAccent</item>
         <item name="fontFamily">@font/aref_font_family</item>
         <item name="navigationIconTint">@color/colorAccent</item>
-
-        <!-- Support library compatibility -->
-        <item name="actionBarStyle">@style/MyActionBar</item>
-        <item name="actionMenuTextColor">@color/actionbar_text</item>
         <item name="android:fontFamily">@font/aref_font_family</item>
-
-    </style>
-
-    <style name="CardViewStyle" parent="CardView">
-        <item name="cardCornerRadius">10dp</item>
-        <item name="cardUseCompatPadding">true</item>
-        <item name="cardBackgroundColor">@color/silver_grey</item>
-    </style>
-
-    <!-- ActionBar styles -->
-    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@color/actionbar_background</item>
-        <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
-        <!-- Support library compatibility -->
-        <item name="background">@color/actionbar_background</item>
-        <item name="titleTextStyle">@style/MyActionBarTitleText</item>
-    </style>
-
-    <!-- ActionBar title text -->
-    <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/actionbar_text</item>
-    </style>
-
-    <!-- ActionBar tabs text -->
-    <style name="MyActionBarTabText" parent="@style/Widget.AppCompat.ActionBar.TabText">
-        <item name="android:textColor">@color/actionbar_text</item>
     </style>
 
     <style name="AppTheme_NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme_FullScreen" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="showFullScreenButton">true</item>
     </style>
 
     <style name="AppTheme_Material_NoActionBar" parent="AppTheme_Material">
@@ -79,12 +45,12 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="dashboard_title" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">#fff</item>
-        <item name="android:fontFamily">@font/aref_bold</item>
+    <style name="CardViewStyle" parent="CardView">
+        <item name="cardCornerRadius">10dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardBackgroundColor">@color/silver_grey</item>
     </style>
 
     <style name="table_row_item" parent="@android:style/TextAppearance.Small">
@@ -106,7 +72,4 @@
         <item name="android:padding">2dp</item>
     </style>
 
-    <style name="CustomDayTextAppearance" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textColor">@color/mcv_text_date_light</item>
-    </style>
 </resources>

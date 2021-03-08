@@ -7,56 +7,11 @@
     <string name="topics">مواضيع</string>
     <string name="adam">آدم</string>
     <string name="suggested_to_you">مقترح لك</string>
-    <string name="aron">هارون</string>
-    <string name="abraham">إبراهيم</string>
-    <string name="david">داوُد</string>
-    <string name="dhul_kifl">ذو الكفل</string>
-    <string name="elias">إلياس</string>
-    <string name="heber">هود</string>
-    <string name="idriss">إدريس</string>
-    <string name="ishmael">إسماعيل</string>
-    <string name="jacob">يغقوب</string>
-    <string name="jonah">يونس</string>
-    <string name="jesus">عيسى ابن مريم</string>
-    <string name="jethri">شعيب</string>
-    <string name="job">أيوب</string>
-    <string name="joseph">يوسف</string>
-    <string name="john">يحيى</string>
-    <string name="lot">لوط</string>
-    <string name="methuselah">صالح</string>
-    <string name="moses">موسى</string>
     <string name="muhammad">محمد (ص)</string>
-    <string name="noah">نوح</string>
-    <string name="solomon">سليمان</string>
-    <string name="zacharia">زكريا</string>
-    <string name="abd_almuttalib">عبد المطلب</string>
-    <string name="abd_allah">عبد الله</string>
-    <string name="khadija">خديجة</string>
-    <string name="aisha">عائشة</string>
-    <string name="zainab">زينب</string>
-    <string name="umm_salama">أم سلامة</string>
-    <string name="umm_habiba">أم حبيبة</string>
-    <string name="safiyya">صافية</string>
-    <string name="maria">ماريا</string>
-    <string name="al_qasim">القاسم</string>
-    <string name="fatima">فاطمة</string>
-    <string name="umm_kalthum">أم كلثوم</string>
-    <string name="ruqayyah">روقية</string>
-    <string name="hussein">حسين</string>
-    <string name="hassan">حسن</string>
-    <string name="muhsin">محسن</string>
-    <string name="isaac">إسحاق</string>
     <string name="hadiths">أحاديث</string>
     <string name="quranic_verses">آيات قرآنية</string>
     <string name="prophetsFamilyTree">شجرة عائلة الأنبياء</string>
-    <string name="elisha">اليسع</string>
     <string name="muhammadFamilyTree">شجرة عائلة محمد</string>
-    <string name="hashim_ibn_abd_manaf">هاشم بن عبد مناف</string>
-    <string name="sawada">سودة</string>
-    <string name="hafsa">حفصة</string>
-    <string name="juwayriya">جويرية</string>
-    <string name="maymuma">ميمونة</string>
-    <string name="arabized_arabs">العرب المستعربة</string>
     <string name="bigFamilyTree">الشجرة الكبرى</string>
     <string name="send_feedback">أرسل ملاحظاتك إلينا</string>
     <string name="about_app">عن التطبيق</string>
@@ -67,7 +22,6 @@
     <string name="view_images">عرض الصور</string>
     <string name="send">إؤسال</string>
     <string name="please_give_details_on_the_issue_or_provide_general_feedback">يرجى تقديم التفاصيل حول المشكلة أو تقديم ملاحظات عامة</string>
-    <string name="zainab2">زينب</string>
     <string name="part">جزء رقم "</string>
     <string name="english">الانجليزية</string>
     <string name="yes">نعم</string>
@@ -100,7 +54,34 @@
     <string name="dateConversion">محول التقويم</string>
     <string name="hijri">التقويم الهجري</string>
     <string name="gregorian">التقويم الميلادي</string>
+    <string name="quran">المصحف</string>
     <string name="prayerTimesTitle">أوقات الصلاه لشهر </string>
-    <string name="juzNumber">جزء رقم</string>
+    <string name="versesNumber"> عدد الآيات</string>
+    <string name="juzNumber">"جزء رقم ۩ "</string>
+    <string name="hizbNumber">"حزب رقم ۩ "</string>
+    <string-array name="custom_weekdays">
+        <item>حد</item>
+        <item>اثن</item>
+        <item>ثلا</item>
+        <item>ارب</item>
+        <item>خمي</item>
+        <item>جمع</item>
+        <item>سبت</item>
+    </string-array>
+
+    <string-array name="custom_months">
+        <item>Muharram</item>
+        <item>صفر</item>
+        <item>Rabi\' I</item>
+        <item>Rabi\' II</item>
+        <item>جماد أول</item>
+        <item>جماد تاني</item>
+        <item>رجب</item>
+        <item>شعبان</item>
+        <item>رمضان</item>
+        <item>شوال</item>
+        <item>ذو قعدة</item>
+        <item>ذو حجة</item>
+    </string-array>
 
 </resources>

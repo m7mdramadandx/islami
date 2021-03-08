@@ -23,11 +23,11 @@ import com.squareup.picasso.Picasso
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.random.Random
 import com.ramadan.islami.data.model.Collection as CollectionModel
-
 
 class Utils(val context: Context) {
 
@@ -129,6 +129,8 @@ fun dateOfDay(): String {
     val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
     return simpleDateFormat.format(Date())
 }
+
+val nf: NumberFormat = NumberFormat.getInstance(Locale.forLanguageTag("AR"))
 
 const val MUSLIM_SALAT_URL = "http://muslimsalat.com/"
 const val GITHUB_URL = "https://api.github.com/"

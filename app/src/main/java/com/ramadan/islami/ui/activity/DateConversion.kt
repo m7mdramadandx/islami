@@ -15,9 +15,9 @@ import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
 import com.ramadan.islami.data.model.PrayerData
-import com.ramadan.islami.ui.viewModel.ApiViewModel
+import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
-import com.ramadan.islami.utils.ResStatus
+import com.ramadan.islami.utils.ResponseStatus
 import com.ramadan.islami.utils.debug_tag
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuObject
@@ -32,8 +32,8 @@ import com.ramadan.islami.data.model.Calender as CalenderModel
 class DateConversion : AppCompatActivity() {
     private val viewModel by lazy {
         ViewModelProvider(this,
-            ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").hijriCalender()))
-        ).get(ApiViewModel::class.java)
+            ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").apiService()))
+        ).get(WebServiceViewModel::class.java)
     }
     private lateinit var result: PrayerData
     private lateinit var calenderModel: CalenderModel
@@ -93,13 +93,13 @@ class DateConversion : AppCompatActivity() {
     private fun fetchHijri(gregorianDate: String) {
         viewModel.hijriCalender(gregorianDate).observe(this, {
             when (it.status) {
-                ResStatus.LOADING -> progress.visibility = View.VISIBLE
-                ResStatus.SUCCESS -> {
+                ResponseStatus.LOADING -> progress.visibility = View.VISIBLE
+                ResponseStatus.SUCCESS -> {
                     progress.visibility = View.GONE
                     hijri.text = it.data!!.data.hijri.date
                     Log.e(debug_tag, it.data.data.hijri.date)
                 }
-                ResStatus.ERROR -> {
+                ResponseStatus.ERROR -> {
                     progress.visibility = View.GONE
                     Log.e(debug_tag, it.message.toString())
                 }
@@ -111,12 +111,12 @@ class DateConversion : AppCompatActivity() {
     private fun fetchGregorian(hijriDate: String) {
         viewModel.gregorianCalender(hijriDate).observe(this, {
             when (it.status) {
-                ResStatus.LOADING -> progress.visibility = View.VISIBLE
-                ResStatus.SUCCESS -> {
+                ResponseStatus.LOADING -> progress.visibility = View.VISIBLE
+                ResponseStatus.SUCCESS -> {
                     progress.visibility = View.GONE
                     gregorian.text = it.data!!.data.gregorian.date
                 }
-                ResStatus.ERROR -> {
+                ResponseStatus.ERROR -> {
                     progress.visibility = View.GONE
                     Log.e(debug_tag, it.message.toString())
                 }

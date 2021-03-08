@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
                             startActivity(it)
                         }
                     }
+//                    R.id.nav_quran ->
                 }
             }
     }
@@ -82,11 +83,13 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         navController.addOnDestinationChangedListener(listener)
+        fixedBanner.loadAd(AdRequest.Builder().build())
     }
 
     override fun onResume() {
         super.onResume()
         navController.addOnDestinationChangedListener(listener)
+        fixedBanner.loadAd(AdRequest.Builder().build())
     }
 
     override fun onSupportNavigateUp(): Boolean {

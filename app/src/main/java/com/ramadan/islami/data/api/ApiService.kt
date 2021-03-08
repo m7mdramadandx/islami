@@ -1,15 +1,17 @@
 package com.ramadan.islami.data.api
 
-import com.ramadan.islami.data.model.*
+import com.ramadan.islami.data.model.AllahNames
+import com.ramadan.islami.data.model.Calender
+import com.ramadan.islami.data.model.Hadith
+import com.ramadan.islami.data.model.Prayer
 import retrofit2.http.GET
 import retrofit2.http.Headers
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("v1/qibla")
-    suspend fun qibla(@Path("/") latlng: String): Qibla
+//    @GET("v1/qibla")
+//    suspend fun qibla(@Path("/") latlng: String): Qibla
 
     @GET("asmaAlHusna")
     suspend fun allahNames(): AllahNames

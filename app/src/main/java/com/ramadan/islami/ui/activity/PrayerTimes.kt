@@ -20,17 +20,17 @@ import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
 import com.ramadan.islami.data.model.PrayerData
 import com.ramadan.islami.ui.adapter.TableAdapter
-import com.ramadan.islami.ui.viewModel.ApiViewModel
+import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
-import com.ramadan.islami.utils.ResStatus
+import com.ramadan.islami.utils.ResponseStatus
 import com.ramadan.islami.utils.debug_tag
 import kotlinx.android.synthetic.main.table_layout.*
 
 class PrayerTimes : AppCompatActivity() {
     private val viewModel by lazy {
         ViewModelProvider(this,
-            ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").hijriCalender()))
-        ).get(ApiViewModel::class.java)
+            ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").apiService()))
+        ).get(WebServiceViewModel::class.java)
     }
     private val ACCESS_FINE_LOCATION_REQ_CODE = 35
     private lateinit var tableAdapter: TableAdapter
@@ -96,14 +96,14 @@ class PrayerTimes : AppCompatActivity() {
     private fun observeDate(lat: Double, lon: Double) {
         viewModel.fetchPrayers(lat, lon).observe(this, {
             when (it.status) {
-                ResStatus.LOADING -> progress.visibility = View.VISIBLE
-                ResStatus.SUCCESS -> {
+                ResponseStatus.LOADING -> progress.visibility = View.VISIBLE
+                ResponseStatus.SUCCESS -> {
                     progress.visibility = View.GONE
                     val month = it.data!!.data.first().date.gregorian.month.en
                     title = "${getString(R.string.prayerTimesTitle)} $month"
                     tableAdapter.setPrayerDataList(it.data.data as MutableList<PrayerData>)
                 }
-                ResStatus.ERROR -> {
+                ResponseStatus.ERROR -> {
                     progress.visibility = View.GONE
                     Log.e(debug_tag, it.message.toString())
                 }

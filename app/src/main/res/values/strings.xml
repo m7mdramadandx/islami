@@ -4,68 +4,12 @@
     <string name="ad_id" translatable="false">ca-app-pub-5169956365910255~4844827484</string>
     <string name="home_banner_id" translatable="false">ca-app-pub-3940256099942544/8865242552</string>
 
+    <string name="muhammad">محمد (ص)</string>
+    <string name="adam">Adam</string>
     <string name="stories">Stories</string>
     <string name="quotes">Quotes</string>
     <string name="prophets_tree">Prophets Tree</string>
     <string name="topics">Topics</string>
-    <string name="abraham">7) Abraham (200)</string>
-    <string name="adam">Adam</string>
-    <string name="aron">16) Aron (122)</string>
-    <string name="david">17) David (100)</string>
-    <string name="dhul_kifl">14) Dhul-Kifl</string>
-    <string name="elisha">20) Elisha</string>
-    <string name="elias">19) Elias</string>
-    <string name="heber">4) Heber (464)</string>
-    <string name="idriss">2) Idriss (865)</string>
-    <string name="isaac">9) Isaac (180)</string>
-    <string name="ishmael">8) Ishmael (137)</string>
-    <string name="jacob">10) jacob (147)</string>
-    <string name="jonah">21) Jonah</string>
-    <string name="jesus">24) Jesus —
-        son of Mary</string>
-    <string name="jethri">12) Jethri</string>
-    <string name="job">13) Job (93)</string>
-    <string name="joseph">11) Joseph (110)</string>
-    <string name="john">23) John</string>
-    <string name="lot">6) Lot</string>
-    <string name="methuselah">5) Methuselah</string>
-    <string name="moses">15) Moses (120)</string>
-    <string name="muhammad">MUHAMMAD</string>
-    <string name="noah">3) Noah (950)</string>
-    <string name="solomon">18) Solomon (52)</string>
-    <string name="zacharia">22) Zacharia (150)</string>
-
-
-    <string name="hashim_ibn_abd_manaf">Hashim Ibn Abd Manaf</string>
-    <string name="abd_almuttalib">Abd Almuttalib</string>
-    <string name="abd_allah">Abd Allah</string>
-    <string name="abd_allah1">Abd Allah1</string>
-    <string name="abd_allah2">Abd Allah2</string>
-    <string name="khadija">khadija</string>
-    <string name="sawada">sawada</string>
-    <string name="aisha">aisha</string>
-    <string name="zainab">zainab</string>
-    <string name="zainab1">zainab1</string>
-    <string name="zainab2">zainab2</string>
-    <string name="zainab3">zainab3</string>
-    <string name="hafsa">hafsa</string>
-    <string name="umm_salama">Umm Salama</string>
-    <string name="juwayriya">juwayriya</string>
-    <string name="umm_habiba">umm_habiba</string>
-    <string name="safiyya">safiyya</string>
-    <string name="maymuma">maymuma</string>
-    <string name="maria">maria</string>
-    <string name="al_qasim">al_qasim</string>
-    <string name="fatima">fatima</string>
-    <string name="umm_kalthum">umm_kalthum</string>
-    <string name="umm_kalthum1">umm_kalthum1</string>
-    <string name="ruqayyah">ruqayyah</string>
-    <string name="hussein">hussein</string>
-    <string name="hassan">hassan</string>
-    <string name="muhsin">muhsin</string>
-    <string name="arabized_arabs">Arabized Arabs</string>
-    <!-- Strings used for fragments for navigation -->
-
     <string name="suggested_to_you">Suggested to you</string>
     <string name="hadiths">Hadiths</string>
     <string name="quranic_verses">Quranic verses</string>
@@ -115,8 +59,9 @@
     <string name="gregorian">Gregorian</string>
     <string name="prayerTimesTitle">Prayer times for </string>
     <string name="quran">Quran</string>
-    <string name="versesNumber">عدد الآيات</string>
-    <string name="juzNumber">جزء رقم</string>
+    <string name="versesNumber">"verses "</string>
+    <string name="juzNumber">"juz ۩ "</string>
+    <string name="hizbNumber">"hizb ۩ "</string>
 
     <string-array name="custom_weekdays">
         <item>Su</item>

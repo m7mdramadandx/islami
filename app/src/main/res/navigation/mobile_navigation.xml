@@ -43,18 +43,18 @@
 
     <fragment
         android:id="@+id/nav_quran"
-        android:name="com.ramadan.islami.ui.fragment.SurahFragment"
+        android:name="com.ramadan.islami.ui.fragment.Surah"
         android:label="@string/quran"
-        tools:layout="@layout/fragment_quran_sura">
+        tools:layout="@layout/fragment_sura">
         <action
             android:id="@+id/action_nav_quran_to_ayah_fragment"
             app:destination="@id/ayah_fragment" />
     </fragment>
     <fragment
         android:id="@+id/ayah_fragment"
-        android:name="com.ramadan.islami.ui.fragment.AyahFragment"
+        android:name="com.ramadan.islami.ui.fragment.AyahPage"
         android:label="Ayah Quran"
-        tools:layout="@layout/activity_ayah">
+        tools:layout="@layout/fragment_ayah">
         <argument
             android:name="surah"
             app:argType="com.ramadan.islami.data.model.Surah" />
