@@ -54,11 +54,10 @@
         android:id="@+id/ayah_fragment"
         android:name="com.ramadan.islami.ui.fragment.AyahFragment"
         android:label="Ayah Quran"
-        tools:layout="@layout/fragment_quran_ayah">
+        tools:layout="@layout/activity_ayah">
         <argument
             android:name="surah"
-            app:argType="com.ramadan.islami.data.model.Surah"
-            app:nullable="true" />
+            app:argType="com.ramadan.islami.data.model.Surah" />
     </fragment>
 
 

@@ -34,6 +34,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
 
 
 class Dashboard : Fragment(), DataListener {
@@ -64,7 +65,7 @@ class Dashboard : Fragment(), DataListener {
         dailyAdapter = RecyclerViewAdapter()
         familyTreeAdapter = RecyclerViewAdapter()
         utils = Utils(context)
-        hijriToday = UmmalquraCalendar()
+        hijriToday = UmmalquraCalendar(Locale.getDefault())
 //        hijriToday.set(
 //            hijriToday[UmmalquraCalendar.YEAR],
 //            hijriToday[UmmalquraCalendar.MONTH],

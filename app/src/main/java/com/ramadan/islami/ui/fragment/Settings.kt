@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.ramadan.islami.R
-import com.ramadan.islami.ui.activity.MainActivity
+import com.ramadan.islami.ui.activity.AyahActivity
 import com.ramadan.islami.utils.LocaleHelper
 
 class Settings : Fragment() {
@@ -78,7 +78,7 @@ class Settings : Fragment() {
                     R.id.option2 -> localeHelper.persist(requireContext(), "en")
                 }
                 startActivity(Intent(requireContext(),
-                    MainActivity::class.java)).also { super.onDestroy() }
+                    AyahActivity::class.java)).also { super.onDestroy() }
             }
         } else {
             val option3 =

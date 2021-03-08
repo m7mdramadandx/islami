@@ -40,24 +40,24 @@ class SurahFragment : Fragment(), SurahRecyclerListener {
         recyclerView = root.findViewById(R.id.rv_quran_sura)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = view
-        searchView = root.findViewById(R.id.persistent_search_view)
+//        searchView = root.findViewById(R.id.persistent_search_view)
         getDataSura()
         return root
     }
 
     private fun getDataSura() {
         getSuraSearch("")
-        with(searchView) {
-            setOnSearchConfirmedListener { searchView, query ->
-                searchView.collapse()
-                getSuraSearch(query)
-            }
-            hideLeftButton()
-            hideRightButton()
-            isVoiceInputButtonEnabled = false
-            setOnClearInputBtnClickListener { getSuraSearch("") }
-        }
+//        with(searchView) {
+//            setOnSearchConfirmedListener { searchView, query ->
+//                searchView.collapse()
+//                getSuraSearch(query)
+//            }
+//            hideLeftButton()
+//            hideRightButton()
+//            isVoiceInputButtonEnabled = false
+//            setOnClearInputBtnClickListener { getSuraSearch("") }
     }
+
 
     private fun getSuraSearch(search: String) {
         val list = viewModel.getAllSura(requireContext(), search)

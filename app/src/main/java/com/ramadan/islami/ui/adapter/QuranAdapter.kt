@@ -56,8 +56,10 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
             itemView.apply {
                 surahNumber.text = surah.number.toString()
                 surahName.text = surah.name
-                versesNumber.text = surah.ayahs.size.toString()
-                juzNumber.text = surah.ayahs.first().juz.toString()
+                versesNumber.text =
+                    context.getString(R.string.versesNumber) + surah.ayahs.size.toString()
+                juzNumber.text =
+                    context.getString(R.string.juzNumber) + surah.ayahs.first().juz.toString()
                 revelationType.text = surah.revelationType
                 setOnClickListener { listener?.onClick(it, surah) }
             }
@@ -65,8 +67,11 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
 
         fun ayahView(ayah: Quran.Ayah) {
             itemView.apply {
-                ayahNumber.text = ayah.numberInSurah.toString()
                 ayahText.text = ayah.text
+                ayahNumber.text = ayah.numberInSurah.toString()
+                if (ayah.sajda != false) {
+                    ayah_sajda.visibility = View.VISIBLE
+                }
             }
         }
 

@@ -101,5 +101,6 @@
     <string name="hijri">التقويم الهجري</string>
     <string name="gregorian">التقويم الميلادي</string>
     <string name="prayerTimesTitle">أوقات الصلاه لشهر </string>
+    <string name="juzNumber">جزء رقم</string>
 
 </resources>

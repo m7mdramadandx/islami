@@ -76,6 +76,7 @@
             android:hardwareAccelerated="true" />
         <activity android:name=".ui.activity.VideoList" />
         <activity android:name=".ui.activity.TopicList" />
+        <activity android:name=".ui.activity.AyahActivity" />
     </application>
 
 </manifest>

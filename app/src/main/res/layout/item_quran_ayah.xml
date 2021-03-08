@@ -1,37 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ayahItem"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/ayahText"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/kemenag"
+        android:gravity="center"
+        android:text="بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ayah_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ayah_sajda"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:src="@drawable/sajda"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ayah_label"
+        app:layout_constraintStart_toEndOf="@+id/ayahText"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/ayahNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:minWidth="50dp"
-            android:text="100"
-            android:textAlignment="center" />
+    <ImageView
+        android:id="@+id/ayah_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ayah_number"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ayah_sajda"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:gravity="start"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/ayahNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="000"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/ayah_label"
+        app:layout_constraintEnd_toEndOf="@+id/ayah_label"
+        app:layout_constraintStart_toStartOf="@+id/ayah_label"
+        app:layout_constraintTop_toTopOf="@+id/ayah_label" />
 
-            <TextView
-                android:id="@+id/ayahText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/kemenag"
-                android:text="بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ" />
-
-        </LinearLayout>
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
