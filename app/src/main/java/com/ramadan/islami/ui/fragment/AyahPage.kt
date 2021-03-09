@@ -18,7 +18,7 @@ import com.ramadan.islami.utils.nf
 import kotlinx.android.synthetic.main.fragment_ayah.*
 import kotlinx.android.synthetic.main.main_content.*
 
-class AyahPage : Fragment(), Runnable {
+class AyahPage : Fragment() {
 
     //    private val viewModel by lazy { ViewModelProvider(this).get(QuranAyahViewModel::class.java) }
     private lateinit var surah: Surah
@@ -47,7 +47,7 @@ class AyahPage : Fragment(), Runnable {
     override fun onDetach() {
         super.onDetach()
         (activity as MainActivity).supportActionBar?.show()
-        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
     override fun onCreateView(
@@ -94,8 +94,4 @@ class AyahPage : Fragment(), Runnable {
 //        saveReadLog()
     }
 
-    override fun run() {
-
-
-    }
 }

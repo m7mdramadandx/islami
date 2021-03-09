@@ -40,7 +40,7 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
     inner class CustomView(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val localeHelper = LocaleHelper()
         private val ctx = itemView.context
-        private val marks = localeHelper.getMark(ctx)
+        private val marks = localeHelper.getStoryMark(ctx)
 
         fun expandView(text: String, position: Int) {
             val keyStore = "$title ${position + 1}"
@@ -64,7 +64,7 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
                     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     alertDialog.show()
                     view.findViewById<TextView>(R.id.yes).setOnClickListener {
-                        localeHelper.setMark(ctx, keyStore)
+                        localeHelper.setStoryMark(ctx, keyStore)
                         itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorAccent))
                         alertDialog.dismiss()
                     }

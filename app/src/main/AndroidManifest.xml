@@ -44,6 +44,7 @@
             android:theme="@style/AppTheme_NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />
+                <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
 
@@ -52,7 +53,6 @@
             android:label="@string/hadithOfDay">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />
-                <action android:name="android.intent.action.TRANSLATE" />
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>

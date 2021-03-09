@@ -15,9 +15,9 @@ class QuranDb {
     fun retrieveQuran(context: Context): List<Surah>? {
         return try {
             val fileIn: InputStream = context.assets.open("quran.json")
-            val bufferedIn: BufferedInputStream = BufferedInputStream(fileIn)
+            val bufferedIn = BufferedInputStream(fileIn)
             val reader: Reader = InputStreamReader(bufferedIn, Charset.forName("UTF-8"))
-            Gson().fromJson<Quran>(reader, Quran::class.java).data.surahs
+            Gson().fromJson(reader, Quran::class.java).data.surahs
         } catch (e: Exception) {
             null
         }

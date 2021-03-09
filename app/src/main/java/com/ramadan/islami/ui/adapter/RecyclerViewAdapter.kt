@@ -186,7 +186,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         fun quoteView(quotes: String) {
             Picasso.get().load(quotes).error(R.drawable.error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.cardImage)
-            if (isDashboard) {
+            if (!isDashboard) {
                 itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
             }
             itemView.setOnClickListener { showImg(quotes, ctx) }

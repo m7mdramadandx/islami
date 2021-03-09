@@ -79,7 +79,7 @@ class Hadiths : AppCompatActivity(), FirebaseListener {
         GlobalScope.launch(Dispatchers.IO) {
             viewModel.fetchHadiths(language).also {
                 withContext(Dispatchers.Main) {
-                    recyclerViewAdapter.setQuotesDataList(it.hadiths, false)
+                    recyclerViewAdapter.setQuotesDataList(it.hadiths, true)
                     progress.visibility = View.GONE
                     Toast.makeText(this@Hadiths,
                         getString(R.string.could_download),

@@ -9,7 +9,6 @@
     android:paddingVertical="16dp"
     tools:context=".ui.activity.HadithOfDay">
 
-
     <TextView
         android:id="@+id/hadithTitle"
         style="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
@@ -18,32 +17,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/hadithBody"
+        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="36dp"
-        app:cardBackgroundColor="@android:color/transparent"
+        android:background="@drawable/bg_layout_rounded_white"
+        android:backgroundTint="@color/colorSecondary"
+        android:gravity="center"
+        android:padding="24dp"
+        android:textColor="#fff"
+        android:textIsSelectable="true"
+        android:visibility="gone"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hadithTitle">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/hadithBody"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/asset"
-            android:gravity="center"
-            android:nestedScrollingEnabled="true"
-            android:padding="24dp"
-            android:textColor="#fff"
-            android:textIsSelectable="true"
-            android:visibility="gone"
-            app:autoSizeTextType="uniform" />
-
-    </androidx.cardview.widget.CardView>
-
+        app:layout_constraintTop_toBottomOf="@+id/hadithTitle" />
 
     <ProgressBar
         android:id="@+id/progress"

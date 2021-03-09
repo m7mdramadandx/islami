@@ -13,9 +13,10 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         app:tabGravity="center"
-        app:tabInlineLabel="false"
+        app:tabMaxWidth="40dp"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium"
         app:tabTextColor="@android:color/white" />
 
     <androidx.viewpager2.widget.ViewPager2
@@ -24,6 +25,7 @@
         android:layout_height="match_parent"
         android:keepScreenOn="true"
         android:layoutDirection="rtl"
-        android:padding="8dp" />
+        android:paddingHorizontal="8dp"
+        android:paddingBottom="8dp" />
 
 </LinearLayout>

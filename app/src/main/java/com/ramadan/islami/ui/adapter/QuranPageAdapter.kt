@@ -1,5 +1,6 @@
 package com.ramadan.islami.ui.adapter
 
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ class QuranPageAdapter : RecyclerView.Adapter<QuranPage>() {
     var surahName = String()
 
     fun setAyahDataList(surah: Surah) {
+        surah.ayahs[0].text.removeRange(1, 22)
         this.ayahList = surah.ayahs.toMutableList()
         this.surahName = surah.name
         notifyDataSetChanged()
@@ -46,20 +48,21 @@ class QuranPageAdapter : RecyclerView.Adapter<QuranPage>() {
             itemView.apply {
                 ayahList.forEach {
                     if (it.page == position) {
-                        text += it.text + "\uFD3F" + valueOf(nf.format(it.numberInSurah)) + "\uFD3E"
+                        var ayahNumber =
+                            " \uFD3F" + valueOf(nf.format(it.numberInSurah)) + "\uFD3E "
+                        ayahNumber = ayahNumber.replace(ayahNumber,
+                            "<font color='#E1B34F'>$ayahNumber</font>")
+                        text += it.text + ayahNumber
                         _juzNumber.text =
                             context.getString(R.string.juzNumber) + valueOf(nf.format(it.juz))
                         _hizbNumber.text =
                             context.getString(R.string.hizbNumber) + valueOf(nf.format(it.hizbQuarter))
                     }
                 }
-                ayahText.text = text
+//                ayahText.text = text
                 _surahName.text = surahName
+                ayahText.text = (Html.fromHtml(text))
 
-//                ayahNumber.text = ayah.numberInSurah.toString()
-//                if (ayah.sajda != false) {
-//                    ayah_sajda.visibility = View.VISIBLE
-//                }
             }
         }
     }

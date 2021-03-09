@@ -37,9 +37,11 @@
     </declare-styleable>
 
     <array name="autoSize_text_sizes">
+        <item>18sp</item>
         <item>20sp</item>
         <item>22sp</item>
         <item>24sp</item>
         <item>26sp</item>
+        <item>32sp</item>
     </array>
 </resources>

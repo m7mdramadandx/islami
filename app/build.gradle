@@ -97,20 +97,20 @@ dependencies {
     implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
 
     // Dagger2 Library
-    def daggerVersion = "2.26"
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+//    def daggerVersion = "2.26"
+//    implementation "com.google.dagger:dagger:$daggerVersion"
+//    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
 //    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 //    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
     //Android Room
-    def room_version = "2.2.6"
-    implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+//    def room_version = "2.2.6"
+//    implementation "androidx.room:room-runtime:$room_version"
+//    implementation "androidx.room:room-ktx:$room_version"
+//    kapt "androidx.room:room-compiler:$room_version"
 
     //Preference
     def preferencesVersion = '1.1.0'
-    implementation "androidx.preference:preference-ktx:$preferencesVersion"
+    implementation "androidx.preference:preference-ktx:1.1.1"
 
 }

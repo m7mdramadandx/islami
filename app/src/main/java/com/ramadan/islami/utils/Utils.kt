@@ -29,6 +29,7 @@ import java.util.*
 import kotlin.random.Random
 import com.ramadan.islami.data.model.Collection as CollectionModel
 
+
 class Utils(val context: Context) {
 
     val suggestionMutableList: MutableList<CollectionModel> = mutableListOf(
@@ -131,6 +132,9 @@ fun dateOfDay(): String {
 }
 
 val nf: NumberFormat = NumberFormat.getInstance(Locale.forLanguageTag("AR"))
+fun getColoredSpanned(text: String, color: String): String {
+    return "<font color=$color>$text</font>"
+}
 
 const val MUSLIM_SALAT_URL = "http://muslimsalat.com/"
 const val GITHUB_URL = "https://api.github.com/"

@@ -102,9 +102,11 @@
                             app:sliderIndicatorSelectedColor="@color/colorAccent"
                             app:sliderIndicatorUnselectedColor="@android:color/white">
 
-                            <include
-                                android:id="@+id/progress"
-                                layout="@layout/loading_dialog" />
+                            <ProgressBar
+                                android:id="@+id/progress0"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center" />
 
                         </com.smarteist.autoimageslider.SliderView>
 
@@ -186,9 +188,11 @@
                             app:sliderIndicatorSelectedColor="@color/colorAccent"
                             app:sliderIndicatorUnselectedColor="@android:color/white">
 
-                            <include
+                            <ProgressBar
                                 android:id="@+id/progress1"
-                                layout="@layout/loading_dialog" />
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center" />
 
                         </com.smarteist.autoimageslider.SliderView>
                     </androidx.cardview.widget.CardView>

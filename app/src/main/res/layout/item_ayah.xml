@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
         android:paddingHorizontal="8dp">
 
         <TextView
@@ -17,9 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="سورة البقرة"
-            android:textColor="@color/colorAccent"
+            app:fontFamily="@font/kemenag"
             android:textStyle="bold" />
-
 
         <TextView
             android:id="@+id/_hizbNumber"
@@ -28,8 +28,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="حزب رقم"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:fontFamily="@font/kemenag" />
 
         <TextView
             android:id="@+id/_juzNumber"
@@ -38,15 +38,17 @@
             android:layout_weight="1"
             android:gravity="end"
             android:text="جزء رقم"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:fontFamily="@font/kemenag" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/ayahText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg_layout_circle_white"
         android:gravity="center"
+        android:paddingHorizontal="8dp"
         android:text="بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ"
         android:textColor="@color/titleColor"
         android:textIsSelectable="true"

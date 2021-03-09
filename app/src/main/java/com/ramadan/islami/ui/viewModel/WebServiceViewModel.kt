@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 
 class WebServiceViewModel(private val webServiceRepository: WebServiceRepository) : ViewModel() {
 
-    fun allahNames() = liveData(Dispatchers.Main) {
+        fun allahNames() = liveData(Dispatchers.Main) {
         emit(Resource.loading(null))
         try {
             emit(Resource.success(webServiceRepository.allahNames()))

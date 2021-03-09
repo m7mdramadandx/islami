@@ -7,9 +7,9 @@ import com.ramadan.islami.data.model.Surah
 class QuranRepository {
 
     companion object {
-        private var quranDb: QuranDb? = null
-        fun retrieveAllQuran(context: Context, search: String): MutableList<Surah> {
-            return QuranDb().retrieveQuran(context)!!.toMutableList()
+        private var quranDb = QuranDb()
+         fun retrieveAllQuran(context: Context, search: String): MutableList<Surah> {
+            return quranDb.retrieveQuran(context)!!.toMutableList()
         }
     }
 
