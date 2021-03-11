@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/surahCard"
     android:layout_width="match_parent"
@@ -37,16 +35,16 @@
                 style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/kemenag"
+                android:fontFamily="@font/quran_font"
                 android:text="سُورَةُ ٱلْفَاتِحَةِ"
-                android:textColor="@color/white" />
+                android:textColor="@color/colorAccent" />
 
             <TextView
                 android:id="@+id/versesNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/kemenag"
-                android:text="versesNumber"
+                android:fontFamily="@font/amiri_font"
+                android:text="عدد الاايات"
                 android:textColor="@color/white" />
 
         </LinearLayout>
@@ -55,7 +53,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:gravity="end"
             android:orientation="vertical">
 
@@ -64,16 +62,16 @@
                 style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/kemenag"
-                android:text="جزء رقم"
-                android:textColor="@color/white" />
+                android:fontFamily="@font/uthmani_font"
+                android:text="جزء الاول"
+                android:textColor="@color/colorAccent" />
 
             <TextView
                 android:id="@+id/revelationType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/kemenag"
-                android:text="Meccan"
+                android:fontFamily="@font/uthmani_font"
+                android:text="مكية"
                 android:textColor="@color/white" />
 
         </LinearLayout>

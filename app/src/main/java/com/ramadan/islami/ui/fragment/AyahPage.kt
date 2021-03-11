@@ -73,6 +73,8 @@ class AyahPage : Fragment() {
         doppelgangerViewPager.layoutDirection = ViewPager2.LAYOUT_DIRECTION_RTL
         tabLayout.layoutDirection = View.LAYOUT_DIRECTION_RTL
 
+
+
     }
 
 

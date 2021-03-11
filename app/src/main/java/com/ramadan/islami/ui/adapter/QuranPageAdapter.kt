@@ -20,7 +20,6 @@ class QuranPageAdapter : RecyclerView.Adapter<QuranPage>() {
     var surahName = String()
 
     fun setAyahDataList(surah: Surah) {
-        surah.ayahs[0].text.removeRange(1, 22)
         this.ayahList = surah.ayahs.toMutableList()
         this.surahName = surah.name
         notifyDataSetChanged()
@@ -53,13 +52,11 @@ class QuranPageAdapter : RecyclerView.Adapter<QuranPage>() {
                         ayahNumber = ayahNumber.replace(ayahNumber,
                             "<font color='#E1B34F'>$ayahNumber</font>")
                         text += it.text + ayahNumber
-                        _juzNumber.text =
-                            context.getString(R.string.juzNumber) + valueOf(nf.format(it.juz))
+                        _juzNumber.text = it.juz
                         _hizbNumber.text =
-                            context.getString(R.string.hizbNumber) + valueOf(nf.format(it.hizbQuarter))
+                            context.getString(R.string.hizbNumber) + valueOf(nf.format(it.hizbQuarter / 4))
                     }
                 }
-//                ayahText.text = text
                 _surahName.text = surahName
                 ayahText.text = (Html.fromHtml(text))
 

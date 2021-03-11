@@ -10,7 +10,7 @@
             android:title="@string/dashboard" />
         <item
             android:id="@+id/nav_quran"
-            android:icon="@drawable/qibla"
+            android:icon="@drawable/quran"
             android:title="@string/quran" />
         <item
             android:id="@+id/nav_stories"

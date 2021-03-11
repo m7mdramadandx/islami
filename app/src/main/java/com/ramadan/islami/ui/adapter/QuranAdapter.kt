@@ -59,14 +59,8 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
                 surahName.text = surah.name
                 versesNumber.text =
                     context.getString(R.string.versesNumber) + valueOf(nf.format(surah.ayahs.size))
-                juzNumber.text =
-                    context.getString(R.string.juzNumber) + valueOf(nf.format(surah.ayahs.first().juz))
+                juzNumber.text = surah.ayahs.first().juz
                 revelationType.text = surah.revelationType
-                if (surah.ayahs.first().juz % 2 == 0) {
-                    surahCard.setCardBackgroundColor(itemView.context.resources.getColor(R.color.colorSecondary))
-                } else {
-                    surahCard.setCardBackgroundColor(itemView.context.resources.getColor(R.color.colorPrimary))
-                }
                 setOnClickListener { listener?.onClick(it, surah) }
             }
         }

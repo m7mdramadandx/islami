@@ -13,7 +13,7 @@ class Quran(
 
     class Ayah(
         val hizbQuarter: Int,
-        val juz: Int,
+        val juz: String,
         val manzil: Int,
         val number: Int,
         val numberInSurah: Int,

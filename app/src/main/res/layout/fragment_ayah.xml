@@ -15,6 +15,7 @@
         app:tabGravity="center"
         app:tabMaxWidth="40dp"
         app:tabMode="scrollable"
+        app:tabPadding="0dp"
         app:tabSelectedTextColor="@color/colorAccent"
         app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium"
         app:tabTextColor="@android:color/white" />
