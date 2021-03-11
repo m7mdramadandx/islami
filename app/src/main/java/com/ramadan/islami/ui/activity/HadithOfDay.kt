@@ -38,19 +38,6 @@ class HadithOfDay : AppCompatActivity() {
         setContentView(R.layout.activity_hadith_of_day)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val text = intent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT)
-//        val readonly = intent.getBooleanExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, false)
-//        if (text != null) {
-//            val intent = Intent()
-//            intent.putExtra(Intent.EXTRA_PROCESS_TEXT, text.toString().toUpperCase())
-//            setResult(Activity.RESULT_OK, intent)
-////            intent.action = Intent.ACTION_VIEW
-////            intent.addCategory(Intent.CATEGORY_BROWSABLE)
-////            intent.data = Uri.parse("https://translate.google.com/$text")
-////            startActivity(intent)
-//        } else {
-//            Toast.makeText(this, "Text cannot be modified", Toast.LENGTH_SHORT).show()
-//        }
         val DEFINITION = 5
         hadithBody.customSelectionActionModeCallback = object : Callback {
 

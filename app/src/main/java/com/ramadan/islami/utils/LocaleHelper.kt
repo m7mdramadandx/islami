@@ -18,6 +18,7 @@ class LocaleHelper {
         private const val QURAN_MARKS = "quran_marks"
         private const val HADITH_OF_DAY = "hadith_of_day"
         private const val VERSE_OF_DAY = "verse_of_day"
+        private const val Prayer_TIMES = "prayer_times"
     }
 
     fun getAyahFontSize(context: Context): String? {
@@ -49,6 +50,20 @@ class LocaleHelper {
         return prefs.getString(VERSE_OF_DAY, " ").toString()
     }
 
+
+    fun setPrayerTimes(context: Context, part: MutableList<String>) {
+        val prefs: SharedPreferences = getDefaultSharedPreferences(context)
+        val editor = prefs.edit()
+        val prayerTimes = HashSet<String>()
+        prayerTimes.addAll(part)
+        editor.putStringSet(Prayer_TIMES, prayerTimes)
+        editor.apply()
+    }
+
+    fun getPrayerTimes(context: Context): MutableSet<String> {
+        val prefs = getDefaultSharedPreferences(context)
+        return prefs.getStringSet(Prayer_TIMES, emptySet()) as MutableSet<String>
+    }
 
     fun setQuranMark(context: Context, part: String) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)

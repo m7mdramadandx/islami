@@ -46,7 +46,7 @@
         android:id="@+id/ayahText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/quran_page"
+        android:background="@drawable/bg_layout_circle_white"
         android:gravity="center"
         android:paddingHorizontal="10dp"
         android:text="بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ"

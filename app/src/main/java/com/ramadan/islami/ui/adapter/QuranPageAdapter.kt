@@ -47,8 +47,8 @@ class QuranPageAdapter : RecyclerView.Adapter<QuranPage>() {
             itemView.apply {
                 ayahList.forEach {
                     if (it.page == position) {
-                        var ayahNumber =
-                            " \uFD3F" + valueOf(nf.format(it.numberInSurah)) + "\uFD3E "
+                        var ayahNumber = valueOf(nf.format(it.numberInSurah))
+//                            " \uFD3F" + valueOf(nf.format(it.numberInSurah)) + "\uFD3E "
                         ayahNumber = ayahNumber.replace(ayahNumber,
                             "<font color='#E1B34F'>$ayahNumber</font>")
                         text += it.text + ayahNumber

@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
@@ -49,6 +50,11 @@ class Utils(val context: Context) {
         CollectionModel("bigTree", context.getString(string.bigFamilyTree), defaultImg),
     )
 
+
+}
+
+ fun showMessage(context: Context, message: String) {
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
 
 private val dirPath = Environment.getExternalStoragePublicDirectory(

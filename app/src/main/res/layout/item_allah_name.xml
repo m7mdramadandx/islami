@@ -18,23 +18,25 @@
 
         <TextView
             android:id="@+id/allahNameNumber"
+            style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="00"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold" />
+            android:textColor="@color/colorAccent" />
 
         <TextView
             android:id="@+id/allahName"
+            style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
+            android:layout_weight="5"
             android:text="@string/allahNames"
             android:textColor="#fff" />
 
         <TextView
             android:id="@+id/allahNameMeaning"
+            style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="7"

@@ -13,7 +13,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Surah
 import com.ramadan.islami.ui.activity.MainActivity
-import com.ramadan.islami.ui.adapter.QuranPageAdapter
+import com.ramadan.islami.ui.adapter.QuranAdapter
 import com.ramadan.islami.utils.nf
 import kotlinx.android.synthetic.main.fragment_ayah.*
 import kotlinx.android.synthetic.main.main_content.*
@@ -23,14 +23,14 @@ class AyahPage : Fragment() {
     //    private val viewModel by lazy { ViewModelProvider(this).get(QuranAyahViewModel::class.java) }
     private lateinit var surah: Surah
     private var toast: Toast? = null
-    private lateinit var doppelgangerViewPager: ViewPager2
-    private lateinit var quranPageAdapter: QuranPageAdapter
+    private lateinit var viewPager: ViewPager2
+    private lateinit var quranPageAdapter: QuranAdapter
 
     private var doppelgangerPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
 
         override fun onPageSelected(position: Int) {
             Toast.makeText(requireContext(),
-                "Selected position: $position",
+                "بارك ٱللَّهُ فيك, اذكر ٱللَّهِ",
                 Toast.LENGTH_SHORT).show()
         }
     }
@@ -41,7 +41,7 @@ class AyahPage : Fragment() {
         arguments?.let { surah = AyahPageArgs.fromBundle(it).surah }
         (activity as MainActivity).supportActionBar?.hide()
         (activity as MainActivity).fixedBanner.removeAllViewsInLayout()
-        quranPageAdapter = QuranPageAdapter()
+        quranPageAdapter = QuranAdapter()
     }
 
     override fun onDetach() {
@@ -56,7 +56,7 @@ class AyahPage : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         val root = inflater.inflate(R.layout.fragment_ayah, container, false)
-        doppelgangerViewPager = root.findViewById(R.id.doppelgangerViewPager)
+        viewPager = root.findViewById(R.id.doppelgangerViewPager)
         return root
     }
 
@@ -65,14 +65,13 @@ class AyahPage : Fragment() {
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         quranPageAdapter.setAyahDataList(surah)
-        doppelgangerViewPager.adapter = quranPageAdapter
-        doppelgangerViewPager.registerOnPageChangeCallback(doppelgangerPageChangeCallback)
-        TabLayoutMediator(tabLayout, doppelgangerViewPager) { tab, position ->
+        viewPager.adapter = quranPageAdapter
+        viewPager.registerOnPageChangeCallback(doppelgangerPageChangeCallback)
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = java.lang.String.valueOf(nf.format(position + 1))
         }.attach()
-        doppelgangerViewPager.layoutDirection = ViewPager2.LAYOUT_DIRECTION_RTL
+        viewPager.layoutDirection = ViewPager2.LAYOUT_DIRECTION_RTL
         tabLayout.layoutDirection = View.LAYOUT_DIRECTION_RTL
-
 
 
     }

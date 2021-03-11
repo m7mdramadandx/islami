@@ -12,10 +12,11 @@ import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
 import com.ramadan.islami.data.model.AllahNames
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
-import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
+import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.ResponseStatus
 import com.ramadan.islami.utils.debug_tag
+import com.ramadan.islami.utils.showMessage
 import kotlinx.android.synthetic.main.recycler_view.*
 
 
@@ -55,6 +56,7 @@ class AllahNames : AppCompatActivity() {
                 }
                 ResponseStatus.ERROR -> {
                     progress.visibility = View.GONE
+                    showMessage(this, it.message.toString())
                     Log.e(debug_tag, it.message.toString())
                 }
             }

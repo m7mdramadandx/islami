@@ -1,6 +1,5 @@
 package com.ramadan.islami.ui.activity
 
-//import com.ramadan.islami.data.model.Qibla
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
@@ -20,11 +19,13 @@ import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
 import com.ramadan.islami.data.model.PrayerData
 import com.ramadan.islami.ui.adapter.TableAdapter
-import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
+import com.ramadan.islami.ui.viewModel.WebServiceViewModel
+import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.ResponseStatus
+import com.ramadan.islami.utils.dateOfDay
 import com.ramadan.islami.utils.debug_tag
-import kotlinx.android.synthetic.main.table_layout.*
+import kotlinx.android.synthetic.main.fragment_schedule_prayer.*
 
 class PrayerTimes : AppCompatActivity() {
     private val viewModel by lazy {
@@ -35,15 +36,15 @@ class PrayerTimes : AppCompatActivity() {
     private val ACCESS_FINE_LOCATION_REQ_CODE = 35
     private lateinit var tableAdapter: TableAdapter
     private lateinit var recyclerView: RecyclerView
-
+    private val localeHelper = LocaleHelper()
     override fun onStart() {
         super.onStart()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.table_layout)
-        recyclerView = findViewById(R.id.table_recycler_view)
+        setContentView(R.layout.fragment_schedule_prayer)
+        recyclerView = findViewById(R.id.rv_schedule_prayer)
         tableAdapter = TableAdapter()
         recyclerView.adapter = tableAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -101,7 +102,13 @@ class PrayerTimes : AppCompatActivity() {
                     progress.visibility = View.GONE
                     val month = it.data!!.data.first().date.gregorian.month.en
                     title = "${getString(R.string.prayerTimesTitle)} $month"
-                    tableAdapter.setPrayerDataList(it.data.data as MutableList<PrayerData>)
+                    tableAdapter.setSchedulePrayer(it.data.data as MutableList<PrayerData>)
+                    localeHelper.setPrayerTimes(this, it.data.data as MutableList<String>)
+                    it.data.data.forEach {
+                        if (it.date.gregorian.day == dateOfDay()) {
+                            tv_schedule_day.text = it.date.hijri.weekday.ar
+                        }
+                    }
                 }
                 ResponseStatus.ERROR -> {
                     progress.visibility = View.GONE
@@ -109,5 +116,6 @@ class PrayerTimes : AppCompatActivity() {
                 }
             }
         })
+//        Log.e(debug_tag, localeHelper.getPrayerTimes(this).toString())
     }
 }
