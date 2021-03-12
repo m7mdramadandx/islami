@@ -60,4 +60,31 @@
 
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="4dp"
+        card_view:cardBackgroundColor="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:text="@string/notification"
+            android:textColor="#fff" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:paddingEnd="16dp"
+            android:src="@drawable/ic_os_notification_fallback_white_24dp" />
+
+    </androidx.cardview.widget.CardView>
+
 </LinearLayout>

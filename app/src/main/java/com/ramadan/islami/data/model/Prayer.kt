@@ -1,6 +1,7 @@
 package com.ramadan.islami.data.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 
 data class Prayer(
@@ -10,7 +11,7 @@ data class Prayer(
     val `data`: List<PrayerData>,
     @SerializedName("status")
     val status: String,
-)
+) : Serializable
 
 data class PrayerData(
     @SerializedName("date")

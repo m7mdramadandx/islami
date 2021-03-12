@@ -53,7 +53,7 @@ class Utils(val context: Context) {
 
 }
 
- fun showMessage(context: Context, message: String) {
+fun showMessage(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
 

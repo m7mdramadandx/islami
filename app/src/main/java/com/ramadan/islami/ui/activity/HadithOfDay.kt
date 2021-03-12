@@ -20,6 +20,7 @@ import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.ResponseStatus
 import com.ramadan.islami.utils.debug_tag
+import com.ramadan.islami.utils.showMessage
 import kotlinx.android.synthetic.main.activity_hadith_of_day.*
 import kotlin.math.max
 import kotlin.math.min
@@ -117,10 +118,9 @@ class HadithOfDay : AppCompatActivity() {
                 ResponseStatus.ERROR -> {
                     progress.visibility = View.GONE
                     Log.e(debug_tag, it.message.toString())
+                    showMessage(this, it.message.toString())
                 }
-                ResponseStatus.LOADING -> {
-                    Log.e(debug_tag, "LOADING")
-                }
+                ResponseStatus.LOADING -> Log.e(debug_tag, "LOADING")
             }
         })
     }

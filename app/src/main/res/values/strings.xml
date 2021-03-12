@@ -62,15 +62,16 @@
     <string name="versesNumber">"verses "</string>
     <string name="juzNumber">"juz ۩ "</string>
     <string name="hizbNumber">"hizb ۩ "</string>
+    <string name="notification">notification</string>
 
     <string-array name="custom_weekdays">
-        <item>Su</item>
-        <item>M</item>
+        <item>Sun</item>
+        <item>Mon</item>
         <item>Tu</item>
-        <item>W</item>
+        <item>Wed</item>
         <item>Th</item>
-        <item>F</item>
-        <item>Sa</item>
+        <item>Fri</item>
+        <item>Sat</item>
     </string-array>
 
     <string-array name="custom_months">

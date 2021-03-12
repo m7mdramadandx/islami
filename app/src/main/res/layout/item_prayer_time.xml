@@ -4,137 +4,166 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:padding="4dp">
 
         <TextView
-            android:id="@+id/tv_pray_name_fajr"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="40dp"
-            android:text="Subuh" />
+            android:layout_weight="1"
+            android:text="fagr"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_pray_time_fajr"
-            android:layout_width="wrap_content"
+            android:id="@+id/fajrPrayTime"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="40dp"
-            android:text="05:30 AM" />
-    </RelativeLayout>
+            android:layout_weight="1"
+            android:text="00:00"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent" />
 
-    <RelativeLayout
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:padding="4dp">
 
         <TextView
-            android:id="@+id/tv_pray_name_shurooq"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="40dp"
-            android:text="Shurooq" />
+            android:layout_weight="1"
+            android:text="sunrise"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_pray_time_shurooq"
-            android:layout_width="wrap_content"
+            android:id="@+id/sunrisePrayTime"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="40dp"
-            android:text="05:30 AM" />
-    </RelativeLayout>
+            android:layout_weight="1"
+            android:text="00:00"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent" />
 
-    <RelativeLayout
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:padding="4dp">
 
         <TextView
-            android:id="@+id/tv_pray_name_dhuhr"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="40dp"
-            android:text="Zuhur" />
+            android:layout_weight="1"
+            android:text="dhur"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_pray_time_dhuhr"
-            android:layout_width="wrap_content"
+            android:id="@+id/dhurPrayTime"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="40dp"
-            android:text="05:30 AM" />
-    </RelativeLayout>
+            android:layout_weight="1"
+            android:text="00:00"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent" />
 
-    <RelativeLayout
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:padding="4dp">
 
         <TextView
-            android:id="@+id/tv_pray_name_asr"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="40dp"
-            android:text="Ashar" />
+            android:layout_weight="1"
+            android:text="asr"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_pray_time_asr"
-            android:layout_width="wrap_content"
+            android:id="@+id/asrPrayTime"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="40dp"
-            android:text="05:30 AM" />
-    </RelativeLayout>
+            android:layout_weight="1"
+            android:text="00:00"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent" />
 
-    <RelativeLayout
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:padding="4dp">
 
         <TextView
-            android:id="@+id/tv_pray_name_maghrib"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="40dp"
-            android:text="Maghrib" />
+            android:layout_weight="1"
+            android:text="maghrib"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_pray_time_maghrib"
-            android:layout_width="wrap_content"
+            android:id="@+id/maghribPrayTime"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="40dp"
-            android:text="05:30 AM" />
-    </RelativeLayout>
+            android:layout_weight="1"
+            android:text="00:00"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent" />
 
-    <RelativeLayout
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:padding="4dp">
 
         <TextView
-            android:id="@+id/tv_pray_name_isha"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="40dp"
-            android:text="Isya" />
+            android:layout_weight="1"
+            android:text="isha"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_pray_time_isha"
-            android:layout_width="wrap_content"
+            android:id="@+id/ishaPrayTime"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="40dp"
-            android:text="05:30 AM" />
-    </RelativeLayout>
+            android:layout_weight="1"
+            android:text="00:00"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent" />
 
+    </LinearLayout>
 
 </LinearLayout>

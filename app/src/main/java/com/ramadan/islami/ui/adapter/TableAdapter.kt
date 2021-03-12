@@ -13,10 +13,10 @@ import kotlinx.android.synthetic.main.table_row.view.*
 
 class TableAdapter : RecyclerView.Adapter<TableAdapter.ViewHolder>() {
 
-    private var schedulePrayerData = mutableListOf<PrayerData>()
+    private var schedulePrayerData: PrayerData? = null
     private var prayerList = mutableListOf<PrayerData>()
 
-    fun setSchedulePrayer(data: MutableList<PrayerData>) {
+    fun setSchedulePrayer(data: PrayerData) {
         schedulePrayerData = data
         notifyDataSetChanged()
     }
@@ -27,7 +27,7 @@ class TableAdapter : RecyclerView.Adapter<TableAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v: View = if (schedulePrayerData.size > 0)
+        val v: View = if (schedulePrayerData != null)
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_prayer_time, parent, false)
         else LayoutInflater.from(parent.context)
@@ -37,25 +37,28 @@ class TableAdapter : RecyclerView.Adapter<TableAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when {
-            schedulePrayerData.isNotEmpty() -> holder.schedulePrayer(prayerList[position], position)
-            prayerList.isNotEmpty() -> holder.monthPrayers(prayerList[position], position)
+            schedulePrayerData != null -> holder.schedulePrayer(schedulePrayerData!!)
+            prayerList.size > 0 -> holder.monthPrayers(prayerList[position], position)
         }
     }
 
     override fun getItemCount(): Int {
         return when {
-            schedulePrayerData.isNotEmpty() -> schedulePrayerData.size
+            schedulePrayerData != null -> 1
             prayerList.size > 0 -> prayerList.size
             else -> 0
         }
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun schedulePrayer(prayerData: PrayerData, position: Int) {
+        fun schedulePrayer(prayerData: PrayerData) {
             itemView.apply {
-                tv_pray_time_fajr.text = prayerData.timings.fajr.removeSuffix("(EET)")
-                tv_pray_time_shurooq.text = prayerData.timings.sunrise.removeSuffix("(EET)")
-                tv_pray_time_dhuhr.text = prayerData.timings.dhuhr.removeSuffix("(EET)")
+                fajrPrayTime.text = prayerData.timings.fajr.removeSuffix("(EET)")
+                sunrisePrayTime.text = prayerData.timings.sunrise.removeSuffix("(EET)")
+                dhurPrayTime.text = prayerData.timings.dhuhr.removeSuffix("(EET)")
+                asrPrayTime.text = prayerData.timings.asr.removeSuffix("(EET)")
+                maghribPrayTime.text = prayerData.timings.maghrib.removeSuffix("(EET)")
+                ishaPrayTime.text = prayerData.timings.isha.removeSuffix("(EET)")
             }
         }
 

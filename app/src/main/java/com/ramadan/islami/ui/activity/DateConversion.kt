@@ -15,10 +15,11 @@ import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
 import com.ramadan.islami.data.model.PrayerData
-import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
+import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.ResponseStatus
 import com.ramadan.islami.utils.debug_tag
+import com.ramadan.islami.utils.showMessage
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuObject
 import com.yalantis.contextmenu.lib.MenuParams
@@ -119,6 +120,7 @@ class DateConversion : AppCompatActivity() {
                 ResponseStatus.ERROR -> {
                     progress.visibility = View.GONE
                     Log.e(debug_tag, it.message.toString())
+                    showMessage(this, it.message.toString())
                 }
             }
         })

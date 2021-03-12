@@ -1,66 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingHorizontal="8dp"
+    android:paddingVertical="16dp"
     tools:context=".ui.activity.PrayerTimes">
 
     <com.vivekkaushik.datepicker.DatePickerTimeline
         android:id="@+id/dtp_schedule_prayer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_alignParentTop="true"
         android:background="@drawable/bg_layout_rounded_white"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/silver_grey"
         android:padding="10dp"
-
-        app:dateTextColor="@color/white"
-        app:dayTextColor="@color/white"
-        app:monthTextColor="@color/white" />
+        app:dateTextColor="@color/textColor"
+        app:dayTextColor="@color/textColor"
+        app:disabledColor="@color/black"
+        app:monthTextColor="@color/colorAccent" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/bg_layout_rounded_white"
-        android:elevation="1dp"
-        android:orientation="vertical">
+        android:layout_below="@+id/dtp_schedule_prayer"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/background"
+        android:backgroundTint="@color/colorPrimary"
+        android:elevation="8dp">
 
-        <FrameLayout
-            android:id="@+id/frm_schedule_progress_bar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_layout_rounded_white"
-            android:backgroundTint="#57B5B5B5"
-            android:elevation="2dp"
-            android:visibility="visible">
-
-            <ProgressBar
-                android:id="@+id/progress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
-        </FrameLayout>
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp">
+            android:padding="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp">
+                android:paddingHorizontal="16dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -77,7 +66,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_schedule_day"
+                        android:id="@+id/scheduleDay"
                         style="@style/TextAppearance.AppCompat.Medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -85,30 +74,47 @@
                         android:textColor="@color/colorAccent" />
 
                     <TextView
-                        android:id="@+id/tv_schedule_date"
+                        android:id="@+id/scheduleDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Date" />
+                        android:text="Date"
+                        android:textColor="@color/white" />
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tv_schedule_location"
+                    android:id="@+id/scheduleLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:drawableStart="@drawable/ic_close_black_36dp"
                     android:gravity="center|end"
-                    android:text="Location" />
+                    android:text="Location"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="48dp"
+                android:layout_marginVertical="8dp"
+                android:background="@color/colorAccent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_schedule_prayer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
                 tools:itemCount="1"
                 tools:listitem="@layout/item_prayer_time" />
         </LinearLayout>
+
     </FrameLayout>
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/monthView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="See Full Month" />
+</RelativeLayout>

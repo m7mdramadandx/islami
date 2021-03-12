@@ -1,6 +1,7 @@
 package com.ramadan.islami.ui.activity
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -17,7 +18,7 @@ import com.google.android.gms.location.LocationServices
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
-import com.ramadan.islami.data.model.PrayerData
+import com.ramadan.islami.data.model.Prayer
 import com.ramadan.islami.ui.adapter.TableAdapter
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
@@ -25,9 +26,14 @@ import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.ResponseStatus
 import com.ramadan.islami.utils.dateOfDay
 import com.ramadan.islami.utils.debug_tag
+import com.vivekkaushik.datepicker.DatePickerTimeline
+import com.vivekkaushik.datepicker.OnDateSelectedListener
 import kotlinx.android.synthetic.main.fragment_schedule_prayer.*
+import java.util.*
+
 
 class PrayerTimes : AppCompatActivity() {
+
     private val viewModel by lazy {
         ViewModelProvider(this,
             ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").apiService()))
@@ -37,9 +43,9 @@ class PrayerTimes : AppCompatActivity() {
     private lateinit var tableAdapter: TableAdapter
     private lateinit var recyclerView: RecyclerView
     private val localeHelper = LocaleHelper()
-    override fun onStart() {
-        super.onStart()
-    }
+    private lateinit var gregorianToday: Calendar
+    private lateinit var prayer: Prayer
+    private var selectedDate = Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +54,7 @@ class PrayerTimes : AppCompatActivity() {
         tableAdapter = TableAdapter()
         recyclerView.adapter = tableAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-
+        gregorianToday = Calendar.getInstance()
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
             if (!checkIfAlreadyPermission()) {
                 requestForSpecificPermission()
@@ -62,7 +68,38 @@ class PrayerTimes : AppCompatActivity() {
                 }
             }
         }
+        val datePickerTimeline = findViewById<DatePickerTimeline>(R.id.dtp_schedule_prayer)
+        datePickerTimeline.setInitialDate(
+            gregorianToday[Calendar.YEAR],
+            gregorianToday[Calendar.MONTH],
+            gregorianToday[Calendar.DAY_OF_MONTH],
+        )
+        datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
+            override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
+                Log.e(debug_tag, "$dayOfWeek -- $day")
+//                selectedDate = day
+                tableAdapter.setSchedulePrayer(prayer.data[day])
+                scheduleDay.text = gregorianToday[Calendar.DAY_OF_WEEK].toString()
+                scheduleDate.text = "$year - $month $day"
+            }
 
+            override fun onDisabledDateSelected(
+                year: Int,
+                month: Int,
+                day: Int,
+                dayOfWeek: Int,
+                isDisabled: Boolean,
+            ) {
+                Log.e(debug_tag, "$dayOfWeek #### $day")
+            }
+        })
+
+        monthView.setOnClickListener {
+            Intent(this, MonthPrayerTimes::class.java).also {
+                it.putExtra("prayer", prayer)
+                startActivity(it)
+            }
+        }
     }
 
 
@@ -93,7 +130,6 @@ class PrayerTimes : AppCompatActivity() {
         }
     }
 
-
     private fun observeDate(lat: Double, lon: Double) {
         viewModel.fetchPrayers(lat, lon).observe(this, {
             when (it.status) {
@@ -102,13 +138,14 @@ class PrayerTimes : AppCompatActivity() {
                     progress.visibility = View.GONE
                     val month = it.data!!.data.first().date.gregorian.month.en
                     title = "${getString(R.string.prayerTimesTitle)} $month"
-                    tableAdapter.setSchedulePrayer(it.data.data as MutableList<PrayerData>)
-                    localeHelper.setPrayerTimes(this, it.data.data as MutableList<String>)
+                    prayer = it.data
+                    scheduleDate.text = dateOfDay()
                     it.data.data.forEach {
                         if (it.date.gregorian.day == dateOfDay()) {
-                            tv_schedule_day.text = it.date.hijri.weekday.ar
+                            scheduleDay.text = it.date.hijri.weekday.ar
                         }
                     }
+//                    localeHelper.setPrayerTimes(this, it.data.data as MutableList<String>)
                 }
                 ResponseStatus.ERROR -> {
                     progress.visibility = View.GONE
@@ -116,6 +153,5 @@ class PrayerTimes : AppCompatActivity() {
                 }
             }
         })
-//        Log.e(debug_tag, localeHelper.getPrayerTimes(this).toString())
     }
 }
