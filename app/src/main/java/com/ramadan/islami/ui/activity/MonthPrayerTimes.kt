@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Prayer
-import com.ramadan.islami.ui.adapter.TableAdapter
+import com.ramadan.islami.ui.adapter.PrayTimeAdapter
 
 class MonthPrayerTimes : AppCompatActivity() {
 
     private lateinit var prayer: Prayer
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: TableAdapter
+    private lateinit var adapter: PrayTimeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +20,7 @@ class MonthPrayerTimes : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         recyclerView = findViewById(R.id.table_recycler_view)
-        adapter = TableAdapter()
+        adapter = PrayTimeAdapter()
         prayer = intent.getSerializableExtra("prayer") as Prayer
         adapter.setPrayerDataList(prayer.data.toMutableList())
         recyclerView.layoutManager = LinearLayoutManager(this)

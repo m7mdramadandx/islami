@@ -34,7 +34,9 @@ import com.ramadan.islami.data.model.Collection as CollectionModel
 class Utils(val context: Context) {
 
     val suggestionMutableList: MutableList<CollectionModel> = mutableListOf(
+        CollectionModel("verseOfDay", context.getString(string.verseOfDay), defaultImg),
         CollectionModel("hadithOfDay", context.getString(string.hadithOfDay), defaultImg),
+        CollectionModel("azkarOfDay", context.getString(string.zekrOfDay), defaultImg),
         CollectionModel("muhammadStory", context.getString(string.muhammad), defaultImg),
         CollectionModel("hadiths", context.getString(string.hadiths), defaultImg),
     )

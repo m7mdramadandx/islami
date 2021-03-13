@@ -11,7 +11,7 @@ import com.ramadan.islami.utils.dateOfDay
 import kotlinx.android.synthetic.main.item_prayer_time.view.*
 import kotlinx.android.synthetic.main.table_row.view.*
 
-class TableAdapter : RecyclerView.Adapter<TableAdapter.ViewHolder>() {
+class PrayTimeAdapter : RecyclerView.Adapter<PrayTimeAdapter.ViewHolder>() {
 
     private var schedulePrayerData: PrayerData? = null
     private var prayerList = mutableListOf<PrayerData>()

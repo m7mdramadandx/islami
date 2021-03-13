@@ -18,7 +18,7 @@ import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
 import com.ramadan.islami.data.model.Prayer
-import com.ramadan.islami.ui.adapter.TableAdapter
+import com.ramadan.islami.ui.adapter.PrayTimeAdapter
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.*
@@ -36,7 +36,7 @@ class PrayerTimes : AppCompatActivity() {
         ).get(WebServiceViewModel::class.java)
     }
     private val ACCESS_FINE_LOCATION_REQ_CODE = 35
-    private lateinit var tableAdapter: TableAdapter
+    private lateinit var prayTimeAdapter: PrayTimeAdapter
     private lateinit var recyclerView: RecyclerView
     private val localeHelper = LocaleHelper()
     private lateinit var gregorianToday: Calendar
@@ -49,8 +49,8 @@ class PrayerTimes : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         recyclerView = findViewById(R.id.rv_schedule_prayer)
-        tableAdapter = TableAdapter()
-        recyclerView.adapter = tableAdapter
+        prayTimeAdapter = PrayTimeAdapter()
+        recyclerView.adapter = prayTimeAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         gregorianToday = Calendar.getInstance()
         selectedDate = gregorianToday[Calendar.DAY_OF_MONTH]
@@ -79,7 +79,7 @@ class PrayerTimes : AppCompatActivity() {
         datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
             override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
                 selectedDate = day
-                tableAdapter.setSchedulePrayer(prayer.data[day])
+                prayTimeAdapter.setSchedulePrayer(prayer.data[day])
                 scheduleDay.text = prayer.data[selectedDate - 1].date.hijri.weekday.ar
                 scheduleDate.text = "$day - ${month + 1} -$year"
             }
@@ -131,7 +131,7 @@ class PrayerTimes : AppCompatActivity() {
                     progress.visibility = View.GONE
                     prayer = it.data!!
                     scheduleDay.text = prayer.data[selectedDate - 1].date.hijri.weekday.ar
-                    tableAdapter.setSchedulePrayer(prayer.data[selectedDate])
+                    prayTimeAdapter.setSchedulePrayer(prayer.data[selectedDate])
                     localeHelper.setPrayerTimes(this, prayer.data[selectedDate - 1].timings)
                 }
                 ResponseStatus.ERROR -> {

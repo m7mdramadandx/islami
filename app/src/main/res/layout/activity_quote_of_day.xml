@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.QuoteOfDay">
+
+    <RelativeLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:id="@+id/textTitle"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textBody"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_layout_rounded_white"
+            android:backgroundTint="@color/colorSecondary"
+            android:gravity="center"
+            android:padding="24dp"
+            android:textColor="@color/colorAccent"
+            android:textIsSelectable="true"
+            android:visibility="gone"
+            app:autoSizeTextType="uniform" />
+
+        <TextView
+            android:id="@+id/textDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textBody"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textReference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textDescription"
+            android:layout_marginTop="8dp" />
+
+
+        <TextView
+            android:id="@+id/textTitle1"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textReference" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textBody1"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textTitle1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_layout_rounded_white"
+            android:backgroundTint="@color/colorSecondary"
+            android:gravity="center"
+            android:padding="24dp"
+            android:textColor="@color/colorAccent"
+            android:textIsSelectable="true"
+            android:visibility="gone"
+            app:autoSizeTextType="uniform" />
+
+        <TextView
+            android:id="@+id/textDescription1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textBody1"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textReference1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textDescription1"
+            android:layout_marginTop="8dp" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+</ScrollView>

@@ -130,8 +130,24 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             itemView.cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
             itemView.setOnClickListener {
                 when (collection.id) {
-                    "hadithOfDay" -> ctx.startActivity(Intent(ctx, HadithOfDay::class.java))
-                    "zekrOfDay" -> ctx.startActivity(Intent(ctx, HadithOfDay::class.java))
+                    "verseOfDay" -> {
+                        Intent(ctx, QuoteOfDay::class.java).apply {
+                            putExtra("intentKey", "verse")
+                            ctx.startActivity(this)
+                        }
+                    }
+                    "hadithOfDay" -> {
+                        Intent(ctx, QuoteOfDay::class.java).apply {
+                            putExtra("intentKey", "hadith")
+                            ctx.startActivity(this)
+                        }
+                    }
+                    "azkarOfDay" -> {
+                        Intent(ctx, QuoteOfDay::class.java).apply {
+                            putExtra("intentKey", "zekr")
+                            ctx.startActivity(this)
+                        }
+                    }
                     "hadiths" -> ctx.startActivity(Intent(ctx, Hadiths::class.java))
                     "muhammadStory" -> Intent(ctx, ActivityStory::class.java).apply {
                         putExtra("storyID", "muhammad")

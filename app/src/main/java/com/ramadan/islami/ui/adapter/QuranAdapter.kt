@@ -1,7 +1,6 @@
 package com.ramadan.islami.ui.adapter
 
 import android.text.Html
-import android.util.Log
 import android.view.*
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
@@ -10,17 +9,17 @@ import com.ramadan.islami.data.model.Quran
 import com.ramadan.islami.data.model.Surah
 import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.coloredJson
-import com.ramadan.islami.utils.debug_tag
 import com.ramadan.islami.utils.nf
 import kotlinx.android.synthetic.main.item_ayah.view.*
 import kotlinx.android.synthetic.main.item_surah.view.*
 import java.lang.String.valueOf
 
 class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
-    var listener: SurahListener? = null
+    private var listener: SurahListener? = null
     private var surahList: MutableList<Surah> = mutableListOf()
     private var ayahList: MutableList<Quran.Ayah> = mutableListOf()
-    var surahName = String()
+    private var surahName = String()
+    private var surahNum = String()
 
     fun setSuraDataList(list: MutableList<Surah>, listener: SurahListener) {
         this.listener = listener
@@ -31,6 +30,7 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
     fun setAyahDataList(surah: Surah) {
         this.ayahList = surah.ayahs.toMutableList()
         this.surahName = surah.name
+        this.surahNum = surah.number.toString()
         notifyDataSetChanged()
     }
 
@@ -60,9 +60,12 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
     override fun onBindViewHolder(holder: CustomView, position: Int) {
         return when {
             surahList.isNotEmpty() -> holder.surahView(surahList[position])
-            ayahList.isNotEmpty() -> holder.ayahView(ayahList,
+            ayahList.isNotEmpty() -> holder.ayahView(
+                ayahList,
                 ayahList.first().page + position,
-                surahName)
+                surahName,
+                surahNum
+            )
             else -> holder.surahView(surahList[position])
         }
 
@@ -71,15 +74,12 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
     inner class CustomView(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val localeHelper = LocaleHelper()
         private val ctx = itemView.context
+
         fun surahView(surah: Surah) {
-            Log.e(debug_tag, localeHelper.getQuranMark(ctx).toString())
-            localeHelper.getQuranMark(ctx).forEach {
-                if (it.contains(surah.name)) {
+            localeHelper.getQuranMark(ctx).find { it.contains(surah.name.removeSuffix("سورة")) }
+                .apply {
                     itemView.surahCard.setCardBackgroundColor(ctx.resources.getColor(R.color.silver_grey))
-                } else {
-                    itemView.surahCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
                 }
-            }
 
             itemView.apply {
                 surahNumber.text = surah.number.toString()
@@ -92,7 +92,12 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
             }
         }
 
-        fun ayahView(ayahList: MutableList<Quran.Ayah>, position: Int, surahName: String) {
+        fun ayahView(
+            ayahList: MutableList<Quran.Ayah>,
+            position: Int,
+            surahName: String,
+            surahNum: String
+        ) {
             var text = String()
             itemView.apply {
                 ayahList.forEach {
@@ -135,7 +140,7 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
 
                     override fun onActionItemClicked(p0: ActionMode, p1: MenuItem): Boolean {
                         if (p1.itemId == bookmark) {
-                            localeHelper.setQuranMark(ctx, "$surahName - $position")
+                            localeHelper.setQuranMark(ctx, "$surahNum - $position")
                             p0.finish()
                             return true
                         } else if (p1.itemId == tafsir) {

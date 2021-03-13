@@ -65,6 +65,8 @@
     <string name="notification">notification</string>
     <string name="bookmark">Bookmark</string>
     <string name="tafsir">tafsir</string>
+    <string name="zekrOfDay">Zekr of day</string>
+    <string name="verseOfDay">Verse of day</string>
 
     <string-array name="custom_weekdays">
         <item>Sun</item>

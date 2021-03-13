@@ -61,6 +61,7 @@
     <string name="hizbNumber">"حزب رقم ۩ "</string>
     <string name="notification">notification</string>
     <string name="bookmark">Bookmark</string>
+    <string name="zekrOfDay">Zekr of day</string>
     <string-array name="custom_weekdays">
         <item>احد</item>
         <item>اثنين</item>

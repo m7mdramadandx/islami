@@ -44,7 +44,7 @@
             android:theme="@style/AppTheme_NoActionBar"></activity>
 
         <activity
-            android:name=".ui.activity.HadithOfDay"
+            android:name=".ui.activity.QuoteOfDay"
             android:label="@string/hadithOfDay"></activity>
         <!--            <intent-filter>-->
         <!--                <action android:name="android.intent.action.PROCESS_TEXT" />-->
