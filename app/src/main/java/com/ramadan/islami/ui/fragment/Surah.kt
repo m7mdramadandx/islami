@@ -14,14 +14,14 @@ import com.ramadan.islami.R
 import com.ramadan.islami.data.listener.SurahListener
 import com.ramadan.islami.data.model.Surah
 import com.ramadan.islami.ui.adapter.QuranAdapter
-import com.ramadan.islami.ui.viewModel.QuranViewModel
+import com.ramadan.islami.ui.viewModel.LocalViewModel
 import com.ramadan.islami.utils.changeNavigation
 import kotlinx.coroutines.*
 
 
 class Surah : Fragment(), SurahListener {
 
-    private val viewModel by lazy { ViewModelProvider(this).get(QuranViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this).get(LocalViewModel::class.java) }
     private lateinit var recyclerView: RecyclerView
     private lateinit var quranAdapter: QuranAdapter
     private lateinit var searchView: PersistentSearchView

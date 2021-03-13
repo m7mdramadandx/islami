@@ -131,6 +131,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             itemView.setOnClickListener {
                 when (collection.id) {
                     "hadithOfDay" -> ctx.startActivity(Intent(ctx, HadithOfDay::class.java))
+                    "zekrOfDay" -> ctx.startActivity(Intent(ctx, HadithOfDay::class.java))
                     "hadiths" -> ctx.startActivity(Intent(ctx, Hadiths::class.java))
                     "muhammadStory" -> Intent(ctx, ActivityStory::class.java).apply {
                         putExtra("storyID", "muhammad")
