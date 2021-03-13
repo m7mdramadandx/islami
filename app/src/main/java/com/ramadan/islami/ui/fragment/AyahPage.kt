@@ -28,11 +28,17 @@ class AyahPage : Fragment() {
 
     private var doppelgangerPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
 
-        override fun onPageSelected(position: Int) {
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int,
+        ) {
+            super.onPageScrolled(position, positionOffset, positionOffsetPixels)
             Toast.makeText(requireContext(),
                 "بارك ٱللَّهُ فيك, اذكر ٱللَّهِ",
                 Toast.LENGTH_SHORT).show()
         }
+
     }
 
 
@@ -68,12 +74,10 @@ class AyahPage : Fragment() {
         viewPager.adapter = quranPageAdapter
         viewPager.registerOnPageChangeCallback(doppelgangerPageChangeCallback)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = java.lang.String.valueOf(nf.format(position + 1))
+            tab.text = java.lang.String.valueOf(nf.format(surah.ayahs.first().page + position))
         }.attach()
         viewPager.layoutDirection = ViewPager2.LAYOUT_DIRECTION_RTL
         tabLayout.layoutDirection = View.LAYOUT_DIRECTION_RTL
-
-
     }
 
 

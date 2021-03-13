@@ -35,7 +35,7 @@
                 style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/quran_font"
+                android:fontFamily="@font/uthmani_font"
                 android:text="سُورَةُ ٱلْفَاتِحَةِ"
                 android:textColor="@color/colorAccent" />
 

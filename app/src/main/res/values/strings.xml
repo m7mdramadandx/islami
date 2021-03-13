@@ -63,6 +63,8 @@
     <string name="juzNumber">"juz ۩ "</string>
     <string name="hizbNumber">"hizb ۩ "</string>
     <string name="notification">notification</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="tafsir">tafsir</string>
 
     <string-array name="custom_weekdays">
         <item>Sun</item>

@@ -16,11 +16,11 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/bg_layout_rounded_white"
         android:backgroundTint="@color/silver_grey"
+        android:elevation="10dp"
         android:padding="10dp"
-        app:dateTextColor="@color/textColor"
+        app:dateTextColor="@color/colorAccent"
         app:dayTextColor="@color/textColor"
-        app:disabledColor="@color/black"
-        app:monthTextColor="@color/colorAccent" />
+        app:monthTextColor="@color/textColor" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -97,7 +97,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="48dp"
-                android:layout_marginVertical="8dp"
                 android:background="@color/colorAccent" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -116,5 +115,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:onClick="monthView"
         android:text="See Full Month" />
 </RelativeLayout>

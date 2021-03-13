@@ -45,6 +45,7 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="CardViewStyle" parent="CardView">
@@ -56,11 +57,10 @@
     <style name="table_row_item" parent="@android:style/TextAppearance.Small">
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:layout_height">30dp</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:padding">2dp</item>
-        <!--        <item name="android:background">@color/silver_grey</item>-->
     </style>
 
     <style name="table_header" parent="@android:style/TextAppearance.Small">

@@ -14,7 +14,7 @@ import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
-import com.ramadan.islami.data.model.PrayerData
+import com.ramadan.islami.data.model.Prayer
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.ResponseStatus
@@ -36,7 +36,7 @@ class DateConversion : AppCompatActivity() {
             ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").apiService()))
         ).get(WebServiceViewModel::class.java)
     }
-    private lateinit var result: PrayerData
+    private lateinit var result: Prayer.PrayerData
     private lateinit var calenderModel: CalenderModel
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
     private lateinit var calendar: Calendar

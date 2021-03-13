@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -22,10 +21,7 @@ import com.ramadan.islami.data.model.Prayer
 import com.ramadan.islami.ui.adapter.TableAdapter
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
-import com.ramadan.islami.utils.LocaleHelper
-import com.ramadan.islami.utils.ResponseStatus
-import com.ramadan.islami.utils.dateOfDay
-import com.ramadan.islami.utils.debug_tag
+import com.ramadan.islami.utils.*
 import com.vivekkaushik.datepicker.DatePickerTimeline
 import com.vivekkaushik.datepicker.OnDateSelectedListener
 import kotlinx.android.synthetic.main.fragment_schedule_prayer.*
@@ -45,16 +41,20 @@ class PrayerTimes : AppCompatActivity() {
     private val localeHelper = LocaleHelper()
     private lateinit var gregorianToday: Calendar
     private lateinit var prayer: Prayer
-    private var selectedDate = Int
+    private var selectedDate: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_schedule_prayer)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         recyclerView = findViewById(R.id.rv_schedule_prayer)
         tableAdapter = TableAdapter()
         recyclerView.adapter = tableAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         gregorianToday = Calendar.getInstance()
+        selectedDate = gregorianToday[Calendar.DAY_OF_MONTH]
+        scheduleDate.text = dateOfDay()
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
             if (!checkIfAlreadyPermission()) {
                 requestForSpecificPermission()
@@ -62,9 +62,10 @@ class PrayerTimes : AppCompatActivity() {
                 val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
                 fusedLocationClient.lastLocation.addOnSuccessListener {
                     observeDate(it.latitude, it.longitude)
+//                    scheduleLocation.text = it.extras.toString()
                 }
                 fusedLocationClient.lastLocation.addOnFailureListener {
-                    Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
+                    showMessage(this, it.localizedMessage!!)
                 }
             }
         }
@@ -74,13 +75,13 @@ class PrayerTimes : AppCompatActivity() {
             gregorianToday[Calendar.MONTH],
             gregorianToday[Calendar.DAY_OF_MONTH],
         )
+        datePickerTimeline.setActiveDate(gregorianToday)
         datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
             override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
-                Log.e(debug_tag, "$dayOfWeek -- $day")
-//                selectedDate = day
+                selectedDate = day
                 tableAdapter.setSchedulePrayer(prayer.data[day])
-                scheduleDay.text = gregorianToday[Calendar.DAY_OF_WEEK].toString()
-                scheduleDate.text = "$year - $month $day"
+                scheduleDay.text = prayer.data[selectedDate - 1].date.hijri.weekday.ar
+                scheduleDate.text = "$day - ${month + 1} -$year"
             }
 
             override fun onDisabledDateSelected(
@@ -93,13 +94,6 @@ class PrayerTimes : AppCompatActivity() {
                 Log.e(debug_tag, "$dayOfWeek #### $day")
             }
         })
-
-        monthView.setOnClickListener {
-            Intent(this, MonthPrayerTimes::class.java).also {
-                it.putExtra("prayer", prayer)
-                startActivity(it)
-            }
-        }
     }
 
 
@@ -121,10 +115,9 @@ class PrayerTimes : AppCompatActivity() {
     ) {
         when (requestCode) {
             ACCESS_FINE_LOCATION_REQ_CODE -> if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "guides", Toast.LENGTH_LONG).show()
+//                showMessage(this, getString(R.string.couldnotDownload))
             } else {
-                Toast.makeText(this, getString(R.string.couldnotDownload), Toast.LENGTH_LONG)
-                    .show()
+                showMessage(this, getString(R.string.couldnotDownload))
             }
             else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }
@@ -136,22 +129,29 @@ class PrayerTimes : AppCompatActivity() {
                 ResponseStatus.LOADING -> progress.visibility = View.VISIBLE
                 ResponseStatus.SUCCESS -> {
                     progress.visibility = View.GONE
-                    val month = it.data!!.data.first().date.gregorian.month.en
-                    title = "${getString(R.string.prayerTimesTitle)} $month"
-                    prayer = it.data
-                    scheduleDate.text = dateOfDay()
-                    it.data.data.forEach {
-                        if (it.date.gregorian.day == dateOfDay()) {
-                            scheduleDay.text = it.date.hijri.weekday.ar
-                        }
-                    }
-//                    localeHelper.setPrayerTimes(this, it.data.data as MutableList<String>)
+                    prayer = it.data!!
+                    scheduleDay.text = prayer.data[selectedDate - 1].date.hijri.weekday.ar
+                    tableAdapter.setSchedulePrayer(prayer.data[selectedDate])
+                    localeHelper.setPrayerTimes(this, prayer.data[selectedDate - 1].timings)
                 }
                 ResponseStatus.ERROR -> {
+                    showMessage(this, it.message.toString())
                     progress.visibility = View.GONE
-                    Log.e(debug_tag, it.message.toString())
                 }
             }
         })
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    fun monthView(view: View) {
+        Intent(this, MonthPrayerTimes::class.java).apply {
+            putExtra("prayer", prayer)
+            startActivity(this)
+        }
+    }
+
 }

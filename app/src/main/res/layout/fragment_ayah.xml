@@ -10,12 +10,11 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/asset"
         app:tabGravity="center"
-        app:tabMaxWidth="40dp"
+        app:tabMaxWidth="50dp"
         app:tabMode="scrollable"
-        app:tabPadding="0dp"
         app:tabSelectedTextColor="@color/colorAccent"
         app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium"
         app:tabTextColor="@android:color/white" />
@@ -26,7 +25,7 @@
         android:layout_height="match_parent"
         android:keepScreenOn="true"
         android:layoutDirection="rtl"
-        android:paddingHorizontal="8dp"
-        android:paddingBottom="8dp" />
+        android:paddingHorizontal="4dp"
+        android:paddingBottom="4dp" />
 
 </LinearLayout>

@@ -19,7 +19,7 @@
             android:layout_weight="1"
             android:text="سورة البقرة"
             android:textStyle="bold"
-            app:fontFamily="@font/uthmani_font" />
+            app:fontFamily="@font/amiri_font" />
 
         <TextView
             android:id="@+id/_hizbNumber"
@@ -29,7 +29,7 @@
             android:gravity="center"
             android:text="حزب رقم"
             android:textStyle="bold"
-            app:fontFamily="@font/uthmani_font" />
+            app:fontFamily="@font/amiri_font" />
 
         <TextView
             android:id="@+id/_juzNumber"
@@ -39,25 +39,30 @@
             android:gravity="end"
             android:text="جزء رقم"
             android:textStyle="bold"
-            app:fontFamily="@font/uthmani_font" />
+            app:fontFamily="@font/amiri_font" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/ayahText"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_layout_circle_white"
-        android:gravity="center"
-        android:paddingHorizontal="10dp"
-        android:text="بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ"
-        android:textColor="@color/titleColor"
-        android:textIsSelectable="true"
-        app:autoSizePresetSizes="@array/autoSize_text_sizes"
-        app:autoSizeTextType="uniform"
-        app:fontFamily="@font/amiri_font"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ayah_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@drawable/quran_page">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ayahText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:text="بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ"
+            android:textColor="@color/titleColor"
+            android:textIsSelectable="true"
+            app:autoSizePresetSizes="@array/autoSize_text_sizes"
+            app:autoSizeTextType="uniform"
+            app:fontFamily="@font/amiri_font"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ayah_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </FrameLayout>
 
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
 import android.preference.PreferenceManager.getDefaultSharedPreferences
+import com.ramadan.islami.data.model.Prayer
 import java.util.*
 import kotlin.collections.HashSet
 
@@ -26,16 +27,23 @@ class LocaleHelper {
         return prefs.getString("ayah_text_preference", null)
     }
 
-    fun setHadithOfDay(context: Context, hadith: String?) {
+    fun setHadithOfDay(context: Context, hadithBody: String, chapterTitle: String) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
         val editor = prefs.edit()
-        editor.putString(HADITH_OF_DAY, hadith)
+        val hadith = HashSet<String>()
+        hadith.addAll(mutableSetOf(
+            chapterTitle,
+            hadithBody,
+            dateOfDay(),
+        ).sortedDescending())
+        editor.remove(HADITH_OF_DAY)
+        editor.putStringSet(HADITH_OF_DAY, hadith)
         editor.apply()
     }
 
-    fun getHadithOfDay(context: Context): String {
+    fun getHadithOfDay(context: Context): MutableSet<String> {
         val prefs = getDefaultSharedPreferences(context)
-        return prefs.getString(HADITH_OF_DAY, " ").toString()
+        return prefs.getStringSet(HADITH_OF_DAY, mutableSetOf())!!.toMutableSet()
     }
 
     fun setVerseOfDay(context: Context, verse: String?) {
@@ -51,33 +59,41 @@ class LocaleHelper {
     }
 
 
-    fun setPrayerTimes(context: Context, part: MutableList<String>) {
+    fun setPrayerTimes(context: Context, pray: Prayer.Timings) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
         val editor = prefs.edit()
         val prayerTimes = HashSet<String>()
-        prayerTimes.addAll(part)
+        prayerTimes.addAll(mutableSetOf(
+            pray.fajr.removeSuffix("(EET)"),
+            pray.sunrise.removeSuffix("(EET)"),
+            pray.dhuhr.removeSuffix("(EET)"),
+            pray.asr.removeSuffix("(EET)"),
+            pray.maghrib.removeSuffix("(EET)"),
+            pray.isha.removeSuffix("(EET)"),
+        ).sortedDescending())
+        editor.remove(Prayer_TIMES)
         editor.putStringSet(Prayer_TIMES, prayerTimes)
         editor.apply()
     }
 
     fun getPrayerTimes(context: Context): MutableSet<String> {
         val prefs = getDefaultSharedPreferences(context)
-        return prefs.getStringSet(Prayer_TIMES, emptySet()) as MutableSet<String>
+        return prefs.getStringSet(Prayer_TIMES, mutableSetOf())!!.toMutableSet()
     }
 
-    fun setQuranMark(context: Context, part: String) {
+    fun setQuranMark(context: Context, page: String) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
         val editor = prefs.edit()
         val newMark = HashSet<String>()
         newMark.addAll(getQuranMark(context))
-        newMark.add(part)
+        newMark.add(page)
         editor.putStringSet(QURAN_MARKS, newMark)
-        editor.clear().apply()
+        editor.apply()
     }
 
     fun getQuranMark(context: Context): MutableSet<String> {
         val prefs = getDefaultSharedPreferences(context)
-        return prefs.getStringSet(QURAN_MARKS, emptySet()) as MutableSet<String>
+        return prefs.getStringSet(QURAN_MARKS, mutableSetOf())!!.toMutableSet()
     }
 
     fun setStoryMark(context: Context, part: String) {
@@ -87,12 +103,12 @@ class LocaleHelper {
         newMark.addAll(getStoryMark(context))
         newMark.add(part)
         editor.putStringSet(STORY_MARKS, newMark)
-        editor.clear().apply()
+        editor.apply()
     }
 
     fun getStoryMark(context: Context): MutableSet<String> {
         val prefs = getDefaultSharedPreferences(context)
-        return prefs.getStringSet(STORY_MARKS, emptySet())!!.toMutableSet()
+        return prefs.getStringSet(STORY_MARKS, mutableSetOf())!!.toMutableSet()
     }
 
     fun setTheme(context: Context, theme: String?) {

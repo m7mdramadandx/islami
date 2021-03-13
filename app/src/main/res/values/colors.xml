@@ -4,6 +4,7 @@
     <color name="colorSecondary">#17223b</color>
     <color name="colorAccent">#E1B34F</color>
     <color name="silver_grey">#eeeeee</color>
+    <color name="grey_silver">#424141</color>
     <color name="colorBackground">#FFFFFF</color>
     <color name="textColor">#212122</color>
     <color name="actionbar_background">#17223b</color>

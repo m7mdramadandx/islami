@@ -40,9 +40,13 @@ class Utils(val context: Context) {
     )
     val dailyMutableList: MutableList<CollectionModel> = mutableListOf(
         CollectionModel("prayerTimes", context.getString(string.prayerTimes), defaultImg),
-        CollectionModel("qibla", context.getString(string.qibla), defaultImg),
+        CollectionModel("qibla",
+            context.getString(string.qibla),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fqibla.jpg?alt=media&token=bc626ed5-d2aa-4ab0-9914-b5b30c7d0d46"),
         CollectionModel("allahNames", context.getString(string.allahNames), defaultImg),
-        CollectionModel("dateConversion", context.getString(string.dateConversion), defaultImg),
+        CollectionModel("dateConversion",
+            context.getString(string.dateConversion),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fdate.jpg?alt=media&token=d2b14664-064e-4387-a9bf-9e710b3df1ea"),
     )
     val familyTreeMutableList: MutableList<CollectionModel> = mutableListOf(
         CollectionModel("muhammadTree", context.getString(string.muhammadFamilyTree), defaultImg),
@@ -138,8 +142,9 @@ fun dateOfDay(): String {
 }
 
 val nf: NumberFormat = NumberFormat.getInstance(Locale.forLanguageTag("AR"))
-fun getColoredSpanned(text: String, color: String): String {
-    return "<font color=$color>$text</font>"
+
+fun coloredJson(text: String): String {
+    return "<font color='#E1B34F'>$text</font>"
 }
 
 const val MUSLIM_SALAT_URL = "http://muslimsalat.com/"

@@ -14,19 +14,24 @@ class MonthPrayerTimes : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TableAdapter
 
-    override fun onStart() {
-        super.onStart()
-        prayer = intent.getSerializableExtra("prayer") as Prayer
-        adapter.setPrayerDataList(prayer.data.toMutableList())
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.recycler_view)
-        recyclerView = findViewById(R.id.global_recycler_view)
+        setContentView(R.layout.table_layout)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        recyclerView = findViewById(R.id.table_recycler_view)
+        adapter = TableAdapter()
+        prayer = intent.getSerializableExtra("prayer") as Prayer
+        adapter.setPrayerDataList(prayer.data.toMutableList())
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+        val month = prayer.data.first().date.gregorian.month.en
+        title = "${getString(R.string.prayerTimesTitle)} $month"
+    }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }

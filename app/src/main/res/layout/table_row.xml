@@ -19,6 +19,7 @@
                 style="@style/table_row_item"
                 android:layout_width="0dp"
                 android:layout_weight="1.3"
+                android:textColor="@color/colorPrimary"
                 android:textStyle="bold" />
 
             <TextView

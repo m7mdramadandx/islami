@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
-import com.ramadan.islami.data.model.PrayerData
+import com.ramadan.islami.data.model.Prayer.PrayerData
 import com.ramadan.islami.utils.dateOfDay
 import kotlinx.android.synthetic.main.item_prayer_time.view.*
 import kotlinx.android.synthetic.main.table_row.view.*
@@ -51,14 +51,16 @@ class TableAdapter : RecyclerView.Adapter<TableAdapter.ViewHolder>() {
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun schedulePrayer(prayerData: PrayerData) {
+        fun schedulePrayer(prayerData: PrayerData?) {
             itemView.apply {
-                fajrPrayTime.text = prayerData.timings.fajr.removeSuffix("(EET)")
-                sunrisePrayTime.text = prayerData.timings.sunrise.removeSuffix("(EET)")
-                dhurPrayTime.text = prayerData.timings.dhuhr.removeSuffix("(EET)")
-                asrPrayTime.text = prayerData.timings.asr.removeSuffix("(EET)")
-                maghribPrayTime.text = prayerData.timings.maghrib.removeSuffix("(EET)")
-                ishaPrayTime.text = prayerData.timings.isha.removeSuffix("(EET)")
+                fajrPrayTime.text = prayerData?.timings?.fajr?.removeSuffix("(EET)") ?: "00:00"
+                sunrisePrayTime.text =
+                    prayerData?.timings?.sunrise?.removeSuffix("(EET)") ?: "00:00"
+                dhurPrayTime.text = prayerData?.timings?.dhuhr?.removeSuffix("(EET)") ?: "00:00"
+                asrPrayTime.text = prayerData?.timings?.asr?.removeSuffix("(EET)") ?: "00:00"
+                maghribPrayTime.text =
+                    prayerData?.timings?.maghrib?.removeSuffix("(EET)") ?: "00:00"
+                ishaPrayTime.text = prayerData?.timings?.isha?.removeSuffix("(EET)")
             }
         }
 

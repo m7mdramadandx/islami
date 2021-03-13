@@ -68,8 +68,7 @@
         app:mcv_headerTextAppearance="?android:attr/textAppearanceMedium"
         app:mcv_monthLabels="@array/custom_months"
         app:mcv_selectionColor="?attr/colorAccent"
-        app:mcv_showOtherDates="all"
-        app:mcv_tileSize="32dp"
+        app:mcv_tileSize="28dp"
         app:mcv_weekDayLabels="@array/custom_weekdays"
         app:mcv_weekDayTextAppearance="?android:attr/textAppearanceMedium" />
 

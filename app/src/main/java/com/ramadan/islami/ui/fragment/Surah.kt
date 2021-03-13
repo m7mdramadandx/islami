@@ -16,19 +16,20 @@ import com.ramadan.islami.data.model.Surah
 import com.ramadan.islami.ui.adapter.QuranAdapter
 import com.ramadan.islami.ui.viewModel.QuranViewModel
 import com.ramadan.islami.utils.changeNavigation
+import kotlinx.coroutines.*
 
 
 class Surah : Fragment(), SurahListener {
 
     private val viewModel by lazy { ViewModelProvider(this).get(QuranViewModel::class.java) }
     private lateinit var recyclerView: RecyclerView
-    private lateinit var view: QuranAdapter
+    private lateinit var quranAdapter: QuranAdapter
     private lateinit var searchView: PersistentSearchView
 
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        view = QuranAdapter()
+        quranAdapter = QuranAdapter()
     }
 
     override fun onCreateView(
@@ -38,11 +39,15 @@ class Surah : Fragment(), SurahListener {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_sura, container, false)
         recyclerView = root.findViewById(R.id.rv_quran_sura)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = view
 //        searchView = root.findViewById(R.id.persistent_search_view)
-        getDataSura()
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = quranAdapter
+        getDataSura()
     }
 
     private fun getDataSura() {
@@ -60,13 +65,17 @@ class Surah : Fragment(), SurahListener {
 
 
     private fun getSuraSearch(search: String) {
-        val list = viewModel.getAllSura(requireContext(), search)
-        view.setSuraDataList(list, this)
+        GlobalScope.launch(Dispatchers.Main) {
+            withContext(Dispatchers.Main) {
+                val list = viewModel.getAllSura(requireContext(), search)
+                quranAdapter.setSuraDataList(list, this@Surah)
+            }
+        }
     }
 
 
-    override fun onClick(view: View, _surah: Surah) {
-        val action = SurahDirections.actionNavQuranToAyahFragment(_surah)
+    override fun onClick(view: View, surah: Surah) {
+        val action = SurahDirections.actionNavQuranToAyahFragment(surah)
         view.changeNavigation(action)
     }
 }

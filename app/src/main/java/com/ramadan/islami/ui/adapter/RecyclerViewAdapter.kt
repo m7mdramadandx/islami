@@ -2,7 +2,6 @@ package com.ramadan.islami.ui.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -154,13 +153,9 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         }
 
         fun dailyView(collection: Collection) {
+            Picasso.get().load(collection.image).error(R.drawable.error_img)
+                .placeholder(R.drawable.failure_img).into(itemView.cardImage)
             itemView.cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
-            if (isDashboard) {
-                itemView.cardItem.setCardBackgroundColor(Color.WHITE)
-                itemView.cardImage.maxWidth =
-                    ctx.resources.getDimension(R.dimen.familyTree).toInt()
-                itemView.cardImage.maxHeight = 140
-            }
             itemView.setOnClickListener {
                 when (collection.id) {
                     "prayerTimes" -> ctx.startActivity(Intent(ctx, PrayerTimes::class.java))

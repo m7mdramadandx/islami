@@ -41,13 +41,11 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme_NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme_NoActionBar"></activity>
 
         <activity
             android:name=".ui.activity.HadithOfDay"
-            android:label="@string/hadithOfDay">
-        </activity>
+            android:label="@string/hadithOfDay"></activity>
         <!--            <intent-filter>-->
         <!--                <action android:name="android.intent.action.PROCESS_TEXT" />-->
         <!--                <data android:mimeType="text/plain" />-->
@@ -84,6 +82,7 @@
             android:hardwareAccelerated="true" />
         <activity android:name=".ui.activity.VideoList" />
         <activity android:name=".ui.activity.TopicList" />
+        <activity android:name=".ui.activity.MonthPrayerTimes" />
 
     </application>
 

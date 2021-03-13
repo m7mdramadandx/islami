@@ -11,64 +11,50 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.google.type.DateTime
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
-import com.ramadan.islami.utils.LocaleHelper
-import com.ramadan.islami.utils.ResponseStatus
-import com.ramadan.islami.utils.debug_tag
-import com.ramadan.islami.utils.showMessage
+import com.ramadan.islami.utils.*
 import kotlinx.android.synthetic.main.activity_hadith_of_day.*
 import kotlin.math.max
 import kotlin.math.min
 
 
 class HadithOfDay : AppCompatActivity() {
+    private lateinit var viewModel: WebServiceViewModel
 
-    private val viewModel by lazy {
-        ViewModelProvider(this,
-            ViewModelFactory(ApiHelper(RetrofitBuilder("https://api.sunnah.com/").apiService()))
-        ).get(WebServiceViewModel::class.java)
-    }
+    private val localeHelper = LocaleHelper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hadith_of_day)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val DEFINITION = 5
+        val tafsir = 0
         hadithBody.customSelectionActionModeCallback = object : Callback {
-
-            override fun onPrepareActionMode(p0: ActionMode?, p1: Menu?): Boolean {
-                // Remove the "select all" option
-//                p1!!.removeItem(android.R.id.selectAll)
-                // Remove the "cut" option
-                p1!!.removeItem(android.R.id.cut)
-                // Remove the "copy all" option
-//                p1.removeItem(android.R.id.copy)
+            override fun onPrepareActionMode(p0: ActionMode?, p1: Menu): Boolean {
+                p1.removeItem(android.R.id.cut)
+                p1.removeItem(android.R.id.paste)
+                p1.removeItem(android.R.id.selectAll)
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    p1.removeItem(android.R.id.shareText)
+                }
                 return true
             }
 
-            override fun onCreateActionMode(p0: ActionMode?, p1: Menu?): Boolean {
-                // Called when action mode is first created. The menu supplied
-                // will be used to generate action buttons for the action mode
-
-                // Here is an example MenuItem
-                p1!!.add(0, DEFINITION, 0, "Translate").setIcon(R.drawable.menu)
+            override fun onCreateActionMode(p0: ActionMode?, p1: Menu): Boolean {
+                p1.add(1, tafsir, 1, R.string.tafsir).setIcon(R.drawable.menu)
                 return true
             }
 
             override fun onDestroyActionMode(p0: ActionMode?) {
-                // Called when an action mode is about to be exited and
-                // destroyed
             }
 
             override fun onActionItemClicked(p0: ActionMode?, p1: MenuItem?): Boolean {
                 when (p1!!.itemId) {
-                    DEFINITION -> {
+                    tafsir -> {
                         var min = 0
                         var max: Int = hadithBody.text.length
                         if (hadithBody.isFocused) {
@@ -77,7 +63,6 @@ class HadithOfDay : AppCompatActivity() {
                             min = max(0, min(selStart, selEnd))
                             max = max(0, max(selStart, selEnd))
                         }
-                        // Perform your definition lookup with the selected text
                         val selectedText: CharSequence = hadithBody.text.subSequence(min, max)
                         val intent = Intent()
                         intent.action = Intent.ACTION_VIEW
@@ -94,7 +79,19 @@ class HadithOfDay : AppCompatActivity() {
             }
 
         }
-        setupObservers()
+        if (localeHelper.getHadithOfDay(this).isNotEmpty()) {
+            if (localeHelper.getHadithOfDay(this).contains(dateOfDay())) {
+                hadithBody.visibility = View.VISIBLE
+                hadithTitle.text = localeHelper.getHadithOfDay(this).elementAt(0)
+                hadithBody.text = localeHelper.getHadithOfDay(this).elementAt(1)
+            }
+        } else {
+            viewModel =
+                ViewModelProvider(this,
+                    ViewModelFactory(ApiHelper(RetrofitBuilder("https://api.sunnah.com/").apiService()))
+                ).get(WebServiceViewModel::class.java)
+            setupObservers()
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -108,19 +105,19 @@ class HadithOfDay : AppCompatActivity() {
                 ResponseStatus.SUCCESS -> {
                     progress.visibility = View.GONE
                     hadithBody.visibility = View.VISIBLE
-                    hadithTitle.text = it.data!!.hadith[1].chapterTitle
+                    val chapterTitle = it.data!!.hadith[1].chapterTitle
                     val hadith =
                         it.data.hadith[1].body.removeSurrounding("<p>", "</p>").removePrefix("<br>")
+                    hadithTitle.text = chapterTitle
                     hadithBody.text = hadith
-                    LocaleHelper().setHadithOfDay(this,
-                        hadith + DateTime.getDefaultInstance().day.toString())
+                    localeHelper.setHadithOfDay(this, hadith, chapterTitle)
                 }
                 ResponseStatus.ERROR -> {
                     progress.visibility = View.GONE
                     Log.e(debug_tag, it.message.toString())
                     showMessage(this, it.message.toString())
                 }
-                ResponseStatus.LOADING -> Log.e(debug_tag, "LOADING")
+                ResponseStatus.LOADING -> progress.visibility = View.VISIBLE
             }
         })
     }
