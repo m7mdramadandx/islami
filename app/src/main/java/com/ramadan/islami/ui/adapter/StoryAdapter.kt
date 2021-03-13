@@ -49,7 +49,7 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
                     itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorSecondary))
                 }
                 marks.contains(keyStore) -> {
-                    itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorAccent))
+                    itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.silver_grey))
                 }
                 else -> itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
             }
@@ -65,7 +65,8 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
                     alertDialog.show()
                     view.findViewById<TextView>(R.id.yes).setOnClickListener {
                         localeHelper.setStoryMark(ctx, keyStore)
-                        itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorAccent))
+                        itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.silver_grey))
+                        itemView.storyTitle.setTextColor(ctx.resources.getColor(R.color.grey_silver))
                         alertDialog.dismiss()
                     }
                     view.findViewById<TextView>(R.id.notYet)

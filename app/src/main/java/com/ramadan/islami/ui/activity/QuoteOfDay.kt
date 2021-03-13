@@ -41,7 +41,7 @@ class QuoteOfDay : AppCompatActivity() {
         when (intentKey) {
             "verse" -> fetchVerseDay()
             "hadith" -> fetchHadith()
-            "zekr" -> fetchNewAzkar()
+            "zekr" -> fetchAzkar()
         }
 
     }
@@ -118,7 +118,8 @@ class QuoteOfDay : AppCompatActivity() {
             textBody.text = localeHelper.getHadithOfDay(this).elementAt(1)
         } else {
             webServiceViewModel =
-                ViewModelProvider(this,
+                ViewModelProvider(
+                    this,
                     ViewModelFactory(ApiHelper(RetrofitBuilder("https://api.sunnah.com/").apiService()))
                 ).get(WebServiceViewModel::class.java)
             fetchNewHadith()

@@ -17,7 +17,7 @@ class LocaleHelper {
         private const val SELECTED_LANGUAGE = "default_language"
         private const val SELECTED_THEME = "default_theme"
         private const val STORY_MARKS = "story_marks"
-        private const val QURAN_MARKS = "quran_marks"
+        private const val QURAN_MARK = "quran_marks"
         private const val VERSE_OF_DAY = "verse_of_day"
         private const val HADITH_OF_DAY = "hadith_of_day"
         private const val AZKAR_OF_DAY = "azkar_of_day"
@@ -131,17 +131,13 @@ class LocaleHelper {
     fun setQuranMark(context: Context, page: String) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
         val editor = prefs.edit()
-        val newMark = HashSet<String>()
-        newMark.addAll(getQuranMark(context))
-        newMark.add(page)
-        editor.remove(QURAN_MARKS)
-        editor.putStringSet(QURAN_MARKS, newMark)
+        editor.putString(QURAN_MARK, page)
         editor.apply()
     }
 
-    fun getQuranMark(context: Context): MutableSet<String> {
+    fun getQuranMark(context: Context): String {
         val prefs = getDefaultSharedPreferences(context)
-        return prefs.getStringSet(QURAN_MARKS, mutableSetOf())!!.toMutableSet()
+        return prefs.getString(QURAN_MARK, null).toString()
     }
 
     fun setStoryMark(context: Context, part: String) {
@@ -162,6 +158,7 @@ class LocaleHelper {
     fun setTheme(context: Context, theme: String?) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
         val editor = prefs.edit()
+        editor.remove(QURAN_MARK)
         editor.putString(SELECTED_THEME, theme)
         editor.apply()
     }

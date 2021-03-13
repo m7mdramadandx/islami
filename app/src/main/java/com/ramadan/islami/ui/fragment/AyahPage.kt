@@ -1,11 +1,15 @@
 package com.ramadan.islami.ui.fragment
 
+import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
@@ -14,6 +18,7 @@ import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Surah
 import com.ramadan.islami.ui.activity.MainActivity
 import com.ramadan.islami.ui.adapter.QuranAdapter
+import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.nf
 import kotlinx.android.synthetic.main.fragment_ayah.*
 import kotlinx.android.synthetic.main.main_content.*
@@ -25,18 +30,22 @@ class AyahPage : Fragment() {
     private var toast: Toast? = null
     private lateinit var viewPager: ViewPager2
     private lateinit var quranPageAdapter: QuranAdapter
+    private lateinit var localeHelper: LocaleHelper
+    private var pageNumber: Int = 0
 
     private var doppelgangerPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
-
         override fun onPageScrolled(
             position: Int,
             positionOffset: Float,
             positionOffsetPixels: Int,
         ) {
             super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-            Toast.makeText(requireContext(),
+            pageNumber = position + 1
+            Toast.makeText(
+                requireContext(),
                 "بارك ٱللَّهُ فيك, اذكر ٱللَّهِ",
-                Toast.LENGTH_SHORT).show()
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
     }
@@ -48,15 +57,21 @@ class AyahPage : Fragment() {
         (activity as MainActivity).supportActionBar?.hide()
         (activity as MainActivity).fixedBanner.removeAllViewsInLayout()
         quranPageAdapter = QuranAdapter()
+        localeHelper = LocaleHelper()
     }
 
     override fun onDetach() {
-        super.onDetach()
         (activity as MainActivity).supportActionBar?.show()
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        super.onDetach()
     }
 
-    override fun onCreateView(
+    override fun onPause() {
+        super.onPause()
+        showDialog(requireContext())
+    }
+
+     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -80,23 +95,21 @@ class AyahPage : Fragment() {
         tabLayout.layoutDirection = View.LAYOUT_DIRECTION_RTL
     }
 
-
-    private fun getDataAyah() {
-//        viewModel.getAyahBySura(requireContext(), sura.num.toString()).observe(viewLifecycleOwner, {
-//            it.let { list -> adapter.updateList(list) }
-//        })
-    }
-
-    private fun showMessage(message: String) {
-        toast?.cancel()
-        toast = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT)
-        toast?.show()
-    }
-
-    override fun onStop() {
-        super.onStop()
-//        model.addLatestread(lastpageShown)
-//        saveReadLog()
+    private fun showDialog(ctx: Context) {
+        val dialogBuilder = AlertDialog.Builder(ctx)
+        val view = LayoutInflater.from(ctx).inflate(R.layout.story_marker, null)
+        dialogBuilder.setView(view)
+        val alertDialog = dialogBuilder.create()
+        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
+        view.findViewById<TextView>(R.id.yes).setOnClickListener {
+            localeHelper.setQuranMark(ctx, "${surah.name.removePrefix("سورة ")} - $pageNumber")
+            alertDialog.dismiss()
+        }
+        view.findViewById<TextView>(R.id.notYet)
+            .setOnClickListener {
+                alertDialog.dismiss()
+            }
     }
 
 }

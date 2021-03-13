@@ -76,10 +76,19 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
         private val ctx = itemView.context
 
         fun surahView(surah: Surah) {
-            localeHelper.getQuranMark(ctx).find { it.contains(surah.name.removeSuffix("سورة")) }
-                .apply {
-                    itemView.surahCard.setCardBackgroundColor(ctx.resources.getColor(R.color.silver_grey))
+            if (localeHelper.getQuranMark(ctx).contains(surah.name.removePrefix("سورة "))) {
+                itemView.apply {
+                    versesNumber.setTextColor(ctx.resources.getColor(R.color.grey_silver))
+                    revelationType.setTextColor(ctx.resources.getColor(R.color.grey_silver))
+                    surahCard.setCardBackgroundColor(ctx.resources.getColor(R.color.silver_grey))
                 }
+            } else {
+                itemView.apply {
+                    versesNumber.setTextColor(ctx.resources.getColor(R.color.white))
+                    revelationType.setTextColor(ctx.resources.getColor(R.color.white))
+                    surahCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
+                }
+            }
 
             itemView.apply {
                 surahNumber.text = surah.number.toString()
@@ -140,7 +149,10 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
 
                     override fun onActionItemClicked(p0: ActionMode, p1: MenuItem): Boolean {
                         if (p1.itemId == bookmark) {
-                            localeHelper.setQuranMark(ctx, "$surahNum - $position")
+                            localeHelper.setQuranMark(
+                                ctx,
+                                "${surahName.removePrefix("سورة ")} - $position"
+                            )
                             p0.finish()
                             return true
                         } else if (p1.itemId == tafsir) {
