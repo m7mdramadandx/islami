@@ -10,9 +10,12 @@ import com.ramadan.islami.data.model.Surah
 import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.coloredJson
 import com.ramadan.islami.utils.nf
+import com.ramadan.islami.utils.showBrief
 import kotlinx.android.synthetic.main.item_ayah.view.*
 import kotlinx.android.synthetic.main.item_surah.view.*
 import java.lang.String.valueOf
+import kotlin.math.max
+import kotlin.math.min
 
 class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
     private var listener: SurahListener? = null
@@ -156,7 +159,26 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
                             p0.finish()
                             return true
                         } else if (p1.itemId == tafsir) {
-                            localeHelper.setQuranMark(ctx, "$surahName - $position")
+                            var ayahNum: Int = 0
+                            var min = 0
+                            var max: Int = ayahText.text.length
+                            if (ayahText.isFocused) {
+                                val selStart: Int = ayahText.selectionStart
+                                val selEnd: Int = ayahText.selectionEnd
+                                min = max(0, min(selStart, selEnd))
+                                max = max(0, max(selStart, selEnd))
+                            }
+                            val selectedText: CharSequence = ayahText.text.subSequence(min, max)
+                            ayahList.forEach {
+                                if (it.text.contains(selectedText)) {
+                                    ayahNum = it.numberInSurah
+                                }
+                            }
+                            showBrief(
+                                " تفسير الآية رقم $ayahNum من صورة $surahName ",
+                                ayahList[ayahNum].tafseer,
+                                ctx
+                            )
                             p0.finish()
                             return true
                         }

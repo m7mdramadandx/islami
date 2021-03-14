@@ -21,6 +21,7 @@ class Quran(
         val ruku: Int,
         val sajda: Any,
         val text: String,
+        val tafseer: String,
     )
 }
 

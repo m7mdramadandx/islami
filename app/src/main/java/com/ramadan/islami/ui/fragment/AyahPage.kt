@@ -71,7 +71,7 @@ class AyahPage : Fragment() {
         showDialog(requireContext())
     }
 
-     override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -89,6 +89,11 @@ class AyahPage : Fragment() {
         viewPager.adapter = quranPageAdapter
         viewPager.registerOnPageChangeCallback(doppelgangerPageChangeCallback)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            if (localeHelper.getQuranMark(requireContext())
+                    .contains("${surah.ayahs.first().page + position}")
+            ) {
+                tab.setIcon(R.drawable.thumb_down)
+            }
             tab.text = java.lang.String.valueOf(nf.format(surah.ayahs.first().page + position))
         }.attach()
         viewPager.layoutDirection = ViewPager2.LAYOUT_DIRECTION_RTL
