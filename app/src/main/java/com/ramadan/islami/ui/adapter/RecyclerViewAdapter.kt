@@ -46,7 +46,8 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         notifyDataSetChanged()
     }
 
-    fun setDailyDataList(data: MutableList<Collection>) {
+    fun setDailyDataList(data: MutableList<Collection>, isDashboard: Boolean) {
+        this.isDashboard = isDashboard
         dailyList = data
         notifyDataSetChanged()
     }
@@ -129,6 +130,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
                 .placeholder(R.drawable.load_img).into(itemView.cardImage)
             itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
             itemView.cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
+            itemView.cardName.textSize = 19.toFloat()
             itemView.setOnClickListener {
                 when (collection.id) {
                     "hadithOfDay" -> {
@@ -164,9 +166,11 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             itemView.cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
             if (isDashboard) {
                 itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
+                itemView.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
                 itemView.cardImage.maxWidth = ctx.resources.getDimension(R.dimen.familyTree).toInt()
+                itemView.cardImage.maxHeight =
+                    ctx.resources.getDimension(R.dimen.familyTree).toInt()
             }
-
             itemView.setOnClickListener {
                 when (collection.id) {
                     "verseOfDay" -> {

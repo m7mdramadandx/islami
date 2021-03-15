@@ -61,30 +61,31 @@
     <string name="hizbNumber">"حزب رقم ۩ "</string>
     <string name="notification">notification</string>
     <string name="bookmark">Bookmark</string>
-    <string name="zekrOfDay">Zekr of day</string>
+    <string name="azkarOfDay">Zekr of day</string>
+    <string name="saturday">السبت</string>
     <string-array name="custom_weekdays">
-        <item>احد</item>
-        <item>اثنين</item>
-        <item>ثلاث</item>
-        <item>اربع</item>
-        <item>خميس</item>
-        <item>جمعة</item>
-        <item>سبت</item>
+        <item>ح</item>
+        <item>اث</item>
+        <item>ث</item>
+        <item>ار</item>
+        <item>خ</item>
+        <item>ج</item>
+        <item>س</item>
     </string-array>
 
     <string-array name="custom_months">
-        <item>Muharram</item>
+        <item>محرم</item>
         <item>صفر</item>
-        <item>Rabi\' I</item>
-        <item>Rabi\' II</item>
-        <item>جماد أول</item>
-        <item>جماد تاني</item>
+        <item>ربيع الأول</item>
+        <item>ربيع الآخر</item>
+        <item>جماد الأول</item>
+        <item>جماد الآخره</item>
         <item>رجب</item>
         <item>شعبان</item>
         <item>رمضان</item>
         <item>شوال</item>
-        <item>ذو قعدة</item>
-        <item>ذو حجة</item>
+        <item>ذو القعدة</item>
+        <item>ذو الحجة</item>
     </string-array>
 
 </resources>

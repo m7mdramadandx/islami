@@ -65,26 +65,45 @@
     <string name="notification">notification</string>
     <string name="bookmark">Bookmark</string>
     <string name="tafsir">tafsir</string>
-    <string name="zekrOfDay">Zekr of day</string>
+    <string name="azkarOfDay">Zekr of day</string>
     <string name="verseOfDay">Verse of day</string>
+    <string name="saturday">السبت</string>
+    <string name="sunday">الأحد</string>
+    <string name="monday">الأثنين</string>
+    <string name="tuesday">الثلاثاء</string>
+    <string name="wednsday">الأربعاء</string>
+    <string name="thursday">الخميس</string>
+    <string name="friday">الجمعة</string>
+    <string name="muharram">Muhrram</string>
+    <string name="safar">Safar</string>
+    <string name="rabe_awl">Rabi\' al-Awl</string>
+    <string name="rabe_akhr">Rabi\' al-Aakhr</string>
+    <string name="jamad_awl">Jamad al-Awl</string>
+    <string name="jamad_akhr">Jamad al-Akhr</string>
+    <string name="rajab">Rajab</string>
+    <string name="shaban">Sha\'ban</string>
+    <string name="ramadan">Ramadan</string>
+    <string name="shawal">Shawwal</string>
+    <string name="dhu_keada">Dhu al-Qi‘dah</string>
+    <string name="dhu_hija">Dhu al-Hijjah</string>
 
     <string-array name="custom_weekdays">
-        <item>Sun</item>
-        <item>Mon</item>
+        <item>Sn</item>
+        <item>Mn</item>
         <item>Tu</item>
-        <item>Wed</item>
+        <item>We</item>
         <item>Th</item>
-        <item>Fri</item>
-        <item>Sat</item>
+        <item>Fr</item>
+        <item>St</item>
     </string-array>
 
     <string-array name="custom_months">
         <item>Muharram</item>
         <item>Safar</item>
-        <item>Rabi\' I</item>
-        <item>Rabi\' II</item>
-        <item>Jumada I</item>
-        <item>Jumada II</item>
+        <item>Rabi\' al-Awl</item>
+        <item>Rabi\' al-Akhr</item>
+        <item>Jumad al-Awl</item>
+        <item>Jumad al-Akhr</item>
         <item>Rajab</item>
         <item>Sha\'ban</item>
         <item>Ramadan</item>

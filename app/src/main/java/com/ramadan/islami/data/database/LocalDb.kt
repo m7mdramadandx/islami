@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.ramadan.islami.data.model.Azkar
 import com.ramadan.islami.data.model.Quran
 import com.ramadan.islami.data.model.Surah
+import com.ramadan.islami.data.model.Verse
 import com.ramadan.islami.utils.showMessage
 import java.io.BufferedInputStream
 import java.io.InputStream
@@ -25,15 +26,16 @@ class LocalDb {
             return mutableListOf()
         }
     }
-    fun retrieveTafseer(context: Context): List<Surah>? {
+
+    fun retrieveVerse(context: Context): Verse? {
         return try {
-            val fileIn: InputStream = context.assets.open("quran.json")
+            val fileIn: InputStream = context.assets.open("ayahOfDay.json")
             val bufferedIn = BufferedInputStream(fileIn)
             val reader: Reader = InputStreamReader(bufferedIn, Charset.forName("UTF-8"))
-            Gson().fromJson(reader, Quran::class.java).data.surahs
+            Gson().fromJson(reader, Verse::class.java)
         } catch (e: Exception) {
             showMessage(context, e.localizedMessage!!)
-            return mutableListOf()
+            return Verse()
         }
     }
 

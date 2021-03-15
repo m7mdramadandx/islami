@@ -31,7 +31,8 @@ import java.util.*
 class PrayerTimes : AppCompatActivity() {
 
     private val viewModel by lazy {
-        ViewModelProvider(this,
+        ViewModelProvider(
+            this,
             ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").apiService()))
         ).get(WebServiceViewModel::class.java)
     }
@@ -42,6 +43,7 @@ class PrayerTimes : AppCompatActivity() {
     private lateinit var gregorianToday: Calendar
     private lateinit var prayer: Prayer
     private var selectedDate: Int = 0
+    private lateinit var utils: Utils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +52,7 @@ class PrayerTimes : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         recyclerView = findViewById(R.id.rv_schedule_prayer)
         prayTimeAdapter = PrayTimeAdapter()
+        utils = Utils(this)
         recyclerView.adapter = prayTimeAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         gregorianToday = Calendar.getInstance()
@@ -80,7 +83,7 @@ class PrayerTimes : AppCompatActivity() {
             override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
                 selectedDate = day
                 prayTimeAdapter.setSchedulePrayer(prayer.data[day])
-                scheduleDay.text = prayer.data[selectedDate - 1].date.hijri.weekday.ar
+                scheduleDay.text = utils.weekday[dayOfWeek - 1]
                 scheduleDate.text = "$day - ${month + 1} -$year"
             }
 
@@ -104,8 +107,10 @@ class PrayerTimes : AppCompatActivity() {
     }
 
     private fun requestForSpecificPermission() {
-        ActivityCompat.requestPermissions(this,
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), ACCESS_FINE_LOCATION_REQ_CODE)
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), ACCESS_FINE_LOCATION_REQ_CODE
+        )
     }
 
     override fun onRequestPermissionsResult(
@@ -130,7 +135,7 @@ class PrayerTimes : AppCompatActivity() {
                 ResponseStatus.SUCCESS -> {
                     progress.visibility = View.GONE
                     prayer = it.data!!
-                    scheduleDay.text = prayer.data[selectedDate - 1].date.hijri.weekday.ar
+//                    scheduleDay.text = prayer.data[selectedDate - 1].date.hijri.weekday.ar
                     prayTimeAdapter.setSchedulePrayer(prayer.data[selectedDate])
                     localeHelper.setPrayerTimes(this, prayer.data[selectedDate - 1].timings)
                 }

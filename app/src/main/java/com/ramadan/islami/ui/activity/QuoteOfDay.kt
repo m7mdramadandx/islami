@@ -15,6 +15,7 @@ import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
 import com.ramadan.islami.data.model.Azkar
+import com.ramadan.islami.data.model.Verse
 import com.ramadan.islami.ui.viewModel.LocalViewModel
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
@@ -34,7 +35,9 @@ class QuoteOfDay : AppCompatActivity() {
     private val localeHelper = LocaleHelper()
     private val tafseer = 0
     private var intentKey: String = ""
-    private lateinit var azkarItem: Azkar.AzkarItem
+    private lateinit var quoteOfDayItem: Azkar.AzkarItem
+    private lateinit var verseOfDayItem: Verse.VerseItem
+
     override fun onStart() {
         super.onStart()
         intentKey = intent.getStringExtra("intentKey")!!
@@ -109,6 +112,28 @@ class QuoteOfDay : AppCompatActivity() {
     }
 
     private fun fetchVerseDay() {
+        if (localeHelper.getVerseOfDay(this).contains(dateOfDay() + "date")) {
+            val verse = localeHelper.getVerseOfDay(this)
+            textBody.visibility = View.VISIBLE
+            textTitle.text = verse.find { it.contains("surah") }?.removeSuffix("surah")
+            textBody.text = verse.find { it.contains("ayah") }?.removeSuffix("ayah")
+        } else fetchNewVerseDay()
+    }
+
+    private fun fetchNewVerseDay() {
+        localViewModel = ViewModelProvider(this).get(LocalViewModel::class.java)
+        GlobalScope.launch(Dispatchers.Main) {
+            withContext(Dispatchers.Main) {
+                progress.visibility = View.VISIBLE
+                verseOfDayItem = localViewModel.getVerseOfDay(this@QuoteOfDay)?.random()!!.apply {
+                    textBody.visibility = View.VISIBLE
+                    textTitle.text = surah
+                    textBody.text = ayah + "\n" + translation
+                    localeHelper.setVerseOfDay(this@QuoteOfDay, this)
+                }
+                progress.visibility = View.GONE
+            }
+        }
     }
 
     private fun fetchHadith() {
@@ -178,7 +203,7 @@ class QuoteOfDay : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.Main) {
             withContext(Dispatchers.Main) {
                 progress.visibility = View.VISIBLE
-                azkarItem = localViewModel.getAzkar(this@QuoteOfDay)?.random()!!.apply {
+                quoteOfDayItem = localViewModel.getAzkar(this@QuoteOfDay)?.random()!!.apply {
                     textBody.visibility = View.VISIBLE
                     textTitle.text = category
                     textBody.text = zekr
@@ -186,7 +211,7 @@ class QuoteOfDay : AppCompatActivity() {
                     textReference.text = reference
                     localeHelper.setAzkarOfDay(this@QuoteOfDay, this)
                 }
-                azkarItem = localViewModel.getAzkar(this@QuoteOfDay)?.random()!!.apply {
+                quoteOfDayItem = localViewModel.getAzkar(this@QuoteOfDay)?.random()!!.apply {
                     textBody1.visibility = View.VISIBLE
                     textTitle1.text = category
                     textBody1.text = zekr

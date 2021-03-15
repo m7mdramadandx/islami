@@ -41,7 +41,8 @@ class Dashboard : Fragment(), FirebaseListener {
 
     private val dataViewModel by lazy { ViewModelProvider(this).get(FirebaseViewModel::class.java) }
     private val apiViewModel by lazy {
-        ViewModelProvider(this,
+        ViewModelProvider(
+            this,
             ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").apiService()))
         ).get(WebServiceViewModel::class.java)
     }
@@ -110,7 +111,11 @@ class Dashboard : Fragment(), FirebaseListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        hijriDate.text = "${UmmalquraCalendar.YEAR} , ${UmmalquraCalendar.MONTH} ,"
+        hijriDate.text =
+            "${utils.weekday[hijriToday[UmmalquraCalendar.DAY_OF_WEEK]]} " +
+                    "${hijriToday[UmmalquraCalendar.DAY_OF_MONTH]} " +
+                    "${utils.month[hijriToday[UmmalquraCalendar.MONTH]]} " +
+                    "${hijriToday[UmmalquraCalendar.YEAR]} "
 
         suggestionRCV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
         suggestionRCV.adapter = suggestionAdapter
@@ -153,7 +158,7 @@ class Dashboard : Fragment(), FirebaseListener {
         suggestionAdapter.setSuggestionDataList(utils.suggestionMutableList)
         dataViewModel.fetchStories(language)
             .observe(this, { storiesAdapter.setStoriesDataList(it) })
-        dailyAdapter.setDailyDataList(utils.dailyMutableList)
+        dailyAdapter.setDailyDataList(utils.dailyMutableList, true)
         dataViewModel.fetchQuotes(language)
             .observe(this, { quotesAdapter.setCategoryDataList(it) })
         familyTreeAdapter.setFamilyTreeDataList(utils.familyTreeMutableList, true)

@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:layout_marginHorizontal="12dp"
+            android:layout_margin="18dp"
             android:text="بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ"
             android:textColor="@color/titleColor"
             android:textIsSelectable="true"

@@ -50,6 +50,7 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
                 }
                 marks.contains(keyStore) -> {
                     itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.silver_grey))
+                    itemView.storyTitle.setTextColor(ctx.resources.getColor(R.color.grey_silver))
                 }
                 else -> itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
             }

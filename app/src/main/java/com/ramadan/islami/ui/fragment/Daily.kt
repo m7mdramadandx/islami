@@ -42,7 +42,7 @@ class Daily : Fragment() {
     }
 
     private fun observeData() {
-        recyclerViewAdapter.setDailyDataList(Utils(requireContext()).dailyMutableList)
+        recyclerViewAdapter.setDailyDataList(Utils(requireContext()).dailyMutableList,false)
     }
 
 

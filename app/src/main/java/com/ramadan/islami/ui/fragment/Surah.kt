@@ -67,7 +67,7 @@ class Surah : Fragment(), SurahListener {
     private fun getSuraSearch(search: String) {
         GlobalScope.launch(Dispatchers.Main) {
             withContext(Dispatchers.Main) {
-                val list = viewModel.getAllSura(requireContext(), search)
+                val list = viewModel.getAllSura(requireContext())
                 quranAdapter.setSuraDataList(list, this@Surah)
             }
         }

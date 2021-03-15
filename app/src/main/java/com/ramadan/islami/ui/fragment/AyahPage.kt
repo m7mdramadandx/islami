@@ -36,7 +36,7 @@ class AyahPage : Fragment() {
     private var doppelgangerPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
-            pageNumber = position + 1
+            pageNumber = surah.ayahs.first().page + position
             Toast.makeText(
                 requireContext(),
                 "بارك ٱللَّهُ فيك, اذكر ٱللَّهِ",

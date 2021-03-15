@@ -8,6 +8,7 @@ import android.os.Build
 import android.preference.PreferenceManager.getDefaultSharedPreferences
 import com.ramadan.islami.data.model.Azkar
 import com.ramadan.islami.data.model.Prayer
+import com.ramadan.islami.data.model.Verse
 import java.util.*
 import kotlin.collections.HashSet
 
@@ -25,16 +26,25 @@ class LocaleHelper {
         private const val Prayer_TIMES = "prayer_times"
     }
 
-    fun setVerseOfDay(context: Context, verse: String?) {
+    fun setVerseOfDay(context: Context, verseItem: Verse.VerseItem) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
         val editor = prefs.edit()
-        editor.putString(VERSE_OF_DAY, verse)
+        val verse = HashSet<String>()
+        verse.addAll(
+            mutableSetOf(
+                verseItem.surah + "surah",
+                verseItem.ayah + "\n" + verseItem.translation + "ayah",
+                dateOfDay() + "date",
+            )
+        )
+        editor.remove(VERSE_OF_DAY)
+        editor.putStringSet(VERSE_OF_DAY, verse)
         editor.apply()
     }
 
-    fun getVerseOfDay(context: Context): String {
+    fun getVerseOfDay(context: Context): MutableSet<String> {
         val prefs = getDefaultSharedPreferences(context)
-        return prefs.getString(VERSE_OF_DAY, " ").toString()
+        return prefs.getStringSet(VERSE_OF_DAY, mutableSetOf())!!.toMutableSet()
     }
 
     fun setHadithOfDay(context: Context, hadithBody: String, chapterTitle: String) {
@@ -43,9 +53,9 @@ class LocaleHelper {
         val hadith = HashSet<String>()
         hadith.addAll(
             mutableSetOf(
-                chapterTitle,
-                hadithBody,
-                dateOfDay(),
+                chapterTitle + "title",
+                hadithBody + "body",
+                dateOfDay() + "date",
             ).sortedDescending()
         )
         editor.remove(HADITH_OF_DAY)
@@ -110,13 +120,13 @@ class LocaleHelper {
         val prayerTimes = HashSet<String>()
         prayerTimes.addAll(
             mutableSetOf(
-                pray.fajr.removeSuffix("(EET)"),
-                pray.sunrise.removeSuffix("(EET)"),
-                pray.dhuhr.removeSuffix("(EET)"),
-                pray.asr.removeSuffix("(EET)"),
-                pray.maghrib.removeSuffix("(EET)"),
-                pray.isha.removeSuffix("(EET)"),
-            ).sortedDescending()
+                pray.fajr.replace("(EET)", "fajr"),
+                pray.sunrise.replace("(EET)", "sunrise"),
+                pray.dhuhr.replace("(EET)", "dhuhr"),
+                pray.asr.replace("(EET)", "asr"),
+                pray.maghrib.replace("(EET)", "maghrib"),
+                pray.isha.replace("(EET)", "isha"),
+            )
         )
         editor.remove(Prayer_TIMES)
         editor.putStringSet(Prayer_TIMES, prayerTimes)

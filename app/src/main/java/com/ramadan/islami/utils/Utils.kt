@@ -35,13 +35,13 @@ class Utils(val context: Context) {
 
     val suggestionMutableList: MutableList<CollectionModel> = mutableListOf(
         CollectionModel(
-            "hadithOfDay",
-            context.getString(string.hadithOfDay),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fhadith.jpg?alt=media&token=041848ee-c824-47aa-a33b-1d697d232269"
-        ),
-        CollectionModel(
             "quran",
             context.getString(string.quran),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fquran.jpg?alt=media&token=d57934da-a893-40c0-8927-d69156a914fa"
+        ),
+        CollectionModel(
+            "hadithOfDay",
+            context.getString(string.hadithOfDay),
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fhadith.jpg?alt=media&token=041848ee-c824-47aa-a33b-1d697d232269"
         ),
         CollectionModel("muhammadStory", context.getString(string.muhammad), defaultImg),
@@ -54,7 +54,7 @@ class Utils(val context: Context) {
     val dailyMutableList: MutableList<CollectionModel> = mutableListOf(
         CollectionModel(
             "azkarOfDay",
-            context.getString(string.zekrOfDay),
+            context.getString(string.azkarOfDay),
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fazkar.jpg?alt=media&token=27870e4e-a359-4a1b-91de-057de5afa828"
         ),
         CollectionModel(
@@ -68,6 +68,11 @@ class Utils(val context: Context) {
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fverse.jpg?alt=media&token=6e10a9bc-0e81-4edb-b4e9-8427ab430266"
         ),
         CollectionModel(
+            "dateConversion",
+            context.getString(string.dateConversion),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fdate.jpg?alt=media&token=e402ccf4-2458-4d80-8043-55a4d8db008b"
+        ),
+        CollectionModel(
             "qibla",
             context.getString(string.qibla),
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fqibla.jpg?alt=media&token=f7a0855d-5e61-47a4-947b-7d26151b5fe1"
@@ -77,11 +82,6 @@ class Utils(val context: Context) {
             context.getString(string.allahNames),
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fallah_names.jpg?alt=media&token=34d864ca-a962-441e-baad-2764f6130423"
         ),
-        CollectionModel(
-            "dateConversion",
-            context.getString(string.dateConversion),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fdate.jpg?alt=media&token=e402ccf4-2458-4d80-8043-55a4d8db008b"
-        ),
     )
     val familyTreeMutableList: MutableList<CollectionModel> = mutableListOf(
         CollectionModel("muhammadTree", context.getString(string.muhammadFamilyTree), defaultImg),
@@ -89,7 +89,29 @@ class Utils(val context: Context) {
         CollectionModel("bigTree", context.getString(string.bigFamilyTree), defaultImg),
     )
 
-
+    val weekday = mutableListOf(
+        context.getString(string.saturday),
+        context.getString(string.sunday),
+        context.getString(string.monday),
+        context.getString(string.tuesday),
+        context.getString(string.wednsday),
+        context.getString(string.thursday),
+        context.getString(string.friday),
+    )
+    val month = mutableListOf(
+        context.getString(string.muharram),
+        context.getString(string.safar),
+        context.getString(string.rabe_awl),
+        context.getString(string.rabe_akhr),
+        context.getString(string.jamad_awl),
+        context.getString(string.jamad_akhr),
+        context.getString(string.rajab),
+        context.getString(string.shaban),
+        context.getString(string.ramadan),
+        context.getString(string.shawal),
+        context.getString(string.dhu_keada),
+        context.getString(string.dhu_hija),
+    )
 }
 
 fun showMessage(context: Context, message: String) {

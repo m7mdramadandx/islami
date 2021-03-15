@@ -6,9 +6,14 @@ import com.ramadan.islami.data.repo.LocalRepository
 
 class LocalViewModel : ViewModel() {
 
-    fun getAllSura(context: Context, search: String) =
-        LocalRepository.retrieveAllQuran(context, search)
+    companion object {
+        val localRepository = LocalRepository()
+    }
 
-    fun getAzkar(context: Context) = LocalRepository.retrieveAzkar(context)
+    fun getAllSura(context: Context) = localRepository.retrieveAllQuran(context)
+
+    fun getAzkar(context: Context) = localRepository.retrieveAzkar(context)
+
+    fun getVerseOfDay(context: Context) = localRepository.retrieveVerse(context)
 
 }
