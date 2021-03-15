@@ -34,21 +34,49 @@ import com.ramadan.islami.data.model.Collection as CollectionModel
 class Utils(val context: Context) {
 
     val suggestionMutableList: MutableList<CollectionModel> = mutableListOf(
-        CollectionModel("verseOfDay", context.getString(string.verseOfDay), defaultImg),
-        CollectionModel("hadithOfDay", context.getString(string.hadithOfDay), defaultImg),
-        CollectionModel("azkarOfDay", context.getString(string.zekrOfDay), defaultImg),
+        CollectionModel(
+            "verseOfDay",
+            context.getString(string.verseOfDay),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fverse.jpg?alt=media&token=6e10a9bc-0e81-4edb-b4e9-8427ab430266"
+        ),
+        CollectionModel(
+            "hadithOfDay",
+            context.getString(string.hadithOfDay),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fhadith.jpg?alt=media&token=041848ee-c824-47aa-a33b-1d697d232269"
+        ),
+        CollectionModel(
+            "azkarOfDay",
+            context.getString(string.zekrOfDay),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fazkar.jpg?alt=media&token=27870e4e-a359-4a1b-91de-057de5afa828"
+        ),
         CollectionModel("muhammadStory", context.getString(string.muhammad), defaultImg),
-        CollectionModel("hadiths", context.getString(string.hadiths), defaultImg),
+        CollectionModel(
+            "hadiths",
+            context.getString(string.hadiths),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2F3a339a32aba6a17b9bfa2585a3c596b7.jpg?alt=media&token=42432ef6-7f5d-4b2b-8448-72a606960af0"
+        ),
     )
     val dailyMutableList: MutableList<CollectionModel> = mutableListOf(
-        CollectionModel("prayerTimes", context.getString(string.prayerTimes), defaultImg),
-        CollectionModel("qibla",
+        CollectionModel(
+            "prayerTimes",
+            context.getString(string.prayerTimes),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fprayer_times.jpg?alt=media&token=860b09fa-e3b5-4ea8-9826-d207d549c704"
+        ),
+        CollectionModel(
+            "qibla",
             context.getString(string.qibla),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fqibla.jpg?alt=media&token=bc626ed5-d2aa-4ab0-9914-b5b30c7d0d46"),
-        CollectionModel("allahNames", context.getString(string.allahNames), defaultImg),
-        CollectionModel("dateConversion",
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fqibla.jpg?alt=media&token=f7a0855d-5e61-47a4-947b-7d26151b5fe1"
+        ),
+        CollectionModel(
+            "allahNames",
+            context.getString(string.allahNames),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fallah_names.jpg?alt=media&token=34d864ca-a962-441e-baad-2764f6130423"
+        ),
+        CollectionModel(
+            "dateConversion",
             context.getString(string.dateConversion),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fdate.jpg?alt=media&token=d2b14664-064e-4387-a9bf-9e710b3df1ea"),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fdate.jpg?alt=media&token=e402ccf4-2458-4d80-8043-55a4d8db008b"
+        ),
     )
     val familyTreeMutableList: MutableList<CollectionModel> = mutableListOf(
         CollectionModel("muhammadTree", context.getString(string.muhammadFamilyTree), defaultImg),
@@ -64,7 +92,8 @@ fun showMessage(context: Context, message: String) {
 }
 
 private val dirPath = Environment.getExternalStoragePublicDirectory(
-    Environment.DIRECTORY_PICTURES).path + "/islami"
+    Environment.DIRECTORY_PICTURES
+).path + "/islami"
 
 val input = "abc"
 var array = Array(input.length) { input[it].toString() }
@@ -89,9 +118,11 @@ fun showImg(imgUrl: String, context: Context) {
             saveImage(bitmap!!)
             Snackbar.make(it, context.getString(string.saved), Snackbar.LENGTH_LONG).show()
         } catch (e: Exception) {
-            Snackbar.make(it,
+            Snackbar.make(
+                it,
                 context.getString(string.failedToDownload),
-                Snackbar.LENGTH_LONG).show()
+                Snackbar.LENGTH_LONG
+            ).show()
         }
         false
     }

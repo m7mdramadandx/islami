@@ -127,6 +127,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         fun suggestionView(collection: Collection) {
             Picasso.get().load(collection.image).error(R.drawable.failure_img)
                 .placeholder(R.drawable.load_img).into(itemView.cardImage)
+            itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
             itemView.cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
             itemView.setOnClickListener {
                 when (collection.id) {
