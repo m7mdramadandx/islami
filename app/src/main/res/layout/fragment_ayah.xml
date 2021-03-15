@@ -13,6 +13,7 @@
         android:layout_height="?actionBarSize"
         android:background="@drawable/asset"
         app:tabGravity="center"
+        app:tabIconTint="@color/colorAccent"
         app:tabMaxWidth="50dp"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/colorAccent"

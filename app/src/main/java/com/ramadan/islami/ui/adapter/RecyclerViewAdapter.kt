@@ -131,21 +131,9 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             itemView.cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
             itemView.setOnClickListener {
                 when (collection.id) {
-                    "verseOfDay" -> {
-                        Intent(ctx, QuoteOfDay::class.java).apply {
-                            putExtra("intentKey", "verse")
-                            ctx.startActivity(this)
-                        }
-                    }
                     "hadithOfDay" -> {
                         Intent(ctx, QuoteOfDay::class.java).apply {
                             putExtra("intentKey", "hadith")
-                            ctx.startActivity(this)
-                        }
-                    }
-                    "azkarOfDay" -> {
-                        Intent(ctx, QuoteOfDay::class.java).apply {
-                            putExtra("intentKey", "zekr")
                             ctx.startActivity(this)
                         }
                     }
@@ -174,8 +162,31 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             Picasso.get().load(collection.image).error(R.drawable.error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.cardImage)
             itemView.cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
+            if (isDashboard) {
+                itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
+                itemView.cardImage.maxWidth = ctx.resources.getDimension(R.dimen.familyTree).toInt()
+            }
+
             itemView.setOnClickListener {
                 when (collection.id) {
+                    "verseOfDay" -> {
+                        Intent(ctx, QuoteOfDay::class.java).apply {
+                            putExtra("intentKey", "verse")
+                            ctx.startActivity(this)
+                        }
+                    }
+                    "azkarOfDay" -> {
+                        Intent(ctx, QuoteOfDay::class.java).apply {
+                            putExtra("intentKey", "zekr")
+                            ctx.startActivity(this)
+                        }
+                    }
+                    "hadithOfDay" -> {
+                        Intent(ctx, QuoteOfDay::class.java).apply {
+                            putExtra("intentKey", "hadith")
+                            ctx.startActivity(this)
+                        }
+                    }
                     "prayerTimes" -> ctx.startActivity(Intent(ctx, PrayerTimes::class.java))
                     "qibla" -> ctx.startActivity(Intent(ctx, Qibla::class.java))
                     "dateConversion" -> ctx.startActivity(Intent(ctx, DateConversion::class.java))
@@ -252,7 +263,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             } else {
                 itemView.allahNameCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
             }
-            itemView.allahNameNumber.text = allahNames?.number.toString() ?: "0"
+            itemView.allahNameNumber.text = allahNames?.number.toString()
             itemView.allahName.text = allahNames?.name ?: "l"
             itemView.allahNameMeaning.text = allahNames?.en?.meaning ?: "2"
         }

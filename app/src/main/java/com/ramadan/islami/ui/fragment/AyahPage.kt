@@ -34,12 +34,8 @@ class AyahPage : Fragment() {
     private var pageNumber: Int = 0
 
     private var doppelgangerPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
-        override fun onPageScrolled(
-            position: Int,
-            positionOffset: Float,
-            positionOffsetPixels: Int,
-        ) {
-            super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+        override fun onPageSelected(position: Int) {
+            super.onPageSelected(position)
             pageNumber = position + 1
             Toast.makeText(
                 requireContext(),
@@ -92,7 +88,7 @@ class AyahPage : Fragment() {
             if (localeHelper.getQuranMark(requireContext())
                     .contains("${surah.ayahs.first().page + position}")
             ) {
-                tab.setIcon(R.drawable.thumb_down)
+                tab.setIcon(R.drawable.bookmark)
             }
             tab.text = java.lang.String.valueOf(nf.format(surah.ayahs.first().page + position))
         }.attach()

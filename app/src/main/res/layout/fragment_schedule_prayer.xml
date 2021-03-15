@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingHorizontal="8dp"
     android:paddingVertical="16dp"
     tools:context=".ui.activity.PrayerTimes">
 
@@ -14,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginHorizontal="12dp"
         android:background="@drawable/bg_layout_rounded_white"
         android:backgroundTint="@color/silver_grey"
         android:elevation="10dp"
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dtp_schedule_prayer"
-        android:layout_marginHorizontal="24dp"
+        android:layout_marginHorizontal="32dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/background"
         android:backgroundTint="@color/colorPrimary"
@@ -86,10 +86,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:drawableStart="@drawable/ic_close_black_36dp"
                     android:gravity="center|end"
                     android:text="Location"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    app:drawableStartCompat="@drawable/location" />
 
             </LinearLayout>
 
@@ -111,10 +111,12 @@
 
     <TextView
         android:id="@+id/monthView"
+        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="monthView"
-        android:text="See Full Month" />
+        android:text="See Full Month"
+        android:textColor="@color/colorAccent" />
 </RelativeLayout>

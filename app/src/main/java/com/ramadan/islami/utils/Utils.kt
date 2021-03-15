@@ -35,19 +35,14 @@ class Utils(val context: Context) {
 
     val suggestionMutableList: MutableList<CollectionModel> = mutableListOf(
         CollectionModel(
-            "verseOfDay",
-            context.getString(string.verseOfDay),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fverse.jpg?alt=media&token=6e10a9bc-0e81-4edb-b4e9-8427ab430266"
-        ),
-        CollectionModel(
             "hadithOfDay",
             context.getString(string.hadithOfDay),
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fhadith.jpg?alt=media&token=041848ee-c824-47aa-a33b-1d697d232269"
         ),
         CollectionModel(
-            "azkarOfDay",
-            context.getString(string.zekrOfDay),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fazkar.jpg?alt=media&token=27870e4e-a359-4a1b-91de-057de5afa828"
+            "quran",
+            context.getString(string.quran),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fhadith.jpg?alt=media&token=041848ee-c824-47aa-a33b-1d697d232269"
         ),
         CollectionModel("muhammadStory", context.getString(string.muhammad), defaultImg),
         CollectionModel(
@@ -58,9 +53,19 @@ class Utils(val context: Context) {
     )
     val dailyMutableList: MutableList<CollectionModel> = mutableListOf(
         CollectionModel(
+            "azkarOfDay",
+            context.getString(string.zekrOfDay),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fazkar.jpg?alt=media&token=27870e4e-a359-4a1b-91de-057de5afa828"
+        ),
+        CollectionModel(
             "prayerTimes",
             context.getString(string.prayerTimes),
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fprayer_times.jpg?alt=media&token=860b09fa-e3b5-4ea8-9826-d207d549c704"
+        ),
+        CollectionModel(
+            "verseOfDay",
+            context.getString(string.verseOfDay),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fverse.jpg?alt=media&token=6e10a9bc-0e81-4edb-b4e9-8427ab430266"
         ),
         CollectionModel(
             "qibla",
