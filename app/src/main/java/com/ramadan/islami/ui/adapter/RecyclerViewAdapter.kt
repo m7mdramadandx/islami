@@ -12,7 +12,9 @@ import com.ramadan.islami.data.model.Collection
 import com.ramadan.islami.data.model.Quote
 import com.ramadan.islami.data.model.Story
 import com.ramadan.islami.ui.activity.*
+import com.ramadan.islami.ui.fragment.DashboardDirections
 import com.ramadan.islami.utils.Utils
+import com.ramadan.islami.utils.changeNavigation
 import com.ramadan.islami.utils.showImg
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_allah_name.view.*
@@ -130,7 +132,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
                 .placeholder(R.drawable.load_img).into(itemView.cardImage)
             itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
             itemView.cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
-            itemView.cardName.textSize = 19.toFloat()
+            itemView.cardName.textSize = 18.toFloat()
             itemView.setOnClickListener {
                 when (collection.id) {
                     "hadithOfDay" -> {
@@ -139,6 +141,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
                             ctx.startActivity(this)
                         }
                     }
+                    "quran" -> it.changeNavigation(DashboardDirections.actionNavDashboardToNavQuran())
                     "hadiths" -> ctx.startActivity(Intent(ctx, Hadiths::class.java))
                     "muhammadStory" -> Intent(ctx, ActivityStory::class.java).apply {
                         putExtra("storyID", "muhammad")

@@ -20,44 +20,44 @@
                 style="@style/table_header"
                 android:layout_width="0dp"
                 android:layout_weight="1.3"
-                android:text="Day" />
+                android:text="@string/day" />
 
             <TextView
                 style="@style/table_header"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="fajr" />
+                android:text="@string/fajr" />
 
             <TextView
                 style="@style/table_header"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="sunrise" />
+                android:text="@string/sunrise" />
 
             <TextView
                 style="@style/table_header"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="dhuhr" />
+                android:text="@string/dhuhr" />
 
             <TextView
                 style="@style/table_header"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="asr" />
+                android:text="@string/asr" />
 
             <TextView
                 style="@style/table_header"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:autoSizeTextType="uniform"
-                android:text="maghrib" />
+                android:text="@string/maghrib" />
 
             <TextView
                 style="@style/table_header"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="isha" />
+                android:text="@string/isha" />
 
         </TableRow>
     </TableLayout>

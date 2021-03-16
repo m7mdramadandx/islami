@@ -86,6 +86,13 @@
     <string name="shawal">Shawwal</string>
     <string name="dhu_keada">Dhu al-Qi‘dah</string>
     <string name="dhu_hija">Dhu al-Hijjah</string>
+    <string name="day">Day</string>
+    <string name="fajr">fajr</string>
+    <string name="sunrise">sunrise</string>
+    <string name="dhuhr">dhuhr</string>
+    <string name="asr">asr</string>
+    <string name="maghrib">maghrib</string>
+    <string name="isha">isha</string>
 
     <string-array name="custom_weekdays">
         <item>Sn</item>

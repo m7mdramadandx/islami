@@ -3,6 +3,8 @@ package com.ramadan.islami.ui.activity
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -27,7 +29,6 @@ import com.vivekkaushik.datepicker.OnDateSelectedListener
 import kotlinx.android.synthetic.main.fragment_schedule_prayer.*
 import java.util.*
 
-
 class PrayerTimes : AppCompatActivity() {
 
     private val viewModel by lazy {
@@ -44,7 +45,8 @@ class PrayerTimes : AppCompatActivity() {
     private lateinit var prayer: Prayer
     private var selectedDate: Int = 0
     private lateinit var utils: Utils
-
+    private lateinit var cityName: String
+    private lateinit var countryName: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_schedule_prayer)
@@ -65,7 +67,10 @@ class PrayerTimes : AppCompatActivity() {
                 val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
                 fusedLocationClient.lastLocation.addOnSuccessListener {
                     observeDate(it.latitude, it.longitude)
-//                    scheduleLocation.text = it.extras.toString()
+                    val geocoder = Geocoder(this, Locale.getDefault())
+                    val addresses: List<Address> =
+                        geocoder.getFromLocation(it.latitude, it.longitude, 1)
+                    scheduleLocation.text = addresses[0].adminArea
                 }
                 fusedLocationClient.lastLocation.addOnFailureListener {
                     showMessage(this, it.localizedMessage!!)
@@ -81,10 +86,17 @@ class PrayerTimes : AppCompatActivity() {
         datePickerTimeline.setActiveDate(gregorianToday)
         datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
             override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
-                selectedDate = day
-                prayTimeAdapter.setSchedulePrayer(prayer.data[day])
-                scheduleDay.text = utils.weekday[dayOfWeek - 1]
-                scheduleDate.text = "$day - ${month + 1} -$year"
+                prayer.let {
+                    selectedDate = day
+                    prayTimeAdapter.setSchedulePrayer(prayer.data[day])
+                    scheduleDay.text = utils.weekday[dayOfWeek]
+                    scheduleDate.text = "$day - ${month + 1} -$year"
+                }
+//                if (prayer.data.isNotEmpty()) {
+//
+//                } else {
+//                    prayTimeAdapter.setOfflinePrayer(localeHelper.getPrayerTimes(this@PrayerTimes))
+//                }
             }
 
             override fun onDisabledDateSelected(
@@ -135,7 +147,6 @@ class PrayerTimes : AppCompatActivity() {
                 ResponseStatus.SUCCESS -> {
                     progress.visibility = View.GONE
                     prayer = it.data!!
-//                    scheduleDay.text = prayer.data[selectedDate - 1].date.hijri.weekday.ar
                     prayTimeAdapter.setSchedulePrayer(prayer.data[selectedDate])
                     localeHelper.setPrayerTimes(this, prayer.data[selectedDate - 1].timings)
                 }

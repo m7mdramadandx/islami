@@ -7,10 +7,8 @@ import com.ramadan.islami.R
 import com.ramadan.islami.data.listener.SurahListener
 import com.ramadan.islami.data.model.Quran
 import com.ramadan.islami.data.model.Surah
-import com.ramadan.islami.utils.LocaleHelper
-import com.ramadan.islami.utils.coloredJson
-import com.ramadan.islami.utils.nf
-import com.ramadan.islami.utils.showBrief
+import com.ramadan.islami.ui.fragment.SurahDirections
+import com.ramadan.islami.utils.*
 import kotlinx.android.synthetic.main.item_ayah.view.*
 import kotlinx.android.synthetic.main.item_surah.view.*
 import java.lang.String.valueOf
@@ -24,8 +22,8 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
     private var surahName = String()
     private var surahNum = String()
 
-    fun setSuraDataList(list: MutableList<Surah>, listener: SurahListener) {
-        this.listener = listener
+    fun setSuraDataList(list: MutableList<Surah>) {
+//        this.listener = listener
         this.surahList = list
         notifyDataSetChanged()
     }
@@ -100,7 +98,10 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
                     context.getString(R.string.versesNumber) + valueOf(nf.format(surah.ayahs?.size))
                 juzNumber.text = surah.ayahs.first().juz
                 revelationType.text = surah.revelationType
-                setOnClickListener { listener?.onClick(it, surah) }
+                setOnClickListener {
+                    val action = SurahDirections.actionNavQuranToAyahFragment(surah)
+                    it.changeNavigation(action)
+                }
             }
         }
 

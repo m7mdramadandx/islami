@@ -45,15 +45,16 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
         fun expandView(text: String, position: Int) {
             val keyStore = "$title ${position + 1}"
             when {
-                position % 2 == 0 -> {
-                    itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorSecondary))
-                }
                 marks.contains(keyStore) -> {
                     itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.silver_grey))
                     itemView.storyTitle.setTextColor(ctx.resources.getColor(R.color.grey_silver))
                 }
+                position % 2 == 0 -> {
+                    itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorSecondary))
+                }
                 else -> itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
             }
+
             itemView.expansionText.text = text
             itemView.storyTitle.text = "${ctx.getString(R.string.part)} ${(position + 1)}"
             itemView.expansionLayout.addListener { _, isExpanded ->

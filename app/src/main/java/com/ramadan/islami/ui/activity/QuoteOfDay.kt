@@ -46,7 +46,6 @@ class QuoteOfDay : AppCompatActivity() {
             "hadith" -> fetchHadith()
             "zekr" -> fetchAzkar()
         }
-
     }
 
 
@@ -100,9 +99,7 @@ class QuoteOfDay : AppCompatActivity() {
                 }
                 return false
             }
-
         }
-
     }
 
 
@@ -137,10 +134,11 @@ class QuoteOfDay : AppCompatActivity() {
     }
 
     private fun fetchHadith() {
-        if (localeHelper.getHadithOfDay(this).contains(dateOfDay())) {
+        if (localeHelper.getHadithOfDay(this).contains(dateOfDay() + "date")) {
+            val zekr = localeHelper.getHadithOfDay(this)
             textBody.visibility = View.VISIBLE
-            textTitle.text = localeHelper.getHadithOfDay(this).elementAt(0)
-            textBody.text = localeHelper.getHadithOfDay(this).elementAt(1)
+            textTitle.text = zekr.find { it.contains("title") }?.removeSuffix("title")
+            textBody.text = zekr.find { it.contains("body") }?.removeSuffix("body")
         } else {
             webServiceViewModel =
                 ViewModelProvider(

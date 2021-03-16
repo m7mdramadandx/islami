@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +29,8 @@ import com.ramadan.islami.ui.viewModel.FirebaseViewModel
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.Utils
+import com.ramadan.islami.utils.changeNavigation
+import com.ramadan.islami.utils.showMessage
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
@@ -101,21 +105,27 @@ class Dashboard : Fragment(), FirebaseListener {
         quotesSlider = root.findViewById(R.id.quotesSlider)
         progress0 = root.findViewById(R.id.progress0)
         progress1 = root.findViewById(R.id.progress1)
-//        storiesCard.setOnClickListener { startActivity(Intent(this, MainActivity::class.java)) }
-//        quotesCard.setOnClickListener { startActivity(Intent(this, QuoteDashboard::class.java)) }
-//        familyTreeCard.setOnClickListener { startActivity(Intent(this, FamilyTree::class.java)) }
-//        topics.setOnClickListener { startActivity(Intent(this, Collection::class.java)) }
+        val x = root.findViewById<RelativeLayout>(R.id.storiesCard)
+        x.setOnClickListener {
+            it.changeNavigation(DashboardDirections.actionNavDashboardToNavQuran())
+            showMessage(root.context, "----")
+        }
+        root.findViewById<RelativeLayout>(R.id.storiesCard)
+            .setOnClickListener { DashboardDirections.actionNavDashboardToNavFamilyTree() }
+        root.findViewById<RelativeLayout>(R.id.quotesCard)
+            .setOnClickListener { DashboardDirections.actionNavDashboardToNavQuotes() }
+        root.findViewById<CardView>(R.id.topics)
+            .setOnClickListener { DashboardDirections.actionNavDashboardToNavTopics() }
 
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        hijriDate.text =
-            "${utils.weekday[hijriToday[UmmalquraCalendar.DAY_OF_WEEK]]} " +
-                    "${hijriToday[UmmalquraCalendar.DAY_OF_MONTH]} " +
-                    "${utils.month[hijriToday[UmmalquraCalendar.MONTH]]} " +
-                    "${hijriToday[UmmalquraCalendar.YEAR]} "
+        ("${utils.weekday[hijriToday[UmmalquraCalendar.DAY_OF_WEEK]]} " +
+                "${hijriToday[UmmalquraCalendar.DAY_OF_MONTH]} " +
+                "${utils.month[hijriToday[UmmalquraCalendar.MONTH]]} " +
+                "${hijriToday[UmmalquraCalendar.YEAR]} ").also { hijriDate.text = it }
 
         suggestionRCV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
         suggestionRCV.adapter = suggestionAdapter
@@ -144,17 +154,6 @@ class Dashboard : Fragment(), FirebaseListener {
     }
 
     private fun observeData() {
-//        apiViewModel.hijriCalender(dateOfDay()).observe(this, {
-//            when (it.status) {
-//                ResStatus.LOADING -> hijriDate.text = "تاريخ اليوم"
-//                ResStatus.SUCCESS -> {
-//                    (it.data!!.data.hijri.weekday.ar + getString(R.string.mn) + it.data.data.hijri.day + it.data.data.hijri.month.ar + "\t" + it.data.data.hijri.year)
-//                        .also { date -> hijriDate.text = date }
-//                }
-//                ResStatus.ERROR -> Log.e(debug_tag, it.message.toString())
-//            }
-//        })
-
         suggestionAdapter.setSuggestionDataList(utils.suggestionMutableList)
         dataViewModel.fetchStories(language)
             .observe(this, { storiesAdapter.setStoriesDataList(it) })

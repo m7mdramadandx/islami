@@ -97,6 +97,7 @@ class Utils(val context: Context) {
         context.getString(string.wednsday),
         context.getString(string.thursday),
         context.getString(string.friday),
+        context.getString(string.saturday),
     )
     val month = mutableListOf(
         context.getString(string.muharram),

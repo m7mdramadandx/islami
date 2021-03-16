@@ -14,10 +14,16 @@ import kotlinx.android.synthetic.main.table_row.view.*
 class PrayTimeAdapter : RecyclerView.Adapter<PrayTimeAdapter.ViewHolder>() {
 
     private var schedulePrayerData: PrayerData? = null
+    private var offlinePrayerData = mutableSetOf<String>()
     private var prayerList = mutableListOf<PrayerData>()
 
     fun setSchedulePrayer(data: PrayerData) {
         schedulePrayerData = data
+        notifyDataSetChanged()
+    }
+
+    fun setOfflinePrayer(data: MutableSet<String>) {
+        offlinePrayerData = data
         notifyDataSetChanged()
     }
 
@@ -27,7 +33,7 @@ class PrayTimeAdapter : RecyclerView.Adapter<PrayTimeAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v: View = if (schedulePrayerData != null)
+        val v: View = if (schedulePrayerData != null || offlinePrayerData.size > 0)
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_prayer_time, parent, false)
         else LayoutInflater.from(parent.context)
@@ -38,13 +44,14 @@ class PrayTimeAdapter : RecyclerView.Adapter<PrayTimeAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when {
             schedulePrayerData != null -> holder.schedulePrayer(schedulePrayerData!!)
+            offlinePrayerData.size > 0 -> holder.offlinePrayer(offlinePrayerData)
             prayerList.size > 0 -> holder.monthPrayers(prayerList[position], position)
         }
     }
 
     override fun getItemCount(): Int {
         return when {
-            schedulePrayerData != null -> 1
+            schedulePrayerData != null || offlinePrayerData.size > 0 -> 1
             prayerList.size > 0 -> prayerList.size
             else -> 0
         }
@@ -56,11 +63,27 @@ class PrayTimeAdapter : RecyclerView.Adapter<PrayTimeAdapter.ViewHolder>() {
                 fajrPrayTime.text = prayerData?.timings?.fajr?.removeSuffix("(EET)") ?: "00:00"
                 sunrisePrayTime.text =
                     prayerData?.timings?.sunrise?.removeSuffix("(EET)") ?: "00:00"
-                dhurPrayTime.text = prayerData?.timings?.dhuhr?.removeSuffix("(EET)") ?: "00:00"
+                dhuhrPrayTime.text = prayerData?.timings?.dhuhr?.removeSuffix("(EET)") ?: "00:00"
                 asrPrayTime.text = prayerData?.timings?.asr?.removeSuffix("(EET)") ?: "00:00"
                 maghribPrayTime.text =
                     prayerData?.timings?.maghrib?.removeSuffix("(EET)") ?: "00:00"
                 ishaPrayTime.text = prayerData?.timings?.isha?.removeSuffix("(EET)")
+            }
+        }
+
+        fun offlinePrayer(offlinePrayerData: MutableSet<String>) {
+            itemView.apply {
+                fajrPrayTime.text =
+                    offlinePrayerData.find { it.contains("fajr") }?.removeSuffix("fajr")
+                sunrisePrayTime.text =
+                    offlinePrayerData.find { it.contains("sunrise") }?.removeSuffix("sunrise")
+                dhuhrPrayTime.text =
+                    offlinePrayerData.find { it.contains("dhuhr") }?.removeSuffix("dhuhr")
+                asrPrayTime.text =
+                    offlinePrayerData.find { it.contains("asr") }?.removeSuffix("asr")
+                maghribPrayTime.text =
+                    offlinePrayerData.find { it.contains("maghrib") }?.removeSuffix("maghrib")
+                isha.text = offlinePrayerData.find { it.contains("isha") }?.removeSuffix("isha")
             }
         }
 

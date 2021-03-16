@@ -8,6 +8,7 @@ import com.onesignal.OneSignal
 import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.NotificationOpenedHandler
 
+
 const val ONESIGNAL_APP_ID = "84b5b5b5-1be2-49c4-b7cc-dc033da3bf84"
 
 class Application : Application() {
@@ -26,9 +27,14 @@ class Application : Application() {
 
     }
 
+
     override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(localeHelper.setLocale(base!!,
-            localeHelper.getDefaultLanguage(base)))
+        super.attachBaseContext(
+            localeHelper.setLocale(
+                base!!,
+                localeHelper.getDefaultLanguage(base)
+            )
+        )
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {

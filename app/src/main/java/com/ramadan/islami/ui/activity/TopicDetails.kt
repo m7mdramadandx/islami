@@ -66,8 +66,10 @@ class TopicDetails : AppCompatActivity() {
         val collectionID = intent.getStringExtra("collectionID").toString()
         val documentID = intent.getStringExtra("documentID").toString()
         GlobalScope.launch(Dispatchers.IO) {
-            topic = viewModel.fetchTopic(language, collectionID, documentID)
-            withContext(Dispatchers.Main) { observeData() }
+            withContext(Dispatchers.Main) {
+                topic = viewModel.fetchTopic(language, collectionID, documentID)
+                observeData()
+            }
         }
     }
 
@@ -75,5 +77,4 @@ class TopicDetails : AppCompatActivity() {
         onBackPressed()
         return true
     }
-
 }

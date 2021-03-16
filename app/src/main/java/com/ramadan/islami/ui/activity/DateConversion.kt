@@ -32,7 +32,8 @@ import com.ramadan.islami.data.model.Calender as CalenderModel
 
 class DateConversion : AppCompatActivity() {
     private val viewModel by lazy {
-        ViewModelProvider(this,
+        ViewModelProvider(
+            this,
             ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").apiService()))
         ).get(WebServiceViewModel::class.java)
     }
@@ -65,7 +66,8 @@ class DateConversion : AppCompatActivity() {
                 },
                 hijriToday[UmmalquraCalendar.YEAR],
                 hijriToday[UmmalquraCalendar.MONTH],
-                hijriToday[UmmalquraCalendar.DAY_OF_MONTH])
+                hijriToday[UmmalquraCalendar.DAY_OF_MONTH]
+            )
             dpd.vibrate(true)
             dpd.accentColor = resources.getColor(R.color.colorPrimary)
             dpd.setOkText(R.string.ok)
@@ -98,11 +100,10 @@ class DateConversion : AppCompatActivity() {
                 ResponseStatus.SUCCESS -> {
                     progress.visibility = View.GONE
                     hijri.text = it.data!!.data.hijri.date
-                    Log.e(debug_tag, it.data.data.hijri.date)
                 }
                 ResponseStatus.ERROR -> {
                     progress.visibility = View.GONE
-                    Log.e(debug_tag, it.message.toString())
+                    showMessage(this, it.message.toString())
                 }
             }
         })
@@ -158,8 +159,10 @@ class DateConversion : AppCompatActivity() {
 
     private fun showContextMenuDialogFragment() {
         if (supportFragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
-            contextMenuDialogFragment.show(supportFragmentManager,
-                ContextMenuDialogFragment.TAG)
+            contextMenuDialogFragment.show(
+                supportFragmentManager,
+                ContextMenuDialogFragment.TAG
+            )
         }
     }
 
@@ -189,6 +192,4 @@ class DateConversion : AppCompatActivity() {
             add(this)
         }
     }
-
-
 }

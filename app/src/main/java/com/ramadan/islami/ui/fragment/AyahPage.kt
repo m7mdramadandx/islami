@@ -52,6 +52,7 @@ class AyahPage : Fragment() {
         arguments?.let { surah = AyahPageArgs.fromBundle(it).surah }
         (activity as MainActivity).supportActionBar?.hide()
         (activity as MainActivity).fixedBanner.removeAllViewsInLayout()
+        (activity as MainActivity).constraintLayout.setPadding(0, 0, 0, 0)
         quranPageAdapter = QuranAdapter()
         localeHelper = LocaleHelper()
     }
@@ -59,6 +60,7 @@ class AyahPage : Fragment() {
     override fun onDetach() {
         (activity as MainActivity).supportActionBar?.show()
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        (activity as MainActivity).constraintLayout.setPadding(0, 0, 0, 64)
         super.onDetach()
     }
 

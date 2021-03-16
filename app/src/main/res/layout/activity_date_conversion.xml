@@ -19,19 +19,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginVertical="16dp"
         android:gravity="center"
         android:orientation="horizontal">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/hijri"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:autoSizeTextType="uniform"
             android:drawablePadding="4dp"
             android:gravity="center|start"
             android:text="@string/hijri"
+            app:autoSizeTextType="uniform"
             app:drawableStartCompat="@drawable/calendar" />
 
         <ImageView
@@ -44,16 +45,15 @@
             android:rotation="90"
             android:src="@drawable/convert" />
 
-
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/gregorian"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:autoSizeTextType="uniform"
             android:drawablePadding="4dp"
             android:gravity="center|start"
             android:text="@string/gregorian"
+            app:autoSizeTextType="uniform"
             app:drawableStartCompat="@drawable/calendar" />
 
     </LinearLayout>
@@ -61,17 +61,17 @@
     <com.github.eltohamy.materialhijricalendarview.MaterialHijriCalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="32dp"
         app:mcv_arrowColor="?attr/colorAccent"
         app:mcv_dateTextAppearance="?android:attr/titleTextStyle"
         app:mcv_firstDayOfWeek="saturday"
-        app:mcv_headerTextAppearance="?android:attr/textAppearanceMedium"
+        app:mcv_headerTextAppearance="@style/TextAppearance.AppCompat.Small"
         app:mcv_monthLabels="@array/custom_months"
         app:mcv_selectionColor="?attr/colorAccent"
         app:mcv_tileSize="28dp"
         app:mcv_weekDayLabels="@array/custom_weekdays"
-        app:mcv_weekDayTextAppearance="?android:attr/textColorPrimary" />
+        app:mcv_weekDayTextAppearance="@style/TextAppearance.AppCompat.Small" />
 
 </LinearLayout>
 
