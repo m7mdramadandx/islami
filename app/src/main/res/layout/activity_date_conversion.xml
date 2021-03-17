@@ -63,6 +63,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="32dp"
+        android:background="@drawable/bg_layout_rounded_white"
+        android:backgroundTint="#ccc"
         app:mcv_arrowColor="?attr/colorAccent"
         app:mcv_dateTextAppearance="?android:attr/titleTextStyle"
         app:mcv_firstDayOfWeek="saturday"

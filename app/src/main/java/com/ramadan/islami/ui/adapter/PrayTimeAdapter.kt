@@ -74,16 +74,21 @@ class PrayTimeAdapter : RecyclerView.Adapter<PrayTimeAdapter.ViewHolder>() {
         fun offlinePrayer(offlinePrayerData: MutableSet<String>) {
             itemView.apply {
                 fajrPrayTime.text =
-                    offlinePrayerData.find { it.contains("fajr") }?.removeSuffix("fajr")
+                    offlinePrayerData.find { it.contains("fajr") }?.removeSuffix("fajr") ?: "00:00"
                 sunrisePrayTime.text =
                     offlinePrayerData.find { it.contains("sunrise") }?.removeSuffix("sunrise")
+                        ?: "00:00"
                 dhuhrPrayTime.text =
                     offlinePrayerData.find { it.contains("dhuhr") }?.removeSuffix("dhuhr")
+                        ?: "00:00"
                 asrPrayTime.text =
-                    offlinePrayerData.find { it.contains("asr") }?.removeSuffix("asr")
+                    offlinePrayerData.find { it.contains("asr") }?.removeSuffix("asr") ?: "00:00"
                 maghribPrayTime.text =
                     offlinePrayerData.find { it.contains("maghrib") }?.removeSuffix("maghrib")
-                isha.text = offlinePrayerData.find { it.contains("isha") }?.removeSuffix("isha")
+                        ?: "00:00"
+                ishaPrayTime.text =
+                    offlinePrayerData.find { it.contains("isha") }?.removeSuffix("isha")
+                        ?: "00:00"
             }
         }
 

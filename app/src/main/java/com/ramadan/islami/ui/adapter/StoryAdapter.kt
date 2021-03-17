@@ -54,8 +54,12 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
                 }
                 else -> itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
             }
-
-            itemView.expansionText.text = text
+            val s = text
+            s.forEach {
+                if (it == ':')
+                    it.plus("<br>")
+            }
+            itemView.expansionText.text = s
             itemView.storyTitle.text = "${ctx.getString(R.string.part)} ${(position + 1)}"
             itemView.expansionLayout.addListener { _, isExpanded ->
                 if (!isExpanded && !marks.contains(keyStore)) {

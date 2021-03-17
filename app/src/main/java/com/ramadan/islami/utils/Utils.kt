@@ -65,17 +65,17 @@ class Utils(val context: Context) {
         CollectionModel(
             "verseOfDay",
             context.getString(string.verseOfDay),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fverse.jpg?alt=media&token=6e10a9bc-0e81-4edb-b4e9-8427ab430266"
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fverse.jpg?alt=media&token=de42048d-28c5-408f-a9fe-19ad5c19ec50"
         ),
         CollectionModel(
             "dateConversion",
             context.getString(string.dateConversion),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fdate.jpg?alt=media&token=e402ccf4-2458-4d80-8043-55a4d8db008b"
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fdate.jpg?alt=media&token=7071acd5-fe38-4ef5-9aa9-b0ffc0bd5aec"
         ),
         CollectionModel(
             "qibla",
             context.getString(string.qibla),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fqibla.jpg?alt=media&token=f7a0855d-5e61-47a4-947b-7d26151b5fe1"
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fqibla.jpg?alt=media&token=ba255776-f242-49ab-9dd8-bbf7e18f2f49"
         ),
         CollectionModel(
             "allahNames",

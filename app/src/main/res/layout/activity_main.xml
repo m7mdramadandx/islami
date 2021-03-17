@@ -22,5 +22,6 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/slide_drawer"
+        app:itemTextAppearance="@style/TextAppearance.AppCompat.Medium"
         app:shapeAppearanceOverlay="@style/AppTheme.AppBarOverlay" />
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
@@ -33,7 +34,8 @@ class AyahPage : Fragment() {
     private lateinit var localeHelper: LocaleHelper
     private var pageNumber: Int = 0
 
-    private var doppelgangerPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
+
+    private var pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
             pageNumber = surah.ayahs.first().page + position
@@ -50,18 +52,20 @@ class AyahPage : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         arguments?.let { surah = AyahPageArgs.fromBundle(it).surah }
+        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         (activity as MainActivity).supportActionBar?.hide()
-        (activity as MainActivity).fixedBanner.removeAllViewsInLayout()
-        (activity as MainActivity).constraintLayout.setPadding(0, 0, 0, 0)
+        (activity as MainActivity).fixedBanner.visibility = View.GONE
+        (activity as MainActivity).constraintLayout.updatePadding(0, 0, 0, 0)
         quranPageAdapter = QuranAdapter()
         localeHelper = LocaleHelper()
     }
 
     override fun onDetach() {
-        (activity as MainActivity).supportActionBar?.show()
-        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        (activity as MainActivity).constraintLayout.setPadding(0, 0, 0, 64)
         super.onDetach()
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        (activity as MainActivity).supportActionBar?.show()
+        (activity as MainActivity).fixedBanner.visibility = View.VISIBLE
+        (activity as MainActivity).constraintLayout.updatePadding(0, 0, 0, 64)
     }
 
     override fun onPause() {
@@ -81,11 +85,9 @@ class AyahPage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-
         quranPageAdapter.setAyahDataList(surah)
         viewPager.adapter = quranPageAdapter
-        viewPager.registerOnPageChangeCallback(doppelgangerPageChangeCallback)
+        viewPager.registerOnPageChangeCallback(pageChangeCallback)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             if (localeHelper.getQuranMark(requireContext())
                     .contains("${surah.ayahs.first().page + position}")

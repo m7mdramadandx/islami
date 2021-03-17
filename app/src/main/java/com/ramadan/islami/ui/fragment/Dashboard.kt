@@ -30,7 +30,6 @@ import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.Utils
 import com.ramadan.islami.utils.changeNavigation
-import com.ramadan.islami.utils.showMessage
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
@@ -105,11 +104,7 @@ class Dashboard : Fragment(), FirebaseListener {
         quotesSlider = root.findViewById(R.id.quotesSlider)
         progress0 = root.findViewById(R.id.progress0)
         progress1 = root.findViewById(R.id.progress1)
-        val x = root.findViewById<RelativeLayout>(R.id.storiesCard)
-        x.setOnClickListener {
-            it.changeNavigation(DashboardDirections.actionNavDashboardToNavQuran())
-            showMessage(root.context, "----")
-        }
+
         root.findViewById<RelativeLayout>(R.id.storiesCard)
             .setOnClickListener { DashboardDirections.actionNavDashboardToNavFamilyTree() }
         root.findViewById<RelativeLayout>(R.id.quotesCard)
@@ -149,7 +144,9 @@ class Dashboard : Fragment(), FirebaseListener {
         quotesSlider.isAutoCycle = true
         quotesSlider.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
         quotesSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
-
+        view.findViewById<RelativeLayout>(R.id.storiesCard).setOnClickListener {
+            it.changeNavigation(DashboardDirections.actionNavDashboardToNavQuran())
+        }
         loadAds()
     }
 

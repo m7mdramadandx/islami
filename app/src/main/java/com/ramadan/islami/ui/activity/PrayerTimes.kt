@@ -42,11 +42,10 @@ class PrayerTimes : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private val localeHelper = LocaleHelper()
     private lateinit var gregorianToday: Calendar
-    private lateinit var prayer: Prayer
+    private var prayer: Prayer? = null
     private var selectedDate: Int = 0
     private lateinit var utils: Utils
-    private lateinit var cityName: String
-    private lateinit var countryName: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_schedule_prayer)
@@ -60,6 +59,8 @@ class PrayerTimes : AppCompatActivity() {
         gregorianToday = Calendar.getInstance()
         selectedDate = gregorianToday[Calendar.DAY_OF_MONTH]
         scheduleDate.text = dateOfDay()
+        scheduleDay.text = utils.weekday[gregorianToday[Calendar.DAY_OF_WEEK]]
+
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
             if (!checkIfAlreadyPermission()) {
                 requestForSpecificPermission()
@@ -77,6 +78,7 @@ class PrayerTimes : AppCompatActivity() {
                 }
             }
         }
+
         val datePickerTimeline = findViewById<DatePickerTimeline>(R.id.dtp_schedule_prayer)
         datePickerTimeline.setInitialDate(
             gregorianToday[Calendar.YEAR],
@@ -86,17 +88,12 @@ class PrayerTimes : AppCompatActivity() {
         datePickerTimeline.setActiveDate(gregorianToday)
         datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
             override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
-                prayer.let {
+                prayer?.let {
                     selectedDate = day
-                    prayTimeAdapter.setSchedulePrayer(prayer.data[day])
-                    scheduleDay.text = utils.weekday[dayOfWeek]
-                    scheduleDate.text = "$day - ${month + 1} -$year"
+                    prayTimeAdapter.setSchedulePrayer(prayer!!.data[day])
                 }
-//                if (prayer.data.isNotEmpty()) {
-//
-//                } else {
-//                    prayTimeAdapter.setOfflinePrayer(localeHelper.getPrayerTimes(this@PrayerTimes))
-//                }
+                scheduleDay.text = utils.weekday[dayOfWeek]
+                scheduleDate.text = "$day - ${month + 1} -$year"
             }
 
             override fun onDisabledDateSelected(
@@ -147,10 +144,12 @@ class PrayerTimes : AppCompatActivity() {
                 ResponseStatus.SUCCESS -> {
                     progress.visibility = View.GONE
                     prayer = it.data!!
-                    prayTimeAdapter.setSchedulePrayer(prayer.data[selectedDate])
-                    localeHelper.setPrayerTimes(this, prayer.data[selectedDate - 1].timings)
+                    prayTimeAdapter.setSchedulePrayer(prayer!!.data[selectedDate])
+                    localeHelper.setPrayerTimes(this, prayer!!.data[selectedDate - 1].timings)
                 }
                 ResponseStatus.ERROR -> {
+                    prayTimeAdapter.setOfflinePrayer(localeHelper.getPrayerTimes(this@PrayerTimes))
+                        .takeUnless { prayer == null }
                     showMessage(this, it.message.toString())
                     progress.visibility = View.GONE
                 }
@@ -164,10 +163,11 @@ class PrayerTimes : AppCompatActivity() {
     }
 
     fun monthView(view: View) {
-        Intent(this, MonthPrayerTimes::class.java).apply {
-            putExtra("prayer", prayer)
-            startActivity(this)
+        prayer?.let {
+            Intent(this, MonthPrayerTimes::class.java).apply {
+                putExtra("prayer", prayer)
+                startActivity(this)
+            }
         }
     }
-
 }

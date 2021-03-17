@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.updatePadding
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -34,8 +35,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         var language: String = "ar"
-        const val PERMISSION_ACCESS_FINE_LOCATION: Int = 101
-
     }
 
 
@@ -58,8 +57,12 @@ class MainActivity : AppCompatActivity() {
 
         fixedBanner = findViewById(R.id.fixedBanner)
         fixedBanner.loadAd(AdRequest.Builder().build())
+
         if (!fixedBanner.isActivated) {
-            constraintLayout.setPadding(0, 0, 0, 0)
+            constraintLayout.updatePadding(0, 0, 0, 0)
+        }
+        if (fixedBanner.isActivated) {
+            constraintLayout.updatePadding(0, 0, 0, 42)
         }
         val colorDrawable = ColorDrawable(R.drawable.asset)
         val colorBackground = ColorDrawable(resources.getColor(R.color.colorBackground))
