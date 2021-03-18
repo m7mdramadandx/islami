@@ -115,7 +115,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/daily"
+                    android:id="@+id/dailyCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -126,12 +126,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Daily Routine"
+                        android:text="@string/daily"
                         android:textColor="@android:color/white"
                         android:textSize="21sp" />
 
                     <ImageButton
-                        android:id="@+id/seeAllDaily"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"

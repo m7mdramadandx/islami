@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             constraintLayout.updatePadding(0, 0, 0, 0)
         }
         if (fixedBanner.isActivated) {
-            constraintLayout.updatePadding(0, 0, 0, 42)
+            constraintLayout.updatePadding(0, 0, 0, 160)
         }
         val colorDrawable = ColorDrawable(R.drawable.asset)
         val colorBackground = ColorDrawable(resources.getColor(R.color.colorBackground))
@@ -97,6 +97,7 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
         navController.addOnDestinationChangedListener(listener)
         fixedBanner.loadAd(AdRequest.Builder().build())
+
     }
 
     override fun onResume() {

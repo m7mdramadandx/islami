@@ -65,7 +65,7 @@ class AyahPage : Fragment() {
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         (activity as MainActivity).supportActionBar?.show()
         (activity as MainActivity).fixedBanner.visibility = View.VISIBLE
-        (activity as MainActivity).constraintLayout.updatePadding(0, 0, 0, 64)
+        (activity as MainActivity).constraintLayout.updatePadding(0, 0, 0, 160)
     }
 
     override fun onPause() {

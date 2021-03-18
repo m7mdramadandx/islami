@@ -25,8 +25,8 @@ class Application : Application() {
         OneSignal.setAppId(ONESIGNAL_APP_ID)
         MobileAds.initialize(this, getString(R.string.ad_id))
 
+        Azan().setAlarm(this)
     }
-
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(

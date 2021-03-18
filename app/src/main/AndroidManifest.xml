@@ -10,6 +10,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
 
     <application
         android:name=".Application"
@@ -22,6 +26,30 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+
+        <receiver
+            android:name="Azan"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".AutoStart">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".AzanService"
+            android:enabled="true" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -41,16 +69,11 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme_NoActionBar"></activity>
+            android:theme="@style/AppTheme_NoActionBar" />
 
         <activity
             android:name=".ui.activity.QuoteOfDay"
-            android:label="@string/hadithOfDay"></activity>
-        <!--            <intent-filter>-->
-        <!--                <action android:name="android.intent.action.PROCESS_TEXT" />-->
-        <!--                <data android:mimeType="text/plain" />-->
-        <!--            </intent-filter>-->
-
+            android:label="@string/hadithOfDay" />
         <activity
             android:name=".ui.activity.Quote"
             android:label="@string/quotes" />

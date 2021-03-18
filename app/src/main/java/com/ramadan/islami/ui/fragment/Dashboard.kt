@@ -105,13 +105,6 @@ class Dashboard : Fragment(), FirebaseListener {
         progress0 = root.findViewById(R.id.progress0)
         progress1 = root.findViewById(R.id.progress1)
 
-        root.findViewById<RelativeLayout>(R.id.storiesCard)
-            .setOnClickListener { DashboardDirections.actionNavDashboardToNavFamilyTree() }
-        root.findViewById<RelativeLayout>(R.id.quotesCard)
-            .setOnClickListener { DashboardDirections.actionNavDashboardToNavQuotes() }
-        root.findViewById<CardView>(R.id.topics)
-            .setOnClickListener { DashboardDirections.actionNavDashboardToNavTopics() }
-
         return root
     }
 
@@ -145,7 +138,16 @@ class Dashboard : Fragment(), FirebaseListener {
         quotesSlider.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
         quotesSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
         view.findViewById<RelativeLayout>(R.id.storiesCard).setOnClickListener {
-            it.changeNavigation(DashboardDirections.actionNavDashboardToNavQuran())
+            it.changeNavigation(DashboardDirections.actionNavDashboardToNavStories())
+        }
+        view.findViewById<RelativeLayout>(R.id.dailyCard).setOnClickListener {
+            it.changeNavigation(DashboardDirections.actionNavDashboardToNavDaily())
+        }
+        view.findViewById<RelativeLayout>(R.id.quotesCard).setOnClickListener {
+            it.changeNavigation(DashboardDirections.actionNavDashboardToNavQuotes())
+        }
+        view.findViewById<CardView>(R.id.topics).setOnClickListener {
+            it.changeNavigation(DashboardDirections.actionNavDashboardToNavTopics())
         }
         loadAds()
     }
