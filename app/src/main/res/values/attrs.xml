@@ -44,4 +44,8 @@
         <item>26sp</item>
         <item>32sp</item>
     </array>
+    <declare-styleable name="FullscreenAttrs">
+        <attr name="fullscreenBackgroundColor" format="color" />
+        <attr name="fullscreenTextColor" format="color" />
+    </declare-styleable>
 </resources>

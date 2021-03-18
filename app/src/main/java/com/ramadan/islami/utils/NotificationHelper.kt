@@ -11,20 +11,11 @@ import android.content.ContextWrapper
 import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import com.ramadan.islami.Azan
 import com.ramadan.islami.R
-import com.ramadan.islami.ui.activity.PrayerTimes
+import com.ramadan.islami.ui.activity.AzanActivity
 
 
 class NotificationHelper(base: Context) : ContextWrapper(base) {
-
-    private val pendingIntent = PendingIntent.getActivity(
-        this, 0, Intent(this, PrayerTimes::class.java),
-        PendingIntent.FLAG_UPDATE_CURRENT
-    ).apply {
-        Azan().cancelAlarm(this@NotificationHelper)
-        showMessage(this@NotificationHelper, "CANCELED")
-    }
 
 
     val manager: NotificationManager =
@@ -37,14 +28,27 @@ class NotificationHelper(base: Context) : ContextWrapper(base) {
         manager.createNotificationChannel(channel)
     }
 
-    fun channelNotification(title: String, message: String): Notification =
-        NotificationCompat.Builder(applicationContext, channelID)
+    fun channelNotification(title: String, message: String): Notification {
+        val clickIntent = Intent(this, AzanActivity::class.java).apply {
+            putExtra("prayName", title)
+        }
+
+        val pendingIntent = PendingIntent.getActivity(
+            this, 0, clickIntent, PendingIntent.FLAG_ONE_SHOT
+        )
+
+        return NotificationCompat.Builder(applicationContext, channelID)
+            .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(title)
             .setContentText(message)
-            .setSmallIcon(R.drawable.ic_notification)
+            .setShowWhen(true)
+//            .addAction(R.mipmap.ic_launcher, "NOO", pendingIntent)
+//            .setContentIntent(pendingIntent)
             .setFullScreenIntent(pendingIntent, true)
             .addAction(R.mipmap.ic_launcher, "Okay", pendingIntent)
             .build()
+    }
+
 
     companion object {
         const val channelID = "channelID"

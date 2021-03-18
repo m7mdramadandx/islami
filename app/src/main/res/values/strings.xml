@@ -118,4 +118,8 @@
         <item>Dhu al-Qi‘dah</item>
         <item>Dhu al-Hijjah</item>
     </string-array>
+    <string name="title_activity_azan">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="pray_verse">وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ</string>
 </resources>

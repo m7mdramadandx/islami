@@ -48,6 +48,11 @@ class DateConversion : AppCompatActivity() {
         super.onStart()
     }
 
+    override fun onNightModeChanged(mode: Int) {
+        super.onNightModeChanged(mode)
+        supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.drawable.asset))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_date_conversion)

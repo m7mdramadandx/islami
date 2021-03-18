@@ -11,11 +11,13 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.LocationServices
+import com.ramadan.islami.Azan
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
@@ -45,6 +47,17 @@ class PrayerTimes : AppCompatActivity() {
     private var prayer: Prayer? = null
     private var selectedDate: Int = 0
     private lateinit var utils: Utils
+
+    override fun onStart() {
+        super.onStart()
+        intent.hasExtra("azan").let {
+            if (it) {
+                Azan.mediaPlayer.stop()
+                NotificationManagerCompat.from(this).cancel(1001)
+            }
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,7 +106,7 @@ class PrayerTimes : AppCompatActivity() {
                     prayTimeAdapter.setSchedulePrayer(prayer!!.data[day])
                 }
                 scheduleDay.text = utils.weekday[dayOfWeek]
-                scheduleDate.text = "$day - ${month + 1} -$year"
+                scheduleDate.text = "$day-${month + 1}-$year"
             }
 
             override fun onDisabledDateSelected(

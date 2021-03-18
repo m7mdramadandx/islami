@@ -7,7 +7,9 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
+import android.media.MediaPlayer
 import android.os.Environment
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -89,7 +91,14 @@ class Utils(val context: Context) {
         CollectionModel("bigTree", context.getString(string.bigFamilyTree), defaultImg),
     )
 
-    val weekday = mutableListOf(
+    val prayers = mutableListOf(
+        context.getString(string.fajr),
+        context.getString(string.dhuhr),
+        context.getString(string.asr),
+        context.getString(string.maghrib),
+        context.getString(string.isha),
+    )
+    val weekday = mutableListOf<String>(
         context.getString(string.saturday),
         context.getString(string.sunday),
         context.getString(string.monday),
@@ -113,7 +122,13 @@ class Utils(val context: Context) {
         context.getString(string.dhu_keada),
         context.getString(string.dhu_hija),
     )
+    val mediaPlayer: MediaPlayer =
+        MediaPlayer.create(context, Settings.System.DEFAULT_RINGTONE_URI)!!
 }
+
+fun Context.media(): MediaPlayer =
+    MediaPlayer.create(this, Settings.System.DEFAULT_RINGTONE_URI)!!
+
 
 fun showMessage(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
