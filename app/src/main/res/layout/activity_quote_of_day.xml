@@ -59,7 +59,7 @@
             android:layout_marginHorizontal="32dp"
             android:layout_marginVertical="16dp"
             android:background="@drawable/bg_layout_rounded_white"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="@color/silver_grey"
             android:visibility="gone" />
 
         <TextView

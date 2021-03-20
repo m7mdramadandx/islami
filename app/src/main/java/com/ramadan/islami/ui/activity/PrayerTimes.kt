@@ -76,7 +76,7 @@ class PrayerTimes : AppCompatActivity() {
                 override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
                     prayer?.let {
                         selectedDate = day
-                        prayTimeAdapter.setSchedulePrayer(prayer!!.data[day])
+                        prayTimeAdapter.setSchedulePrayer(prayer!!.data[day - 1])
                     } ?: snackBar(getString(R.string.noInternet))
                     scheduleDay.text = utils.weekday[dayOfWeek]
                     scheduleDate.text = "$day-${month + 1}-$year"
