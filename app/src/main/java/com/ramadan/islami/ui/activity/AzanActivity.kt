@@ -2,6 +2,7 @@ package com.ramadan.islami.ui.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -33,19 +34,25 @@ class AzanActivity : AppCompatActivity() {
     @SuppressLint("MissingPermission")
     override fun onStart() {
         super.onStart()
+        gregorianToday = Calendar.getInstance()
+        selectedDate = gregorianToday[Calendar.DAY_OF_MONTH]
+        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        fusedLocationClient.lastLocation.addOnSuccessListener {
+            observeDate(it.latitude, it.longitude)
+        }
         intent.hasExtra("prayName").let {
             if (it) {
                 NotificationManagerCompat.from(this).cancel(1001)
                 prayName.text = intent.getStringExtra("prayName")
             }
         }
-        gregorianToday = Calendar.getInstance()
-        selectedDate = gregorianToday[Calendar.DAY_OF_MONTH]
+    }
 
-        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        fusedLocationClient.lastLocation.addOnSuccessListener {
-            observeDate(it.latitude, it.longitude)
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        Handler().postDelayed({
+            Azan().setAlarm(this)
+        }, 70000)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,15 +69,9 @@ class AzanActivity : AppCompatActivity() {
     private fun observeDate(lat: Double, lon: Double) {
         val localeHelper = LocaleHelper()
         viewModel.fetchPrayers(lat, lon).observe(this, {
-            when (it.status) {
-                ResponseStatus.LOADING -> {
-                }
-                ResponseStatus.SUCCESS -> {
-                    progress.visibility = View.GONE
-                    localeHelper.setPrayerTimes(this, it.data!!.data[selectedDate - 1].timings)
-                }
-                ResponseStatus.ERROR -> {
-                }
+            if (it.status == ResponseStatus.SUCCESS) {
+                progress.visibility = View.GONE
+                localeHelper.setPrayerTimes(this, it.data!!.data[selectedDate - 1].timings)
             }
         })
     }

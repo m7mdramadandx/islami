@@ -90,9 +90,9 @@ class AyahPage : Fragment() {
         viewPager.registerOnPageChangeCallback(pageChangeCallback)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             if (localeHelper.getQuranMark(requireContext())
-                    .contains("${surah.ayahs.first().page + position}")
+                    .contains("${surah.ayahs.first().page + position}".toRegex(RegexOption.LITERAL))
             ) {
-                tab.setIcon(R.drawable.bookmark)
+                tab.setIcon(R.drawable.ic_bookmark)
             }
             tab.text = java.lang.String.valueOf(nf.format(surah.ayahs.first().page + position))
         }.attach()
@@ -108,7 +108,10 @@ class AyahPage : Fragment() {
         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
         view.findViewById<TextView>(R.id.yes).setOnClickListener {
-            localeHelper.setQuranMark(ctx, "${surah.name.removePrefix("سورة ")} - $pageNumber")
+            localeHelper.setQuranMark(
+                ctx,
+                "${surah.name} - صفحة رقم $pageNumber"
+            )
             alertDialog.dismiss()
         }
         view.findViewById<TextView>(R.id.notYet)

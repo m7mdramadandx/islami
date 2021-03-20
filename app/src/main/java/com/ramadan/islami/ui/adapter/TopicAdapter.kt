@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
+import com.ramadan.islami.data.model.Azkar
 import com.ramadan.islami.ui.activity.TopicDetails
 import kotlinx.android.synthetic.main.item_content.view.*
 import kotlinx.android.synthetic.main.item_tile.view.*
@@ -14,6 +15,7 @@ import com.ramadan.islami.data.model.Topic as TopicModel
 
 class TopicAdapter : RecyclerView.Adapter<TopicAdapter.CustomView>() {
     private var topicList = mutableListOf<TopicModel>()
+    private var azkarList = mutableListOf<Azkar.AzkarItem>()
     private var contentMap: MutableMap<String, String> = mutableMapOf()
     var collectionId = String()
     var brief = String()
@@ -26,6 +28,11 @@ class TopicAdapter : RecyclerView.Adapter<TopicAdapter.CustomView>() {
 
     fun setTopicContentDataList(data: MutableMap<String, String>, brief: String) {
         contentMap = data
+        notifyDataSetChanged()
+    }
+
+    fun setAzkarDataList(data: MutableList<Azkar.AzkarItem>) {
+        azkarList = data
         notifyDataSetChanged()
     }
 
@@ -46,6 +53,7 @@ class TopicAdapter : RecyclerView.Adapter<TopicAdapter.CustomView>() {
     override fun onBindViewHolder(holder: CustomView, position: Int) {
         when {
             topicList.size > 0 -> holder.topicView(topicList[position])
+            azkarList.size > 0 -> holder.azkarView(azkarList[position])
             contentMap.isNotEmpty() -> holder.topicContentView(contentMap.toList()[position])
         }
     }
@@ -53,6 +61,7 @@ class TopicAdapter : RecyclerView.Adapter<TopicAdapter.CustomView>() {
     override fun getItemCount(): Int {
         return when {
             topicList.size > 0 -> topicList.size
+            azkarList.size > 0 -> azkarList.size
             contentMap.isNotEmpty() -> contentMap.size
             else -> 0
         }
@@ -62,10 +71,12 @@ class TopicAdapter : RecyclerView.Adapter<TopicAdapter.CustomView>() {
         fun topicView(topic: TopicModel) {
             itemView.tileTitle.text = topic.title
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, TopicDetails::class.java)
-                intent.putExtra("topic", topic)
-                intent.putExtra("collectionId", collectionId)
-                itemView.context.startActivity(intent)
+                Intent(itemView.context, TopicDetails::class.java).apply {
+                    putExtra("intentKey", "topic")
+                    putExtra("topic", topic)
+                    putExtra("collectionId", collectionId)
+                    itemView.context.startActivity(this)
+                }
             }
         }
 
@@ -74,7 +85,12 @@ class TopicAdapter : RecyclerView.Adapter<TopicAdapter.CustomView>() {
             val match = regex.find(map.first)
             itemView.subtitle.text = map.first.removePrefix(match!!.value)
             itemView.content.text = map.second
+            if (map.first.length < 3) itemView.subtitle.visibility = View.GONE
         }
 
+        fun azkarView(azkarItem: Azkar.AzkarItem) {
+            itemView.content.text = azkarItem.zekr
+            itemView.subtitle.visibility = View.GONE
+        }
     }
 }

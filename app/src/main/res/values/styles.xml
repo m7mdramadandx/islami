@@ -8,12 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:textColorHighlight">@color/colorAccent</item>
-        <item name="fontFamily">@font/aref_font_family</item>
         <item name="navigationIconTint">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/aref_font_family</item>
+        <item name="fontFamily">@font/kemenag_font_family</item>
+        <item name="android:fontFamily">@font/kemenag_font_family</item>
 
     </style>
-
 
     <style name="CardViewStyle" parent="CardView">
         <item name="cardCornerRadius">10dp</item>
@@ -22,20 +21,24 @@
     </style>
 
     <style name="table_row_item" parent="@android:style/TextAppearance.Small">
-        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">13sp</item>
         <item name="android:padding">2dp</item>
     </style>
 
     <style name="table_header" parent="@android:style/TextAppearance.Small">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:textAlignment">center</item>
+        <item name="autoSizeTextType">uniform</item>
         <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:layout_height">35dp</item>
+        <item name="android:padding">2dp</item>
+    </style>
+
+    <style name="calendar_day" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/textColor</item>
         <item name="android:padding">2dp</item>
     </style>
 

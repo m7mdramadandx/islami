@@ -13,23 +13,22 @@
         android:layout_gravity="center"
         android:layout_marginHorizontal="8dp"
         android:layout_marginTop="4dp"
-        card_view:cardBackgroundColor="@color/colorPrimary">
+        card_view:cardBackgroundColor="@color/silver_grey">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:autoSizeTextType="uniform"
             android:gravity="center"
             android:text="@string/language"
-            android:textColor="#fff" />
+            android:textColor="@color/grey_silver" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
             android:paddingEnd="16dp"
-            android:src="@drawable/language" />
+            android:src="@drawable/ic_language" />
 
     </androidx.cardview.widget.CardView>
 
@@ -56,12 +55,39 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
             android:paddingEnd="16dp"
-            android:src="@drawable/theme" />
+            android:src="@drawable/ic_theme" />
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="4dp"
+        card_view:cardBackgroundColor="@color/silver_grey">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:text="@string/notification"
+            android:textColor="@color/grey_silver" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:paddingEnd="16dp"
+            android:src="@drawable/ic_os_notification_fallback_white_24dp"
+            card_view:tint="@color/grey" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/azan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -73,9 +99,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:autoSizeTextType="uniform"
             android:gravity="center"
-            android:text="@string/notification"
+            android:text="@string/azan"
             android:textColor="#fff" />
 
         <ImageView
@@ -83,7 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
             android:paddingEnd="16dp"
-            android:src="@drawable/ic_os_notification_fallback_white_24dp" />
+            android:src="@drawable/ic_topic" />
 
     </androidx.cardview.widget.CardView>
 

@@ -114,7 +114,7 @@ class StoryDetails : AppCompatActivity() {
 
     private fun getMenuObjects() = mutableListOf<MenuObject>().apply {
         MenuObject(getString(R.string.brief)).apply {
-            setResourceValue(R.drawable.quote)
+            setResourceValue(R.drawable.ic_quote)
             setBgColorValue((Color.rgb(23, 34, 59)))
             add(this)
         }

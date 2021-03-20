@@ -2,7 +2,8 @@
     <string name="app_name">islami</string>
 
     <string name="ad_id" translatable="false">ca-app-pub-5169956365910255~4844827484</string>
-    <string name="home_banner_id" translatable="false">ca-app-pub-3940256099942544/8865242552</string>
+    <string name="home_banner_id" translatable="false">ca-app-pub-5169956365910255/4073659536</string>
+    <string name="interstitialAd" translatable="false">ca-app-pub-5169956365910255/4073659536</string>
 
     <string name="muhammad">محمد (ص)</string>
     <string name="adam">Adam</string>
@@ -64,8 +65,10 @@
     <string name="hizbNumber">"hizb ۩ "</string>
     <string name="notification">notification</string>
     <string name="bookmark">Bookmark</string>
-    <string name="tafsir">tafsir</string>
-    <string name="azkarOfDay">Zekr of day</string>
+    <string name="tafsir">tafseer</string>
+    <string name="azkarOfDay">Azkar of day</string>
+    <string name="morningAzkar">Morning remembrance</string>
+    <string name="eveningAzkar">Evening remembrance</string>
     <string name="verseOfDay">Verse of day</string>
     <string name="saturday">السبت</string>
     <string name="sunday">الأحد</string>
@@ -76,16 +79,16 @@
     <string name="friday">الجمعة</string>
     <string name="muharram">Muhrram</string>
     <string name="safar">Safar</string>
-    <string name="rabe_awl">Rabi\' al-Awl</string>
-    <string name="rabe_akhr">Rabi\' al-Aakhr</string>
-    <string name="jamad_awl">Jamad al-Awl</string>
-    <string name="jamad_akhr">Jamad al-Akhr</string>
+    <string name="rabeAwl">Rabi\' al-Awl</string>
+    <string name="rabeAkhr">Rabi\' al-Aakhr</string>
+    <string name="jamadAwl">Jamad al-Awl</string>
+    <string name="jamadAkhr">Jamad al-Akhr</string>
     <string name="rajab">Rajab</string>
     <string name="shaban">Sha\'ban</string>
     <string name="ramadan">Ramadan</string>
     <string name="shawal">Shawwal</string>
-    <string name="dhu_keada">Dhu al-Qi‘dah</string>
-    <string name="dhu_hija">Dhu al-Hijjah</string>
+    <string name="dhuKeada">Dhu al-Qi‘dah</string>
+    <string name="dhuHija">Dhu al-Hijjah</string>
     <string name="day">Day</string>
     <string name="fajr">fajr</string>
     <string name="sunrise">sunrise</string>
@@ -93,6 +96,12 @@
     <string name="asr">asr</string>
     <string name="maghrib">maghrib</string>
     <string name="isha">isha</string>
+    <string name="prayerVerse">وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ</string>
+    <string name="notificationVerse">وَأَنْ أَقِيمُوا الصَّلَاةَ وَاتَّقُوهُ وَهُوَ الَّذِي إِلَيْهِ تُحْشَرُونَ</string>
+    <string name="noInternet">No Internet Connection</string>
+    <string name="azan">azan</string>
+    <string name="subscribe">subscribe</string>
+    <string name="unSubscribe">unsubscribe</string>
 
     <string-array name="custom_weekdays">
         <item>Sn</item>
@@ -107,19 +116,15 @@
     <string-array name="custom_months">
         <item>Muharram</item>
         <item>Safar</item>
-        <item>Rabi\' al-Awl</item>
-        <item>Rabi\' al-Akhr</item>
+        <item>Rabi al-Awl</item>
+        <item>Rabi al-Akhr</item>
         <item>Jumad al-Awl</item>
         <item>Jumad al-Akhr</item>
         <item>Rajab</item>
-        <item>Sha\'ban</item>
+        <item>Shaaban</item>
         <item>Ramadan</item>
         <item>Shawwal</item>
-        <item>Dhu al-Qi‘dah</item>
+        <item>Dhu al-Qidah</item>
         <item>Dhu al-Hijjah</item>
     </string-array>
-    <string name="title_activity_azan">FullscreenActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="pray_verse">وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ</string>
 </resources>

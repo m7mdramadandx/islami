@@ -13,7 +13,6 @@ class NotificationOpenedHandler(base: Context?) : OneSignal.OSNotificationOpened
 
     override fun notificationOpened(result: OSNotificationOpenedResult?) {
         val data = result!!.notification.additionalData
-
         when (data["intentName"]) {
             "topic" -> Intent(applicationContext, TopicDetails::class.java)
             "video" -> Intent(applicationContext, VideoList::class.java)
@@ -22,11 +21,12 @@ class NotificationOpenedHandler(base: Context?) : OneSignal.OSNotificationOpened
             "hadiths" -> Intent(applicationContext, Hadiths::class.java)
             "hadithOfDay" -> Intent(applicationContext, QuoteOfDay::class.java)
             else -> Intent(applicationContext, Dashboard::class.java)
-        }.also {
-            it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            it.putExtra("documentID", data["documentID"].toString())
-            it.putExtra("collectionID", data["collectionID"].toString())
-            startActivity(it)
+        }.apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            putExtra("intentKey", "topic")
+            putExtra("documentID", data["documentID"].toString())
+            putExtra("collectionID", data["collectionID"].toString())
+            startActivity(this)
         }
     }
 }

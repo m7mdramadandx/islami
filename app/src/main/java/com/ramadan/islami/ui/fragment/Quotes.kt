@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,15 +12,17 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.data.listener.FirebaseListener
+import com.ramadan.islami.ui.activity.MainActivity
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.viewModel.FirebaseViewModel
-import kotlinx.android.synthetic.main.recycler_view.*
+import com.ramadan.islami.utils.showMessage
 
 class Quotes : Fragment(), FirebaseListener {
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     private val viewModel by lazy { ViewModelProvider(this).get(FirebaseViewModel::class.java) }
     private var recyclerView: RecyclerView? = null
+    private lateinit var progress: ProgressBar
 
     override fun onStart() {
         super.onStart()
@@ -34,19 +36,20 @@ class Quotes : Fragment(), FirebaseListener {
     ): View? {
         val root = inflater.inflate(R.layout.recycler_view, container, false)
         viewModel.firebaseListener = this
-        recyclerViewAdapter = RecyclerViewAdapter()
+        progress = root.findViewById(R.id.progress)
         recyclerView = root.findViewById(R.id.global_recycler_view)
+        recyclerViewAdapter = RecyclerViewAdapter()
         val staggeredGridLayoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView?.layoutManager = staggeredGridLayoutManager
         recyclerView?.adapter = recyclerViewAdapter
         recyclerView?.setPadding(8, 32, 8, 16)
-
-//        recyclerView?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//                if (dy > 0) supportActionBar?.hide() else supportActionBar?.show()
-//            }
-//        })
+        recyclerView?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0) (activity as MainActivity).supportActionBar?.hide()
+                else (activity as MainActivity).supportActionBar?.show()
+            }
+        })
         return root
     }
 
@@ -64,7 +67,7 @@ class Quotes : Fragment(), FirebaseListener {
 
     override fun onFailure(message: String) {
         progress.visibility = View.GONE
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        showMessage(requireContext(), message)
     }
 
 }

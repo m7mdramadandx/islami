@@ -37,14 +37,12 @@ class MainActivity : AppCompatActivity() {
         var language: String = "ar"
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (localeHelper.getDefaultLanguage(this) == "en") language = "en"
+        language = if (localeHelper.getDefaultLanguage(this) == "en") "en" else "ar"
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         navController = findNavController(R.id.nav_host_fragment)
@@ -97,13 +95,14 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
         navController.addOnDestinationChangedListener(listener)
         fixedBanner.loadAd(AdRequest.Builder().build())
-
+        language = if (localeHelper.getDefaultLanguage(this) == "en") "en" else "ar"
     }
 
     override fun onResume() {
         super.onResume()
         navController.addOnDestinationChangedListener(listener)
         fixedBanner.loadAd(AdRequest.Builder().build())
+        language = if (localeHelper.getDefaultLanguage(this) == "en") "en" else "ar"
     }
 
     override fun onSupportNavigateUp(): Boolean {

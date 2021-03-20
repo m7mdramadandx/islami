@@ -33,9 +33,10 @@
             android:gravity="center|start"
             android:text="@string/hijri"
             app:autoSizeTextType="uniform"
-            app:drawableStartCompat="@drawable/calendar" />
+            app:drawableStartCompat="@drawable/ic_calendar" />
 
         <ImageView
+            android:id="@+id/conversionIcon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -43,7 +44,7 @@
             android:adjustViewBounds="false"
             android:background="@android:color/transparent"
             android:rotation="90"
-            android:src="@drawable/convert" />
+            android:src="@drawable/ic_convert" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/gregorian"
@@ -54,7 +55,7 @@
             android:gravity="center|start"
             android:text="@string/gregorian"
             app:autoSizeTextType="uniform"
-            app:drawableStartCompat="@drawable/calendar" />
+            app:drawableStartCompat="@drawable/ic_calendar" />
 
     </LinearLayout>
 
@@ -63,9 +64,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
-        android:padding="16dp"
         android:background="@drawable/bg_layout_rounded_white"
-        android:backgroundTint="#ccc"
+        android:backgroundTint="@color/silver_grey"
+        android:padding="16dp"
         app:mcv_arrowColor="?attr/colorAccent"
         app:mcv_dateTextAppearance="?android:attr/titleTextStyle"
         app:mcv_firstDayOfWeek="saturday"
@@ -74,7 +75,7 @@
         app:mcv_selectionColor="?attr/colorAccent"
         app:mcv_tileSize="28dp"
         app:mcv_weekDayLabels="@array/custom_weekdays"
-        app:mcv_weekDayTextAppearance="@style/TextAppearance.AppCompat.Small" />
+        app:mcv_weekDayTextAppearance="@style/calendar_day" />
 
 </LinearLayout>
 

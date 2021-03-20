@@ -33,17 +33,16 @@ class Daily : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         val root = inflater.inflate(R.layout.recycler_view, container, false)
+        recyclerView = root.findViewById(R.id.global_recycler_view)
         progress = root.findViewById(R.id.progress)
         progress.visibility = View.GONE
-        recyclerView = root.findViewById(R.id.global_recycler_view)
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = recyclerViewAdapter
         return root
     }
 
     private fun observeData() {
-        recyclerViewAdapter.setDailyDataList(Utils(requireContext()).dailyMutableList,false)
+        recyclerViewAdapter.setDailyDataList(Utils(requireContext()).dailyMutableList, false)
     }
-
 
 }

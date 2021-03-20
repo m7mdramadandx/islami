@@ -19,6 +19,13 @@
             android:textColor="@color/titleColor"
             android:textSize="24sp" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="64dp"
+            android:layout_marginVertical="8dp"
+            android:background="@drawable/bg_layout_rounded_white" />
+
         <TextView
             android:id="@+id/subtitle"
             android:layout_width="match_parent"

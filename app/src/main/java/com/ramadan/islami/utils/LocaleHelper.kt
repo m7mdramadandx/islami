@@ -12,13 +12,14 @@ import com.ramadan.islami.data.model.Verse
 import java.util.*
 import kotlin.collections.HashSet
 
-
 class LocaleHelper {
     companion object {
         private const val SELECTED_LANGUAGE = "default_language"
         private const val SELECTED_THEME = "default_theme"
+        private const val NOTIFICATION = "ON"
+        private const val AZAN = "ON"
         private const val STORY_MARKS = "story_marks"
-        private const val QURAN_MARK = "quran_marks"
+        private const val QURAN_MARK = "quran_mark"
         private const val VERSE_OF_DAY = "verse_of_day"
         private const val HADITH_OF_DAY = "hadith_of_day"
         private const val AZKAR_OF_DAY = "azkar_of_day"
@@ -28,18 +29,19 @@ class LocaleHelper {
 
     fun setVerseOfDay(context: Context, verseItem: Verse.VerseItem) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
-        val editor = prefs.edit()
         val verse = HashSet<String>()
         verse.addAll(
             mutableSetOf(
-                verseItem.surah + "surah",
-                verseItem.ayah + "\n" + verseItem.translation + "ayah",
-                dateOfDay() + "date",
+                verseItem.surah + " surah",
+                verseItem.ayah + "\n" + verseItem.translation + " ayah",
+                dateOfDay() + " date",
             )
         )
-        editor.remove(VERSE_OF_DAY)
-        editor.putStringSet(VERSE_OF_DAY, verse)
-        editor.apply()
+        prefs.edit().apply {
+            remove(VERSE_OF_DAY)
+            putStringSet(VERSE_OF_DAY, verse)
+            apply()
+        }
     }
 
     fun getVerseOfDay(context: Context): MutableSet<String> {
@@ -49,18 +51,19 @@ class LocaleHelper {
 
     fun setHadithOfDay(context: Context, hadithBody: String, chapterTitle: String) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
-        val editor = prefs.edit()
         val hadith = HashSet<String>()
         hadith.addAll(
             mutableSetOf(
-                chapterTitle + "title",
-                hadithBody + "body",
-                dateOfDay() + "date",
-            ).sortedDescending()
+                "$chapterTitle title",
+                "$hadithBody body",
+                dateOfDay() + " date"
+            )
         )
-        editor.remove(HADITH_OF_DAY)
-        editor.putStringSet(HADITH_OF_DAY, hadith)
-        editor.apply()
+        prefs.edit().apply {
+            remove(HADITH_OF_DAY)
+            putStringSet(HADITH_OF_DAY, hadith)
+            apply()
+        }
     }
 
     fun getHadithOfDay(context: Context): MutableSet<String> {
@@ -70,20 +73,20 @@ class LocaleHelper {
 
     fun setAzkarOfDay(context: Context, azkarItem: Azkar.AzkarItem) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
-        val editor = prefs.edit()
         val hadith = HashSet<String>()
         hadith.addAll(
             mutableSetOf(
-                azkarItem.category + "title",
-                azkarItem.zekr + "body",
-                azkarItem.description + "description",
-                azkarItem.reference + "reference",
-                dateOfDay() + "date",
+                azkarItem.category + " title",
+                azkarItem.zekr + " body",
+                azkarItem.description + " description",
+                dateOfDay() + " date",
             )
         )
-        editor.remove(AZKAR_OF_DAY)
-        editor.putStringSet(AZKAR_OF_DAY, hadith)
-        editor.apply()
+        prefs.edit().apply {
+            remove(AZKAR_OF_DAY)
+            putStringSet(AZKAR_OF_DAY, hadith)
+            apply()
+        }
     }
 
     fun getAzkarOfDay(context: Context): MutableSet<String> {
@@ -93,20 +96,20 @@ class LocaleHelper {
 
     fun setAzkarOfDay1(context: Context, azkarItem: Azkar.AzkarItem) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
-        val editor = prefs.edit()
         val hadith = HashSet<String>()
         hadith.addAll(
             mutableSetOf(
-                azkarItem.category + "title",
-                azkarItem.zekr + "body",
-                azkarItem.description + "description",
-                azkarItem.reference + "reference",
-                dateOfDay() + "date",
+                azkarItem.category + " title",
+                azkarItem.zekr + " body",
+                azkarItem.description + " description",
+                dateOfDay() + " date",
             )
         )
-        editor.remove(AZKAR_OF_DAY1)
-        editor.putStringSet(AZKAR_OF_DAY1, hadith)
-        editor.apply()
+        prefs.edit().apply {
+            remove(AZKAR_OF_DAY1)
+            putStringSet(AZKAR_OF_DAY1, hadith)
+            apply()
+        }
     }
 
     fun getAzkarOfDay1(context: Context): MutableSet<String> {
@@ -116,7 +119,6 @@ class LocaleHelper {
 
     fun setPrayerTimes(context: Context, pray: Prayer.Timings) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
-        val editor = prefs.edit()
         val prayerTimes = HashSet<String>()
         prayerTimes.addAll(
             mutableSetOf(
@@ -128,21 +130,24 @@ class LocaleHelper {
                 pray.isha.replace("(EET)", "isha"),
             )
         )
-        editor.remove(Prayer_TIMES)
-        editor.putStringSet(Prayer_TIMES, prayerTimes)
-        editor.apply()
+        prefs.edit().apply {
+            remove(Prayer_TIMES)
+            putStringSet(Prayer_TIMES, prayerTimes)
+            apply()
+        }
     }
 
-    fun getPrayerTimes(context: Context): MutableSet<String> {
+    fun getPrayerTimes(context: Context): MutableSet<String>? {
         val prefs = getDefaultSharedPreferences(context)
-        return prefs.getStringSet(Prayer_TIMES, mutableSetOf())!!.toMutableSet()
+        return prefs.getStringSet(Prayer_TIMES, null)
     }
 
     fun setQuranMark(context: Context, page: String) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
-        val editor = prefs.edit()
-        editor.putString(QURAN_MARK, page)
-        editor.apply()
+        prefs.edit().apply {
+            putString(QURAN_MARK, page)
+            apply()
+        }
     }
 
     fun getQuranMark(context: Context): String {
@@ -152,12 +157,13 @@ class LocaleHelper {
 
     fun setStoryMark(context: Context, part: String) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
-        val editor = prefs.edit()
         val newMark = HashSet<String>()
         newMark.addAll(getStoryMark(context))
         newMark.add(part)
-        editor.putStringSet(STORY_MARKS, newMark)
-        editor.apply()
+        prefs.edit().apply {
+            putStringSet(STORY_MARKS, newMark)
+            apply()
+        }
     }
 
     fun getStoryMark(context: Context): MutableSet<String> {
@@ -165,12 +171,42 @@ class LocaleHelper {
         return prefs.getStringSet(STORY_MARKS, mutableSetOf())!!.toMutableSet()
     }
 
+    fun setNotification(context: Context, notification: Boolean) {
+        val prefs: SharedPreferences = getDefaultSharedPreferences(context)
+        prefs.edit().apply {
+            remove(NOTIFICATION)
+            putBoolean(NOTIFICATION, notification)
+            apply()
+        }
+    }
+
+    fun getNotification(context: Context): Boolean {
+        val prefs = getDefaultSharedPreferences(context)
+        return prefs.getBoolean(NOTIFICATION, true)
+    }
+
+    fun setAzan(context: Context, azan: Boolean) {
+        val prefs: SharedPreferences = getDefaultSharedPreferences(context)
+        prefs.edit().apply {
+            remove(AZAN)
+            putBoolean(AZAN, azan)
+            apply()
+        }
+    }
+
+    fun getAzan(context: Context): Boolean {
+        val prefs = getDefaultSharedPreferences(context)
+        return prefs.getBoolean(AZAN, true)
+    }
+
+
     fun setTheme(context: Context, theme: String?) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
-        val editor = prefs.edit()
-        editor.remove(QURAN_MARK)
-        editor.putString(SELECTED_THEME, theme)
-        editor.apply()
+        prefs.edit().apply {
+            remove(QURAN_MARK)
+            putString(SELECTED_THEME, theme)
+            apply()
+        }
     }
 
     fun getDefaultTheme(context: Context): String {
@@ -186,9 +222,10 @@ class LocaleHelper {
 
     fun persist(context: Context, language: String) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
-        val editor = prefs.edit()
-        editor.putString(SELECTED_LANGUAGE, language)
-        editor.apply()
+        prefs.edit().apply {
+            putString(SELECTED_LANGUAGE, language)
+            apply()
+        }
     }
 
     fun getDefaultLanguage(context: Context): String {
@@ -215,5 +252,4 @@ class LocaleHelper {
         resources.updateConfiguration(configuration, resources.displayMetrics)
         return context
     }
-
 }

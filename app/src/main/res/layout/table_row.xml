@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:showIn="@layout/table_layout">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -17,45 +19,38 @@
             <TextView
                 android:id="@+id/day"
                 style="@style/table_row_item"
-                android:layout_width="0dp"
                 android:layout_weight="1.3"
-                android:textColor="@color/colorPrimary"
+                android:padding="0dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/fajr"
                 style="@style/table_row_item"
-                android:layout_width="0dp"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/sunrise"
                 style="@style/table_row_item"
-                android:layout_width="0dp"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/dhuhr"
                 style="@style/table_row_item"
-                android:layout_width="0dp"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/asr"
                 style="@style/table_row_item"
-                android:layout_width="0dp"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/maghrib"
                 style="@style/table_row_item"
-                android:layout_width="0dp"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/isha"
                 style="@style/table_row_item"
-                android:layout_width="0dp"
                 android:layout_weight="1" />
 
 

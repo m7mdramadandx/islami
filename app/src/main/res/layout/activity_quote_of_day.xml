@@ -31,7 +31,7 @@
             android:background="@drawable/bg_layout_rounded_white"
             android:backgroundTint="@color/colorSecondary"
             android:gravity="center"
-            android:padding="24dp"
+            android:padding="20dp"
             android:textColor="@color/colorAccent"
             android:textIsSelectable="true"
             android:visibility="gone"
@@ -51,13 +51,23 @@
             android:layout_below="@id/textDescription"
             android:layout_marginTop="8dp" />
 
+        <View
+            android:id="@+id/spacer"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_below="@id/textReference"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginVertical="16dp"
+            android:background="@drawable/bg_layout_rounded_white"
+            android:backgroundTint="@color/colorAccent"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/textTitle1"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textReference" />
+            android:layout_below="@id/spacer" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textBody1"
@@ -70,7 +80,7 @@
             android:background="@drawable/bg_layout_rounded_white"
             android:backgroundTint="@color/colorSecondary"
             android:gravity="center"
-            android:padding="24dp"
+            android:padding="20dp"
             android:textColor="@color/colorAccent"
             android:textIsSelectable="true"
             android:visibility="gone"
@@ -81,13 +91,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/textBody1"
-            android:layout_marginTop="8dp" />
-
-        <TextView
-            android:id="@+id/textReference1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textDescription1"
             android:layout_marginTop="8dp" />
 
         <ProgressBar

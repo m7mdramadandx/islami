@@ -8,9 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:textColorHighlight">@color/colorAccent</item>
-        <item name="fontFamily">@font/aref_font_family</item>
+        <item name="fontFamily">@font/kemenag_font_family</item>
         <item name="navigationIconTint">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/aref_font_family</item>
+        <item name="android:fontFamily">@font/kemenag_font_family</item>
     </style>
 
     <style name="AppTheme_Material_NoActionBar" parent="AppTheme_Material">

@@ -24,7 +24,6 @@ class Surah : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var quranAdapter: QuranAdapter
 
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         quranAdapter = QuranAdapter()
@@ -56,9 +55,4 @@ class Surah : Fragment() {
         }
     }
 
-
-//    override fun onClick(view: View, surah: Surah) {
-//        val action = SurahDirections.actionNavQuranToAyahFragment(surah)
-//        view.changeNavigation(action)
-//    }
 }

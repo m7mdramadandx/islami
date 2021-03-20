@@ -23,7 +23,6 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
     private var surahNum = String()
 
     fun setSuraDataList(list: MutableList<Surah>) {
-//        this.listener = listener
         this.surahList = list
         notifyDataSetChanged()
     }
@@ -77,7 +76,8 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
         private val ctx = itemView.context
 
         fun surahView(surah: Surah) {
-            if (localeHelper.getQuranMark(ctx).contains(surah.name.removePrefix("سورة "))) {
+            val mark = localeHelper.getQuranMark(ctx)
+            if (mark.contains(surah.name.toRegex(RegexOption.LITERAL))) {
                 itemView.apply {
                     versesNumber.setTextColor(ctx.resources.getColor(R.color.grey_silver))
                     revelationType.setTextColor(ctx.resources.getColor(R.color.grey_silver))
@@ -90,7 +90,6 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
                     surahCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
                 }
             }
-
             itemView.apply {
                 surahNumber.text = surah.number.toString()
                 surahName.text = surah.name
@@ -109,7 +108,7 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
             ayahList: MutableList<Quran.Ayah>,
             position: Int,
             surahName: String,
-            surahNum: String
+            surahNum: String,
         ) {
             var text = String()
             itemView.apply {
@@ -142,9 +141,9 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
 
                     override fun onCreateActionMode(p0: ActionMode?, p1: Menu): Boolean {
                         p1.add(0, bookmark, 0, context.getString(R.string.bookmark))
-                            .setIcon(R.drawable.menu)
+                            .setIcon(R.drawable.ic_menu)
                         p1.add(1, tafsir, 1, context.getString(R.string.tafsir))
-                            .setIcon(R.drawable.menu)
+                            .setIcon(R.drawable.ic_menu)
                         return true
                     }
 
@@ -155,7 +154,7 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
                         if (p1.itemId == bookmark) {
                             localeHelper.setQuranMark(
                                 ctx,
-                                "${surahName.removePrefix("سورة ")} - $position"
+                                "$surahName - صفحة رقم $position"
                             )
                             p0.finish()
                             return true

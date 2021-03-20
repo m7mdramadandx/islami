@@ -39,6 +39,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
     private var allahNames = mutableListOf<AllahNames.Data>()
 
     fun setSuggestionDataList(data: MutableList<Collection>) {
+        data.shuffle()
         suggestionList = data
         notifyDataSetChanged()
     }
@@ -128,24 +129,27 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         private val util = Utils(ctx)
 
         fun suggestionView(collection: Collection) {
-            Picasso.get().load(collection.image).error(R.drawable.failure_img)
-                .placeholder(R.drawable.load_img).into(itemView.cardImage)
-            itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
-            itemView.cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
-            itemView.cardName.textSize = 18.toFloat()
-            itemView.setOnClickListener {
-                when (collection.id) {
-                    "hadithOfDay" -> {
-                        Intent(ctx, QuoteOfDay::class.java).apply {
-                            putExtra("intentKey", "hadith")
+            itemView.apply {
+                Picasso.get().load(collection.image).error(R.drawable.failure_img)
+                    .placeholder(R.drawable.load_img).into(cardImage)
+                layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
+                cardImage.minimumWidth = 180
+                cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
+                cardName.textSize = 18.toFloat()
+                setOnClickListener {
+                    when (collection.id) {
+                        "hadithOfDay" -> {
+                            Intent(ctx, QuoteOfDay::class.java).apply {
+                                putExtra("intentKey", "hadith")
+                                ctx.startActivity(this)
+                            }
+                        }
+                        "quran" -> it.changeNavigation(DashboardDirections.actionNavDashboardToNavQuran())
+                        "hadiths" -> ctx.startActivity(Intent(ctx, Hadiths::class.java))
+                        "muhammadStory" -> Intent(ctx, ActivityStory::class.java).apply {
+                            putExtra("storyID", "muhammad")
                             ctx.startActivity(this)
                         }
-                    }
-                    "quran" -> it.changeNavigation(DashboardDirections.actionNavDashboardToNavQuran())
-                    "hadiths" -> ctx.startActivity(Intent(ctx, Hadiths::class.java))
-                    "muhammadStory" -> Intent(ctx, ActivityStory::class.java).apply {
-                        putExtra("storyID", "muhammad")
-                        ctx.startActivity(this)
                     }
                 }
             }
@@ -164,7 +168,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         }
 
         fun dailyView(collection: Collection) {
-            Picasso.get().load(collection.image).error(R.drawable.error_img)
+            Picasso.get().load(collection.image).error(R.drawable.ic_error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.cardImage)
             itemView.cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
             if (isDashboard) {
@@ -176,6 +180,18 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             }
             itemView.setOnClickListener {
                 when (collection.id) {
+                    "eveningAzkar" -> {
+                        Intent(ctx, TopicDetails::class.java).apply {
+                            putExtra("intentKey", "eveningAzkar")
+                            ctx.startActivity(this)
+                        }
+                    }
+                    "morningAzkar" -> {
+                        Intent(ctx, TopicDetails::class.java).apply {
+                            putExtra("intentKey", "morningAzkar")
+                            ctx.startActivity(this)
+                        }
+                    }
                     "verseOfDay" -> {
                         Intent(ctx, QuoteOfDay::class.java).apply {
                             putExtra("intentKey", "verse")
@@ -203,7 +219,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         }
 
         fun quotesList(quote: Quote) {
-            Picasso.get().load(quote.image).error(R.drawable.error_img)
+            Picasso.get().load(quote.image).error(R.drawable.ic_error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.cardImage)
             itemView.cardName.text = quote.title
             itemView.setOnClickListener {
@@ -215,7 +231,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         }
 
         fun quoteView(quotes: String) {
-            Picasso.get().load(quotes).error(R.drawable.error_img)
+            Picasso.get().load(quotes).error(R.drawable.ic_error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.cardImage)
             if (!isDashboard) {
                 itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
@@ -224,7 +240,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         }
 
         fun collectionView(collection: Collection) {
-            Picasso.get().load(collection.image).error(R.drawable.error_img)
+            Picasso.get().load(collection.image).error(R.drawable.ic_error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.cardImage)
             itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
             itemView.cardName.text = collection.title

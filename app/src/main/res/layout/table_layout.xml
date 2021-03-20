@@ -8,54 +8,47 @@
     <TableLayout
         android:id="@+id/table_heading_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorSecondary">
+        android:layout_height="42dp"
+        android:background="@color/colorSecondary"
+        android:gravity="center">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:nestedScrollingEnabled="true">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 style="@style/table_header"
-                android:layout_width="0dp"
                 android:layout_weight="1.3"
                 android:text="@string/day" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 style="@style/table_header"
-                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="@string/fajr" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 style="@style/table_header"
-                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="@string/sunrise" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 style="@style/table_header"
-                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="@string/dhuhr" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 style="@style/table_header"
-                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="@string/asr" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 style="@style/table_header"
-                android:layout_width="0dp"
                 android:layout_weight="1"
-                android:autoSizeTextType="uniform"
                 android:text="@string/maghrib" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 style="@style/table_header"
-                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="@string/isha" />
 

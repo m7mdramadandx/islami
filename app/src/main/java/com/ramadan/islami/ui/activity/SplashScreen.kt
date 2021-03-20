@@ -39,7 +39,8 @@ class SplashScreen : AppCompatActivity() {
 
         val adRequest = AdRequest.Builder().build()
         InterstitialAd.load(this,
-            "ca-app-pub-3940256099942544/1033173712",
+//            "ca-app-pub-3940256099942544/1033173712",
+            getString(R.string.interstitialAd),
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
@@ -48,7 +49,7 @@ class SplashScreen : AppCompatActivity() {
 
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
                     mInterstitialAd = interstitialAd
-//                    mInterstitialAd.show(this@Dashboard)
+                    mInterstitialAd.show(this@SplashScreen)
                 }
             })
     }

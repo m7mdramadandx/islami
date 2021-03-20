@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -30,6 +29,7 @@ import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.Utils
 import com.ramadan.islami.utils.changeNavigation
+import com.ramadan.islami.utils.showMessage
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
@@ -104,7 +104,6 @@ class Dashboard : Fragment(), FirebaseListener {
         quotesSlider = root.findViewById(R.id.quotesSlider)
         progress0 = root.findViewById(R.id.progress0)
         progress1 = root.findViewById(R.id.progress1)
-
         return root
     }
 
@@ -178,6 +177,6 @@ class Dashboard : Fragment(), FirebaseListener {
     override fun onFailure(message: String) {
         progress0.visibility = View.GONE
         progress1.visibility = View.GONE
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        showMessage(requireContext(), message)
     }
 }

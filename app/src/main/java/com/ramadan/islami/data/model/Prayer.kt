@@ -35,22 +35,30 @@ data class Prayer(
     data class Timings(
         @SerializedName("Asr")
         val asr: String,
+
         @SerializedName("Dhuhr")
-        val dhuhr: String,
+        val dhuhr: String = String().plus("-----"),
+
         @SerializedName("Fajr")
-        val fajr: String,
+        val fajr: String = String().removeSuffix("(EET)"),
+
         @SerializedName("Imsak")
-        val imsak: String,
+        val imsak: String = String().removeSuffix("(EET)"),
+
         @SerializedName("Isha")
-        val isha: String,
+        val isha: String = String().removeSuffix("(EET)"),
+
         @SerializedName("Maghrib")
-        val maghrib: String,
+        val maghrib: String = String().removeSuffix("(EET)"),
+
         @SerializedName("Midnight")
-        val midnight: String,
+        val midnight: String = String().removeSuffix("(EET)"),
+
         @SerializedName("Sunrise")
-        val sunrise: String,
+        val sunrise: String = String().removeSuffix("(EET)"),
+
         @SerializedName("Sunset")
-        val sunset: String,
+        val sunset: String = String().removeSuffix("(EET)"),
     ) : Serializable
 
     data class Method(

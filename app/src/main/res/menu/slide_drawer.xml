@@ -6,31 +6,31 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_dashboard"
-            android:icon="@drawable/dashboard"
+            android:icon="@drawable/ic_dashboard"
             android:title="@string/dashboard" />
         <item
             android:id="@+id/nav_quran"
-            android:icon="@drawable/quran"
+            android:icon="@drawable/ic_quran"
             android:title="@string/quran" />
         <item
             android:id="@+id/nav_stories"
-            android:icon="@drawable/story"
+            android:icon="@drawable/ic_story"
             android:title="@string/stories" />
         <item
             android:id="@+id/nav_daily"
-            android:icon="@drawable/daily"
+            android:icon="@drawable/ic_daily"
             android:title="@string/daily" />
         <item
             android:id="@+id/nav_quotes"
-            android:icon="@drawable/quote"
+            android:icon="@drawable/ic_quote"
             android:title="@string/quotes" />
         <item
             android:id="@+id/nav_topics"
-            android:icon="@drawable/topic"
+            android:icon="@drawable/ic_topic"
             android:title="@string/topics" />
         <item
             android:id="@+id/nav_family_tree"
-            android:icon="@drawable/family_tree"
+            android:icon="@drawable/ic_family_tree"
             android:title="@string/prophets_tree" />
     </group>
     <group
@@ -39,19 +39,19 @@
         android:menuCategory="secondary">
         <item
             android:id="@+id/nav_feedback"
-            android:icon="@drawable/feedback"
+            android:icon="@drawable/ic_feedback"
             android:title="@string/send_feedback" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/share"
+            android:icon="@drawable/ic_share"
             android:title="@string/settings" />
         <item
             android:id="@+id/nav_rate"
-            android:icon="@drawable/rating"
+            android:icon="@drawable/ic_rating"
             android:title="@string/rate_app" />
         <item
             android:id="@+id/nav_share"
-            android:icon="@drawable/share"
+            android:icon="@drawable/ic_share"
             android:title="@string/share" />
     </group>
 

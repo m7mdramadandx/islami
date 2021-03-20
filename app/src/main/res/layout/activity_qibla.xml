@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:src="@drawable/qibla"
+        android:src="@drawable/ic_qibla"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:padding="32dp"
-        android:src="@drawable/qibla_nidlle"
+        android:src="@drawable/ic_qibla_nidlle"
         app:layout_constraintBottom_toBottomOf="@id/imgCompassBg"
         app:layout_constraintEnd_toEndOf="@id/imgCompassBg"
         app:layout_constraintStart_toStartOf="@id/imgCompassBg" />

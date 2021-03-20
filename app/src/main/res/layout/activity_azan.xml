@@ -45,7 +45,7 @@
         android:layout_margin="12dp"
         android:background="@drawable/bg_layout_rounded_white"
         android:backgroundTint="#eee"
-        android:text="@string/pray_verse"
+        android:text="@string/prayerVerse"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"

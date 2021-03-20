@@ -3,7 +3,6 @@ package com.ramadan.islami.ui.adapter
 import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.utils.LocaleHelper
-import com.ramadan.islami.utils.debug_tag
 import kotlinx.android.synthetic.main.item_story.view.*
 
 class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
@@ -40,7 +38,7 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
     inner class CustomView(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val localeHelper = LocaleHelper()
         private val ctx = itemView.context
-        private val marks = localeHelper.getStoryMark(ctx)
+        private var marks = localeHelper.getStoryMark(ctx)
 
         fun expandView(text: String, position: Int) {
             val keyStore = "$title ${position + 1}"
@@ -54,33 +52,33 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
                 }
                 else -> itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
             }
-            val s = text
-            s.forEach {
-                if (it == ':')
-                    it.plus("<br>")
-            }
-            itemView.expansionText.text = s
+            itemView.expansionText.text = text.replace(":", "\n")
             itemView.storyTitle.text = "${ctx.getString(R.string.part)} ${(position + 1)}"
             itemView.expansionLayout.addListener { _, isExpanded ->
                 if (!isExpanded && !marks.contains(keyStore)) {
-                    val dialogBuilder = AlertDialog.Builder(ctx)
-                    val view = LayoutInflater.from(ctx).inflate(R.layout.story_marker, null)
-                    dialogBuilder.setView(view)
-                    val alertDialog = dialogBuilder.create()
-                    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    alertDialog.show()
-                    view.findViewById<TextView>(R.id.yes).setOnClickListener {
-                        localeHelper.setStoryMark(ctx, keyStore)
-                        itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.silver_grey))
-                        itemView.storyTitle.setTextColor(ctx.resources.getColor(R.color.grey_silver))
-                        alertDialog.dismiss()
-                    }
-                    view.findViewById<TextView>(R.id.notYet)
-                        .setOnClickListener { alertDialog.dismiss() }
+                    alert(keyStore).takeIf { !marks.contains(keyStore) }
+                    return@addListener
                 } else {
-                    Log.i(debug_tag, "...")
+                    return@addListener
                 }
             }
+        }
+
+        private fun alert(keyStore: String) {
+            val dialogBuilder = AlertDialog.Builder(ctx)
+            val view = LayoutInflater.from(ctx).inflate(R.layout.story_marker, null)
+            dialogBuilder.setView(view)
+            val alertDialog = dialogBuilder.create()
+            alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            alertDialog.show()
+            view.findViewById<TextView>(R.id.yes).setOnClickListener {
+                localeHelper.setStoryMark(ctx, keyStore)
+                itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.silver_grey))
+                itemView.storyTitle.setTextColor(ctx.resources.getColor(R.color.grey_silver))
+                alertDialog.dismiss()
+            }
+            view.findViewById<TextView>(R.id.notYet)
+                .setOnClickListener { alertDialog.dismiss() }
         }
     }
 }

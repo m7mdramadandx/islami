@@ -101,13 +101,15 @@ class DateConversion : AppCompatActivity() {
     private fun fetchHijri(gregorianDate: String) {
         viewModel.hijriCalender(gregorianDate).observe(this, {
             when (it.status) {
-                ResponseStatus.LOADING -> progress.visibility = View.VISIBLE
+                ResponseStatus.LOADING -> {
+                    conversionIcon.rotation = 180F
+                }
                 ResponseStatus.SUCCESS -> {
                     progress.visibility = View.GONE
                     hijri.text = it.data!!.data.hijri.date
                 }
                 ResponseStatus.ERROR -> {
-                    progress.visibility = View.GONE
+                    conversionIcon.rotation = 90F
                     showMessage(this, it.message.toString())
                 }
             }
@@ -192,7 +194,7 @@ class DateConversion : AppCompatActivity() {
 
     private fun getMenuObjects() = mutableListOf<MenuObject>().apply {
         MenuObject(getString(R.string.view_images)).apply {
-            setResourceValue(R.drawable.photo_library)
+            setResourceValue(R.drawable.ic_photo_library)
             setBgColorValue((Color.rgb(22, 36, 71)))
             add(this)
         }

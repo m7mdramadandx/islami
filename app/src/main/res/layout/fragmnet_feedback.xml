@@ -19,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_marginTop="16dp"
-        android:background="@color/silver_grey"
+        android:background="@drawable/bg_layout_rounded_white"
+        android:backgroundTint="@color/silver_grey"
         android:gravity="top"
         android:hint="Aa"
         android:padding="8dp"
@@ -37,8 +38,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/bg_layout_rounded_white"
+        android:backgroundTint="@color/colorPrimary"
         android:text="@string/send"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 
 </LinearLayout>

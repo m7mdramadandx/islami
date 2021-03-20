@@ -1,6 +1,7 @@
 package com.ramadan.islami.ui.activity
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
@@ -11,13 +12,11 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.LocationServices
-import com.ramadan.islami.Azan
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
@@ -39,7 +38,6 @@ class PrayerTimes : AppCompatActivity() {
             ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").apiService()))
         ).get(WebServiceViewModel::class.java)
     }
-    private val ACCESS_FINE_LOCATION_REQ_CODE = 35
     private lateinit var prayTimeAdapter: PrayTimeAdapter
     private lateinit var recyclerView: RecyclerView
     private val localeHelper = LocaleHelper()
@@ -47,17 +45,6 @@ class PrayerTimes : AppCompatActivity() {
     private var prayer: Prayer? = null
     private var selectedDate: Int = 0
     private lateinit var utils: Utils
-
-    override fun onStart() {
-        super.onStart()
-        intent.hasExtra("azan").let {
-            if (it) {
-                Azan.mediaPlayer.stop()
-                NotificationManagerCompat.from(this).cancel(1001)
-            }
-        }
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,50 +62,37 @@ class PrayerTimes : AppCompatActivity() {
         scheduleDay.text = utils.weekday[gregorianToday[Calendar.DAY_OF_WEEK]]
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
-            if (!checkIfAlreadyPermission()) {
-                requestForSpecificPermission()
-            } else {
-                val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-                fusedLocationClient.lastLocation.addOnSuccessListener {
-                    observeDate(it.latitude, it.longitude)
-                    val geocoder = Geocoder(this, Locale.getDefault())
-                    val addresses: List<Address> =
-                        geocoder.getFromLocation(it.latitude, it.longitude, 1)
-                    scheduleLocation.text = addresses[0].adminArea
-                }
-                fusedLocationClient.lastLocation.addOnFailureListener {
-                    showMessage(this, it.localizedMessage!!)
-                }
-            }
+            if (!checkIfAlreadyPermission()) requestForSpecificPermission() else fetchDate()
         }
 
-        val datePickerTimeline = findViewById<DatePickerTimeline>(R.id.dtp_schedule_prayer)
-        datePickerTimeline.setInitialDate(
-            gregorianToday[Calendar.YEAR],
-            gregorianToday[Calendar.MONTH],
-            gregorianToday[Calendar.DAY_OF_MONTH],
-        )
-        datePickerTimeline.setActiveDate(gregorianToday)
-        datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
-            override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
-                prayer?.let {
-                    selectedDate = day
-                    prayTimeAdapter.setSchedulePrayer(prayer!!.data[day])
+        findViewById<DatePickerTimeline>(R.id.dtp_schedule_prayer).apply {
+            setInitialDate(
+                gregorianToday[Calendar.YEAR],
+                gregorianToday[Calendar.MONTH],
+                gregorianToday[Calendar.DAY_OF_MONTH],
+            )
+            setActiveDate(gregorianToday)
+            setOnDateSelectedListener(object : OnDateSelectedListener {
+                override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
+                    prayer?.let {
+                        selectedDate = day
+                        prayTimeAdapter.setSchedulePrayer(prayer!!.data[day])
+                    } ?: snackBar(getString(R.string.noInternet))
+                    scheduleDay.text = utils.weekday[dayOfWeek]
+                    scheduleDate.text = "$day-${month + 1}-$year"
                 }
-                scheduleDay.text = utils.weekday[dayOfWeek]
-                scheduleDate.text = "$day-${month + 1}-$year"
-            }
 
-            override fun onDisabledDateSelected(
-                year: Int,
-                month: Int,
-                day: Int,
-                dayOfWeek: Int,
-                isDisabled: Boolean,
-            ) {
-                Log.e(debug_tag, "$dayOfWeek #### $day")
-            }
-        })
+                override fun onDisabledDateSelected(
+                    year: Int,
+                    month: Int,
+                    day: Int,
+                    dayOfWeek: Int,
+                    isDisabled: Boolean,
+                ) {
+                    Log.e(debug_tag, "$dayOfWeek #### $day")
+                }
+            })
+        }
     }
 
 
@@ -139,31 +113,45 @@ class PrayerTimes : AppCompatActivity() {
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray,
-    ) {
-        when (requestCode) {
-            ACCESS_FINE_LOCATION_REQ_CODE -> if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                showMessage(this, getString(R.string.couldnotDownload))
-            } else {
-                showMessage(this, getString(R.string.couldnotDownload))
-            }
-            else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    ) = when (requestCode) {
+        ACCESS_FINE_LOCATION_REQ_CODE -> {
+            if (PackageManager.PERMISSION_GRANTED == grantResults[0]) fetchDate()
+            else showMessage(this, getString(R.string.couldnotDownload))
+        }
+        else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+
+    @SuppressLint("MissingPermission")
+    private fun fetchDate() {
+        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        fusedLocationClient.lastLocation.addOnSuccessListener {
+            observeDate(it.latitude, it.longitude)
+            val geocoder = Geocoder(this, Locale.getDefault())
+            val addresses: List<Address> =
+                geocoder.getFromLocation(it.latitude, it.longitude, 1)
+            scheduleLocation.text = addresses[0].adminArea
+        }
+        fusedLocationClient.lastLocation.addOnFailureListener {
+            showMessage(this, it.localizedMessage!!)
         }
     }
 
+
     private fun observeDate(lat: Double, lon: Double) {
-        viewModel.fetchPrayers(lat, lon).observe(this, {
+        viewModel.fetchPrayers(lat, lon).observe(this, { it ->
             when (it.status) {
                 ResponseStatus.LOADING -> progress.visibility = View.VISIBLE
                 ResponseStatus.SUCCESS -> {
                     progress.visibility = View.GONE
                     prayer = it.data!!
                     prayTimeAdapter.setSchedulePrayer(prayer!!.data[selectedDate])
-                    localeHelper.setPrayerTimes(this, prayer!!.data[selectedDate - 1].timings)
+                    localeHelper.setPrayerTimes(this, prayer!!.data[selectedDate].timings)
                 }
                 ResponseStatus.ERROR -> {
-                    prayTimeAdapter.setOfflinePrayer(localeHelper.getPrayerTimes(this@PrayerTimes))
-                        .takeUnless { prayer == null }
-                    showMessage(this, it.message.toString())
+                    localeHelper.getPrayerTimes(this@PrayerTimes)?.let { mutableSet ->
+                        prayTimeAdapter.setOfflinePrayer(mutableSet)
+                    } ?: showMessage(this, getString(R.string.noInternet))
                     progress.visibility = View.GONE
                 }
             }
@@ -181,6 +169,6 @@ class PrayerTimes : AppCompatActivity() {
                 putExtra("prayer", prayer)
                 startActivity(this)
             }
-        }
+        } ?: view.snackBar(getString(R.string.noInternet))
     }
 }

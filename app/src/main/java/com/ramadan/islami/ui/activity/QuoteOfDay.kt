@@ -3,7 +3,6 @@ package com.ramadan.islami.ui.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.ActionMode
 import android.view.ActionMode.Callback
 import android.view.Menu
@@ -54,7 +53,6 @@ class QuoteOfDay : AppCompatActivity() {
         setContentView(R.layout.activity_quote_of_day)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         textBody.customSelectionActionModeCallback = object : Callback {
             override fun onPrepareActionMode(p0: ActionMode?, p1: Menu): Boolean {
                 p1.removeItem(android.R.id.cut)
@@ -67,7 +65,7 @@ class QuoteOfDay : AppCompatActivity() {
             }
 
             override fun onCreateActionMode(p0: ActionMode?, p1: Menu): Boolean {
-                p1.add(1, tafseer, 1, R.string.tafsir).setIcon(R.drawable.menu)
+                p1.add(1, tafseer, 1, R.string.tafsir).setIcon(R.drawable.ic_menu)
                 return true
             }
 
@@ -109,7 +107,8 @@ class QuoteOfDay : AppCompatActivity() {
     }
 
     private fun fetchVerseDay() {
-        if (localeHelper.getVerseOfDay(this).contains(dateOfDay() + "date")) {
+        title = getString(R.string.verseOfDay)
+        if (localeHelper.getVerseOfDay(this).contains(dateOfDay() + " date")) {
             val verse = localeHelper.getVerseOfDay(this)
             textBody.visibility = View.VISIBLE
             textTitle.text = verse.find { it.contains("surah") }?.removeSuffix("surah")
@@ -134,7 +133,8 @@ class QuoteOfDay : AppCompatActivity() {
     }
 
     private fun fetchHadith() {
-        if (localeHelper.getHadithOfDay(this).contains(dateOfDay() + "date")) {
+        title = getString(R.string.hadithOfDay)
+        if (localeHelper.getHadithOfDay(this).contains(dateOfDay() + " date")) {
             val zekr = localeHelper.getHadithOfDay(this)
             textBody.visibility = View.VISIBLE
             textTitle.text = zekr.find { it.contains("title") }?.removeSuffix("title")
@@ -156,15 +156,13 @@ class QuoteOfDay : AppCompatActivity() {
                     progress.visibility = View.GONE
                     textBody.visibility = View.VISIBLE
                     val chapterTitle = it.data!!.hadith[1].chapterTitle
-                    val hadith =
-                        it.data.hadith[1].body.removeSurrounding("<p>", "</p>").removePrefix("<br>")
+                    val hadith = it.data.hadith[1].body.removeSurrounding("<p>", "</p>")
                     textTitle.text = chapterTitle
                     textBody.text = hadith
                     localeHelper.setHadithOfDay(this, hadith, chapterTitle)
                 }
                 ResponseStatus.ERROR -> {
                     progress.visibility = View.GONE
-                    Log.e(debug_tag, it.message.toString())
                     showMessage(this, it.message.toString())
                 }
                 ResponseStatus.LOADING -> progress.visibility = View.VISIBLE
@@ -173,7 +171,8 @@ class QuoteOfDay : AppCompatActivity() {
     }
 
     private fun fetchAzkar() {
-        if (localeHelper.getAzkarOfDay(this).contains(dateOfDay() + "date")) {
+        title = getString(R.string.azkarOfDay)
+        if (localeHelper.getAzkarOfDay(this).contains(dateOfDay() + " date")) {
             val zekr = localeHelper.getAzkarOfDay(this)
             textBody.visibility = View.VISIBLE
             textTitle.text = zekr.find { it.contains("title") }?.removeSuffix("title")
@@ -182,18 +181,16 @@ class QuoteOfDay : AppCompatActivity() {
                 zekr.find { it.contains("description") }?.removeSuffix("description")
             textReference.text =
                 zekr.find { it.contains("reference") }?.removeSuffix("reference")
-            if (localeHelper.getAzkarOfDay1(this).contains(dateOfDay() + "date")) {
+            if (localeHelper.getAzkarOfDay1(this).contains(dateOfDay() + " date")) {
                 val zekr1 = localeHelper.getAzkarOfDay1(this)
                 textBody1.visibility = View.VISIBLE
+                spacer.visibility = View.VISIBLE
                 textTitle1.text = zekr1.find { it.contains("title") }?.removeSuffix("title")
                 textBody1.text = zekr1.find { it.contains("body") }?.removeSuffix("body")
                 textDescription1.text =
                     zekr1.find { it.contains("description") }?.removeSuffix("description")
-                textReference1.text =
-                    zekr1.find { it.contains("reference") }?.removeSuffix("reference")
             }
         } else fetchNewAzkar()
-
     }
 
     private fun fetchNewAzkar() {
@@ -206,15 +203,14 @@ class QuoteOfDay : AppCompatActivity() {
                     textTitle.text = category
                     textBody.text = zekr
                     textDescription.text = description
-                    textReference.text = reference
                     localeHelper.setAzkarOfDay(this@QuoteOfDay, this)
                 }
                 quoteOfDayItem = localViewModel.getAzkar(this@QuoteOfDay)?.random()!!.apply {
                     textBody1.visibility = View.VISIBLE
+                    spacer.visibility = View.VISIBLE
                     textTitle1.text = category
                     textBody1.text = zekr
                     textDescription1.text = description
-                    textReference1.text = reference
                     localeHelper.setAzkarOfDay1(this@QuoteOfDay, this)
                 }
                 progress.visibility = View.GONE

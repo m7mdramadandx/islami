@@ -56,7 +56,7 @@ class SliderAdapter : SliderViewAdapter<SliderAdapter.CustomView>() {
     class CustomView(itemView: View) : ViewHolder(itemView) {
 
         fun storyView(story: StoryModel) {
-            Picasso.get().load(story.image).error(R.drawable.error_img)
+            Picasso.get().load(story.image).error(R.drawable.ic_error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.sliderImg)
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, StoryDetails::class.java)
@@ -66,7 +66,7 @@ class SliderAdapter : SliderViewAdapter<SliderAdapter.CustomView>() {
         }
 
         fun quotesView(quote: QuoteModel) {
-            Picasso.get().load(quote.image).error(R.drawable.error_img)
+            Picasso.get().load(quote.image).error(R.drawable.ic_error_img)
                 .placeholder(R.drawable.failure_img).into(itemView.sliderImg)
             itemView.setOnClickListener {
                 Intent(itemView.context, Quote::class.java).apply {

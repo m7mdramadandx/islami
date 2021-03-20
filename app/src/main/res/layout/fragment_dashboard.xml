@@ -86,7 +86,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="8dp"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/expand" />
+                        android:src="@drawable/ic_expand" />
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/expand" />
+                        android:src="@drawable/ic_expand" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/dailyRecyclerView"
@@ -171,7 +171,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="8dp"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/expand" />
+                        android:src="@drawable/ic_expand" />
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
@@ -266,7 +266,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/expand" />
+                        android:src="@drawable/ic_expand" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/familyTreeRecyclerView"

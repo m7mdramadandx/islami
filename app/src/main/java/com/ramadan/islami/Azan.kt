@@ -2,7 +2,6 @@ package com.ramadan.islami
 
 import android.annotation.SuppressLint
 import android.app.AlarmManager
-import android.app.Notification
 import android.app.PendingIntent
 import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.BroadcastReceiver
@@ -24,91 +23,100 @@ class Azan : BroadcastReceiver() {
 
     @SuppressLint("InvalidWakeLockTag")
     override fun onReceive(context: Context, intent: Intent) {
-
-        val pm: PowerManager = context.getSystemService(Context.POWER_SERVICE) as PowerManager
-        val wl: PowerManager.WakeLock = pm.newWakeLock(
+        val powerManager: PowerManager =
+            context.getSystemService(Context.POWER_SERVICE) as PowerManager
+        val wakeLock: PowerManager.WakeLock = powerManager.newWakeLock(
             PowerManager.PARTIAL_WAKE_LOCK,
             ""
         )
-        wl.acquire(10 * 60 * 1000L /*10 minutes*/)
-        mediaPlayer = MediaPlayer.create(context, R.raw.elqtamy)!!
-        mediaPlayer.start()
+        wakeLock.acquire(10 * 60 * 1000L /*10 minutes*/)
+        mediaPlayer = MediaPlayer.create(context, R.raw.elqtamy).apply { start() }
         val notificationHelper = NotificationHelper(context)
-        val nb: Notification = notificationHelper.channelNotification(prayName, "GOO")
-        notificationHelper.manager.notify(1001, nb)
-        wl.release()
+        val notification = notificationHelper.channelNotification(
+            prayName,
+            context.getString(R.string.notificationVerse)
+        )
+        notificationHelper.manager.notify(1001, notification)
+        wakeLock.release()
     }
 
     fun setAlarm(context: Context) {
         val calendar = getAlarmDate(context)
-        val am = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val i = Intent(context, Azan::class.java)
-        val pi = PendingIntent.getBroadcast(context, 0, i, FLAG_UPDATE_CURRENT)
-        val receiver: ComponentName = ComponentName(context, Azan::class.java)
-        val pm = context.packageManager
-
-        pm.setComponentEnabledSetting(
-            receiver,
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, Azan::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, FLAG_UPDATE_CURRENT)
+        val componentName = ComponentName(context, Azan::class.java)
+        val packageManager = context.packageManager
+        packageManager.setComponentEnabledSetting(
+            componentName,
             PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
             PackageManager.DONT_KILL_APP
         )
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar!!.timeInMillis, pi)
+            calendar?.let {
+                alarmManager.setExactAndAllowWhileIdle(
+                    AlarmManager.RTC_WAKEUP,
+                    calendar.timeInMillis,
+                    pendingIntent
+                )
+            }
         }
     }
 
+    private fun getAlarmDate(context: Context): Calendar? {
+        val calendar = Calendar.getInstance()
+        localeHelper.getPrayerTimes(context)?.let { mutableSet ->
+            var setAlarm = false
+            val hourTime = mutableListOf(
+                mutableSet.find { it.contains("fajr") }?.substring(0, 2),
+                mutableSet.find { it.contains("dhuhr") }?.substring(0, 2),
+                mutableSet.find { it.contains("asr") }?.substring(0, 2),
+                mutableSet.find { it.contains("maghrib") }?.substring(0, 2),
+                mutableSet.find { it.contains("isha") }?.substring(0, 2),
+            )
+            val minutesTime = mutableListOf(
+                mutableSet.find { it.contains("fajr") }?.substring(3, 5),
+                mutableSet.find { it.contains("dhuhr") }?.substring(3, 5),
+                mutableSet.find { it.contains("asr") }?.substring(3, 5),
+                mutableSet.find { it.contains("maghrib") }?.substring(3, 5),
+                mutableSet.find { it.contains("isha") }?.substring(3, 5),
+            )
+            var hour = hourTime[0]?.toInt()
+            var minute = minutesTime[0]?.toInt()
+            val currentHour = calendar[Calendar.HOUR_OF_DAY]
+            for (i in 0 until hourTime.size) {
+                if (currentHour <= hourTime[i]!!.toInt() && !setAlarm) {
+                    hour = hourTime[i]?.toInt()
+                    minute = minutesTime[i]?.toInt()
+                    setAlarm = true
+                    prayName = Utils(context).prayers[i]
+                } else if (i == hourTime.size - 1 && !setAlarm) {
+                    calendar.add(Calendar.DATE, 1)
+                    hour = hourTime[0]?.toInt()
+                    minute = minutesTime[0]?.toInt()
+                }
+            }
+            calendar[Calendar.HOUR_OF_DAY] = hour!!
+            calendar[Calendar.MINUTE] = minute!!
+            calendar[Calendar.SECOND] = 0
+            Log.e(debug_tag, "Next Alarm: $hour:$minute")
+            return calendar
+        } ?: return null
+    }
+
     fun cancelAlarm(context: Context) {
-        val receiver: ComponentName = ComponentName(context, Azan::class.java)
-        val pm = context.packageManager
-        pm.setComponentEnabledSetting(
-            receiver,
+        val componentName = ComponentName(context, Azan::class.java)
+        val packageManager = context.packageManager
+        packageManager.setComponentEnabledSetting(
+            componentName,
             PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
             PackageManager.DONT_KILL_APP
         )
 
         val intent = Intent(context, Azan::class.java)
-        val sender = PendingIntent.getBroadcast(context, 0, intent, 0)
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.cancel(sender)
-    }
-
-    private fun getAlarmDate(context: Context): Calendar? {
-        val calendar = Calendar.getInstance()
-        var setAlarm = false
-        val ALARM_HOUR_TIME = mutableListOf(
-            localeHelper.getPrayerTimes(context).find { it.contains("fajr") }?.substring(0, 2),
-            localeHelper.getPrayerTimes(context).find { it.contains("dhuhr") }?.substring(0, 2),
-            localeHelper.getPrayerTimes(context).find { it.contains("asr") }?.substring(0, 2),
-            localeHelper.getPrayerTimes(context).find { it.contains("maghrib") }?.substring(0, 2),
-            localeHelper.getPrayerTimes(context).find { it.contains("isha") }?.substring(0, 2),
-        )
-        val ALARM_MINUTE_TIME = mutableListOf(
-            localeHelper.getPrayerTimes(context).find { it.contains("fajr") }?.substring(3, 5),
-            localeHelper.getPrayerTimes(context).find { it.contains("dhuhr") }?.substring(3, 5),
-            localeHelper.getPrayerTimes(context).find { it.contains("asr") }?.substring(3, 5),
-            localeHelper.getPrayerTimes(context).find { it.contains("maghrib") }?.substring(3, 5),
-            localeHelper.getPrayerTimes(context).find { it.contains("isha") }?.substring(3, 5),
-        )
-        var hour: Int = ALARM_HOUR_TIME[0]!!.toInt()
-        var minute: Int = ALARM_MINUTE_TIME[0]!!.toInt()
-        val currentHour = calendar[Calendar.HOUR_OF_DAY]
-        for (i in 0 until ALARM_HOUR_TIME.size) {
-            if (currentHour <= ALARM_HOUR_TIME[i]!!.toInt() && !setAlarm) {
-                hour = ALARM_HOUR_TIME[i]!!.toInt()
-                minute = ALARM_MINUTE_TIME[i]!!.toInt()
-                setAlarm = true
-                prayName = Utils(context).prayers[i]
-            } else if (i == ALARM_HOUR_TIME.size - 1 && !setAlarm) {
-                calendar.add(Calendar.DATE, 1)
-                hour = ALARM_HOUR_TIME[0]!!.toInt()
-                minute = ALARM_MINUTE_TIME[0]!!.toInt()
-            }
-        }
-        calendar[Calendar.HOUR_OF_DAY] = hour
-        calendar[Calendar.MINUTE] = minute
-        calendar[Calendar.SECOND] = 0
-        Log.e(debug_tag, "Next Alarm: $hour:$minute")
-        return calendar
+        alarmManager.cancel(pendingIntent)
     }
 
     companion object {

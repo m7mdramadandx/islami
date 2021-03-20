@@ -15,6 +15,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import com.google.firebase.messaging.FirebaseMessaging
+import com.ramadan.islami.Azan
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.activity.MainActivity
 import com.ramadan.islami.utils.LocaleHelper
@@ -33,22 +35,47 @@ class Settings : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         val root = inflater.inflate(R.layout.fragmnet_settings, container, false)
-        val language = root.findViewById<CardView>(R.id.language)
-        language.setOnClickListener {
-            alertDialog("Language setting",
+        return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        view.findViewById<CardView>(R.id.language).setOnClickListener {
+            alertDialog(
+                "Language setting",
                 getString(R.string.arabic),
                 getString(R.string.english),
-                true)
+                "language",
+                view.context
+            )
         }
-        val theme = root.findViewById<CardView>(R.id.theme)
-        theme.setOnClickListener {
-            alertDialog("Theme setting",
+        view.findViewById<CardView>(R.id.theme).setOnClickListener {
+            alertDialog(
+                "Theme setting",
                 getString(R.string.lightTheme),
                 getString(R.string.nightTheme),
-                false)
+                "theme",
+                view.context
+            )
         }
-
-        return root
+        view.findViewById<CardView>(R.id.notification).setOnClickListener {
+            alertDialog(
+                "Notification setting",
+                getString(R.string.subscribe),
+                getString(R.string.unSubscribe),
+                "notification",
+                view.context
+            )
+        }
+        view.findViewById<CardView>(R.id.azan).setOnClickListener {
+            alertDialog(
+                "Azan setting",
+                getString(R.string.subscribe),
+                getString(R.string.unSubscribe),
+                "azan",
+                view.context
+            )
+        }
     }
 
 
@@ -56,10 +83,11 @@ class Settings : Fragment() {
         title: String,
         optionOne: String,
         optionTwo: String,
-        isLanguageSetting: Boolean,
+        type: String,
+        context: Context,
     ) {
-        val dialogBuilder = AlertDialog.Builder(requireContext())
-        val view = View.inflate(requireContext(), R.layout.alert_dialog, null)
+        val dialogBuilder = AlertDialog.Builder(context)
+        val view = View.inflate(context, R.layout.alert_dialog, null)
         dialogBuilder.setView(view)
         val alertDialog = dialogBuilder.create()
         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -69,44 +97,79 @@ class Settings : Fragment() {
         val group = view.findViewById<RadioGroup>(R.id.group)
         val option1 = view.findViewById<RadioButton>(R.id.option1).also { it.text = optionOne }
         val option2 = view.findViewById<RadioButton>(R.id.option2).also { it.text = optionTwo }
-        if (isLanguageSetting) {
-            if (localeHelper.getDefaultLanguage(requireContext()) == "ar") option1.isChecked = true
-            else option2.isChecked = true
-            group.setOnCheckedChangeListener { _, checkedId ->
-                when (checkedId) {
-                    R.id.option1 -> localeHelper.persist(requireContext(), "ar")
-                    R.id.option2 -> localeHelper.persist(requireContext(), "en")
+        when (type) {
+            "language" -> {
+                if (localeHelper.getDefaultLanguage(context) == "ar") option1.isChecked =
+                    true
+                else option2.isChecked = true
+                group.setOnCheckedChangeListener { _, checkedId ->
+                    when (checkedId) {
+                        R.id.option1 -> localeHelper.persist(context, "ar")
+                        R.id.option2 -> localeHelper.persist(context, "en")
+                    }
+                    startActivity(Intent(context, MainActivity::class.java))
                 }
-                startActivity(Intent(requireContext(),
-                    MainActivity::class.java)).also { super.onDestroy() }
             }
-        } else {
-            val option3 =
-                view.findViewById<RadioButton>(R.id.option3)
-                    .also { it.visibility = View.VISIBLE }
-            when (localeHelper.getDefaultTheme(requireContext())) {
-                "light" -> option1.isChecked = true
-                "night" -> option2.isChecked = true
-                else -> option3.isChecked = true
+            "theme" -> {
+                val option3 =
+                    view.findViewById<RadioButton>(R.id.option3)
+                        .also { it.visibility = View.VISIBLE }
+                when (localeHelper.getDefaultTheme(context)) {
+                    "light" -> option1.isChecked = true
+                    "night" -> option2.isChecked = true
+                    else -> option3.isChecked = true
+                }
+                group.setOnCheckedChangeListener { _, checkedId ->
+                    when (checkedId) {
+                        R.id.option1 -> {
+                            localeHelper.setTheme(context, "light")
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        }
+                        R.id.option2 -> {
+                            localeHelper.setTheme(context, "night")
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        }
+                        R.id.option3 -> {
+                            localeHelper.setTheme(context, "follow_system")
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                        }
+                    }
+                }
             }
-            group.setOnCheckedChangeListener { _, checkedId ->
-                when (checkedId) {
-                    R.id.option1 -> {
-                        localeHelper.setTheme(requireContext(), "light")
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            "notification" -> {
+                if (localeHelper.getNotification(context)) option1.isChecked = true
+                else option2.isChecked = true
+                group.setOnCheckedChangeListener { _, checkedId ->
+                    when (checkedId) {
+                        R.id.option1 -> {
+                            FirebaseMessaging.getInstance().subscribeToTopic("allUsers")
+                            localeHelper.setNotification(context, true)
+                        }
+                        R.id.option2 -> {
+                            FirebaseMessaging.getInstance().unsubscribeFromTopic("allUsers")
+                            localeHelper.setNotification(context, false)
+                        }
                     }
-                    R.id.option2 -> {
-                        localeHelper.setTheme(requireContext(), "night")
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    alertDialog.dismiss()
+                }
+            }
+            "azan" -> {
+                if (localeHelper.getAzan(context)) option1.isChecked = true
+                else option2.isChecked = true
+                group.setOnCheckedChangeListener { _, checkedId ->
+                    when (checkedId) {
+                        R.id.option1 -> {
+                            Azan().setAlarm(context)
+                            localeHelper.setAzan(context, true)
+                        }
+                        R.id.option2 -> {
+                            Azan().cancelAlarm(context)
+                            localeHelper.setAzan(context, false)
+                        }
                     }
-                    R.id.option3 -> {
-                        localeHelper.setTheme(requireContext(), "follow_system")
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                    }
+                    alertDialog.dismiss()
                 }
             }
         }
     }
-
-
 }

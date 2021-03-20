@@ -61,9 +61,13 @@
     <string name="hizbNumber">"حزب رقم ۩ "</string>
     <string name="notification">notification</string>
     <string name="bookmark">Bookmark</string>
-    <string name="azkarOfDay">Zekr of day</string>
+    <string name="azkarOfDay">أذكار اليوم</string>
     <string name="saturday">السبت</string>
-    <string name="pray_verse">وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ</string>
+    <string name="prayerVerse">وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ</string>
+    <string name="notificationVerse">وَأَنْ أَقِيمُوا الصَّلَاةَ وَاتَّقُوهُ وَهُوَ الَّذِي إِلَيْهِ تُحْشَرُونَ</string>
+    <string name="noInternet">No Internet Connection</string>
+    <string name="azan">azan</string>
+    <string name="subscribe">subscibe</string>
     <string-array name="custom_weekdays">
         <item>ح</item>
         <item>اث</item>

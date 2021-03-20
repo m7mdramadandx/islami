@@ -17,17 +17,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationServices
 import com.ramadan.islami.R
+import com.ramadan.islami.utils.ACCESS_FINE_LOCATION_REQ_CODE
+import com.ramadan.islami.utils.QIBLA_LATITUDE
+import com.ramadan.islami.utils.QIBLA_LONGITUDE
 import kotlinx.android.synthetic.main.activity_qibla.*
 import kotlin.math.roundToInt
 
 class Qibla : AppCompatActivity() {
-
-    companion object {
-        const val ACCESS_FINE_LOCATION_REQ_CODE = 35
-        const val QIBLA_LATITUDE = 21.3891
-        const val QIBLA_LONGITUDE = 39.8579
-    }
-
     var currentDegree: Float = 0f
     var currentNeedleDegree: Float = 0f
     lateinit var sensorManager: SensorManager
@@ -40,12 +36,14 @@ class Qibla : AppCompatActivity() {
         setContentView(R.layout.activity_qibla)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        needleAnimation = RotateAnimation(currentNeedleDegree,
+        needleAnimation = RotateAnimation(
+            currentNeedleDegree,
             0f,
             Animation.RELATIVE_TO_SELF,
             .5f,
             Animation.RELATIVE_TO_SELF,
-            .5f)
+            .5f
+        )
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
             if (!checkIfAlreadyPermission()) {
@@ -70,8 +68,10 @@ class Qibla : AppCompatActivity() {
     }
 
     private fun requestForSpecificPermission() {
-        ActivityCompat.requestPermissions(this,
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), ACCESS_FINE_LOCATION_REQ_CODE)
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), ACCESS_FINE_LOCATION_REQ_CODE
+        )
     }
 
     override fun onRequestPermissionsResult(
@@ -140,6 +140,5 @@ class Qibla : AppCompatActivity() {
         onBackPressed()
         return true
     }
-
 
 }

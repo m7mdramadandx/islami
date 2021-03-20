@@ -1,6 +1,5 @@
 package com.ramadan.islami.ui.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,14 +59,12 @@ class PrayTimeAdapter : RecyclerView.Adapter<PrayTimeAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun schedulePrayer(prayerData: PrayerData?) {
             itemView.apply {
-                fajrPrayTime.text = prayerData?.timings?.fajr?.removeSuffix("(EET)") ?: "00:00"
-                sunrisePrayTime.text =
-                    prayerData?.timings?.sunrise?.removeSuffix("(EET)") ?: "00:00"
-                dhuhrPrayTime.text = prayerData?.timings?.dhuhr?.removeSuffix("(EET)") ?: "00:00"
-                asrPrayTime.text = prayerData?.timings?.asr?.removeSuffix("(EET)") ?: "00:00"
-                maghribPrayTime.text =
-                    prayerData?.timings?.maghrib?.removeSuffix("(EET)") ?: "00:00"
-                ishaPrayTime.text = prayerData?.timings?.isha?.removeSuffix("(EET)")
+                fajrPrayTime.text = prayerData?.timings?.fajr?.substring(0, 5) ?: "00:00"
+                sunrisePrayTime.text = prayerData?.timings?.sunrise?.substring(0, 5) ?: "00:00"
+                dhuhrPrayTime.text = prayerData?.timings?.dhuhr?.substring(0, 5) ?: "00:00"
+                asrPrayTime.text = prayerData?.timings?.asr?.substring(0, 5) ?: "00:00"
+                maghribPrayTime.text = prayerData?.timings?.maghrib?.substring(0, 5) ?: "00:00"
+                ishaPrayTime.text = prayerData?.timings?.isha?.substring(0, 5) ?: "00:00"
             }
         }
 
@@ -90,22 +87,39 @@ class PrayTimeAdapter : RecyclerView.Adapter<PrayTimeAdapter.ViewHolder>() {
 
         fun monthPrayers(prayerData: PrayerData, position: Int) {
             if (dateOfDay() == prayerData.date.gregorian.date) {
-                itemView.table_row_layout.setBackgroundColor(Color.LTGRAY)
+                itemView.apply {
+                    table_row_layout.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+                    fajr.setTextColor(resources.getColor(R.color.white))
+                    sunrise.setTextColor(resources.getColor(R.color.white))
+                    dhuhr.setTextColor(resources.getColor(R.color.white))
+                    asr.setTextColor(resources.getColor(R.color.white))
+                    maghrib.setTextColor(resources.getColor(R.color.white))
+                    isha.setTextColor(resources.getColor(R.color.white))
+                    day.setTextColor(resources.getColor(R.color.colorAccent))
+                }
             } else {
-                itemView.table_row_layout.setBackgroundColor(itemView.resources.getColor(R.color.silver_grey))
+                itemView.apply {
+                    table_row_layout.setBackgroundColor(resources.getColor(R.color.silver_grey))
+                    fajr.setTextColor(resources.getColor(R.color.textColor))
+                    sunrise.setTextColor(resources.getColor(R.color.textColor))
+                    dhuhr.setTextColor(resources.getColor(R.color.textColor))
+                    asr.setTextColor(resources.getColor(R.color.textColor))
+                    maghrib.setTextColor(resources.getColor(R.color.textColor))
+                    isha.setTextColor(resources.getColor(R.color.textColor))
+                    day.setTextColor(resources.getColor(R.color.grey_silver))
+                }
             }
             (prayerData.date.hijri.weekday.ar + "\n" + prayerData.date.gregorian.date).also {
                 itemView.day.text = it
             }
-            itemView.fajr.text = prayerData.timings.fajr.removeSuffix("(EET)")
-            itemView.sunrise.text = prayerData.timings.sunrise.removeSuffix("(EET)")
-            itemView.dhuhr.text = prayerData.timings.dhuhr.removeSuffix("(EET)")
-            itemView.asr.text = prayerData.timings.asr.removeSuffix("(EET)")
-            itemView.maghrib.text = prayerData.timings.maghrib.removeSuffix("(EET)")
-            itemView.isha.text = prayerData.timings.isha.removeSuffix("(EET)")
-
+            itemView.apply {
+                fajr.text = prayerData.timings.fajr.substring(0, 5)
+                sunrise.text = prayerData.timings.sunrise.substring(0, 5)
+                dhuhr.text = prayerData.timings.dhuhr.substring(0, 5)
+                asr.text = prayerData.timings.asr.substring(0, 5)
+                maghrib.text = prayerData.timings.maghrib.substring(0, 5)
+                isha.text = prayerData.timings.isha.substring(0, 5)
+            }
         }
-
     }
-
 }

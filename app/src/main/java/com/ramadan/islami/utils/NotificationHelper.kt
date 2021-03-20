@@ -2,21 +2,18 @@ package com.ramadan.islami.utils
 
 
 import android.annotation.TargetApi
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.os.Build
+import android.view.WindowManager
 import androidx.core.app.NotificationCompat
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.activity.AzanActivity
 
 
 class NotificationHelper(base: Context) : ContextWrapper(base) {
-
 
     val manager: NotificationManager =
         getSystemService(NOTIFICATION_SERVICE) as NotificationManager
@@ -29,24 +26,34 @@ class NotificationHelper(base: Context) : ContextWrapper(base) {
     }
 
     fun channelNotification(title: String, message: String): Notification {
-        val clickIntent = Intent(this, AzanActivity::class.java).apply {
+        val intent = Intent(this, AzanActivity::class.java).apply {
             putExtra("prayName", title)
         }
 
         val pendingIntent = PendingIntent.getActivity(
-            this, 0, clickIntent, PendingIntent.FLAG_ONE_SHOT
+            this, 0, intent, PendingIntent.FLAG_ONE_SHOT
         )
+
 
         return NotificationCompat.Builder(applicationContext, channelID)
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(title)
             .setContentText(message)
             .setShowWhen(true)
-//            .addAction(R.mipmap.ic_launcher, "NOO", pendingIntent)
-//            .setContentIntent(pendingIntent)
             .setFullScreenIntent(pendingIntent, true)
-            .addAction(R.mipmap.ic_launcher, "Okay", pendingIntent)
             .build()
+    }
+
+    fun Activity.turnScreenOffAndKeyguardOn() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+            setShowWhenLocked(false)
+            setTurnScreenOn(false)
+        } else {
+            window.clearFlags(
+                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                        or WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON
+            )
+        }
     }
 
 

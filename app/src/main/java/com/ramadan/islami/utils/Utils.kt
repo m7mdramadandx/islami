@@ -1,18 +1,19 @@
 package com.ramadan.islami.utils
 
-import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
+import android.app.KeyguardManager
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
-import android.media.MediaPlayer
+import android.os.Build
 import android.os.Environment
-import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -55,11 +56,6 @@ class Utils(val context: Context) {
     )
     val dailyMutableList: MutableList<CollectionModel> = mutableListOf(
         CollectionModel(
-            "azkarOfDay",
-            context.getString(string.azkarOfDay),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fazkar.jpg?alt=media&token=27870e4e-a359-4a1b-91de-057de5afa828"
-        ),
-        CollectionModel(
             "prayerTimes",
             context.getString(string.prayerTimes),
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fprayer_times.jpg?alt=media&token=860b09fa-e3b5-4ea8-9826-d207d549c704"
@@ -68,6 +64,26 @@ class Utils(val context: Context) {
             "verseOfDay",
             context.getString(string.verseOfDay),
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fverse.jpg?alt=media&token=de42048d-28c5-408f-a9fe-19ad5c19ec50"
+        ),
+        CollectionModel(
+            "azkarOfDay",
+            context.getString(string.azkarOfDay),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fazkar.jpg?alt=media&token=27870e4e-a359-4a1b-91de-057de5afa828"
+        ),
+        CollectionModel(
+            "eveningAzkar",
+            context.getString(string.eveningAzkar),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fazkar.jpg?alt=media&token=27870e4e-a359-4a1b-91de-057de5afa828"
+        ),
+        CollectionModel(
+            "morningAzkar",
+            context.getString(string.morningAzkar),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fazkar.jpg?alt=media&token=27870e4e-a359-4a1b-91de-057de5afa828"
+        ),
+        CollectionModel(
+            "hadithOfDay",
+            context.getString(string.hadithOfDay),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fhadith.jpg?alt=media&token=041848ee-c824-47aa-a33b-1d697d232269"
         ),
         CollectionModel(
             "dateConversion",
@@ -111,24 +127,18 @@ class Utils(val context: Context) {
     val month = mutableListOf(
         context.getString(string.muharram),
         context.getString(string.safar),
-        context.getString(string.rabe_awl),
-        context.getString(string.rabe_akhr),
-        context.getString(string.jamad_awl),
-        context.getString(string.jamad_akhr),
+        context.getString(string.rabeAwl),
+        context.getString(string.rabeAkhr),
+        context.getString(string.jamadAwl),
+        context.getString(string.jamadAkhr),
         context.getString(string.rajab),
         context.getString(string.shaban),
         context.getString(string.ramadan),
         context.getString(string.shawal),
-        context.getString(string.dhu_keada),
-        context.getString(string.dhu_hija),
+        context.getString(string.dhuKeada),
+        context.getString(string.dhuHija),
     )
-    val mediaPlayer: MediaPlayer =
-        MediaPlayer.create(context, Settings.System.DEFAULT_RINGTONE_URI)!!
 }
-
-fun Context.media(): MediaPlayer =
-    MediaPlayer.create(this, Settings.System.DEFAULT_RINGTONE_URI)!!
-
 
 fun showMessage(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
@@ -137,6 +147,7 @@ fun showMessage(context: Context, message: String) {
 private val dirPath = Environment.getExternalStoragePublicDirectory(
     Environment.DIRECTORY_PICTURES
 ).path + "/islami"
+
 
 val input = "abc"
 var array = Array(input.length) { input[it].toString() }
@@ -159,19 +170,16 @@ fun showImg(imgUrl: String, context: Context) {
     imageView.setOnLongClickListener {
         try {
             saveImage(bitmap!!)
-            Snackbar.make(it, context.getString(string.saved), Snackbar.LENGTH_LONG).show()
+            it.snackBar(context.getString(string.saved))
         } catch (e: Exception) {
-            Snackbar.make(
-                it,
-                context.getString(string.failedToDownload),
-                Snackbar.LENGTH_LONG
-            ).show()
+            it.snackBar(context.getString(string.failedToDownload))
         }
         false
     }
     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     alertDialog.show()
 }
+
 
 fun showBrief(title: String, content: String, context: Context) {
     val dialogBuilder = AlertDialog.Builder(context)
@@ -200,10 +208,27 @@ private fun saveImage(bitmap: Bitmap) {
         outStream.flush()
         outStream.close()
     } catch (e: Exception) {
-        println(e.message)
+        Log.e(debug_tag, e.message.toString())
     }
 }
 
+fun Activity.turnScreenOnAndKeyguardOff() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+        setShowWhenLocked(true)
+        setTurnScreenOn(true)
+    } else {
+        window.addFlags(
+            WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                    or WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON
+        )
+    }
+
+    with(getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            requestDismissKeyguard(this@turnScreenOnAndKeyguardOff, null)
+        }
+    }
+}
 
 const val defaultImg: String =
     "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/islami_background_256.png?alt=media&token=72e1403c-2e25-4c8c-b1c0-2cf383153c01"
@@ -211,6 +236,9 @@ const val defaultImg: String =
 const val debug_tag = "TOTO"
 const val lat = 31.107364
 const val lon = 29.783520
+const val ACCESS_FINE_LOCATION_REQ_CODE = 35
+const val QIBLA_LATITUDE = 21.3891
+const val QIBLA_LONGITUDE = 39.8579
 
 fun dateOfDay(): String {
     val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
@@ -226,66 +254,18 @@ fun coloredJson(text: String): String {
 const val MUSLIM_SALAT_URL = "http://muslimsalat.com/"
 const val GITHUB_URL = "https://api.github.com/"
 
-fun ImageView.loadImage(url: String?) {
-//    val option = RequestOptions()
-//        .circleCrop()
-
-    Picasso.get()
-        .load(url)
-        .into(this)
-}
-
-//@BindingAdapter("android:imageCircleUrl")
-fun loadImageUrl(view: ImageView, url: String?) {
-    view.loadImage(url)
-}
-
 fun View.changeNavigation(direction: NavDirections) {
     Navigation.findNavController(this).navigate(direction)
 }
 
-// Date Format
-@SuppressLint("SimpleDateFormat")
-private val m24HourSDF = SimpleDateFormat("HH:mm")
-
-@SuppressLint("SimpleDateFormat")
-private val m12HourSDF = SimpleDateFormat("hh:mm aa")
-
-@SuppressLint("SimpleDateFormat")
-fun convertTo24HrFormat(date: String): String = m24HourSDF.format(m12HourSDF.parse(date)!!)
-
-fun convertToDateFormat(date: String) = m24HourSDF.parse(date)!!
-
-@SuppressLint("SimpleDateFormat")
-val getCurrentTimeFormat: String = SimpleDateFormat("hh:mm aa").format(Date())
-
-@SuppressLint("SimpleDateFormat")
-val getCurrentDayFormat: String = SimpleDateFormat("EEEE").format(Date())
-
-@SuppressLint("SimpleDateFormat")
-val getCurrentDateNormalFormat: String = SimpleDateFormat("dd MMMM yyyy").format(Date())
-
-@SuppressLint("SimpleDateFormat")
-fun getDayFormat(date: Date): String = SimpleDateFormat("EEEE").format(date)
-
-@SuppressLint("SimpleDateFormat")
-fun getDateNormalFormat(date: Date): String = SimpleDateFormat("dd MMMM yyyy").format(date)
-
-@SuppressLint("SimpleDateFormat")
-fun getDateFormat(date: Date): String = SimpleDateFormat("yyyy-MM-dd").format(date)
-
-fun removeColon(string: String) = string.filterNot { it == ':' }.toInt()
-
-fun convertFromLongToTime(mills: Long): String {
-    val hours = (mills / (1000 * 60 * 60)).toString()
-    val minutes = ((mills / (1000 * 60)) % 60).toString()
-    val seconds = ((mills / 1000) % 60 % 60).toString()
-
-    return "${(if (hours.length == 1) "0$hours" else hours)}:${(if (minutes.length == 1) "0$minutes" else minutes)}:${(if (seconds.length == 1) "0$seconds" else seconds)}"
+fun View.snackBar(message: String) {
+    Snackbar.make(
+        this,
+        message,
+        Snackbar.LENGTH_LONG
+    ).apply {
+        setTextColor(resources.getColor(R.color.white))
+        setBackgroundColor(resources.getColor(R.color.colorPrimary))
+        show()
+    }
 }
-
-fun getDifferentMillsTime(time: String): Long =
-    convertToDateFormat(time).time - convertToDateFormat(convertTo24HrFormat(getCurrentTimeFormat)).time
-
-fun getDifferentMillsTimeBA(before: String, after: String): Long =
-    convertToDateFormat(after).time - convertToDateFormat(before).time
