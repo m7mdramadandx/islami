@@ -20,9 +20,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="@drawable/bg_layout_rounded_white"
+        android:background="@drawable/bg_rounded"
         android:src="@drawable/ic_mute"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -43,10 +43,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:background="@drawable/bg_layout_rounded_white"
-        android:backgroundTint="#eee"
+        android:background="@drawable/bg_rounded"
+        android:gravity="center"
         android:text="@string/prayerVerse"
-        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:fontFamily="@font/amiri_font"

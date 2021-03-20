@@ -14,8 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginHorizontal="12dp"
-        android:background="@drawable/bg_layout_rounded_white"
-        android:backgroundTint="@color/silver_grey"
+        android:background="@drawable/bg_rounded"
         android:elevation="10dp"
         android:padding="10dp"
         app:dateTextColor="@color/colorAccent"
@@ -29,7 +28,6 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/background"
-        android:backgroundTint="@color/colorPrimary"
         android:elevation="8dp">
 
         <ProgressBar

@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Prayer.PrayerData
 import com.ramadan.islami.utils.dateOfDay
+import kotlinx.android.synthetic.main.item_month_prayer_times.view.*
 import kotlinx.android.synthetic.main.item_prayer_time.view.*
-import kotlinx.android.synthetic.main.table_row.view.*
 
 class PrayTimeAdapter : RecyclerView.Adapter<PrayTimeAdapter.ViewHolder>() {
 
@@ -36,7 +36,7 @@ class PrayTimeAdapter : RecyclerView.Adapter<PrayTimeAdapter.ViewHolder>() {
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_prayer_time, parent, false)
         else LayoutInflater.from(parent.context)
-            .inflate(R.layout.table_row, parent, false)
+            .inflate(R.layout.item_month_prayer_times, parent, false)
         return ViewHolder(v)
     }
 

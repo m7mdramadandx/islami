@@ -22,6 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
                 android:background="@drawable/background"
+                android:backgroundTint="@color/colorBackground"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="16dp">
 

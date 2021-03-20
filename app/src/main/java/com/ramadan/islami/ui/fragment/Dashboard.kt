@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
+import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.ramadan.islami.R
@@ -149,6 +150,10 @@ class Dashboard : Fragment(), FirebaseListener {
             it.changeNavigation(DashboardDirections.actionNavDashboardToNavTopics())
         }
         loadAds()
+        mAdView.adListener = AdListener().apply {
+            onAdFailedToLoad(15)
+            onAdLoaded()
+        }
     }
 
     private fun observeData() {

@@ -68,6 +68,7 @@
     <string name="noInternet">No Internet Connection</string>
     <string name="azan">azan</string>
     <string name="subscribe">subscibe</string>
+    <string name="data">my data</string>
     <string-array name="custom_weekdays">
         <item>ح</item>
         <item>اث</item>

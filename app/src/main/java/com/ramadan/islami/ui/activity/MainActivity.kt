@@ -3,7 +3,6 @@ package com.ramadan.islami.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -16,13 +15,12 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.androidstudy.networkmanager.Tovuti
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.material.navigation.NavigationView
 import com.ramadan.islami.R
 import com.ramadan.islami.utils.LocaleHelper
-import com.ramadan.islami.utils.showMessage
+import com.ramadan.islami.utils.isNetworkConnected
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -35,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         var language: String = "ar"
+        var isConnected: Boolean = true
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,8 +61,6 @@ class MainActivity : AppCompatActivity() {
         if (fixedBanner.isActivated) {
             constraintLayout.updatePadding(0, 0, 0, 160)
         }
-        val colorDrawable = ColorDrawable(R.drawable.asset)
-        val colorBackground = ColorDrawable(resources.getColor(R.color.colorBackground))
         listener =
             NavController.OnDestinationChangedListener { controller, destination, arguments ->
                 when (destination.id) {
@@ -79,15 +76,11 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-        Tovuti.from(this).monitor { connectionType, isConnected, isFast ->
-            if (!isConnected)
-                showMessage(this, "No Internet Connection")
-        }
+        isConnected = this.isNetworkConnected()
 
     }
 
     override fun onStop() {
-        Tovuti.from(this).stop()
         super.onStop()
     }
 
@@ -96,6 +89,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener(listener)
         fixedBanner.loadAd(AdRequest.Builder().build())
         language = if (localeHelper.getDefaultLanguage(this) == "en") "en" else "ar"
+        isConnected = this.isNetworkConnected()
     }
 
     override fun onResume() {
@@ -103,6 +97,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener(listener)
         fixedBanner.loadAd(AdRequest.Builder().build())
         language = if (localeHelper.getDefaultLanguage(this) == "en") "en" else "ar"
+        isConnected = this.isNetworkConnected()
     }
 
     override fun onSupportNavigateUp(): Boolean {

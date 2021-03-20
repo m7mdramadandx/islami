@@ -12,10 +12,11 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.android.gms.common.GoogleApiAvailability
 import com.google.firebase.messaging.FirebaseMessaging
 import com.ramadan.islami.R
-import com.ramadan.islami.utils.BadgeUtils
 import com.ramadan.islami.utils.LocaleHelper
+import com.ramadan.islami.utils.debug_tag
 
 
 class SplashScreen : AppCompatActivity() {
@@ -29,10 +30,9 @@ class SplashScreen : AppCompatActivity() {
         supportActionBar?.hide()
         FirebaseMessaging.getInstance().isAutoInitEnabled = true
         FirebaseMessaging.getInstance().subscribeToTopic("allUsers")
-//        AppUtill.savePreferenceLong("NOTICOUNT",0,this);
-        BadgeUtils().clearBadge(this)
+//        BadgeUtils().clearBadge(this)
         Handler().postDelayed({
-//            GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(this)
+            GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(this)
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, 1000)
@@ -44,7 +44,7 @@ class SplashScreen : AppCompatActivity() {
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.d("TOTO", adError.message)
+                    Log.d(debug_tag, adError.message)
                 }
 
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {

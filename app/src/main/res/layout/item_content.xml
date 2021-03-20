@@ -25,7 +25,7 @@
         android:layout_height="2dp"
         android:layout_marginHorizontal="28dp"
         android:layout_marginVertical="12dp"
-        android:background="@drawable/bg_layout_rounded_white"
+        android:background="@drawable/bg_rounded"
         android:backgroundTint="@color/silver_grey" />
 
 </LinearLayout>

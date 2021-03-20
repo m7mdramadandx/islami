@@ -8,6 +8,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Environment
 import android.util.Log
@@ -45,13 +46,15 @@ class Utils(val context: Context) {
         CollectionModel(
             "hadithOfDay",
             context.getString(string.hadithOfDay),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fhadith.jpg?alt=media&token=041848ee-c824-47aa-a33b-1d697d232269"
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2FhadithOfDay.jpg?alt=media&token=543ece34-faa2-4c27-b77d-77f3ffb9d945"
         ),
-        CollectionModel("muhammadStory", context.getString(string.muhammad), defaultImg),
+        CollectionModel("muhammadStory",
+            context.getString(string.muhammad),
+            "https://i.pinimg.com/564x/c1/6a/fe/c16afea2f025b7ae1dfddbafe8e15f02.jpg"),
         CollectionModel(
             "hadiths",
             context.getString(string.hadiths),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2F3a339a32aba6a17b9bfa2585a3c596b7.jpg?alt=media&token=42432ef6-7f5d-4b2b-8448-72a606960af0"
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fhadiths.jpg?alt=media&token=6464925e-1712-463d-82a3-fbc34a3f211f"
         ),
     )
     val dailyMutableList: MutableList<CollectionModel> = mutableListOf(
@@ -66,6 +69,11 @@ class Utils(val context: Context) {
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fverse.jpg?alt=media&token=de42048d-28c5-408f-a9fe-19ad5c19ec50"
         ),
         CollectionModel(
+            "hadithOfDay",
+            context.getString(string.hadithOfDay),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2FhadithOfDay.jpg?alt=media&token=8eadbf97-a66b-47ae-a243-6576ce766ff7"
+        ),
+        CollectionModel(
             "azkarOfDay",
             context.getString(string.azkarOfDay),
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fazkar.jpg?alt=media&token=27870e4e-a359-4a1b-91de-057de5afa828"
@@ -73,12 +81,12 @@ class Utils(val context: Context) {
         CollectionModel(
             "eveningAzkar",
             context.getString(string.eveningAzkar),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fazkar.jpg?alt=media&token=27870e4e-a359-4a1b-91de-057de5afa828"
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fevining.jpg?alt=media&token=4e649ded-b982-4fc3-905f-798e49a9633c"
         ),
         CollectionModel(
             "morningAzkar",
             context.getString(string.morningAzkar),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fazkar.jpg?alt=media&token=27870e4e-a359-4a1b-91de-057de5afa828"
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fmorning.jpg?alt=media&token=a3693803-5e76-4938-bc3d-dd951a5bc207"
         ),
         CollectionModel(
             "hadithOfDay",
@@ -140,17 +148,21 @@ class Utils(val context: Context) {
     )
 }
 
-fun showMessage(context: Context, message: String) {
-    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-}
 
+const val debug_tag = "TOTO"
+const val lat = 31.107364
+const val lon = 29.783520
+const val ACCESS_FINE_LOCATION_REQ_CODE = 35
+const val QIBLA_LATITUDE = 21.3891
+const val QIBLA_LONGITUDE = 39.8579
+const val ONESIGNAL_APP_ID = "84b5b5b5-1be2-49c4-b7cc-dc033da3bf84"
 private val dirPath = Environment.getExternalStoragePublicDirectory(
     Environment.DIRECTORY_PICTURES
 ).path + "/islami"
 
-
-val input = "abc"
-var array = Array(input.length) { input[it].toString() }
+fun showMessage(context: Context, message: String) {
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+}
 
 fun showImg(imgUrl: String, context: Context) {
     val dialogBuilder = AlertDialog.Builder(context)
@@ -212,6 +224,11 @@ private fun saveImage(bitmap: Bitmap) {
     }
 }
 
+fun Context.isNetworkConnected(): Boolean {
+    val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+    return cm!!.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnected
+}
+
 fun Activity.turnScreenOnAndKeyguardOff() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
         setShowWhenLocked(true)
@@ -232,13 +249,6 @@ fun Activity.turnScreenOnAndKeyguardOff() {
 
 const val defaultImg: String =
     "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/islami_background_256.png?alt=media&token=72e1403c-2e25-4c8c-b1c0-2cf383153c01"
-
-const val debug_tag = "TOTO"
-const val lat = 31.107364
-const val lon = 29.783520
-const val ACCESS_FINE_LOCATION_REQ_CODE = 35
-const val QIBLA_LATITUDE = 21.3891
-const val QIBLA_LONGITUDE = 39.8579
 
 fun dateOfDay(): String {
     val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
@@ -266,6 +276,7 @@ fun View.snackBar(message: String) {
     ).apply {
         setTextColor(resources.getColor(R.color.white))
         setBackgroundColor(resources.getColor(R.color.colorPrimary))
+        background = ColorDrawable(resources.getColor(R.color.colorPrimary))
         show()
     }
 }

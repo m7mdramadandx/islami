@@ -16,7 +16,7 @@ class MonthPrayerTimes : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.table_layout)
+        setContentView(R.layout.activity_month_prayer_times)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         recyclerView = findViewById(R.id.table_recycler_view)

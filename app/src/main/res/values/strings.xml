@@ -2,7 +2,7 @@
     <string name="app_name">islami</string>
 
     <string name="ad_id" translatable="false">ca-app-pub-5169956365910255~4844827484</string>
-    <string name="home_banner_id" translatable="false">ca-app-pub-5169956365910255/4073659536</string>
+    <string name="home_banner_id" translatable="false">ca-app-pub-5169956365910255/9814249376</string>
     <string name="interstitialAd" translatable="false">ca-app-pub-5169956365910255/4073659536</string>
 
     <string name="muhammad">محمد (ص)</string>
@@ -102,6 +102,7 @@
     <string name="azan">azan</string>
     <string name="subscribe">subscribe</string>
     <string name="unSubscribe">unsubscribe</string>
+    <string name="data">my data</string>
 
     <string-array name="custom_weekdays">
         <item>Sn</item>

@@ -133,9 +133,9 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
                 Picasso.get().load(collection.image).error(R.drawable.failure_img)
                     .placeholder(R.drawable.load_img).into(cardImage)
                 layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
-                cardImage.minimumWidth = 180
+                cardImage.minimumWidth = 350
                 cardName.text = collection.title.toUpperCase(Locale.ENGLISH)
-                cardName.textSize = 18.toFloat()
+                cardName.textSize = 16.toFloat()
                 setOnClickListener {
                     when (collection.id) {
                         "hadithOfDay" -> {
@@ -174,7 +174,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             if (isDashboard) {
                 itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
                 itemView.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
-                itemView.cardImage.maxWidth = ctx.resources.getDimension(R.dimen.familyTree).toInt()
+                itemView.cardImage.maxWidth = 200
                 itemView.cardImage.maxHeight =
                     ctx.resources.getDimension(R.dimen.familyTree).toInt()
             }

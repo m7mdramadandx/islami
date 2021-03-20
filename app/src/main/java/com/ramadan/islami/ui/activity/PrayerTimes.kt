@@ -27,7 +27,7 @@ import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.*
 import com.vivekkaushik.datepicker.DatePickerTimeline
 import com.vivekkaushik.datepicker.OnDateSelectedListener
-import kotlinx.android.synthetic.main.fragment_schedule_prayer.*
+import kotlinx.android.synthetic.main.activity_prayer_times.*
 import java.util.*
 
 class PrayerTimes : AppCompatActivity() {
@@ -48,7 +48,7 @@ class PrayerTimes : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_schedule_prayer)
+        setContentView(R.layout.activity_prayer_times)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         recyclerView = findViewById(R.id.rv_schedule_prayer)
@@ -145,8 +145,8 @@ class PrayerTimes : AppCompatActivity() {
                 ResponseStatus.SUCCESS -> {
                     progress.visibility = View.GONE
                     prayer = it.data!!
-                    prayTimeAdapter.setSchedulePrayer(prayer!!.data[selectedDate])
-                    localeHelper.setPrayerTimes(this, prayer!!.data[selectedDate].timings)
+                    prayTimeAdapter.setSchedulePrayer(prayer!!.data[selectedDate - 1])
+                    localeHelper.setPrayerTimes(this, prayer!!.data[selectedDate - 1].timings)
                 }
                 ResponseStatus.ERROR -> {
                     localeHelper.getPrayerTimes(this@PrayerTimes)?.let { mutableSet ->

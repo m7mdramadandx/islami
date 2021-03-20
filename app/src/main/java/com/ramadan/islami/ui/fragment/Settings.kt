@@ -16,10 +16,12 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.google.firebase.messaging.FirebaseMessaging
+import com.onesignal.OneSignal
 import com.ramadan.islami.Azan
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.activity.MainActivity
 import com.ramadan.islami.utils.LocaleHelper
+import com.ramadan.islami.utils.showBrief
 
 class Settings : Fragment() {
     private lateinit var localeHelper: LocaleHelper
@@ -76,8 +78,15 @@ class Settings : Fragment() {
                 view.context
             )
         }
+        view.findViewById<CardView>(R.id.data).setOnClickListener {
+            val quran =
+                getString(R.string.quran) + " : " + localeHelper.getQuranMark(it.context) + "\n"
+            val stories =
+                getString(R.string.stories) + " : " + localeHelper.getStoryMark(it.context)
+                    .toString() + "\n"
+            showBrief("Read Data", quran + stories, it.context)
+        }
     }
-
 
     private fun alertDialog(
         title: String,
@@ -142,10 +151,12 @@ class Settings : Fragment() {
                 group.setOnCheckedChangeListener { _, checkedId ->
                     when (checkedId) {
                         R.id.option1 -> {
+                            OneSignal.disablePush(false)
                             FirebaseMessaging.getInstance().subscribeToTopic("allUsers")
                             localeHelper.setNotification(context, true)
                         }
                         R.id.option2 -> {
+                            OneSignal.disablePush(true)
                             FirebaseMessaging.getInstance().unsubscribeFromTopic("allUsers")
                             localeHelper.setNotification(context, false)
                         }

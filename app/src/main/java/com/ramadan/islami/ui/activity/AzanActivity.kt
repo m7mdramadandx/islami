@@ -3,7 +3,6 @@ package com.ramadan.islami.ui.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
-import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
@@ -18,7 +17,6 @@ import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.ResponseStatus
 import kotlinx.android.synthetic.main.activity_azan.*
-import kotlinx.android.synthetic.main.fragment_schedule_prayer.*
 import java.util.*
 
 class AzanActivity : AppCompatActivity() {
@@ -50,29 +48,22 @@ class AzanActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Handler().postDelayed({
-            Azan().setAlarm(this)
-        }, 70000)
+        Handler().postDelayed({ Azan().setAlarm(this) }, 90000)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_azan)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        findViewById<ImageView>(R.id.mute).setOnClickListener {
-            Azan.mediaPlayer.pause()
-            it.isActivated = false
-        }
+        findViewById<ImageView>(R.id.mute).setOnClickListener { Azan.mediaPlayer.pause() }
     }
 
 
     private fun observeDate(lat: Double, lon: Double) {
         val localeHelper = LocaleHelper()
         viewModel.fetchPrayers(lat, lon).observe(this, {
-            if (it.status == ResponseStatus.SUCCESS) {
-                progress.visibility = View.GONE
-                localeHelper.setPrayerTimes(this, it.data!!.data[selectedDate - 1].timings)
-            }
+            if (it.status == ResponseStatus.SUCCESS) localeHelper.setPrayerTimes(this,
+                it.data!!.data[selectedDate - 1].timings)
         })
     }
 

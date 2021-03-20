@@ -145,6 +145,7 @@ class LocaleHelper {
     fun setQuranMark(context: Context, page: String) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
         prefs.edit().apply {
+            remove(QURAN_MARK)
             putString(QURAN_MARK, page)
             apply()
         }
