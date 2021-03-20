@@ -26,7 +26,6 @@
         android:id="@+id/mainConstraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="64dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/main_content">
 
@@ -50,6 +49,6 @@
         android:layout_gravity="bottom"
         android:visibility="visible"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="@string/home_banner_id" />
+        ads:adUnitId="@string/mainActivityBanner" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

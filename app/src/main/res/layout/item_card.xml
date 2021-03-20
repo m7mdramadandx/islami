@@ -23,7 +23,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_overlay" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/cardName"
         style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
@@ -32,9 +32,7 @@
         android:layout_marginHorizontal="12dp"
         android:paddingBottom="8dp"
         android:text="@string/eveningAzkar"
-        android:textAlignment="center"
-        android:textColor="#fff"
-        app:autoSizeTextType="uniform" />
+        android:textColor="#fff" />
 
 </androidx.cardview.widget.CardView>
 

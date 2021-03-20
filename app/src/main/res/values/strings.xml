@@ -2,10 +2,11 @@
     <string name="app_name">islami</string>
 
     <string name="ad_id" translatable="false">ca-app-pub-5169956365910255~4844827484</string>
-    <string name="home_banner_id" translatable="false">ca-app-pub-5169956365910255/9814249376</string>
-    <string name="interstitialAd" translatable="false">ca-app-pub-5169956365910255/4073659536</string>
+    <string name="mainActivityBanner" translatable="false">ca-app-pub-5169956365910255/9814249376</string>
+    <string name="dashboardBanner" translatable="false">ca-app-pub-5169956365910255/8629994367</string>
+    <string name="interstitialAd" translatable="false">ca-app-pub-5169956365910255/3282013505</string>
 
-    <string name="muhammad">محمد (ص)</string>
+    <string name="muhammad">Muhammad pbuh Story</string>
     <string name="adam">Adam</string>
     <string name="stories">Stories</string>
     <string name="quotes">Quotes</string>
@@ -70,13 +71,13 @@
     <string name="morningAzkar">Morning remembrance</string>
     <string name="eveningAzkar">Evening remembrance</string>
     <string name="verseOfDay">Verse of day</string>
-    <string name="saturday">السبت</string>
-    <string name="sunday">الأحد</string>
-    <string name="monday">الأثنين</string>
-    <string name="tuesday">الثلاثاء</string>
-    <string name="wednsday">الأربعاء</string>
-    <string name="thursday">الخميس</string>
-    <string name="friday">الجمعة</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednsday">Wednsday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
     <string name="muharram">Muhrram</string>
     <string name="safar">Safar</string>
     <string name="rabeAwl">Rabi\' al-Awl</string>
@@ -103,6 +104,11 @@
     <string name="subscribe">subscribe</string>
     <string name="unSubscribe">unsubscribe</string>
     <string name="data">my data</string>
+    <string name="readData">What you read</string>
+    <string name="azanSetting">Azan setting</string>
+    <string name="notificationSetting">Notification setting</string>
+    <string name="themeSetting">Theme setting</string>
+    <string name="languageSetting">Language setting</string>
 
     <string-array name="custom_weekdays">
         <item>Sn</item>

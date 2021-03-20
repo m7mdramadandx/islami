@@ -71,7 +71,7 @@ class Utils(val context: Context) {
         CollectionModel(
             "hadithOfDay",
             context.getString(string.hadithOfDay),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2FhadithOfDay.jpg?alt=media&token=8eadbf97-a66b-47ae-a243-6576ce766ff7"
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fhadith.jpg?alt=media&token=041848ee-c824-47aa-a33b-1d697d232269"
         ),
         CollectionModel(
             "azkarOfDay",
@@ -122,7 +122,7 @@ class Utils(val context: Context) {
         context.getString(string.maghrib),
         context.getString(string.isha),
     )
-    val weekday = mutableListOf<String>(
+    val weekday = mutableListOf(
         context.getString(string.saturday),
         context.getString(string.sunday),
         context.getString(string.monday),

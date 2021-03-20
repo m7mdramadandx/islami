@@ -10,6 +10,8 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
@@ -44,6 +46,13 @@ class QuoteOfDay : AppCompatActivity() {
             "verse" -> fetchVerseDay()
             "hadith" -> fetchHadith()
             "zekr" -> fetchAzkar()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
         }
     }
 

@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Azkar
 import com.ramadan.islami.data.model.Topic
@@ -40,6 +42,13 @@ class TopicDetails : AppCompatActivity() {
                 "eveningAzkar" -> fetchEveningAzkar()
                 "topic" -> fetchTopic()
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
         }
     }
 

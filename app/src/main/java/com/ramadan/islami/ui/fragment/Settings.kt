@@ -44,7 +44,7 @@ class Settings : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<CardView>(R.id.language).setOnClickListener {
             alertDialog(
-                "Language setting",
+                getString(R.string.languageSetting),
                 getString(R.string.arabic),
                 getString(R.string.english),
                 "language",
@@ -53,7 +53,7 @@ class Settings : Fragment() {
         }
         view.findViewById<CardView>(R.id.theme).setOnClickListener {
             alertDialog(
-                "Theme setting",
+                getString(R.string.themeSetting),
                 getString(R.string.lightTheme),
                 getString(R.string.nightTheme),
                 "theme",
@@ -62,7 +62,7 @@ class Settings : Fragment() {
         }
         view.findViewById<CardView>(R.id.notification).setOnClickListener {
             alertDialog(
-                "Notification setting",
+                getString(R.string.notificationSetting),
                 getString(R.string.subscribe),
                 getString(R.string.unSubscribe),
                 "notification",
@@ -71,7 +71,7 @@ class Settings : Fragment() {
         }
         view.findViewById<CardView>(R.id.azan).setOnClickListener {
             alertDialog(
-                "Azan setting",
+                getString(R.string.azanSetting),
                 getString(R.string.subscribe),
                 getString(R.string.unSubscribe),
                 "azan",
@@ -84,7 +84,7 @@ class Settings : Fragment() {
             val stories =
                 getString(R.string.stories) + " : " + localeHelper.getStoryMark(it.context)
                     .toString() + "\n"
-            showBrief("Read Data", quran + stories, it.context)
+            showBrief(getString(R.string.readData), quran + stories, it.context)
         }
     }
 

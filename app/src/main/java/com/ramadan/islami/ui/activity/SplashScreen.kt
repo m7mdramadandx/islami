@@ -17,6 +17,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.ramadan.islami.R
 import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.debug_tag
+import java.util.*
 
 
 class SplashScreen : AppCompatActivity() {
@@ -37,9 +38,13 @@ class SplashScreen : AppCompatActivity() {
             finish()
         }, 1000)
 
+//        val configuration = RequestConfiguration.Builder().build()
+////            .setTestDeviceIds(listOf("95B73043073F86AAE72BC71577E335B0")).build()
+//        MobileAds.setRequestConfiguration(configuration)
+
         val adRequest = AdRequest.Builder().build()
+
         InterstitialAd.load(this,
-//            "ca-app-pub-3940256099942544/1033173712",
             getString(R.string.interstitialAd),
             adRequest,
             object : InterstitialAdLoadCallback() {
@@ -52,6 +57,10 @@ class SplashScreen : AppCompatActivity() {
                     mInterstitialAd.show(this@SplashScreen)
                 }
             })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     private fun appTheme() {

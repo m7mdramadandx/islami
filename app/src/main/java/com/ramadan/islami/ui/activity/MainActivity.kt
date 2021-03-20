@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -15,12 +16,23 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import com.ramadan.islami.R
 import com.ramadan.islami.utils.LocaleHelper
+import com.ramadan.islami.utils.debug_tag
 import com.ramadan.islami.utils.isNetworkConnected
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -34,6 +46,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         var language: String = "ar"
         var isConnected: Boolean = true
+        lateinit var firebaseAnalytics: FirebaseAnalytics
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,21 +59,13 @@ class MainActivity : AppCompatActivity() {
         val navView: NavigationView = findViewById(R.id.nav_view)
         navController = findNavController(R.id.nav_host_fragment)
         constraintLayout = findViewById(R.id.mainConstraint)
-
         navView.setupWithNavController(navController)
         navView.itemIconTintList = null
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
+        firebaseAnalytics = Firebase.analytics
+        firebaseAnalytics.resetAnalyticsData()
         fixedBanner = findViewById(R.id.fixedBanner)
-        fixedBanner.loadAd(AdRequest.Builder().build())
-
-        if (!fixedBanner.isActivated) {
-            constraintLayout.updatePadding(0, 0, 0, 0)
-        }
-        if (fixedBanner.isActivated) {
-            constraintLayout.updatePadding(0, 0, 0, 160)
-        }
         listener =
             NavController.OnDestinationChangedListener { controller, destination, arguments ->
                 when (destination.id) {
@@ -77,27 +82,59 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         isConnected = this.isNetworkConnected()
+        fixedBanner.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                constraintLayout.updatePadding(0, 0, 0, 180)
+                Log.e(debug_tag, "LOADED")
+            }
 
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                constraintLayout.updatePadding(0, 0, 0, 0)
+                Log.e(debug_tag, adError.message)
+            }
+
+            override fun onAdOpened() {
+                Log.e(debug_tag, "OPENED")
+            }
+
+            override fun onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            override fun onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+
+            override fun onAdClosed() {
+                constraintLayout.updatePadding(0, 0, 0, 0)
+                Log.e(debug_tag, "CLOSED")
+            }
+        }
+        loadAds()
     }
 
     override fun onStop() {
         super.onStop()
+        fixedBanner.removeAllViews()
+        fixedBanner.destroy()
     }
 
     override fun onPause() {
         super.onPause()
         navController.addOnDestinationChangedListener(listener)
-        fixedBanner.loadAd(AdRequest.Builder().build())
         language = if (localeHelper.getDefaultLanguage(this) == "en") "en" else "ar"
         isConnected = this.isNetworkConnected()
     }
 
     override fun onResume() {
         super.onResume()
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, "MainActivity")
+        }
         navController.addOnDestinationChangedListener(listener)
-        fixedBanner.loadAd(AdRequest.Builder().build())
         language = if (localeHelper.getDefaultLanguage(this) == "en") "en" else "ar"
         isConnected = this.isNetworkConnected()
+        loadAds()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -117,6 +154,12 @@ class MainActivity : AppCompatActivity() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         localeHelper.setLocale(this, localeHelper.getDefaultLanguage(this))
+    }
+
+    private fun loadAds() {
+        GlobalScope.launch(Dispatchers.IO) {
+            withContext(Dispatchers.Main) { fixedBanner.loadAd(AdRequest.Builder().build()) }
+        }
     }
 
 }

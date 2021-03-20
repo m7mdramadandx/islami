@@ -7,7 +7,7 @@
     <string name="topics">مواضيع</string>
     <string name="adam">آدم</string>
     <string name="suggested_to_you">مقترح لك</string>
-    <string name="muhammad">محمد (ص)</string>
+    <string name="muhammad">"قصة محمد ﷺ "</string>
     <string name="hadiths">أحاديث</string>
     <string name="quranic_verses">آيات قرآنية</string>
     <string name="prophetsFamilyTree">شجرة عائلة الأنبياء</string>
@@ -54,20 +54,20 @@
     <string name="dateConversion">محول التقويم</string>
     <string name="hijri">التقويم الهجري</string>
     <string name="gregorian">التقويم الميلادي</string>
-    <string name="quran">المصحف</string>
+    <string name="quran">القرآن الكريم</string>
     <string name="prayerTimesTitle">أوقات الصلاه لشهر </string>
     <string name="versesNumber"> عدد الآيات</string>
     <string name="juzNumber">"جزء رقم ۩ "</string>
     <string name="hizbNumber">"حزب رقم ۩ "</string>
-    <string name="notification">notification</string>
-    <string name="bookmark">Bookmark</string>
+    <string name="notification">الاشعارات</string>
+    <string name="bookmark">وضع علامة</string>
     <string name="azkarOfDay">أذكار اليوم</string>
     <string name="saturday">السبت</string>
     <string name="prayerVerse">وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ</string>
     <string name="notificationVerse">وَأَنْ أَقِيمُوا الصَّلَاةَ وَاتَّقُوهُ وَهُوَ الَّذِي إِلَيْهِ تُحْشَرُونَ</string>
-    <string name="noInternet">No Internet Connection</string>
-    <string name="azan">azan</string>
-    <string name="subscribe">subscibe</string>
+    <string name="noInternet">فشل في لاتوصيل للإنترنت</string>
+    <string name="azan">الآذان</string>
+    <string name="subscribe">اشتراك</string>
     <string name="data">my data</string>
     <string-array name="custom_weekdays">
         <item>ح</item>
@@ -93,5 +93,40 @@
         <item>ذو القعدة</item>
         <item>ذو الحجة</item>
     </string-array>
+    <string name="morningAzkar">أذكار الصباح</string>
+    <string name="eveningAzkar">أذكار المساء</string>
+    <string name="verseOfDay">آية اليوم</string>
+    <string name="tafsir">تفسير</string>
+    <string name="sunday">الأحد</string>
+    <string name="monday">الأثنين</string>
+    <string name="tuesday">الثلاثاء</string>
+    <string name="wednsday">الأربعاء</string>
+    <string name="thursday">الخميس</string>
+    <string name="friday">الجمعة</string>
+    <string name="muharram">محرم</string>
+    <string name="safar">صفر</string>
+    <string name="rabeAwl">ربيع الأول</string>
+    <string name="rabeAkhr">ربيع الأخر</string>
+    <string name="jamadAwl">جماد الاأول</string>
+    <string name="jamadAkhr">جماد الأخر</string>
+    <string name="rajab">رجب</string>
+    <string name="shaban">شعبان</string>
+    <string name="ramadan">رمضان</string>
+    <string name="shawal">شوال</string>
+    <string name="dhuKeada">ذو الحجة</string>
+    <string name="dhuHija">ذو القعدة</string>
+    <string name="day">اليوم</string>
+    <string name="fajr">الفجر</string>
+    <string name="sunrise">الشروق</string>
+    <string name="dhuhr">الظهر</string>
+    <string name="asr">العصر</string>
+    <string name="maghrib">المغرب</string>
+    <string name="isha">العشاء</string>
+    <string name="unSubscribe">إالغاء الاشتراك</string>
+    <string name="readData">ما قرأت</string>
+    <string name="azanSetting">إعدات الآذان</string>
+    <string name="notificationSetting">إعدات الاشعارات</string>
+    <string name="themeSetting">إعدات المظهر</string>
+    <string name="languageSetting">إعدات اللغة</string>
 
 </resources>

@@ -89,29 +89,25 @@
                         android:background="@android:color/transparent"
                         android:src="@drawable/ic_expand" />
 
-                    <androidx.cardview.widget.CardView
+
+                    <com.smarteist.autoimageslider.SliderView
+                        android:id="@+id/storiesSlider"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
+                        android:layout_height="200dp"
                         android:layout_marginTop="42dp"
-                        ads:cardBackgroundColor="@android:color/transparent">
+                        android:background="@drawable/bg_rounded"
+                        android:backgroundTint="@color/colorSecondary"
+                        android:paddingHorizontal="12dp"
+                        app:sliderIndicatorSelectedColor="@color/colorAccent"
+                        app:sliderIndicatorUnselectedColor="@android:color/white">
 
-                        <com.smarteist.autoimageslider.SliderView
-                            android:id="@+id/storiesSlider"
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            app:sliderIndicatorSelectedColor="@color/colorAccent"
-                            app:sliderIndicatorUnselectedColor="@android:color/white">
+                        <ProgressBar
+                            android:id="@+id/progress0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center" />
 
-                            <ProgressBar
-                                android:id="@+id/progress0"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center" />
-
-                        </com.smarteist.autoimageslider.SliderView>
-
-                    </androidx.cardview.widget.CardView>
+                    </com.smarteist.autoimageslider.SliderView>
 
                 </RelativeLayout>
 
@@ -148,6 +144,15 @@
 
                 </RelativeLayout>
 
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="24dp"
+                    ads:adSize="SMART_BANNER"
+                    ads:adUnitId="@string/dashboardBanner" />
+
                 <RelativeLayout
                     android:id="@+id/quotesCard"
                     android:layout_width="match_parent"
@@ -174,37 +179,25 @@
                         android:background="@android:color/transparent"
                         android:src="@drawable/ic_expand" />
 
-                    <androidx.cardview.widget.CardView
+                    <com.smarteist.autoimageslider.SliderView
+                        android:id="@+id/quotesSlider"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="200dp"
                         android:layout_marginTop="42dp"
-                        ads:cardBackgroundColor="@android:color/transparent">
+                        android:background="@drawable/bg_rounded"
+                        android:backgroundTint="@color/colorSecondary"
+                        android:paddingHorizontal="12dp"
+                        app:sliderIndicatorSelectedColor="@color/colorAccent"
+                        app:sliderIndicatorUnselectedColor="@android:color/white">
 
-                        <com.smarteist.autoimageslider.SliderView
-                            android:id="@+id/quotesSlider"
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            android:layout_below="@id/seeAllQuotes"
-                            app:sliderIndicatorSelectedColor="@color/colorAccent"
-                            app:sliderIndicatorUnselectedColor="@android:color/white">
+                        <ProgressBar
+                            android:id="@+id/progress1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center" />
 
-                            <ProgressBar
-                                android:id="@+id/progress1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center" />
-
-                        </com.smarteist.autoimageslider.SliderView>
-                    </androidx.cardview.widget.CardView>
+                    </com.smarteist.autoimageslider.SliderView>
                 </RelativeLayout>
-
-                <com.google.android.gms.ads.AdView
-                    android:id="@+id/adView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    ads:adSize="SMART_BANNER"
-                    ads:adUnitId="@string/home_banner_id" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"

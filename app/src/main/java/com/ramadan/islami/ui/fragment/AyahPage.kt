@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
@@ -25,10 +24,7 @@ import kotlinx.android.synthetic.main.fragment_ayah.*
 import kotlinx.android.synthetic.main.main_content.*
 
 class AyahPage : Fragment() {
-
-    //    private val viewModel by lazy { ViewModelProvider(this).get(QuranAyahViewModel::class.java) }
     private lateinit var surah: Surah
-    private var toast: Toast? = null
     private lateinit var viewPager: ViewPager2
     private lateinit var quranPageAdapter: QuranAdapter
     private lateinit var localeHelper: LocaleHelper
@@ -54,8 +50,8 @@ class AyahPage : Fragment() {
         arguments?.let { surah = AyahPageArgs.fromBundle(it).surah }
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         (activity as MainActivity).supportActionBar?.hide()
-        (activity as MainActivity).fixedBanner.visibility = View.GONE
-        (activity as MainActivity).constraintLayout.updatePadding(0, 0, 0, 0)
+        (activity as MainActivity).fixedBanner.removeAllViews()
+        (activity as MainActivity).fixedBanner.destroy()
         quranPageAdapter = QuranAdapter()
         localeHelper = LocaleHelper()
     }
@@ -64,8 +60,7 @@ class AyahPage : Fragment() {
         super.onDetach()
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         (activity as MainActivity).supportActionBar?.show()
-        (activity as MainActivity).fixedBanner.visibility = View.VISIBLE
-        (activity as MainActivity).constraintLayout.updatePadding(0, 0, 0, 160)
+//        (activity as MainActivity).fixedBanner.loadAd(AdRequest.Builder().build())
     }
 
     override fun onPause() {

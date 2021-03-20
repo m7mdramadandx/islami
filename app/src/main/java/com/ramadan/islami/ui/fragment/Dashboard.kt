@@ -2,6 +2,7 @@ package com.ramadan.islami.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
@@ -30,6 +32,7 @@ import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.Utils
 import com.ramadan.islami.utils.changeNavigation
+import com.ramadan.islami.utils.debug_tag
 import com.ramadan.islami.utils.showMessage
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
@@ -87,6 +90,13 @@ class Dashboard : Fragment(), FirebaseListener {
     override fun onResume() {
         super.onResume()
         observeData()
+        loadAds()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mAdView.removeAllViews()
+        mAdView.destroy()
     }
 
     override fun onCreateView(
@@ -149,10 +159,30 @@ class Dashboard : Fragment(), FirebaseListener {
         view.findViewById<CardView>(R.id.topics).setOnClickListener {
             it.changeNavigation(DashboardDirections.actionNavDashboardToNavTopics())
         }
-        loadAds()
-        mAdView.adListener = AdListener().apply {
-            onAdFailedToLoad(15)
-            onAdLoaded()
+        mAdView.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                Log.e(debug_tag, "LOADED")
+            }
+
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                Log.e(debug_tag, adError.message)
+            }
+
+            override fun onAdOpened() {
+                Log.e(debug_tag, "OPENED")
+            }
+
+            override fun onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            override fun onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+
+            override fun onAdClosed() {
+                Log.e(debug_tag, "CLOSED")
+            }
         }
     }
 

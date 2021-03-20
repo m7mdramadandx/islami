@@ -174,7 +174,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             if (isDashboard) {
                 itemView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
                 itemView.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
-                itemView.cardImage.maxWidth = 200
+                itemView.cardImage.maxWidth = ctx.resources.getDimension(R.dimen.familyTree).toInt()
                 itemView.cardImage.maxHeight =
                     ctx.resources.getDimension(R.dimen.familyTree).toInt()
             }
