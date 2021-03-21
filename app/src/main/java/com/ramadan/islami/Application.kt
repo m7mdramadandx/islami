@@ -6,7 +6,6 @@ import android.content.res.Configuration
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.gms.ads.RequestConfiguration.MAX_AD_CONTENT_RATING_T
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.onesignal.OneSignal
 import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.NotificationOpenedHandler

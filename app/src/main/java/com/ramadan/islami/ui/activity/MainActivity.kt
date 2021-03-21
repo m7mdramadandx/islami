@@ -64,7 +64,6 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         firebaseAnalytics = Firebase.analytics
-        firebaseAnalytics.resetAnalyticsData()
         fixedBanner = findViewById(R.id.fixedBanner)
         listener =
             NavController.OnDestinationChangedListener { controller, destination, arguments ->
@@ -84,7 +83,7 @@ class MainActivity : AppCompatActivity() {
         isConnected = this.isNetworkConnected()
         fixedBanner.adListener = object : AdListener() {
             override fun onAdLoaded() {
-                constraintLayout.updatePadding(0, 0, 0, 180)
+                constraintLayout.updatePadding(0, 0, 0, 160)
                 Log.e(debug_tag, "LOADED")
             }
 
@@ -97,20 +96,15 @@ class MainActivity : AppCompatActivity() {
                 Log.e(debug_tag, "OPENED")
             }
 
-            override fun onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
-            }
+            override fun onAdClicked() {}
 
-            override fun onAdLeftApplication() {
-                // Code to be executed when the user has left the app.
-            }
+            override fun onAdLeftApplication() {}
 
             override fun onAdClosed() {
                 constraintLayout.updatePadding(0, 0, 0, 0)
                 Log.e(debug_tag, "CLOSED")
             }
         }
-        loadAds()
     }
 
     override fun onStop() {
@@ -156,7 +150,7 @@ class MainActivity : AppCompatActivity() {
         localeHelper.setLocale(this, localeHelper.getDefaultLanguage(this))
     }
 
-    private fun loadAds() {
+    fun loadAds() {
         GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) { fixedBanner.loadAd(AdRequest.Builder().build()) }
         }

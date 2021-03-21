@@ -2,12 +2,18 @@ package com.ramadan.islami.ui.activity
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.updatePadding
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
@@ -17,8 +23,8 @@ import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.TopicAdapter
 import com.ramadan.islami.ui.viewModel.FirebaseViewModel
 import com.ramadan.islami.ui.viewModel.LocalViewModel
+import com.ramadan.islami.utils.debug_tag
 import kotlinx.android.synthetic.main.activity_topic.*
-import kotlinx.android.synthetic.main.content_nested_view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -33,6 +39,7 @@ class TopicDetails : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private var intentKey: String = ""
     private lateinit var azkar: Azkar.AzkarItem
+    private lateinit var adView: AdView
 
     override fun onStart() {
         super.onStart()
@@ -50,6 +57,7 @@ class TopicDetails : AppCompatActivity() {
         MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
             param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
         }
+        loadAds()
     }
 
     private fun fetchTopic() {
@@ -100,6 +108,33 @@ class TopicDetails : AppCompatActivity() {
                 viewModel.rateTopic(language, it, topic!!.id, !isChecked)
             }
         }
+        adView = findViewById(R.id.adView)
+
+        adView.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                contentView.updatePadding(0, 0, 0, 160)
+                Log.e(debug_tag, "LOADED")
+            }
+
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                contentView.updatePadding(0, 0, 0, 0)
+                Log.e(debug_tag, adError.message)
+            }
+
+            override fun onAdOpened() {
+                Log.e(debug_tag, "OPENED")
+            }
+
+            override fun onAdClicked() {}
+
+            override fun onAdLeftApplication() {
+                contentView.updatePadding(0, 0, 0, 0)
+            }
+
+            override fun onAdClosed() {
+                Log.e(debug_tag, "CLOSED")
+            }
+        }
     }
 
     private fun observeData() {
@@ -115,6 +150,12 @@ class TopicDetails : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 topic = viewModel.fetchTopic(language, collectionID, documentID)
             }
+        }
+    }
+
+    private fun loadAds() {
+        GlobalScope.launch(Dispatchers.IO) {
+            withContext(Dispatchers.Main) { adView.loadAd(AdRequest.Builder().build()) }
         }
     }
 

@@ -1,301 +1,599 @@
 {
   "data": [
     {
-      "name": "الرَّحْمَنُ"
+      "name": "الرَّحْمَنُ",
+      "english": "AR-RAHMAAN",
+      "translation": ""
     },
     {
-      "name": "الرَّحِيمُ"
+      "name": "الرَّحِيمُ",
+      "english": "AR-RAHEEM",
+      "translation": ""
     },
     {
-      "name": "الْمَلِكُ"
+      "name": "الْمَلِكُ",
+      "english": "AL-MALIK",
+      "translation": ""
     },
     {
-      "name": "الْقُدُّوسُ"
+      "name": "الْقُدُّوسُ",
+      "english": "AL-QUDDUS",
+      "translation": ""
     },
     {
-      "name": "السَّلاَمُ"
+      "name": "السَّلاَمُ",
+      "english": "AS-SALAM",
+      "translation": ""
     },
     {
-      "name": "الْمُؤْمِنُ"
+      "name": "الْمُؤْمِنُ",
+      "english": "AL-MU’MIN",
+      "translation": ""
     },
     {
-      "name": "الْمُهَيْمِنُ"
+      "name": "الْمُهَيْمِنُ",
+      "english": "AL-MUHAYMIN",
+      "translation": ""
     },
     {
-      "name": "الْعَزِيزُ"
+      "name": "الْعَزِيزُ",
+      "english": "AL-AZIZ",
+      "translation": ""
     },
     {
-      "name": "الْجَبَّارُ"
+      "name": "الْجَبَّارُ",
+      "english": "AL-JABBAR",
+      "translation": ""
     },
     {
-      "name": "الْمُتَكَبِّرُ"
+      "name": "الْمُتَكَبِّرُ",
+      "english": "AL-MUTAKABBIR",
+      "translation": ""
     },
     {
-      "name": "الْخَالِقُ"
+      "name": "الْخَالِقُ",
+      "english": "AL-KHAALIQ",
+      "translation": ""
     },
     {
-      "name": "الْبَارِئُ"
+      "name": "الْبَارِئُ",
+      "english": "AL-BAARI",
+      "translation": ""
     },
     {
-      "name": "الْمُصَوِّرُ"
+      "name": "الْمُصَوِّرُ",
+      "english": "AL-MUSAWWIR",
+      "translation": ""
     },
     {
-      "name": "الْغَفَّارُ"
+      "name": "الْغَفَّارُ",
+      "english": "AL-GHAFFAR",
+      "translation": ""
     },
     {
-      "name": "الْقَهَّارُ"
+      "name": "الْقَهَّارُ",
+      "english": "AL-QAHHAR",
+      "translation": ""
     },
     {
-      "name": "الْوَهَّابُ"
+      "name": "الْوَهَّابُ",
+      "english": "AL-WAHHAAB",
+      "translation": ""
     },
     {
-      "name": "الرَّزَّاقُ"
+      "name": "الرَّزَّاقُ",
+      "english": "AR-RAZZAAQ",
+      "translation": ""
     },
     {
-      "name": "الْفَتَّاحُ"
+      "name": "الْفَتَّاحُ",
+      "english": "AL-FATTAAH",
+      "translation": ""
     },
     {
-      "name": "اَلْعَلِيْمُ"
+      "name": "اَلْعَلِيْمُ",
+      "english": "AL-‘ALEEM",
+      "translation": ""
     },
     {
-      "name": "الْقَابِضُ"
+      "name": "الْقَابِضُ",
+      "english": "AL-QAABID",
+      "translation": ""
     },
     {
-      "name": "الْبَاسِطُ"
+      "name": "الْبَاسِطُ",
+      "english": "AL-BAASIT",
+      "translation": ""
     },
     {
-      "name": "الْخَافِضُ"
+      "name": "الْخَافِضُ",
+      "english": "AL-KHAAFIDH",
+      "translation": ""
     },
     {
-      "name": "الرَّافِعُ"
+      "name": "الرَّافِعُ",
+      "english": "AR-RAAFI’",
+      "translation": ""
     },
     {
-      "name": "الْمُعِزُّ"
+      "name": "الْمُعِزُّ",
+      "english": "AL-MU’IZZ",
+      "translation": ""
     },
     {
-      "name": "المُذِلُّ"
+      "name": "المُذِلُّ",
+      "english": "AL-MUZIL",
+      "translation": ""
     },
     {
-      "name": "السَّمِيعُ"
+      "name": "السَّمِيعُ",
+      "english": "AS-SAMEE’",
+      "translation": ""
     },
     {
-      "name": "الْبَصِيرُ"
+      "name": "الْبَصِيرُ",
+      "english": "AL-BASEER",
+      "translation": ""
     },
     {
-      "name": "الْحَكَمُ"
+      "name": "الْحَكَمُ",
+      "english": "AL-HAKAM",
+      "translation": ""
     },
     {
-      "name": "الْعَدْلُ"
+      "name": "الْعَدْلُ",
+      "english": "AL-‘ADL",
+      "translation": ""
     },
     {
-      "name": "اللَّطِيفُ"
+      "name": "اللَّطِيفُ",
+      "english": "AL-LATEEF",
+      "translation": ""
     },
     {
-      "name": "الْخَبِيرُ"
+      "name": "الْخَبِيرُ",
+      "english": "AL-KHABEER",
+      "translation": ""
     },
     {
-      "name": "الْحَلِيمُ"
+      "name": "الْحَلِيمُ",
+      "english": "AL-HALEEM",
+      "translation": ""
     },
     {
-      "name": "الْعَظِيمُ"
+      "name": "الْعَظِيمُ",
+      "english": "AL-‘AZEEM",
+      "translation": ""
     },
     {
-      "name": "الْغَفُورُ"
+      "name": "الْغَفُورُ",
+      "english": "AL-GHAFOOR",
+      "translation": ""
     },
     {
-      "name": "الشَّكُورُ"
+      "name": "الشَّكُورُ",
+      "english": "ASH-SHAKOOR",
+      "translation": ""
     },
     {
-      "name": "الْعَلِيُّ"
+      "name": "الْعَلِيُّ",
+      "english": "AL-‘ALEE",
+      "translation": ""
     },
     {
-      "name": "الْكَبِيرُ"
+      "name": "الْكَبِيرُ",
+      "english": "AL-KABEER",
+      "translation": ""
     },
     {
-      "name": "الْحَفِيظُ"
+      "name": "الْحَفِيظُ",
+      "english": "AL-HAFEEDH",
+      "translation": ""
     },
     {
-      "name": "المُقيِت"
+      "name": "المُقيِت",
+      "english": "AL-MUQEET",
+      "translation": ""
     },
     {
-      "name": "الْحسِيبُ"
+      "name": "الْحسِيبُ",
+      "english": "AL-HASEEB",
+      "translation": ""
     },
     {
-      "name": "الْجَلِيلُ"
+      "name": "الْجَلِيلُ",
+      "english": "AL-JALEEL",
+      "translation": ""
     },
     {
-      "name": "الْكَرِيمُ"
+      "name": "الْكَرِيمُ",
+      "english": "AL-KAREEM",
+      "translation": ""
     },
     {
-      "name": "الرَّقِيبُ"
+      "name": "الرَّقِيبُ",
+      "english": "AR-RAQEEB",
+      "translation": ""
     },
     {
-      "name": "الْمُجِيبُ"
+      "name": "الْمُجِيبُ",
+      "english": "AL-MUJEEB",
+      "translation": ""
     },
     {
-      "name": "الْوَاسِعُ"
+      "name": "الْوَاسِعُ",
+      "english": "AL-WAASI’",
+      "translation": ""
     },
     {
-      "name": "الْحَكِيمُ"
+      "name": "الْحَكِيمُ",
+      "english": "AL-HAKEEM",
+      "translation": ""
     },
     {
-      "name": "الْوَدُودُ"
+      "name": "الْوَدُودُ",
+      "english": "AL-WADUD",
+      "translation": ""
     },
     {
-      "name": "الْمَجِيدُ"
+      "name": "الْمَجِيدُ",
+      "english": "AL-MAJEED",
+      "translation": ""
     },
     {
-      "name": "الْبَاعِثُ"
+      "name": "الْبَاعِثُ",
+      "english": "AL-BA’ITH",
+      "translation": ""
     },
     {
-      "name": "الشَّهِيدُ"
+      "name": "الشَّهِيدُ",
+      "english": "ASH-SHAHEED",
+      "translation": ""
     },
     {
-      "name": "الْحَقُّ"
+      "name": "الْحَقُّ",
+      "english": "AL-HAQQ",
+      "translation": ""
     },
     {
-      "name": "الْوَكِيلُ"
+      "name": "الْوَكِيلُ",
+      "english": "AL-WAKEEL",
+      "translation": ""
     },
     {
-      "name": "الْقَوِيُّ"
+      "name": "الْقَوِيُّ",
+      "english": "AL-QAWIYY",
+      "translation": ""
     },
     {
-      "name": "الْمَتِينُ"
+      "name": "الْمَتِينُ",
+      "english": "AL-MATEEN",
+      "translation": ""
     },
     {
-      "name": "الْوَلِيُّ"
+      "name": "الْوَلِيُّ",
+      "english": "AL-WALIYY",
+      "translation": ""
     },
     {
-      "name": "الْحَمِيدُ"
+      "name": "الْحَمِيدُ",
+      "english": "AL-HAMEED",
+      "translation": ""
     },
     {
-      "name": "الْمُحْصِي"
+      "name": "الْمُحْصِي",
+      "english": "AL-MUHSEE",
+      "translation": ""
     },
     {
-      "name": "الْمُبْدِئُ"
+      "name": "الْمُبْدِئُ",
+      "english": "AL-MUBDI",
+      "translation": ""
     },
     {
-      "name": "الْمُعِيدُ"
+      "name": "الْمُعِيدُ",
+      "english": "AL-MUEED",
+      "translation": ""
     },
     {
-      "name": "الْمُحْيِي"
+      "name": "الْمُحْيِي",
+      "english": "AL-MUHYI",
+      "translation": ""
     },
     {
-      "name": "اَلْمُمِيتُ"
+      "name": "اَلْمُمِيتُ",
+      "english": "AL-MUMEET",
+      "translation": ""
     },
     {
-      "name": "الْحَيُّ"
+      "name": "الْحَيُّ",
+      "english": "AL-HAYY",
+      "translation": ""
     },
     {
-      "name": "الْقَيُّومُ"
+      "name": "الْقَيُّومُ",
+      "english": "AL-QAYYOOM",
+      "translation": ""
     },
     {
-      "name": "الْوَاجِدُ"
+      "name": "الْوَاجِدُ",
+      "english": "AL-WAAJID",
+      "translation": ""
     },
     {
-      "name": "الْمَاجِدُ"
+      "name": "الْمَاجِدُ",
+      "english": "AL-MAAJID",
+      "translation": ""
     },
     {
-      "name": "الْواحِدُ"
+      "name": "الْواحِدُ",
+      "english": "AL-WAAHID",
+      "translation": ""
     },
     {
-      "name": "اَلاَحَدُ"
+      "name": "اَلاَحَدُ",
+      "english": "AL-AHAD",
+      "translation": ""
     },
     {
-      "name": "الصَّمَدُ"
+      "name": "الصَّمَدُ",
+      "english": "AS-SAMAD",
+      "translation": ""
     },
     {
-      "name": "الْقَادِرُ"
+      "name": "الْقَادِرُ",
+      "english": "AL-QADEER",
+      "translation": ""
     },
     {
-      "name": "الْمُقْتَدِرُ"
+      "name": "الْمُقْتَدِرُ",
+      "english": "AL-MUQTADIR",
+      "translation": ""
     },
     {
-      "name": "الْمُقَدِّمُ"
+      "name": "الْمُقَدِّمُ",
+      "english": "AL-MUQADDIM",
+      "translation": ""
     },
     {
-      "name": "الْمُؤَخِّرُ"
+      "name": "الْمُؤَخِّرُ",
+      "english": "AL-MU’AKHKHIR",
+      "translation": ""
     },
     {
-      "name": "الأوَّلُ"
+      "name": "الأوَّلُ",
+      "english": "AL-AWWAL",
+      "translation": ""
     },
     {
-      "name": "الآخِرُ"
+      "name": "الآخِرُ",
+      "english": "AL-AAKHIR",
+      "translation": ""
     },
     {
-      "name": "الظَّاهِرُ"
+      "name": "الظَّاهرِ",
+      "english": "AZ-ZAAHIR",
+      "translation": ""
     },
     {
-      "name": "الْبَاطِنُ"
+      "name": "الْبَاطِنُ",
+      "english": "AL-BAATIN",
+      "translation": ""
     },
     {
-      "name": "الْوَالِي"
+      "name": "الْوَالِي",
+      "english": "AL-WAALI",
+      "translation": ""
     },
     {
-      "name": "الْمُتَعَالِي"
+      "name": "الْمُتَعَالِي",
+      "english": "AL-MUTA’ALI",
+      "translation": ""
     },
     {
-      "name": "الْبَرُّ"
+      "name": "الْبَرُّ",
+      "english": "AL-BARR",
+      "translation": ""
     },
     {
-      "name": "التَّوَابُ"
+      "name": "التَّوَابُ",
+      "english": "AT-TAWWAB",
+      "translation": ""
     },
     {
-      "name": "الْمُنْتَقِمُ"
+      "name": "الْمُنْتَقِمُ",
+      "english": "AL-MUNTAQIM",
+      "translation": ""
     },
     {
-      "name": "العَفُوُّ"
+      "name": "العَفُوُّ",
+      "english": "AL-‘AFUWW",
+      "translation": ""
     },
     {
-      "name": "الرَّؤُوفُ"
+      "name": "الرَّؤُوفُ",
+      "english": "AR-RA’OOF",
+      "translation": ""
     },
     {
-      "name": "مَالِكُ الْمُلْكِ"
+      "name": "مَالِكُ الْمُلْكِ",
+      "english": "MAALIK-UL-MULK",
+      "translation": ""
     },
     {
-      "name": "ذُوالْجَلاَلِ وَالإكْرَامِ"
+      "name": "ذُوالْجَلاَلِ وَالإكْرَامِ",
+      "english": "DHUL-JALAALI WAL-IKRAAM",
+      "translation": ""
     },
     {
-      "name": "الْمُقْسِطُ"
+      "name": "الْمُقْسِطُ",
+      "english": "AL-MUQSIT",
+      "translation": ""
     },
     {
-      "name": "الْجَامِعُ"
+      "name": "الْجَامِعُ",
+      "english": "AL-JAAMI’",
+      "translation": ""
     },
     {
-      "name": "الْغَنِيُّ"
+      "name": "الْغَنِيُّ",
+      "english": "AL-GHANIYY",
+      "translation": ""
     },
     {
-      "name": "الْمُغْنِي"
+      "name": "الْمُغْنِي",
+      "english": "AL-MUGHNI",
+      "translation": ""
     },
     {
-      "name": "اَلْمَانِعُ"
+      "name": "اَلْمَانِعُ",
+      "english": "AL-MANI’",
+      "translation": ""
     },
     {
-      "name": "الضَّارَّ"
+      "name": "الضَّارَّ",
+      "english": "AD-DHARR",
+      "translation": ""
     },
     {
-      "name": "النَّافِعُ"
+      "name": "النَّافِعُ",
+      "english": "AN-NAFI’",
+      "translation": ""
     },
     {
-      "name": "النُّورُ"
+      "name": "النُّورُ",
+      "english": "AN-NUR",
+      "translation": ""
     },
     {
-      "name": "الْهَادِي"
+      "name": "الْهَادِي",
+      "english": "AL-HAADI",
+      "translation": ""
     },
     {
-      "name": "الْبَدِيعُ"
+      "name": "الْبَدِيعُ",
+      "english": "AL-BADEE’",
+      "translation": ""
     },
     {
-      "name": "اَلْبَاقِي"
+      "name": "اَلْبَاقِي",
+      "english": "AL-BAAQI",
+      "translation": ""
     },
     {
-      "name": "الْوَارِثُ"
+      "name": "الْوَارِثُ",
+      "english": "AL-WAARITH",
+      "translation": ""
     },
     {
-      "name": "الرَّشِيدُ"
+      "name": "الرَّشِيدُ",
+      "english": "AR-RASHEED",
+      "translation": ""
     },
     {
-      "name": "الصَّبُورُ"
+      "name": "الصَّبُورُ",
+      "english": "AS-SABOOR",
+      "translation": ""
     }
   ]
 }
+
+The-Beneficent
+The-Merciful
+The-Eternal-Lord
+The-Most-Sacred
+The-embodiment-of-Peace
+The-Infuser-of-Faith
+The-Preserver-of-Safety
+All-Mighty
+The-Compeller,-The-Restorer
+The-Supreme,-The-Majestic
+The-Creator,-The-Maker
+The-Evolver
+The-Fashioner
+The-Great-Forgiver
+The-All-Prevailing-One
+The-Supreme-Bestower
+The-Provider
+The-Supreme-Solver
+The-All-Knowing
+The-Withholder
+The-Extender
+The-Reducer
+The-Exalter,-The-Elevator
+The-Honourer,-The-Bestower
+The-Dishonourer,-The-Humiliator
+The-All-Hearing
+The-All-Seeing
+The-Impartial-Judge
+The-Utterly-Just
+The-Subtle-One,-The-Most-Gentle
+The-All-Aware
+The-Most-Forbearing
+The-Magnificent,-The-Supreme
+The-Great-Forgiver
+The-Most-Appreciative
+The-Most-High,-The-Exalted
+The-Preserver,-The-All-Heedful-and-All-Protecting
+The-Preserver
+The-Sustainer
+The-Reckoner
+The-Majestic
+The-Most-Generous,-The-Most-Esteemed
+The-Watchful
+The-Responsive-One
+The-All-Encompassing,-the-Boundless
+The-All-Wise
+The-Most-Loving
+The-Glorious,-The-Most-Honorable
+The-Infuser-of-New-Life
+The-All-Observing-Witnessing
+The-Absolute-Truth
+The-Trustee,-The-Disposer-of-Affairs
+The-All-Strong
+The-Firm,-The-Steadfast
+The-Protecting-Associatey
+The-Praiseworthy
+The-All-Enumerating,-The-Counter
+The-Originator,-The-Initiator
+The-Restorer,-The-Reinstater
+The-Giver-of-Life
+The-Inflicter-of-Death
+The-Ever-Living
+The-Sustainer,-The-Self-Subsisting
+The-Perceiver
+The-Illustrious,-the-Magnificent
+The-One
+The-Unique,-The-Only-One
+The-Eternal,-Satisfier-of-Needs
+The-Omnipotent-One
+The-Powerful
+The-Expediter,-The-Promoter
+The-Delayer
+The-First
+The-Last
+The-Manifest
+The-Hidden-One,-Knower-of-the-Hidden
+The-Governor,-The-Patron
+The-Self-Exalted
+The-Source-of-All-Goodness
+The-Ever-Pardoning,-The-Relenting
+The-Avenger
+The-Pardoner
+The-Most-Kind
+Master-of-the-Kingdom,-Owner-of-the-Dominion
+Possessor-of-Glory-and-Honour,-Lord-of-Majesty-and-Generosity
+The-Just-One
+The-Gatherer,-the-Uniter
+The-Self-Sufficient,-The-Wealthy
+The-Enricher
+The-Withholder
+The-Distresser
+The-Propitious,-the-Benefactor
+The-Light,-The-Illuminator
+The-Guide
+The-Incomparable-Originator
+The-Everlasting
+The-Inheritor,-The-Heir
+The-Guide,-Infallible-Teacher
+The-Forbearing,-The-Patient

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ramadan.islami.R
 import com.ramadan.islami.data.listener.FirebaseListener
-import com.ramadan.islami.ui.activity.MainActivity
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.viewModel.FirebaseViewModel
@@ -43,13 +42,6 @@ class Quotes : Fragment(), FirebaseListener {
         recyclerView?.layoutManager = staggeredGridLayoutManager
         recyclerView?.adapter = recyclerViewAdapter
         recyclerView?.setPadding(8, 32, 8, 16)
-        recyclerView?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (dy > 0) (activity as MainActivity).supportActionBar?.hide()
-                else (activity as MainActivity).supportActionBar?.show()
-            }
-        })
         return root
     }
 

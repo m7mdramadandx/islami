@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
@@ -50,8 +51,8 @@ class AyahPage : Fragment() {
         arguments?.let { surah = AyahPageArgs.fromBundle(it).surah }
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         (activity as MainActivity).supportActionBar?.hide()
-        (activity as MainActivity).fixedBanner.removeAllViews()
-        (activity as MainActivity).fixedBanner.destroy()
+        (activity as MainActivity).fixedBanner.visibility = View.GONE
+        (activity as MainActivity).constraintLayout.updatePadding(0, 0, 0, 0)
         quranPageAdapter = QuranAdapter()
         localeHelper = LocaleHelper()
     }
@@ -60,7 +61,8 @@ class AyahPage : Fragment() {
         super.onDetach()
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         (activity as MainActivity).supportActionBar?.show()
-//        (activity as MainActivity).fixedBanner.loadAd(AdRequest.Builder().build())
+        (activity as MainActivity).fixedBanner.visibility = View.VISIBLE
+        (activity as MainActivity).loadAds()
     }
 
     override fun onPause() {
@@ -84,9 +86,7 @@ class AyahPage : Fragment() {
         viewPager.adapter = quranPageAdapter
         viewPager.registerOnPageChangeCallback(pageChangeCallback)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            if (localeHelper.getQuranMark(requireContext())
-                    .contains("${surah.ayahs.first().page + position}".toRegex(RegexOption.LITERAL))
-            ) {
+            if (localeHelper.getQuranMark(requireContext()) == "${surah.name} - صفحة رقم $pageNumber") {
                 tab.setIcon(R.drawable.ic_bookmark)
             }
             tab.text = java.lang.String.valueOf(nf.format(surah.ayahs.first().page + position))

@@ -2,9 +2,11 @@
     <string name="app_name">islami</string>
 
     <string name="ad_id" translatable="false">ca-app-pub-5169956365910255~4844827484</string>
+    <string name="interstitial" translatable="false">ca-app-pub-5169956365910255/3282013505</string>
+    <string name="date_conversion_ad" translatable="false">ca-app-pub-5169956365910255/9135786040</string>
     <string name="mainActivityBanner" translatable="false">ca-app-pub-5169956365910255/9814249376</string>
     <string name="dashboardBanner" translatable="false">ca-app-pub-5169956365910255/8629994367</string>
-    <string name="interstitialAd" translatable="false">ca-app-pub-5169956365910255/3282013505</string>
+    <string name="topicBanner" translatable="false">ca-app-pub-5169956365910255/6120215242</string>
 
     <string name="muhammad">Muhammad pbuh Story</string>
     <string name="adam">Adam</string>

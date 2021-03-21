@@ -29,9 +29,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginHorizontal="12dp"
-        android:paddingBottom="8dp"
-        android:text="@string/eveningAzkar"
+        android:paddingHorizontal="8dp"
+        android:paddingBottom="2dp"
+        android:textAlignment="center"
         android:textColor="#fff" />
 
 </androidx.cardview.widget.CardView>

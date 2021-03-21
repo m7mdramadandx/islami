@@ -95,8 +95,8 @@ class Dashboard : Fragment(), FirebaseListener {
 
     override fun onPause() {
         super.onPause()
-        mAdView.removeAllViews()
-        mAdView.destroy()
+//        mAdView.removeAllViews()
+//        mAdView.destroy()
     }
 
     override fun onCreateView(

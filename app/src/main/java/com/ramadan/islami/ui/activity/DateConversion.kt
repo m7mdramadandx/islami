@@ -11,10 +11,13 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
-import com.ramadan.islami.data.model.Prayer
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.ResponseStatus
@@ -27,7 +30,6 @@ import kotlinx.android.synthetic.main.activity_date_conversion.*
 import net.alhazmy13.hijridatepicker.date.gregorian.GregorianDatePickerDialog
 import net.alhazmy13.hijridatepicker.date.hijri.HijriDatePickerDialog
 import java.util.*
-import com.ramadan.islami.data.model.Calender as CalenderModel
 
 
 class DateConversion : AppCompatActivity() {
@@ -37,20 +39,13 @@ class DateConversion : AppCompatActivity() {
             ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").apiService()))
         ).get(WebServiceViewModel::class.java)
     }
-    private lateinit var result: Prayer.PrayerData
-    private lateinit var calenderModel: CalenderModel
+    private var mRewardedAd: RewardedAd? = null
     private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
-    private lateinit var calendar: Calendar
     private lateinit var hijriToday: UmmalquraCalendar
     private lateinit var gregorianToday: Calendar
 
     override fun onStart() {
         super.onStart()
-    }
-
-    override fun onNightModeChanged(mode: Int) {
-        super.onNightModeChanged(mode)
-        supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.drawable.asset))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +56,7 @@ class DateConversion : AppCompatActivity() {
         gregorianToday = Calendar.getInstance()
         hijriToday = UmmalquraCalendar()
         calendarView.setSelectedDate(hijriToday)
+
 //        calendarView.setOnDateChangeListener { calendarView, i, i2, i3 ->
 ////            hijri.text = i2.toString()
 //        }
@@ -96,6 +92,21 @@ class DateConversion : AppCompatActivity() {
 
         }
         initMenuFragment()
+        val adRequest = AdRequest.Builder().build()
+        RewardedAd.load(this,
+            getString(R.string.date_conversion_ad),
+            adRequest,
+            object : RewardedAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Log.d(debug_tag, adError.message)
+                    mRewardedAd = null
+                }
+
+                override fun onAdLoaded(rewardedAd: RewardedAd) {
+                    mRewardedAd = rewardedAd
+                    mRewardedAd?.show(this@DateConversion) { item -> Log.e(debug_tag, item.type) }
+                }
+            })
     }
 
     private fun fetchHijri(gregorianDate: String) {

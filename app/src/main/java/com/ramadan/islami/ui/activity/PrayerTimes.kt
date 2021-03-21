@@ -16,6 +16,10 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.google.android.gms.location.LocationServices
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
@@ -45,6 +49,7 @@ class PrayerTimes : AppCompatActivity() {
     private var prayer: Prayer? = null
     private var selectedDate: Int = 0
     private lateinit var utils: Utils
+    private var mRewardedAd: RewardedAd? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,6 +98,22 @@ class PrayerTimes : AppCompatActivity() {
                 }
             })
         }
+        val adRequest = AdRequest.Builder().build()
+        RewardedAd.load(this,
+            getString(R.string.date_conversion_ad),
+            adRequest,
+            object : RewardedAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Log.d(debug_tag, adError.message)
+                    mRewardedAd = null
+                }
+
+                override fun onAdLoaded(rewardedAd: RewardedAd) {
+                    mRewardedAd = rewardedAd
+                    mRewardedAd?.show(this@PrayerTimes) { item -> Log.e(debug_tag, item.type) }
+                }
+            })
+
     }
 
 

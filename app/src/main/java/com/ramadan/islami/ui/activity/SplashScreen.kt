@@ -45,7 +45,7 @@ class SplashScreen : AppCompatActivity() {
         val adRequest = AdRequest.Builder().build()
 
         InterstitialAd.load(this,
-            getString(R.string.interstitialAd),
+            getString(R.string.interstitial),
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {

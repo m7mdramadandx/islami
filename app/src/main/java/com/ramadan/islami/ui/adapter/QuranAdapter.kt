@@ -4,7 +4,6 @@ import android.text.Html
 import android.view.*
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
-import com.ramadan.islami.data.listener.SurahListener
 import com.ramadan.islami.data.model.Quran
 import com.ramadan.islami.data.model.Surah
 import com.ramadan.islami.ui.fragment.SurahDirections
@@ -16,7 +15,6 @@ import kotlin.math.max
 import kotlin.math.min
 
 class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
-    private var listener: SurahListener? = null
     private var surahList: MutableList<Surah> = mutableListOf()
     private var ayahList: MutableList<Quran.Ayah> = mutableListOf()
     private var surahName = String()
@@ -76,25 +74,26 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
         private val ctx = itemView.context
 
         fun surahView(surah: Surah) {
-            val mark = localeHelper.getQuranMark(ctx)
-            if (mark.contains(surah.name.toRegex(RegexOption.LITERAL))) {
-                itemView.apply {
-                    versesNumber.setTextColor(ctx.resources.getColor(R.color.grey_silver))
-                    revelationType.setTextColor(ctx.resources.getColor(R.color.grey_silver))
-                    surahCard.setCardBackgroundColor(ctx.resources.getColor(R.color.silver_grey))
-                }
-            } else {
-                itemView.apply {
-                    versesNumber.setTextColor(ctx.resources.getColor(R.color.white))
-                    revelationType.setTextColor(ctx.resources.getColor(R.color.white))
-                    surahCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
+            localeHelper.getQuranMark(ctx)?.let {
+                if (it.contains(surah.name.toRegex(RegexOption.LITERAL))) {
+                    itemView.apply {
+                        versesNumber.setTextColor(ctx.resources.getColor(R.color.grey_silver))
+                        revelationType.setTextColor(ctx.resources.getColor(R.color.grey_silver))
+                        surahCard.setCardBackgroundColor(ctx.resources.getColor(R.color.silver_grey))
+                    }
+                } else {
+                    itemView.apply {
+                        versesNumber.setTextColor(ctx.resources.getColor(R.color.white))
+                        revelationType.setTextColor(ctx.resources.getColor(R.color.white))
+                        surahCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
+                    }
                 }
             }
             itemView.apply {
                 surahNumber.text = surah.number.toString()
                 surahName.text = surah.name
                 versesNumber.text =
-                    context.getString(R.string.versesNumber) + valueOf(nf.format(surah.ayahs?.size))
+                    context.getString(R.string.versesNumber) + valueOf(nf.format(surah.ayahs.size))
                 juzNumber.text = surah.ayahs.first().juz
                 revelationType.text = surah.revelationType
                 setOnClickListener {
@@ -141,9 +140,9 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
 
                     override fun onCreateActionMode(p0: ActionMode?, p1: Menu): Boolean {
                         p1.add(0, bookmark, 0, context.getString(R.string.bookmark))
-                            .setIcon(R.drawable.ic_menu)
+                            .setIcon(R.drawable.ic_bookmark)
                         p1.add(1, tafsir, 1, context.getString(R.string.tafsir))
-                            .setIcon(R.drawable.ic_menu)
+                            .setIcon(R.drawable.ic_story)
                         return true
                     }
 

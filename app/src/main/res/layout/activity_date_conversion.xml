@@ -65,6 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
         android:background="@drawable/bg_rounded"
+        android:elevation="8dp"
         android:padding="16dp"
         app:mcv_arrowColor="?attr/colorAccent"
         app:mcv_dateTextAppearance="@style/calendar_day"
