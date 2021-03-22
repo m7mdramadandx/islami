@@ -36,7 +36,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
     private var quotesList = ArrayList<String>()
     private var collectionList = mutableListOf<Collection>()
     private var familyTreeList = mutableListOf<Collection>()
-    private var allahNames = mutableListOf<AllahNames.Data>()
+    private var allahNames = mutableListOf<AllahNames.AllahNamesItem>()
 
     fun setSuggestionDataList(data: MutableList<Collection>) {
         data.shuffle()
@@ -79,7 +79,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         notifyDataSetChanged()
     }
 
-    fun setAllahNamesDataList(data: MutableList<AllahNames.Data>) {
+    fun setAllahNamesDataList(data: MutableList<AllahNames.AllahNamesItem>) {
         allahNames = data
         notifyDataSetChanged()
     }
@@ -280,15 +280,15 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             }
         }
 
-        fun allahNamesView(allahNames: AllahNames.Data?, position: Int) {
+        fun allahNamesView(allahNames: AllahNames.AllahNamesItem?, position: Int) {
             if (position % 2 == 0) {
                 itemView.allahNameCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorSecondary))
             } else {
                 itemView.allahNameCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
             }
-            itemView.allahNameNumber.text = allahNames?.number.toString()
-            itemView.allahName.text = allahNames?.name ?: "l"
-            itemView.allahNameMeaning.text = allahNames?.en?.meaning ?: "2"
+            itemView.allahNameNumber.text = (position + 1).toString()
+            itemView.allahName.text = allahNames?.name ?: "Name"
+            itemView.allahNameMeaning.text = allahNames?.english ?: "name"
         }
 
     }

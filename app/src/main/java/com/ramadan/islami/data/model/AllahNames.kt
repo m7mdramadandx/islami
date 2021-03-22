@@ -1,20 +1,8 @@
 package com.ramadan.islami.data.model
 
-data class AllahNames(
-    val code: Int,
-    val `data`: List<Data>,
-    val status: String,
-) {
-    data class Data(
-        val en: En,
+class AllahNames : ArrayList<AllahNames.AllahNamesItem>() {
+    data class AllahNamesItem(
         val name: String,
-        val number: Int,
-        val transliteration: String,
-    ) {
-        data class En(
-            val meaning: String,
-        )
-    }
-
+        val english: String,
+    )
 }
-

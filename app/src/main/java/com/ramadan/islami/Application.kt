@@ -23,7 +23,7 @@ class Application : Application() {
         OneSignal.initWithContext(this)
         OneSignal.setAppId(ONESIGNAL_APP_ID)
         val conf = RequestConfiguration.Builder()
-            .setTestDeviceIds(listOf("95B73043073F86AAE72BC71577E335B0"))
+//            .setTestDeviceIds(listOf("95B73043073F86AAE72BC71577E335B0"))
             .setMaxAdContentRating(MAX_AD_CONTENT_RATING_T)
             .build()
         MobileAds.setRequestConfiguration(conf)

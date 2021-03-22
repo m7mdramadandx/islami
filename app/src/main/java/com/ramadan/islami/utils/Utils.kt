@@ -69,11 +69,6 @@ class Utils(val context: Context) {
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fverse.jpg?alt=media&token=de42048d-28c5-408f-a9fe-19ad5c19ec50"
         ),
         CollectionModel(
-            "hadithOfDay",
-            context.getString(string.hadithOfDay),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fhadith.jpg?alt=media&token=041848ee-c824-47aa-a33b-1d697d232269"
-        ),
-        CollectionModel(
             "azkarOfDay",
             context.getString(string.azkarOfDay),
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fazkar.jpg?alt=media&token=27870e4e-a359-4a1b-91de-057de5afa828"

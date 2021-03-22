@@ -2,498 +2,399 @@
   "data": [
     {
       "name": "الرَّحْمَنُ",
-      "english": "AR-RAHMAAN",
-      "translation": ""
+      "english": "AR-RAHMAAN"
     },
     {
       "name": "الرَّحِيمُ",
-      "english": "AR-RAHEEM",
-      "translation": ""
+      "english": "AR-RAHEEM"
     },
     {
       "name": "الْمَلِكُ",
-      "english": "AL-MALIK",
-      "translation": ""
+      "english": "AL-MALIK"
     },
     {
       "name": "الْقُدُّوسُ",
-      "english": "AL-QUDDUS",
-      "translation": ""
+      "english": "AL-QUDDUS"
     },
     {
       "name": "السَّلاَمُ",
-      "english": "AS-SALAM",
-      "translation": ""
+      "english": "AS-SALAM"
     },
     {
       "name": "الْمُؤْمِنُ",
-      "english": "AL-MU’MIN",
-      "translation": ""
+      "english": "AL-MU’MIN"
     },
     {
       "name": "الْمُهَيْمِنُ",
-      "english": "AL-MUHAYMIN",
-      "translation": ""
+      "english": "AL-MUHAYMIN"
     },
     {
       "name": "الْعَزِيزُ",
-      "english": "AL-AZIZ",
-      "translation": ""
+      "english": "AL-AZIZ"
     },
     {
       "name": "الْجَبَّارُ",
-      "english": "AL-JABBAR",
-      "translation": ""
+      "english": "AL-JABBAR"
     },
     {
       "name": "الْمُتَكَبِّرُ",
-      "english": "AL-MUTAKABBIR",
-      "translation": ""
+      "english": "AL-MUTAKABBIR"
     },
     {
       "name": "الْخَالِقُ",
-      "english": "AL-KHAALIQ",
-      "translation": ""
+      "english": "AL-KHAALIQ"
     },
     {
       "name": "الْبَارِئُ",
-      "english": "AL-BAARI",
-      "translation": ""
+      "english": "AL-BAARI"
     },
     {
       "name": "الْمُصَوِّرُ",
-      "english": "AL-MUSAWWIR",
-      "translation": ""
+      "english": "AL-MUSAWWIR"
     },
     {
       "name": "الْغَفَّارُ",
-      "english": "AL-GHAFFAR",
-      "translation": ""
+      "english": "AL-GHAFFAR"
     },
     {
       "name": "الْقَهَّارُ",
-      "english": "AL-QAHHAR",
-      "translation": ""
+      "english": "AL-QAHHAR"
     },
     {
       "name": "الْوَهَّابُ",
-      "english": "AL-WAHHAAB",
-      "translation": ""
+      "english": "AL-WAHHAAB"
     },
     {
       "name": "الرَّزَّاقُ",
-      "english": "AR-RAZZAAQ",
-      "translation": ""
+      "english": "AR-RAZZAAQ"
     },
     {
       "name": "الْفَتَّاحُ",
-      "english": "AL-FATTAAH",
-      "translation": ""
+      "english": "AL-FATTAAH"
     },
     {
       "name": "اَلْعَلِيْمُ",
-      "english": "AL-‘ALEEM",
-      "translation": ""
+      "english": "AL-‘ALEEM"
     },
     {
       "name": "الْقَابِضُ",
-      "english": "AL-QAABID",
-      "translation": ""
+      "english": "AL-QAABID"
     },
     {
       "name": "الْبَاسِطُ",
-      "english": "AL-BAASIT",
-      "translation": ""
+      "english": "AL-BAASIT"
     },
     {
       "name": "الْخَافِضُ",
-      "english": "AL-KHAAFIDH",
-      "translation": ""
+      "english": "AL-KHAAFIDH"
     },
     {
       "name": "الرَّافِعُ",
-      "english": "AR-RAAFI’",
-      "translation": ""
+      "english": "AR-RAAFI’"
     },
     {
       "name": "الْمُعِزُّ",
-      "english": "AL-MU’IZZ",
-      "translation": ""
+      "english": "AL-MU’IZZ"
     },
     {
       "name": "المُذِلُّ",
-      "english": "AL-MUZIL",
-      "translation": ""
+      "english": "AL-MUZIL"
     },
     {
       "name": "السَّمِيعُ",
-      "english": "AS-SAMEE’",
-      "translation": ""
+      "english": "AS-SAMEE’"
     },
     {
       "name": "الْبَصِيرُ",
-      "english": "AL-BASEER",
-      "translation": ""
+      "english": "AL-BASEER"
     },
     {
       "name": "الْحَكَمُ",
-      "english": "AL-HAKAM",
-      "translation": ""
+      "english": "AL-HAKAM"
     },
     {
       "name": "الْعَدْلُ",
-      "english": "AL-‘ADL",
-      "translation": ""
+      "english": "AL-‘ADL"
     },
     {
       "name": "اللَّطِيفُ",
-      "english": "AL-LATEEF",
-      "translation": ""
+      "english": "AL-LATEEF"
     },
     {
       "name": "الْخَبِيرُ",
-      "english": "AL-KHABEER",
-      "translation": ""
+      "english": "AL-KHABEER"
     },
     {
       "name": "الْحَلِيمُ",
-      "english": "AL-HALEEM",
-      "translation": ""
+      "english": "AL-HALEEM"
     },
     {
       "name": "الْعَظِيمُ",
-      "english": "AL-‘AZEEM",
-      "translation": ""
+      "english": "AL-‘AZEEM"
     },
     {
       "name": "الْغَفُورُ",
-      "english": "AL-GHAFOOR",
-      "translation": ""
+      "english": "AL-GHAFOOR"
     },
     {
       "name": "الشَّكُورُ",
-      "english": "ASH-SHAKOOR",
-      "translation": ""
+      "english": "ASH-SHAKOOR"
     },
     {
       "name": "الْعَلِيُّ",
-      "english": "AL-‘ALEE",
-      "translation": ""
+      "english": "AL-‘ALEE"
     },
     {
       "name": "الْكَبِيرُ",
-      "english": "AL-KABEER",
-      "translation": ""
+      "english": "AL-KABEER"
     },
     {
       "name": "الْحَفِيظُ",
-      "english": "AL-HAFEEDH",
-      "translation": ""
+      "english": "AL-HAFEEDH"
     },
     {
       "name": "المُقيِت",
-      "english": "AL-MUQEET",
-      "translation": ""
+      "english": "AL-MUQEET"
     },
     {
       "name": "الْحسِيبُ",
-      "english": "AL-HASEEB",
-      "translation": ""
+      "english": "AL-HASEEB"
     },
     {
       "name": "الْجَلِيلُ",
-      "english": "AL-JALEEL",
-      "translation": ""
+      "english": "AL-JALEEL"
     },
     {
       "name": "الْكَرِيمُ",
-      "english": "AL-KAREEM",
-      "translation": ""
+      "english": "AL-KAREEM"
     },
     {
       "name": "الرَّقِيبُ",
-      "english": "AR-RAQEEB",
-      "translation": ""
+      "english": "AR-RAQEEB"
     },
     {
       "name": "الْمُجِيبُ",
-      "english": "AL-MUJEEB",
-      "translation": ""
+      "english": "AL-MUJEEB"
     },
     {
       "name": "الْوَاسِعُ",
-      "english": "AL-WAASI’",
-      "translation": ""
+      "english": "AL-WAASI’"
     },
     {
       "name": "الْحَكِيمُ",
-      "english": "AL-HAKEEM",
-      "translation": ""
+      "english": "AL-HAKEEM"
     },
     {
       "name": "الْوَدُودُ",
-      "english": "AL-WADUD",
-      "translation": ""
+      "english": "AL-WADUD"
     },
     {
       "name": "الْمَجِيدُ",
-      "english": "AL-MAJEED",
-      "translation": ""
+      "english": "AL-MAJEED"
     },
     {
       "name": "الْبَاعِثُ",
-      "english": "AL-BA’ITH",
-      "translation": ""
+      "english": "AL-BA’ITH"
     },
     {
       "name": "الشَّهِيدُ",
-      "english": "ASH-SHAHEED",
-      "translation": ""
+      "english": "ASH-SHAHEED"
     },
     {
       "name": "الْحَقُّ",
-      "english": "AL-HAQQ",
-      "translation": ""
+      "english": "AL-HAQQ"
     },
     {
       "name": "الْوَكِيلُ",
-      "english": "AL-WAKEEL",
-      "translation": ""
+      "english": "AL-WAKEEL"
     },
     {
       "name": "الْقَوِيُّ",
-      "english": "AL-QAWIYY",
-      "translation": ""
+      "english": "AL-QAWIYY"
     },
     {
       "name": "الْمَتِينُ",
-      "english": "AL-MATEEN",
-      "translation": ""
+      "english": "AL-MATEEN"
     },
     {
       "name": "الْوَلِيُّ",
-      "english": "AL-WALIYY",
-      "translation": ""
+      "english": "AL-WALIYY"
     },
     {
       "name": "الْحَمِيدُ",
-      "english": "AL-HAMEED",
-      "translation": ""
+      "english": "AL-HAMEED"
     },
     {
       "name": "الْمُحْصِي",
-      "english": "AL-MUHSEE",
-      "translation": ""
+      "english": "AL-MUHSEE"
     },
     {
       "name": "الْمُبْدِئُ",
-      "english": "AL-MUBDI",
-      "translation": ""
+      "english": "AL-MUBDI"
     },
     {
       "name": "الْمُعِيدُ",
-      "english": "AL-MUEED",
-      "translation": ""
+      "english": "AL-MUEED"
     },
     {
       "name": "الْمُحْيِي",
-      "english": "AL-MUHYI",
-      "translation": ""
+      "english": "AL-MUHYI"
     },
     {
       "name": "اَلْمُمِيتُ",
-      "english": "AL-MUMEET",
-      "translation": ""
+      "english": "AL-MUMEET"
     },
     {
       "name": "الْحَيُّ",
-      "english": "AL-HAYY",
-      "translation": ""
+      "english": "AL-HAYY"
     },
     {
       "name": "الْقَيُّومُ",
-      "english": "AL-QAYYOOM",
-      "translation": ""
+      "english": "AL-QAYYOOM"
     },
     {
       "name": "الْوَاجِدُ",
-      "english": "AL-WAAJID",
-      "translation": ""
+      "english": "AL-WAAJID"
     },
     {
       "name": "الْمَاجِدُ",
-      "english": "AL-MAAJID",
-      "translation": ""
+      "english": "AL-MAAJID"
     },
     {
       "name": "الْواحِدُ",
-      "english": "AL-WAAHID",
-      "translation": ""
+      "english": "AL-WAAHID"
     },
     {
       "name": "اَلاَحَدُ",
-      "english": "AL-AHAD",
-      "translation": ""
+      "english": "AL-AHAD"
     },
     {
       "name": "الصَّمَدُ",
-      "english": "AS-SAMAD",
-      "translation": ""
+      "english": "AS-SAMAD"
     },
     {
       "name": "الْقَادِرُ",
-      "english": "AL-QADEER",
-      "translation": ""
+      "english": "AL-QADEER"
     },
     {
       "name": "الْمُقْتَدِرُ",
-      "english": "AL-MUQTADIR",
-      "translation": ""
+      "english": "AL-MUQTADIR"
     },
     {
       "name": "الْمُقَدِّمُ",
-      "english": "AL-MUQADDIM",
-      "translation": ""
+      "english": "AL-MUQADDIM"
     },
     {
       "name": "الْمُؤَخِّرُ",
-      "english": "AL-MU’AKHKHIR",
-      "translation": ""
+      "english": "AL-MU’AKHKHIR"
     },
     {
       "name": "الأوَّلُ",
-      "english": "AL-AWWAL",
-      "translation": ""
+      "english": "AL-AWWAL"
     },
     {
       "name": "الآخِرُ",
-      "english": "AL-AAKHIR",
-      "translation": ""
+      "english": "AL-AAKHIR"
     },
     {
       "name": "الظَّاهرِ",
-      "english": "AZ-ZAAHIR",
-      "translation": ""
+      "english": "AZ-ZAAHIR"
     },
     {
       "name": "الْبَاطِنُ",
-      "english": "AL-BAATIN",
-      "translation": ""
+      "english": "AL-BAATIN"
     },
     {
       "name": "الْوَالِي",
-      "english": "AL-WAALI",
-      "translation": ""
+      "english": "AL-WAALI"
     },
     {
       "name": "الْمُتَعَالِي",
-      "english": "AL-MUTA’ALI",
-      "translation": ""
+      "english": "AL-MUTA’ALI"
     },
     {
       "name": "الْبَرُّ",
-      "english": "AL-BARR",
-      "translation": ""
+      "english": "AL-BARR"
     },
     {
       "name": "التَّوَابُ",
-      "english": "AT-TAWWAB",
-      "translation": ""
+      "english": "AT-TAWWAB"
     },
     {
       "name": "الْمُنْتَقِمُ",
-      "english": "AL-MUNTAQIM",
-      "translation": ""
+      "english": "AL-MUNTAQIM"
     },
     {
       "name": "العَفُوُّ",
-      "english": "AL-‘AFUWW",
-      "translation": ""
+      "english": "AL-‘AFUWW"
     },
     {
       "name": "الرَّؤُوفُ",
-      "english": "AR-RA’OOF",
-      "translation": ""
+      "english": "AR-RA’OOF"
     },
     {
       "name": "مَالِكُ الْمُلْكِ",
-      "english": "MAALIK-UL-MULK",
-      "translation": ""
+      "english": "MAALIK-UL-MULK"
     },
     {
       "name": "ذُوالْجَلاَلِ وَالإكْرَامِ",
-      "english": "DHUL-JALAALI WAL-IKRAAM",
-      "translation": ""
+      "english": "DHUL-JALAALI WAL-IKRAAM"
     },
     {
       "name": "الْمُقْسِطُ",
-      "english": "AL-MUQSIT",
-      "translation": ""
+      "english": "AL-MUQSIT"
     },
     {
       "name": "الْجَامِعُ",
-      "english": "AL-JAAMI’",
-      "translation": ""
+      "english": "AL-JAAMI’"
     },
     {
       "name": "الْغَنِيُّ",
-      "english": "AL-GHANIYY",
-      "translation": ""
+      "english": "AL-GHANIYY"
     },
     {
       "name": "الْمُغْنِي",
-      "english": "AL-MUGHNI",
-      "translation": ""
+      "english": "AL-MUGHNI"
     },
     {
       "name": "اَلْمَانِعُ",
-      "english": "AL-MANI’",
-      "translation": ""
+      "english": "AL-MANI’"
     },
     {
       "name": "الضَّارَّ",
-      "english": "AD-DHARR",
-      "translation": ""
+      "english": "AD-DHARR"
     },
     {
       "name": "النَّافِعُ",
-      "english": "AN-NAFI’",
-      "translation": ""
+      "english": "AN-NAFI’"
     },
     {
       "name": "النُّورُ",
-      "english": "AN-NUR",
-      "translation": ""
+      "english": "AN-NUR"
     },
     {
       "name": "الْهَادِي",
-      "english": "AL-HAADI",
-      "translation": ""
+      "english": "AL-HAADI"
     },
     {
       "name": "الْبَدِيعُ",
-      "english": "AL-BADEE’",
-      "translation": ""
+      "english": "AL-BADEE’"
     },
     {
       "name": "اَلْبَاقِي",
-      "english": "AL-BAAQI",
-      "translation": ""
+      "english": "AL-BAAQI"
     },
     {
       "name": "الْوَارِثُ",
-      "english": "AL-WAARITH",
-      "translation": ""
+      "english": "AL-WAARITH"
     },
     {
       "name": "الرَّشِيدُ",
-      "english": "AR-RASHEED",
-      "translation": ""
+      "english": "AR-RASHEED"
     },
     {
       "name": "الصَّبُورُ",
-      "english": "AS-SABOOR",
-      "translation": ""
+      "english": "AS-SABOOR"
     }
   ]
 }

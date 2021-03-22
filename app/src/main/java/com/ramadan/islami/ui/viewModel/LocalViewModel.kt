@@ -16,4 +16,6 @@ class LocalViewModel : ViewModel() {
 
     fun getVerseOfDay(context: Context) = localRepository.retrieveVerse(context)
 
+    fun getAllahNames(context: Context) = localRepository.retrieveAllahNames(context)
+
 }

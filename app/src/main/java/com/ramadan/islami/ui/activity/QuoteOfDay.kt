@@ -74,7 +74,7 @@ class QuoteOfDay : AppCompatActivity() {
             }
 
             override fun onCreateActionMode(p0: ActionMode?, p1: Menu): Boolean {
-                p1.add(1, tafseer, 1, R.string.tafsir).setIcon(R.drawable.ic_menu)
+                p1.add(1, tafseer, 1, R.string.tafsir).setIcon(R.drawable.ic_story)
                 return true
             }
 

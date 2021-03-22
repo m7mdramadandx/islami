@@ -16,8 +16,8 @@ class LocaleHelper {
     companion object {
         private const val SELECTED_LANGUAGE = "default_language"
         private const val SELECTED_THEME = "default_theme"
-        private const val NOTIFICATION = "ON"
-        private const val AZAN = "ON"
+        private const val NOTIFICATION = "notification"
+        private const val AZAN = "azan"
         private const val STORY_MARKS = "story_marks"
         private const val QURAN_MARK = "quran_mark"
         private const val VERSE_OF_DAY = "verse_of_day"
@@ -174,7 +174,6 @@ class LocaleHelper {
     fun setNotification(context: Context, notification: Boolean) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
         prefs.edit().apply {
-            remove(NOTIFICATION)
             putBoolean(NOTIFICATION, notification)
             apply()
         }
@@ -188,7 +187,6 @@ class LocaleHelper {
     fun setAzan(context: Context, azan: Boolean) {
         val prefs: SharedPreferences = getDefaultSharedPreferences(context)
         prefs.edit().apply {
-            remove(AZAN)
             putBoolean(AZAN, azan)
             apply()
         }
