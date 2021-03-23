@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.viewModel.LocalViewModel
@@ -22,6 +24,13 @@ class AllahNames : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         observeDate()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

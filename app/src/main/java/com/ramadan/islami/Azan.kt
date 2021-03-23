@@ -12,10 +12,7 @@ import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.os.PowerManager
 import android.util.Log
-import com.ramadan.islami.utils.LocaleHelper
-import com.ramadan.islami.utils.NotificationHelper
-import com.ramadan.islami.utils.Utils
-import com.ramadan.islami.utils.debug_tag
+import com.ramadan.islami.utils.*
 import java.util.*
 
 
@@ -30,7 +27,14 @@ class Azan : BroadcastReceiver() {
             ""
         )
         wakeLock.acquire(10 * 60 * 1000L /*10 minutes*/)
-        mediaPlayer = MediaPlayer.create(context, R.raw.elqtamy).apply { start() }
+        mediaPlayer = MediaPlayer.create(context, R.raw.elqtamy).apply {
+            setVolume(100 * .01f, 100 * .01f)
+            start()
+            setOnCompletionListener {
+                release()
+                stop()
+            }
+        }
         val notificationHelper = NotificationHelper(context)
         val notification = notificationHelper.channelNotification(
             prayName,
@@ -100,6 +104,7 @@ class Azan : BroadcastReceiver() {
             calendar[Calendar.HOUR_OF_DAY] = hour!!
             calendar[Calendar.MINUTE] = minute!!
             calendar[Calendar.SECOND] = 0
+            showMessage(context, "Next Alarm: $hour:$minute")
             Log.e(debug_tag, "Next Alarm: $hour:$minute")
             return calendar
         } ?: return null

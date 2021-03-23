@@ -13,6 +13,7 @@ import com.ramadan.islami.data.model.Quote
 import com.ramadan.islami.data.model.Story
 import com.ramadan.islami.ui.activity.*
 import com.ramadan.islami.ui.fragment.DashboardDirections
+import com.ramadan.islami.ui.fragment.FamilyTreeDirections
 import com.ramadan.islami.utils.Utils
 import com.ramadan.islami.utils.changeNavigation
 import com.ramadan.islami.utils.showImg
@@ -272,10 +273,24 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
                     ctx.resources.getDimension(R.dimen.familyTree).toInt()
             }
             itemView.setOnClickListener {
-                when (collection.id) {
-                    "muhammadTree" -> ctx.startActivity(Intent(ctx, PrayerTimes::class.java))
-                    "prophetsTree" -> ctx.startActivity(Intent(ctx, Qibla::class.java))
-                    "bigTree" -> ctx.startActivity(Intent(ctx, Qibla::class.java))
+                if (isDashboard) {
+                    when (collection.id) {
+                        "muhammadTree" -> it.changeNavigation(DashboardDirections
+                            .actionDashboardToFamilyTreeDetails("muhammad"))
+                        "prophetsTree" -> it.changeNavigation(DashboardDirections
+                            .actionDashboardToFamilyTreeDetails("prophets"))
+                        "bigTree" -> it.changeNavigation(DashboardDirections
+                            .actionDashboardToFamilyTreeDetails("big"))
+                    }
+                } else {
+                    when (collection.id) {
+                        "muhammadTree" -> it.changeNavigation(FamilyTreeDirections
+                            .actionFamilyTreeToFamilyTreeDetails("muhammad"))
+                        "prophetsTree" -> it.changeNavigation(FamilyTreeDirections
+                            .actionFamilyTreeToFamilyTreeDetails("prophets"))
+                        "bigTree" -> it.changeNavigation(FamilyTreeDirections
+                            .actionFamilyTreeToFamilyTreeDetails("big"))
+                    }
                 }
             }
         }

@@ -13,31 +13,71 @@
         <action
             android:id="@+id/action_nav_dashboard_to_nav_quran"
             app:destination="@id/nav_quran"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
         <action
-            android:id="@+id/action_nav_dashboard_to_nav_stories"
-            app:destination="@id/nav_stories" />
+            android:id="@+id/action_dashboard_to_stories"
+            app:destination="@id/nav_stories"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
         <action
-            android:id="@+id/action_nav_dashboard_to_nav_daily"
-            app:destination="@id/nav_daily" />
+            android:id="@+id/action_dashboard_to_daily"
+            app:destination="@id/nav_daily"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
         <action
-            android:id="@+id/action_nav_dashboard_to_nav_quotes"
-            app:destination="@id/nav_quotes" />
+            android:id="@+id/action_dashboard_to_quotes"
+            app:destination="@id/nav_quotes"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
         <action
-            android:id="@+id/action_nav_dashboard_to_nav_topics"
-            app:destination="@id/nav_topics" />
+            android:id="@+id/action_dashboard_to_topics"
+            app:destination="@id/nav_topics"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
         <action
-            android:id="@+id/action_nav_dashboard_to_nav_family_tree"
-            app:destination="@id/nav_family_tree" />
+            android:id="@+id/action_dashboard_to_family_tree"
+            app:destination="@id/nav_family_tree"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
         <action
-            android:id="@+id/action_nav_dashboard_to_nav_feedback"
-            app:destination="@id/nav_feedback" />
+            android:id="@+id/action_dashboard_to_family_tree_details"
+            app:destination="@id/nav_family_tree_details"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit">
+            <argument
+                android:name="intentKey"
+                app:argType="string" />
+        </action>
+
         <action
-            android:id="@+id/action_nav_dashboard_to_nav_settings"
-            app:destination="@id/nav_settings" />
+            android:id="@+id/action_dashboard_to_feedback"
+            app:destination="@id/nav_feedback"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
+        <action
+            android:id="@+id/action_dashboard_to_settings"
+            app:destination="@id/nav_settings"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
 
     </fragment>
 
@@ -47,11 +87,15 @@
         android:label="@string/quran"
         tools:layout="@layout/fragment_sura">
         <action
-            android:id="@+id/action_nav_quran_to_ayah_fragment"
-            app:destination="@id/ayah_fragment" />
+            android:id="@+id/action_quran_to_ayah_fragment"
+            app:destination="@id/nav_ayah_fragment"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
     </fragment>
     <fragment
-        android:id="@+id/ayah_fragment"
+        android:id="@+id/nav_ayah_fragment"
         android:name="com.ramadan.islami.ui.fragment.AyahPage"
         android:label="Ayah Quran"
         tools:layout="@layout/fragment_ayah">
@@ -89,7 +133,23 @@
         android:id="@+id/nav_family_tree"
         android:name="com.ramadan.islami.ui.fragment.FamilyTree"
         android:label="@string/family_tree"
-        tools:layout="@layout/recycler_view" />
+        tools:layout="@layout/recycler_view">
+        <action
+            android:id="@+id/action_family_tree_to_family_tree_details"
+            app:destination="@id/nav_family_tree_details"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_family_tree_details"
+        android:name="com.ramadan.islami.ui.fragment.FamilyTreeDetails"
+        android:label="@string/family_tree"
+        tools:layout="@layout/family_tree">
+        <argument android:name="intentKey" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_feedback"

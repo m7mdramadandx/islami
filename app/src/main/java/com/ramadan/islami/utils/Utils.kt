@@ -270,8 +270,6 @@ fun View.snackBar(message: String) {
         Snackbar.LENGTH_LONG
     ).apply {
         setTextColor(resources.getColor(R.color.white))
-        setBackgroundColor(resources.getColor(R.color.colorPrimary))
-        background = ColorDrawable(resources.getColor(R.color.colorPrimary))
         show()
     }
 }

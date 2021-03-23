@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
 import com.ramadan.islami.data.listener.FirebaseListener
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
@@ -25,6 +27,13 @@ class TopicList : AppCompatActivity(), FirebaseListener {
         super.onStart()
         observeData()
     }
+    override fun onResume() {
+        super.onResume()
+        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

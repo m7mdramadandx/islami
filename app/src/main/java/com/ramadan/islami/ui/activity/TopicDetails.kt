@@ -60,29 +60,6 @@ class TopicDetails : AppCompatActivity() {
         loadAds()
     }
 
-    private fun fetchTopic() {
-        if (intent.hasExtra("topic")) topic = intent.getSerializableExtra("topic") as Topic
-        else fetchNotification()
-        observeData()
-    }
-
-    private fun fetchEveningAzkar() {
-        title = getString(R.string.eveningAzkar)
-        localViewModel.getAzkar(this)?.let { azkar ->
-            topicAdapter.setAzkarDataList(azkar.filter {
-                it.category == "أذكار المساء"
-            }.toMutableList())
-        }
-    }
-
-    private fun fetchMorningAzkar() {
-        title = getString(R.string.morningAzkar)
-        localViewModel.getAzkar(this)?.let { azkar ->
-            topicAdapter.setAzkarDataList(azkar.filter {
-                it.category == "أذكار الصباح"
-            }.toMutableList())
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -141,6 +118,30 @@ class TopicDetails : AppCompatActivity() {
         topicAdapter
             .setTopicContentDataList(topic!!.content as MutableMap<String, String>, topic!!.brief)
         title = topic!!.title
+    }
+
+    private fun fetchTopic() {
+        if (intent.hasExtra("topic")) topic = intent.getSerializableExtra("topic") as Topic
+        else fetchNotification()
+        observeData()
+    }
+
+    private fun fetchEveningAzkar() {
+        title = getString(R.string.eveningAzkar)
+        localViewModel.getAzkar(this)?.let { azkar ->
+            topicAdapter.setAzkarDataList(azkar.filter {
+                it.category == "أذكار المساء"
+            }.toMutableList())
+        }
+    }
+
+    private fun fetchMorningAzkar() {
+        title = getString(R.string.morningAzkar)
+        localViewModel.getAzkar(this)?.let { azkar ->
+            topicAdapter.setAzkarDataList(azkar.filter {
+                it.category == "أذكار الصباح"
+            }.toMutableList())
+        }
     }
 
     private fun fetchNotification() {

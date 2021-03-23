@@ -12,6 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
 import com.ramadan.islami.data.listener.FirebaseListener
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
@@ -29,6 +31,13 @@ class Hadiths : AppCompatActivity(), FirebaseListener {
         super.onStart()
         runBlocking { observeDate() }
     }
+    override fun onResume() {
+        super.onResume()
+        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

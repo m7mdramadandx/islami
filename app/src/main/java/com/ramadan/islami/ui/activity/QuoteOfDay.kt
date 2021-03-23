@@ -1,12 +1,6 @@
 package com.ramadan.islami.ui.activity
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.view.ActionMode
-import android.view.ActionMode.Callback
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -26,8 +20,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlin.math.max
-import kotlin.math.min
 
 
 class QuoteOfDay : AppCompatActivity() {
@@ -62,51 +54,7 @@ class QuoteOfDay : AppCompatActivity() {
         setContentView(R.layout.activity_quote_of_day)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        textBody.customSelectionActionModeCallback = object : Callback {
-            override fun onPrepareActionMode(p0: ActionMode?, p1: Menu): Boolean {
-                p1.removeItem(android.R.id.cut)
-                p1.removeItem(android.R.id.paste)
-                p1.removeItem(android.R.id.selectAll)
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                    p1.removeItem(android.R.id.shareText)
-                }
-                return true
-            }
 
-            override fun onCreateActionMode(p0: ActionMode?, p1: Menu): Boolean {
-                p1.add(1, tafseer, 1, R.string.tafsir).setIcon(R.drawable.ic_story)
-                return true
-            }
-
-            override fun onDestroyActionMode(p0: ActionMode?) {
-            }
-
-            override fun onActionItemClicked(p0: ActionMode?, p1: MenuItem?): Boolean {
-                when (p1!!.itemId) {
-                    tafseer -> {
-                        var min = 0
-                        var max: Int = textBody.text.length
-                        if (textBody.isFocused) {
-                            val selStart: Int = textBody.selectionStart
-                            val selEnd: Int = textBody.selectionEnd
-                            min = max(0, min(selStart, selEnd))
-                            max = max(0, max(selStart, selEnd))
-                        }
-                        val selectedText: CharSequence = textBody.text.subSequence(min, max)
-                        val intent = Intent()
-                        intent.action = Intent.ACTION_VIEW
-                        intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                        intent.data = Uri.parse("https://translate.google.com/$selectedText")
-                        startActivity(intent)
-                        p0!!.finish()
-                        return true
-                    }
-                    else -> {
-                    }
-                }
-                return false
-            }
-        }
     }
 
 
@@ -188,8 +136,6 @@ class QuoteOfDay : AppCompatActivity() {
             textBody.text = zekr.find { it.contains("body") }?.removeSuffix("body")
             textDescription.text =
                 zekr.find { it.contains("description") }?.removeSuffix("description")
-            textReference.text =
-                zekr.find { it.contains("reference") }?.removeSuffix("reference")
             if (localeHelper.getAzkarOfDay1(this).contains(dateOfDay() + " date")) {
                 val zekr1 = localeHelper.getAzkarOfDay1(this)
                 textBody1.visibility = View.VISIBLE

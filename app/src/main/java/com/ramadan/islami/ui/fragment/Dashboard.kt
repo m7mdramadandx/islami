@@ -20,10 +20,13 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
 import com.ramadan.islami.data.listener.FirebaseListener
+import com.ramadan.islami.ui.activity.MainActivity
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.adapter.SliderAdapter
@@ -91,6 +94,9 @@ class Dashboard : Fragment(), FirebaseListener {
         super.onResume()
         observeData()
         loadAds()
+        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, "Dashboard")
+        }
     }
 
     override fun onPause() {
@@ -148,16 +154,19 @@ class Dashboard : Fragment(), FirebaseListener {
         quotesSlider.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
         quotesSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
         view.findViewById<RelativeLayout>(R.id.storiesCard).setOnClickListener {
-            it.changeNavigation(DashboardDirections.actionNavDashboardToNavStories())
+            it.changeNavigation(DashboardDirections.actionDashboardToStories())
         }
         view.findViewById<RelativeLayout>(R.id.dailyCard).setOnClickListener {
-            it.changeNavigation(DashboardDirections.actionNavDashboardToNavDaily())
+            it.changeNavigation(DashboardDirections.actionDashboardToDaily())
         }
         view.findViewById<RelativeLayout>(R.id.quotesCard).setOnClickListener {
-            it.changeNavigation(DashboardDirections.actionNavDashboardToNavQuotes())
+            it.changeNavigation(DashboardDirections.actionDashboardToQuotes())
         }
         view.findViewById<CardView>(R.id.topics).setOnClickListener {
-            it.changeNavigation(DashboardDirections.actionNavDashboardToNavTopics())
+            it.changeNavigation(DashboardDirections.actionDashboardToTopics())
+        }
+        view.findViewById<RelativeLayout>(R.id.prophets_tree).setOnClickListener {
+            it.changeNavigation(DashboardDirections.actionDashboardToFamilyTree())
         }
         mAdView.adListener = object : AdListener() {
             override fun onAdLoaded() {

@@ -27,7 +27,7 @@ class NotificationHelper(base: Context) : ContextWrapper(base) {
 
     fun channelNotification(title: String, message: String): Notification {
         val intent = Intent(this, AzanActivity::class.java).apply {
-            putExtra("prayName", title)
+            putExtra("prayName", " صلاه " + title)
         }
 
         val pendingIntent = PendingIntent.getActivity(
@@ -39,6 +39,8 @@ class NotificationHelper(base: Context) : ContextWrapper(base) {
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(title)
             .setContentText(message)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(title))
+            .setStyle(NotificationCompat.BigTextStyle().bigText(message))
             .setShowWhen(true)
             .setFullScreenIntent(pendingIntent, true)
             .build()

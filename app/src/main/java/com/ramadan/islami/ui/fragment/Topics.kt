@@ -12,8 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
 import com.ramadan.islami.data.listener.FirebaseListener
+import com.ramadan.islami.ui.activity.MainActivity
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.viewModel.FirebaseViewModel
@@ -28,6 +31,13 @@ class Topics : Fragment(), FirebaseListener {
         super.onAttach(context)
         collectionAdapter = RecyclerViewAdapter()
         observeData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, "Topics")
+        }
     }
 
     override fun onCreateView(

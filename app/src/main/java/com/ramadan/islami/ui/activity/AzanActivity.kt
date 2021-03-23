@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.Azan
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
@@ -16,6 +18,7 @@ import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.ResponseStatus
+import com.ramadan.islami.utils.turnScreenOnAndKeyguardOff
 import kotlinx.android.synthetic.main.activity_azan.*
 import java.util.*
 
@@ -28,6 +31,7 @@ class AzanActivity : AppCompatActivity() {
     }
     private var selectedDate: Int = 0
     private lateinit var gregorianToday: Calendar
+    private var isPlaying = true
 
     @SuppressLint("MissingPermission")
     override fun onStart() {
@@ -39,23 +43,39 @@ class AzanActivity : AppCompatActivity() {
             observeDate(it.latitude, it.longitude)
         }
         intent.hasExtra("prayName").let {
-            if (it) {
-                NotificationManagerCompat.from(this).cancel(1001)
-                prayName.text = intent.getStringExtra("prayName")
-            }
+            if (it) (" صلاه " + intent.getStringExtra("prayName")).also { prayName.text = it }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Handler().postDelayed({ Azan().setAlarm(this) }, 90000)
+        Handler().postDelayed({
+            Azan().setAlarm(this)
+            NotificationManagerCompat.from(this).cancel(1001)
+        }, 60000)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_azan)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        findViewById<ImageView>(R.id.mute).setOnClickListener { Azan.mediaPlayer.pause() }
+        findViewById<ImageView>(R.id.mute).setOnClickListener {
+            if (isPlaying) {
+                !isPlaying
+                Azan.mediaPlayer.pause()
+            } else {
+                !isPlaying
+                Azan.mediaPlayer.start()
+            }
+        }
+        turnScreenOnAndKeyguardOff()
     }
 
 
@@ -66,6 +86,4 @@ class AzanActivity : AppCompatActivity() {
                 it.data!!.data[selectedDate - 1].timings)
         })
     }
-
-
 }

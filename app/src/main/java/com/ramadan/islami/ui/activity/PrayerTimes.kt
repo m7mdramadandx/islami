@@ -21,6 +21,8 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
@@ -50,6 +52,14 @@ class PrayerTimes : AppCompatActivity() {
     private var selectedDate: Int = 0
     private lateinit var utils: Utils
     private var mRewardedAd: RewardedAd? = null
+
+    override fun onResume() {
+        super.onResume()
+        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -160,7 +170,7 @@ class PrayerTimes : AppCompatActivity() {
 
 
     private fun observeDate(lat: Double, lon: Double) {
-        viewModel.fetchPrayers(lat, lon).observe(this, { it ->
+        viewModel.fetchPrayers(lat, lon).observe(this, {
             when (it.status) {
                 ResponseStatus.LOADING -> progress.visibility = View.VISIBLE
                 ResponseStatus.SUCCESS -> {

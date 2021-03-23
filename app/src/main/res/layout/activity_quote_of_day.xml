@@ -44,18 +44,11 @@
             android:layout_below="@id/textBody"
             android:layout_marginTop="8dp" />
 
-        <TextView
-            android:id="@+id/textReference"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textDescription"
-            android:layout_marginTop="8dp" />
-
         <View
             android:id="@+id/spacer"
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            android:layout_below="@id/textReference"
+            android:layout_below="@id/textDescription"
             android:layout_marginHorizontal="32dp"
             android:layout_marginVertical="16dp"
             android:background="@drawable/bg_rounded"

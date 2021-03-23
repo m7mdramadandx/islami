@@ -8,13 +8,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
-import com.ramadan.islami.ui.viewModel.FirebaseViewModel
 import com.ramadan.islami.data.model.Quote as QuoteModel
 
 
@@ -23,8 +23,14 @@ class Quote : AppCompatActivity() {
     private var hadithsRecyclerView: RecyclerView? = null
     private lateinit var versesAdapter: RecyclerViewAdapter
     private lateinit var hadithsAdapter: RecyclerViewAdapter
-    private val viewModel by lazy { ViewModelProvider(this).get(FirebaseViewModel::class.java) }
     private lateinit var quote: QuoteModel
+
+    override fun onResume() {
+        super.onResume()
+        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
+        }
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -8,14 +8,14 @@ import kotlinx.coroutines.Dispatchers
 
 class WebServiceViewModel(private val webServiceRepository: WebServiceRepository) : ViewModel() {
 
-        fun allahNames() = liveData(Dispatchers.Main) {
-        emit(Resource.loading(null))
-        try {
-            emit(Resource.success(webServiceRepository.allahNames()))
-        } catch (exception: Exception) {
-            emit(Resource.error(null, exception.message ?: "Error Occurred!"))
-        }
-    }
+//    fun allahNames() = liveData(Dispatchers.Main) {
+//        emit(Resource.loading(null))
+//        try {
+//            emit(Resource.success(webServiceRepository.allahNames()))
+//        } catch (exception: Exception) {
+//            emit(Resource.error(null, exception.message ?: "Error Occurred!"))
+//        }
+//    }
 
     fun gregorianCalender(dateOfDay: String) = liveData(Dispatchers.Main) {
         emit(Resource.loading(null))

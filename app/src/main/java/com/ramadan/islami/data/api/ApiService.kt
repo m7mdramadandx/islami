@@ -1,6 +1,5 @@
 package com.ramadan.islami.data.api
 
-import com.ramadan.islami.data.model.AllahNames
 import com.ramadan.islami.data.model.Calender
 import com.ramadan.islami.data.model.Hadith
 import com.ramadan.islami.data.model.Prayer
@@ -13,8 +12,8 @@ interface ApiService {
 //    @GET("v1/qibla")
 //    suspend fun qibla(@Path("/") latlng: String): Qibla
 
-    @GET("asmaAlHusna")
-    suspend fun allahNames(): AllahNames
+//    @GET("asmaAlHusna")
+//    suspend fun allahNames(): AllahNames
 
     @GET("v1/hToG")
     suspend fun gregorianCalender(@Query("date") date: String): Calender

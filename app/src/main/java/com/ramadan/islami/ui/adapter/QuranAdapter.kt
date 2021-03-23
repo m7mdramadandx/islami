@@ -97,7 +97,7 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
                 juzNumber.text = surah.ayahs.first().juz
                 revelationType.text = surah.revelationType
                 setOnClickListener {
-                    val action = SurahDirections.actionNavQuranToAyahFragment(surah)
+                    val action = SurahDirections.actionQuranToAyahFragment(surah)
                     it.changeNavigation(action)
                 }
             }

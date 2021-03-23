@@ -50,7 +50,7 @@ class LocalDb {
 
     fun retrieveAllahNames(context: Context): AllahNames? {
         return try {
-            val fileIn: InputStream = context.assets.open("AllahNames.json")
+            val fileIn: InputStream = context.assets.open("allahNames.json")
             val bufferedIn = BufferedInputStream(fileIn)
             val reader: Reader = InputStreamReader(bufferedIn, Charset.forName("UTF-8"))
             Gson().fromJson(reader, AllahNames::class.java)

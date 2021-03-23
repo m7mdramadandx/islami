@@ -19,7 +19,6 @@ import kotlin.collections.mutableListOf
 import kotlin.collections.toSortedMap
 
 class FirebaseRepository {
-    private val tag = "Repository"
 
     suspend fun fetchSuggestion(language: String): LiveData<MutableList<Story>> {
         val mutableData = MutableLiveData<MutableList<Story>>()

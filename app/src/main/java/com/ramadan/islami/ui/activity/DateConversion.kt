@@ -15,6 +15,8 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
@@ -44,8 +46,11 @@ class DateConversion : AppCompatActivity() {
     private lateinit var hijriToday: UmmalquraCalendar
     private lateinit var gregorianToday: Calendar
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
+        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,10 +61,6 @@ class DateConversion : AppCompatActivity() {
         gregorianToday = Calendar.getInstance()
         hijriToday = UmmalquraCalendar()
         calendarView.setSelectedDate(hijriToday)
-
-//        calendarView.setOnDateChangeListener { calendarView, i, i2, i3 ->
-////            hijri.text = i2.toString()
-//        }
         hijri.setOnClickListener {
             val dpd = HijriDatePickerDialog.newInstance(
                 { view, year, monthOfYear, dayOfMonth ->

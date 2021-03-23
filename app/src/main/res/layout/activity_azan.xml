@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="@drawable/bg_rounded"
+        android:backgroundTint="@color/white"
         android:src="@drawable/ic_mute"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +47,6 @@
         android:background="@drawable/bg_rounded"
         android:gravity="center"
         android:text="@string/prayerVerse"
-        android:textColor="@color/black"
         android:textSize="20sp"
         app:fontFamily="@font/amiri_font"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2" />

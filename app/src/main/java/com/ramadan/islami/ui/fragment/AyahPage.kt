@@ -15,6 +15,8 @@ import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Surah
 import com.ramadan.islami.ui.activity.MainActivity
@@ -69,6 +71,14 @@ class AyahPage : Fragment() {
         super.onPause()
         showDialog(requireContext())
     }
+
+    override fun onResume() {
+        super.onResume()
+        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, "AyahPage")
+        }
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
