@@ -18,7 +18,7 @@ import java.util.*
 
 class Azan : BroadcastReceiver() {
 
-    @SuppressLint("InvalidWakeLockTag")
+    @SuppressLint("InvalidWakeLockTag", "UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context, intent: Intent) {
         val powerManager: PowerManager =
             context.getSystemService(Context.POWER_SERVICE) as PowerManager
@@ -37,7 +37,7 @@ class Azan : BroadcastReceiver() {
         }
         val notificationHelper = NotificationHelper(context)
         val notification = notificationHelper.channelNotification(
-            prayName,
+            " صلاه $prayName",
             context.getString(R.string.notificationVerse)
         )
         notificationHelper.manager.notify(1001, notification)
@@ -123,6 +123,7 @@ class Azan : BroadcastReceiver() {
         val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.cancel(pendingIntent)
+        showMessage(context, "Canceled")
     }
 
     companion object {

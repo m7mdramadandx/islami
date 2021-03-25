@@ -36,7 +36,7 @@ class Settings : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val root = inflater.inflate(R.layout.fragmnet_settings, container, false)
+        val root = inflater.inflate(R.layout.fragment_settings, container, false)
         return root
     }
 

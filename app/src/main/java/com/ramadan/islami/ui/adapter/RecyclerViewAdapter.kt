@@ -25,7 +25,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 import com.ramadan.islami.ui.activity.AllahNames as AllahNamesActivity
 import com.ramadan.islami.ui.activity.Quote as QuoteActivity
-import com.ramadan.islami.ui.activity.StoryDetails as ActivityStory
 
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>() {
@@ -147,7 +146,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
                         }
                         "quran" -> it.changeNavigation(DashboardDirections.actionNavDashboardToNavQuran())
                         "hadiths" -> ctx.startActivity(Intent(ctx, Hadiths::class.java))
-                        "muhammadStory" -> Intent(ctx, ActivityStory::class.java).apply {
+                        "muhammadStory" -> Intent(ctx, StoryDetails::class.java).apply {
                             putExtra("storyID", "muhammad")
                             ctx.startActivity(this)
                         }
@@ -161,7 +160,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
                 .placeholder(R.drawable.load_img).into(itemView.cardImage)
             itemView.cardName.text = story.title.toUpperCase(Locale.ENGLISH)
             itemView.setOnClickListener {
-                Intent(ctx, ActivityStory::class.java).apply {
+                Intent(ctx, StoryDetails::class.java).apply {
                     putExtra("story", story)
                     ctx.startActivity(this)
                 }
@@ -200,8 +199,8 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
                         }
                     }
                     "azkarOfDay" -> {
-                        Intent(ctx, QuoteOfDay::class.java).apply {
-                            putExtra("intentKey", "zekr")
+                        Intent(ctx, TopicDetails::class.java).apply {
+                            putExtra("intentKey", "azkar")
                             ctx.startActivity(this)
                         }
                     }

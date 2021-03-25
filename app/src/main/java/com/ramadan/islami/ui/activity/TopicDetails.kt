@@ -23,6 +23,7 @@ import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.TopicAdapter
 import com.ramadan.islami.ui.viewModel.FirebaseViewModel
 import com.ramadan.islami.ui.viewModel.LocalViewModel
+import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.debug_tag
 import kotlinx.android.synthetic.main.activity_topic.*
 import kotlinx.coroutines.Dispatchers
@@ -40,6 +41,7 @@ class TopicDetails : AppCompatActivity() {
     private var intentKey: String = ""
     private lateinit var azkar: Azkar.AzkarItem
     private lateinit var adView: AdView
+    private lateinit var localeHelper: LocaleHelper
 
     override fun onStart() {
         super.onStart()
@@ -47,6 +49,7 @@ class TopicDetails : AppCompatActivity() {
             when (it) {
                 "morningAzkar" -> fetchMorningAzkar()
                 "eveningAzkar" -> fetchEveningAzkar()
+                "azkar" -> fetchDayAzkar()
                 "topic" -> fetchTopic()
             }
         }
@@ -85,8 +88,8 @@ class TopicDetails : AppCompatActivity() {
                 viewModel.rateTopic(language, it, topic!!.id, !isChecked)
             }
         }
+        localeHelper = LocaleHelper()
         adView = findViewById(R.id.adView)
-
         adView.adListener = object : AdListener() {
             override fun onAdLoaded() {
                 contentView.updatePadding(0, 0, 0, 160)
@@ -144,6 +147,14 @@ class TopicDetails : AppCompatActivity() {
         }
     }
 
+    private fun fetchDayAzkar() {
+        title = getString(R.string.azkar)
+        localViewModel.getAzkar(this)?.let { azkar ->
+            azkar.shuffle()
+            topicAdapter.setAzkarDataList(azkar.take(5).toMutableList())
+        }
+    }
+
     private fun fetchNotification() {
         val collectionID = intent.getStringExtra("collectionID").toString()
         val documentID = intent.getStringExtra("documentID").toString()
@@ -164,4 +175,5 @@ class TopicDetails : AppCompatActivity() {
         onBackPressed()
         return true
     }
+
 }

@@ -25,7 +25,7 @@ class Feedback : Fragment(), FirebaseListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val root = inflater.inflate(R.layout.fragmnet_feedback, container, false)
+        val root = inflater.inflate(R.layout.fragment_feedback, container, false)
         viewModel.firebaseListener = this
         sendBtn = root.findViewById(R.id.sendBtn)
         msgEditText = root.findViewById(R.id.msgEditText)

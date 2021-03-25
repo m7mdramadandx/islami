@@ -52,6 +52,7 @@ class StoryDetails : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         recyclerView = findViewById(R.id.global_recycler_view)
         progress.visibility = View.GONE
+        recyclerView.setHasFixedSize(true)
         storyAdapter = StoryAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = storyAdapter
@@ -102,7 +103,7 @@ class StoryDetails : AppCompatActivity() {
         contextMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams).apply {
             menuItemClickListener = { view, position ->
                 when (position) {
-                    0 -> showBrief(story.title, story.brief, view.context)
+                    0 -> showBrief(story!!.title, story!!.brief, view.context)
                     1 -> {
                         val intent = Intent()
                         intent.action = Intent.ACTION_VIEW

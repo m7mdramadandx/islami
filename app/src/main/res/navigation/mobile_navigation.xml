@@ -147,7 +147,7 @@
         android:id="@+id/nav_family_tree_details"
         android:name="com.ramadan.islami.ui.fragment.FamilyTreeDetails"
         android:label="@string/family_tree"
-        tools:layout="@layout/family_tree">
+        tools:layout="@layout/fragment_family_tree">
         <argument android:name="intentKey" />
     </fragment>
 
@@ -155,12 +155,12 @@
         android:id="@+id/nav_feedback"
         android:name="com.ramadan.islami.ui.fragment.Feedback"
         android:label="@string/send_feedback"
-        tools:layout="@layout/fragmnet_feedback" />
+        tools:layout="@layout/fragment_feedback" />
 
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.ramadan.islami.ui.fragment.Settings"
         android:label="@string/settings"
-        tools:layout="@layout/fragmnet_settings" />
+        tools:layout="@layout/fragment_settings" />
 
 </navigation>

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.data.model.Azkar
 import com.ramadan.islami.ui.activity.TopicDetails
+import com.ramadan.islami.utils.showBrief
 import kotlinx.android.synthetic.main.item_content.view.*
 import kotlinx.android.synthetic.main.item_tile.view.*
 import com.ramadan.islami.data.model.Topic as TopicModel
@@ -89,8 +90,19 @@ class TopicAdapter : RecyclerView.Adapter<TopicAdapter.CustomView>() {
         }
 
         fun azkarView(azkarItem: Azkar.AzkarItem) {
-            itemView.content.text = azkarItem.zekr
-            itemView.subtitle.visibility = View.GONE
+            if (azkarItem.category != "أذكار الصباح" && azkarItem.category != "أذكار المساء") {
+                itemView.subtitle.text = azkarItem.category
+                itemView.content.text = azkarItem.zekr
+            } else {
+                itemView.content.text = azkarItem.zekr
+                itemView.subtitle.visibility = View.GONE
+            }
+            itemView.content.setOnLongClickListener {
+                showBrief(itemView.context.resources.getString(R.string.tafsir),
+                    azkarItem.description,
+                    itemView.context)
+                false
+            }
         }
     }
 }

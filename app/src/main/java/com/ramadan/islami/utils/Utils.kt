@@ -70,7 +70,7 @@ class Utils(val context: Context) {
         ),
         CollectionModel(
             "azkarOfDay",
-            context.getString(string.azkarOfDay),
+            context.getString(string.azkar),
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fazkar.jpg?alt=media&token=27870e4e-a359-4a1b-91de-057de5afa828"
         ),
         CollectionModel(
@@ -141,6 +141,7 @@ class Utils(val context: Context) {
         context.getString(string.dhuKeada),
         context.getString(string.dhuHija),
     )
+
 }
 
 
@@ -203,7 +204,7 @@ fun showBrief(title: String, content: String, context: Context) {
 }
 
 
-private fun saveImage(bitmap: Bitmap) {
+fun saveImage(bitmap: Bitmap) {
     try {
         val dir = File(dirPath)
         if (!dir.exists()) dir.mkdirs()
@@ -244,6 +245,15 @@ fun Activity.turnScreenOnAndKeyguardOff() {
 
 const val defaultImg: String =
     "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/islami_background_256.png?alt=media&token=72e1403c-2e25-4c8c-b1c0-2cf383153c01"
+
+const val muhammadFamilyAR =
+    "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/familyTree%2Fmuhammad_tree_ar.png?alt=media&token=ab45bdf5-652f-43ce-8eb2-1a4f313c82a8"
+const val muhammadFamilyEN =
+    "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/familyTree%2Fmuhammad_tree_en.png?alt=media&token=6afa4dbc-68e0-4e66-a6ac-041acb58bffd"
+const val prophetsFamilyAR =
+    "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/familyTree%2Fprophets_tree_ar.png?alt=media&token=a4d715c2-fc87-4658-acfe-11cfcac6190c"
+const val prophetsFamilyEN =
+    "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/familyTree%2Fprophets_tree_en.png?alt=media&token=a2b61e24-1833-4873-8ef7-efa0fd9afee8"
 
 fun dateOfDay(): String {
     val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)

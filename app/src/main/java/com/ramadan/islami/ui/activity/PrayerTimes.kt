@@ -108,21 +108,6 @@ class PrayerTimes : AppCompatActivity() {
                 }
             })
         }
-        val adRequest = AdRequest.Builder().build()
-        RewardedAd.load(this,
-            getString(R.string.date_conversion_ad),
-            adRequest,
-            object : RewardedAdLoadCallback() {
-                override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.d(debug_tag, adError.message)
-                    mRewardedAd = null
-                }
-
-                override fun onAdLoaded(rewardedAd: RewardedAd) {
-                    mRewardedAd = rewardedAd
-                    mRewardedAd?.show(this@PrayerTimes) { item -> Log.e(debug_tag, item.type) }
-                }
-            })
 
     }
 
@@ -196,10 +181,26 @@ class PrayerTimes : AppCompatActivity() {
 
     fun monthView(view: View) {
         prayer?.let {
-            Intent(this, MonthPrayerTimes::class.java).apply {
-                putExtra("prayer", prayer)
-                startActivity(this)
-            }
+            val adRequest = AdRequest.Builder().build()
+            RewardedAd.load(this,
+                getString(R.string.date_conversion_ad),
+                adRequest,
+                object : RewardedAdLoadCallback() {
+                    override fun onAdFailedToLoad(adError: LoadAdError) {
+                        Log.d(debug_tag, adError.message)
+                        mRewardedAd = null
+                    }
+
+                    override fun onAdLoaded(rewardedAd: RewardedAd) {
+                        mRewardedAd = rewardedAd
+                        mRewardedAd?.show(this@PrayerTimes) {
+                            Intent(this@PrayerTimes, MonthPrayerTimes::class.java).apply {
+                                putExtra("prayer", prayer)
+                                startActivity(this)
+                            }
+                        }
+                    }
+                })
         } ?: view.snackBar(getString(R.string.noInternet))
     }
 }

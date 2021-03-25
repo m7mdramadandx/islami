@@ -128,7 +128,7 @@ class QuoteOfDay : AppCompatActivity() {
     }
 
     private fun fetchAzkar() {
-        title = getString(R.string.azkarOfDay)
+        title = getString(R.string.azkar)
         if (localeHelper.getAzkarOfDay(this).contains(dateOfDay() + " date")) {
             val zekr = localeHelper.getAzkarOfDay(this)
             textBody.visibility = View.VISIBLE

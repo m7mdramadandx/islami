@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadan.islami.R
 import com.ramadan.islami.utils.LocaleHelper
+import kotlinx.android.synthetic.main.alert_dialog.view.*
 import kotlinx.android.synthetic.main.item_story.view.*
 
 class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
@@ -29,7 +30,7 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
     }
 
     override fun onBindViewHolder(holder: StoryAdapter.CustomView, position: Int) {
-        return holder.expandView(text[position], position)
+        return holder.expandView(text[position])
     }
 
     override fun getItemCount(): Int = text.size
@@ -40,24 +41,23 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
         private val ctx = itemView.context
         private var marks = localeHelper.getStoryMark(ctx)
 
-        fun expandView(text: String, position: Int) {
-            val keyStore = "$title ${position + 1}"
+        fun expandView(text: String) {
+            val keyStore = "$title ${layoutPosition + 1}"
             when {
                 marks.contains(keyStore) -> {
                     itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.silver_grey))
                     itemView.storyTitle.setTextColor(ctx.resources.getColor(R.color.grey_silver))
                 }
-                position % 2 == 0 -> {
+                layoutPosition % 2 == 0 -> {
                     itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorSecondary))
                 }
                 else -> itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
             }
             itemView.expansionText.text = text.replace(":", "\n")
-            itemView.storyTitle.text = "${ctx.getString(R.string.part)} ${(position + 1)}"
-            itemView.expansionLayout.addListener { _, isExpanded ->
-                if (!isExpanded && !marks.contains(keyStore)) {
-                    alert(keyStore).takeIf { !marks.contains(keyStore) }
-                    return@addListener
+            itemView.storyTitle.text = "${ctx.getString(R.string.part)} ${(layoutPosition + 1)}"
+            itemView.expansionLayout.addListener { layout, isExpanded ->
+                if (!isExpanded && !marks.contains("$title ${layoutPosition + 1}")) {
+                    alert("$title ${layoutPosition + 1}")
                 } else {
                     return@addListener
                 }

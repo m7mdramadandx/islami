@@ -27,7 +27,7 @@ class NotificationHelper(base: Context) : ContextWrapper(base) {
 
     fun channelNotification(title: String, message: String): Notification {
         val intent = Intent(this, AzanActivity::class.java).apply {
-            putExtra("prayName", " صلاه " + title)
+            putExtra("prayName", title)
         }
 
         val pendingIntent = PendingIntent.getActivity(

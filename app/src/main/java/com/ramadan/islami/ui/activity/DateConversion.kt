@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
@@ -93,36 +92,37 @@ class DateConversion : AppCompatActivity() {
 
         }
         initMenuFragment()
-        val adRequest = AdRequest.Builder().build()
-        RewardedAd.load(this,
-            getString(R.string.date_conversion_ad),
-            adRequest,
-            object : RewardedAdLoadCallback() {
-                override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.d(debug_tag, adError.message)
-                    mRewardedAd = null
-                }
 
-                override fun onAdLoaded(rewardedAd: RewardedAd) {
-                    mRewardedAd = rewardedAd
-                    mRewardedAd?.show(this@DateConversion) { item -> Log.e(debug_tag, item.type) }
-                }
-            })
     }
 
     private fun fetchHijri(gregorianDate: String) {
-        viewModel.hijriCalender(gregorianDate).observe(this, {
+        val adRequest = AdRequest.Builder().build()
+
+        viewModel.hijriCalender(gregorianDate).observe(this@DateConversion, {
             when (it.status) {
-                ResponseStatus.LOADING -> {
-                    conversionIcon.rotation = 180F
-                }
+                ResponseStatus.LOADING -> conversionIcon.rotation = 180F
                 ResponseStatus.SUCCESS -> {
-                    progress.visibility = View.GONE
-                    hijri.text = it.data!!.data.hijri.date
+                    conversionIcon.rotation = 90F
+                    RewardedAd.load(this,
+                        getString(R.string.date_conversion_ad),
+                        adRequest,
+                        object : RewardedAdLoadCallback() {
+                            override fun onAdFailedToLoad(adError: LoadAdError) {
+                                Log.d(debug_tag, adError.message)
+                                mRewardedAd = null
+                            }
+
+                            override fun onAdLoaded(rewardedAd: RewardedAd) {
+                                mRewardedAd = rewardedAd
+                                mRewardedAd?.show(this@DateConversion) { item ->
+                                    hijri.text = it.data!!.data.hijri.date
+                                }
+                            }
+                        })
                 }
                 ResponseStatus.ERROR -> {
                     conversionIcon.rotation = 90F
-                    showMessage(this, it.message.toString())
+                    showMessage(this@DateConversion, it.message.toString())
                 }
             }
         })
@@ -130,20 +130,36 @@ class DateConversion : AppCompatActivity() {
 
 
     private fun fetchGregorian(hijriDate: String) {
-        viewModel.gregorianCalender(hijriDate).observe(this, {
-            when (it.status) {
-                ResponseStatus.LOADING -> progress.visibility = View.VISIBLE
-                ResponseStatus.SUCCESS -> {
-                    progress.visibility = View.GONE
-                    gregorian.text = it.data!!.data.gregorian.date
+        val adRequest = AdRequest.Builder().build()
+        viewModel.gregorianCalender(hijriDate).observe(this@DateConversion,
+            {
+                when (it.status) {
+                    ResponseStatus.LOADING -> conversionIcon.rotation = 180F
+                    ResponseStatus.SUCCESS -> {
+                        conversionIcon.rotation = 90F
+                        RewardedAd.load(this,
+                            getString(R.string.date_conversion_ad),
+                            adRequest,
+                            object : RewardedAdLoadCallback() {
+                                override fun onAdFailedToLoad(adError: LoadAdError) {
+                                    Log.d(debug_tag, adError.message)
+                                    mRewardedAd = null
+                                }
+
+                                override fun onAdLoaded(rewardedAd: RewardedAd) {
+                                    mRewardedAd = rewardedAd
+                                    mRewardedAd?.show(this@DateConversion) { item ->
+                                        gregorian.text = it.data!!.data.gregorian.date
+                                    }
+                                }
+                            })
+                    }
+                    ResponseStatus.ERROR -> {
+                        conversionIcon.rotation = 90F
+                        showMessage(this@DateConversion, it.message.toString())
+                    }
                 }
-                ResponseStatus.ERROR -> {
-                    progress.visibility = View.GONE
-                    Log.e(debug_tag, it.message.toString())
-                    showMessage(this, it.message.toString())
-                }
-            }
-        })
+            })
     }
 
     private fun setHijriDate(year: Int, month: Int, day: Int) {
@@ -191,17 +207,18 @@ class DateConversion : AppCompatActivity() {
             menuObjects = getMenuObjects(),
             isClosableOutside = true
         )
-        contextMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams).apply {
-            menuItemClickListener = { view, position ->
-                if (position == 0) {
-                    val intent = Intent()
-                    intent.action = Intent.ACTION_VIEW
-                    intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                    intent.data = Uri.parse("https://translate.google.com/")
-                    startActivity(intent)
+        contextMenuDialogFragment =
+            ContextMenuDialogFragment.newInstance(menuParams).apply {
+                menuItemClickListener = { view, position ->
+                    if (position == 0) {
+                        val intent = Intent()
+                        intent.action = Intent.ACTION_VIEW
+                        intent.addCategory(Intent.CATEGORY_BROWSABLE)
+                        intent.data = Uri.parse("https://translate.google.com/")
+                        startActivity(intent)
+                    }
                 }
             }
-        }
     }
 
     private fun getMenuObjects() = mutableListOf<MenuObject>().apply {

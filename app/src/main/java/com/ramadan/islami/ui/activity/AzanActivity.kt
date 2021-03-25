@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -45,6 +44,10 @@ class AzanActivity : AppCompatActivity() {
         intent.hasExtra("prayName").let {
             if (it) (" صلاه " + intent.getStringExtra("prayName")).also { prayName.text = it }
         }
+        Handler().postDelayed({
+            Azan().setAlarm(this)
+//            NotificationManagerCompat.from(this).cancel(1001)
+        }, 10000)
     }
 
     override fun onResume() {
@@ -52,14 +55,6 @@ class AzanActivity : AppCompatActivity() {
         MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
             param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Handler().postDelayed({
-            Azan().setAlarm(this)
-            NotificationManagerCompat.from(this).cancel(1001)
-        }, 60000)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

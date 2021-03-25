@@ -43,15 +43,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
-        android:background="@color/silver_grey">
+        android:background="@drawable/bg_rounded">
 
         <TextView
             android:id="@+id/expansionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:textIsSelectable="true"
-            android:textSize="19sp" />
+            android:textIsSelectable="true" />
     </com.github.florent37.expansionpanel.ExpansionLayout>
 
 </LinearLayout>
