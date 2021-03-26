@@ -9,6 +9,7 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.util.Log
@@ -27,6 +28,7 @@ import com.ramadan.islami.R.string
 import com.squareup.picasso.Picasso
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
 import java.io.OutputStream
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -165,6 +167,8 @@ fun showImg(imgUrl: String, context: Context) {
     val view = LayoutInflater.from(context).inflate(R.layout.img_dialog, null)
     dialogBuilder.setView(view)
     val alertDialog = dialogBuilder.create()
+    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    alertDialog.show()
     val imageView: ImageView = view.findViewById(R.id.quoteImg)
     Picasso.get()
         .load(imgUrl).error(R.drawable.failure_img).placeholder(R.drawable.load_img)
@@ -184,23 +188,22 @@ fun showImg(imgUrl: String, context: Context) {
         }
         false
     }
-    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    alertDialog.show()
 }
 
 
 fun showBrief(title: String, content: String, context: Context) {
-    val dialogBuilder = AlertDialog.Builder(context)
-    val view = LayoutInflater.from(context).inflate(R.layout.story_marker, null)
+    val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
+    val view = View.inflate(context, R.layout.story_marker, null)
     dialogBuilder.setView(view)
     val alertDialog = dialogBuilder.create()
+    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    alertDialog.show()
+    alertDialog.setCancelable(true)
     view.findViewById<LinearLayout>(R.id.actionBar).visibility = View.GONE
     view.findViewById<TextView>(R.id.alertTitle).text = title
     val alertContent = view.findViewById<TextView>(R.id.alertContent)
     alertContent.visibility = View.VISIBLE
     alertContent.text = content
-    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    alertDialog.show()
 }
 
 
@@ -282,4 +285,25 @@ fun View.snackBar(message: String) {
         setTextColor(resources.getColor(R.color.white))
         show()
     }
+}
+
+fun getLocalBitmapUri(imageView: ImageView): Uri? {
+    val drawable = imageView.drawable
+    val bmp: Bitmap? = if (drawable is BitmapDrawable) {
+        (imageView.drawable as BitmapDrawable).bitmap
+    } else return null
+
+    var bmpUri: Uri? = null
+    try {
+        val file = File(Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_DOWNLOADS), "family_tree_" + System.currentTimeMillis() + ".png")
+        file.parentFile.mkdirs()
+        val out = FileOutputStream(file)
+        bmp?.compress(Bitmap.CompressFormat.PNG, 90, out)
+        out.close()
+        bmpUri = Uri.fromFile(file)
+    } catch (e: IOException) {
+        e.printStackTrace()
+    }
+    return bmpUri
 }

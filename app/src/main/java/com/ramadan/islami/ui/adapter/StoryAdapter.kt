@@ -40,7 +40,7 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
         private val localeHelper = LocaleHelper()
         private val ctx = itemView.context
         private var marks = localeHelper.getStoryMark(ctx)
-
+        private var execOnce: Boolean? = true
         fun expandView(text: String) {
             val keyStore = "$title ${layoutPosition + 1}"
             when {
@@ -57,7 +57,9 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
             itemView.storyTitle.text = "${ctx.getString(R.string.part)} ${(layoutPosition + 1)}"
             itemView.expansionLayout.addListener { layout, isExpanded ->
                 if (!isExpanded && !marks.contains("$title ${layoutPosition + 1}")) {
-                    alert("$title ${layoutPosition + 1}")
+                    execOnce?.let { alert("$title ${layoutPosition + 1}") }
+                    execOnce = null
+                    return@addListener
                 } else {
                     return@addListener
                 }

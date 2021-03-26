@@ -1,7 +1,12 @@
 package com.ramadan.islami.ui.activity
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -9,12 +14,15 @@ import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
-import com.ramadan.islami.data.model.Azkar
 import com.ramadan.islami.data.model.Verse
 import com.ramadan.islami.ui.viewModel.LocalViewModel
 import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.*
+import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
+import com.yalantis.contextmenu.lib.MenuGravity
+import com.yalantis.contextmenu.lib.MenuObject
+import com.yalantis.contextmenu.lib.MenuParams
 import kotlinx.android.synthetic.main.activity_quote_of_day.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -26,10 +34,10 @@ class QuoteOfDay : AppCompatActivity() {
     private lateinit var webServiceViewModel: WebServiceViewModel
     private lateinit var localViewModel: LocalViewModel
     private val localeHelper = LocaleHelper()
-    private val tafseer = 0
     private var intentKey: String = ""
-    private lateinit var quoteOfDayItem: Azkar.AzkarItem
     private lateinit var verseOfDayItem: Verse.VerseItem
+    private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
+    private lateinit var textBody: TextView
 
     override fun onStart() {
         super.onStart()
@@ -37,8 +45,8 @@ class QuoteOfDay : AppCompatActivity() {
         when (intentKey) {
             "verse" -> fetchVerseDay()
             "hadith" -> fetchHadith()
-            "zekr" -> fetchAzkar()
         }
+        initMenuFragment()
     }
 
     override fun onResume() {
@@ -54,7 +62,7 @@ class QuoteOfDay : AppCompatActivity() {
         setContentView(R.layout.activity_quote_of_day)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        textBody = findViewById(R.id.textContent)
     }
 
 
@@ -127,49 +135,49 @@ class QuoteOfDay : AppCompatActivity() {
         })
     }
 
-    private fun fetchAzkar() {
-        title = getString(R.string.azkar)
-        if (localeHelper.getAzkarOfDay(this).contains(dateOfDay() + " date")) {
-            val zekr = localeHelper.getAzkarOfDay(this)
-            textBody.visibility = View.VISIBLE
-            textTitle.text = zekr.find { it.contains("title") }?.removeSuffix("title")
-            textBody.text = zekr.find { it.contains("body") }?.removeSuffix("body")
-            textDescription.text =
-                zekr.find { it.contains("description") }?.removeSuffix("description")
-            if (localeHelper.getAzkarOfDay1(this).contains(dateOfDay() + " date")) {
-                val zekr1 = localeHelper.getAzkarOfDay1(this)
-                textBody1.visibility = View.VISIBLE
-                spacer.visibility = View.VISIBLE
-                textTitle1.text = zekr1.find { it.contains("title") }?.removeSuffix("title")
-                textBody1.text = zekr1.find { it.contains("body") }?.removeSuffix("body")
-                textDescription1.text =
-                    zekr1.find { it.contains("description") }?.removeSuffix("description")
-            }
-        } else fetchNewAzkar()
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.option_menu, menu)
+        return true
     }
 
-    private fun fetchNewAzkar() {
-        localViewModel = ViewModelProvider(this).get(LocalViewModel::class.java)
-        GlobalScope.launch(Dispatchers.Main) {
-            withContext(Dispatchers.Main) {
-                progress.visibility = View.VISIBLE
-                quoteOfDayItem = localViewModel.getAzkar(this@QuoteOfDay)?.random()!!.apply {
-                    textBody.visibility = View.VISIBLE
-                    textTitle.text = category
-                    textBody.text = zekr
-                    textDescription.text = description
-                    localeHelper.setAzkarOfDay(this@QuoteOfDay, this)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        item.let { if (it.itemId == R.id.context_menu) showContextMenuDialogFragment() }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun initMenuFragment() {
+        val menuParams = MenuParams(
+            actionBarSize = resources.getDimension(R.dimen.tool_bar_height).toInt(),
+            menuObjects = getMenuObjects(),
+            isClosableOutside = true,
+            gravity = MenuGravity.END
+        )
+        contextMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams).apply {
+            menuItemClickListener = { view, position ->
+                when (position) {
+                    0 -> Intent(Intent.ACTION_SEND).also {
+                        it.type = "text/plain"
+                        it.putExtra(Intent.EXTRA_TEXT, textBody.text.toString())
+                        startActivity(it)
+                    }
                 }
-                quoteOfDayItem = localViewModel.getAzkar(this@QuoteOfDay)?.random()!!.apply {
-                    textBody1.visibility = View.VISIBLE
-                    spacer.visibility = View.VISIBLE
-                    textTitle1.text = category
-                    textBody1.text = zekr
-                    textDescription1.text = description
-                    localeHelper.setAzkarOfDay1(this@QuoteOfDay, this)
-                }
-                progress.visibility = View.GONE
             }
         }
     }
+
+    private fun getMenuObjects() = mutableListOf<MenuObject>().apply {
+        MenuObject(getString(R.string.share)).apply {
+            setResourceValue(R.drawable.ic_share)
+            setBgColorValue((Color.rgb(22, 36, 71)))
+            add(this)
+        }
+    }
+
+    private fun showContextMenuDialogFragment() {
+        if (supportFragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
+            contextMenuDialogFragment.show(supportFragmentManager,
+                ContextMenuDialogFragment.TAG)
+        }
+    }
+
 }

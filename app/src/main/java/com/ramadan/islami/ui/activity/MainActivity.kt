@@ -1,7 +1,6 @@
 package com.ramadan.islami.ui.activity
 
 import android.content.Context
-import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
@@ -68,16 +67,18 @@ class MainActivity : AppCompatActivity() {
         listener =
             NavController.OnDestinationChangedListener { controller, destination, arguments ->
                 when (destination.id) {
-                    R.id.nav_share -> {
-                        Intent(Intent.ACTION_SEND).also {
-                            it.type = "text/plain"
-                            it.putExtra(
-                                Intent.EXTRA_TEXT,
-                                "I suggest this app for you : ${appURL}"
-                            )
-                            startActivity(it)
-                        }
+                    R.id.nav_family_tree_details -> {
+
                     }
+                    //                        Intent(Intent.ACTION_SEND).also {
+//                            it.type = "text/plain"
+//                            it.putExtra(
+//                                Intent.EXTRA_TEXT,
+//                                "I suggest this app for you : ${appURL}"
+//                            )
+//                            startActivity(it)
+//                        }
+
                 }
             }
         isConnected = this.isNetworkConnected()
@@ -92,13 +93,9 @@ class MainActivity : AppCompatActivity() {
                 Log.e(debug_tag, adError.message)
             }
 
-            override fun onAdOpened() {
-                Log.e(debug_tag, "OPENED")
+            override fun onAdClicked() {
+                Log.e(debug_tag, "CLICKED")
             }
-
-            override fun onAdClicked() {}
-
-            override fun onAdLeftApplication() {}
 
             override fun onAdClosed() {
                 constraintLayout.updatePadding(0, 0, 0, 0)
@@ -137,17 +134,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(
-            localeHelper.setLocale(
-                base!!,
-                localeHelper.getDefaultLanguage(base)
-            )
-        )
+        super.attachBaseContext(base?.let {
+            localeHelper.getDefaultLanguage(it)?.let { localeHelper.setLocale(base, it) }
+        })
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        localeHelper.setLocale(this, localeHelper.getDefaultLanguage(this))
+        localeHelper.getDefaultLanguage(this)?.let { localeHelper.setLocale(this, it) }
     }
 
     fun loadAds() {

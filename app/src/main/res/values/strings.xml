@@ -111,6 +111,7 @@
     <string name="notificationSetting">Notification setting</string>
     <string name="themeSetting">Theme setting</string>
     <string name="languageSetting">Language setting</string>
+    <string name="save">حفظ</string>
 
     <string-array name="custom_weekdays">
         <item>Sn</item>

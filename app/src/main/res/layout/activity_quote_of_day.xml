@@ -21,7 +21,7 @@
             android:layout_alignParentTop="true" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textBody"
+            android:id="@+id/textContent"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,6 +33,7 @@
             android:gravity="center"
             android:padding="20dp"
             android:textColor="@color/colorAccent"
+            android:textColorHighlight="#eee"
             android:textIsSelectable="true"
             android:visibility="gone"
             app:autoSizeTextType="uniform" />
@@ -41,49 +42,7 @@
             android:id="@+id/textDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textBody"
-            android:layout_marginTop="8dp" />
-
-        <View
-            android:id="@+id/spacer"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_below="@id/textDescription"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginVertical="16dp"
-            android:background="@drawable/bg_rounded"
-            android:backgroundTint="@color/silver_grey"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/textTitle1"
-            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/spacer" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textBody1"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textTitle1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_rounded"
-            android:backgroundTint="@color/colorSecondary"
-            android:gravity="center"
-            android:padding="20dp"
-            android:textColor="@color/colorAccent"
-            android:textIsSelectable="true"
-            android:visibility="gone"
-            app:autoSizeTextType="uniform" />
-
-        <TextView
-            android:id="@+id/textDescription1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textBody1"
+            android:layout_below="@id/textContent"
             android:layout_marginTop="8dp" />
 
         <ProgressBar

@@ -128,5 +128,6 @@
     <string name="notificationSetting">إعدات الاشعارات</string>
     <string name="themeSetting">إعدات المظهر</string>
     <string name="languageSetting">إعدات اللغة</string>
+    <string name="save">حفظ</string>
 
 </resources>

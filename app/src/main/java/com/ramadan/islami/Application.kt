@@ -33,17 +33,14 @@ class Application : Application() {
     }
 
     override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(
-            localeHelper.setLocale(
-                base!!,
-                localeHelper.getDefaultLanguage(base)
-            )
-        )
+        super.attachBaseContext(base?.let {
+            localeHelper.getDefaultLanguage(it)?.let { localeHelper.setLocale(base, it) }
+        })
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        localeHelper.setLocale(this, localeHelper.getDefaultLanguage(this))
+        localeHelper.getDefaultLanguage(this)?.let { localeHelper.setLocale(this, it) }
     }
 
 }
