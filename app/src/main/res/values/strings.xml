@@ -115,6 +115,8 @@
     <string name="_00_00">00:00</string>
     <string name="bookmarks">bookmarks</string>
     <string name="couldnotGetPrayers">you will not get prayer times</string>
+    <string name="download">Download</string>
+    <string name="options">Options</string>
 
     <string-array name="custom_weekdays">
         <item>Sn</item>

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.KeyguardManager
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
@@ -180,12 +181,7 @@ fun showImg(imgUrl: String, context: Context) {
         Log.e("ERROR", e.localizedMessage!!)
     }
     imageView.setOnLongClickListener {
-        try {
-            saveImage(bitmap!!)
-            it.snackBar(context.getString(string.saved))
-        } catch (e: Exception) {
-            it.snackBar(context.getString(string.failedToDownload))
-        }
+        showOptions(context, bitmap!!, imageView)
         false
     }
 }
@@ -204,6 +200,32 @@ fun showBrief(title: String, content: String, context: Context) {
     val alertContent = view.findViewById<TextView>(R.id.alertContent)
     alertContent.visibility = View.VISIBLE
     alertContent.text = content
+}
+
+fun showOptions(context: Context, bitmap: Bitmap, imageView: ImageView) {
+    val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
+    val view = View.inflate(context, R.layout.alert_dialog_options, null)
+    dialogBuilder.setView(view)
+    val alertDialog = dialogBuilder.create()
+    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    alertDialog.show()
+    alertDialog.setCancelable(true)
+    view.findViewById<TextView>(R.id.share).setOnClickListener {
+        val bmpUri: Uri = getLocalBitmapUri(imageView)!!
+        val shareIntent = Intent()
+        shareIntent.action = Intent.ACTION_SEND
+        shareIntent.type = "picture/png"
+        shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri)
+        view.context.startActivity(Intent.createChooser(shareIntent, "Send to"))
+    }
+    view.findViewById<TextView>(R.id.download).setOnClickListener {
+        try {
+            saveImage(bitmap)
+            it.snackBar(context.getString(string.saved))
+        } catch (e: Exception) {
+            it.snackBar(context.getString(string.failedToDownload))
+        }
+    }
 }
 
 
