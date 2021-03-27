@@ -109,7 +109,7 @@ class AyahPage : Fragment() {
 
     private fun showDialog(ctx: Context) {
         val dialogBuilder = AlertDialog.Builder(ctx)
-        val view = LayoutInflater.from(ctx).inflate(R.layout.story_marker, null)
+        val view = LayoutInflater.from(ctx).inflate(R.layout.alert_dialog_read_marker, null)
         dialogBuilder.setView(view)
         val alertDialog = dialogBuilder.create()
         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

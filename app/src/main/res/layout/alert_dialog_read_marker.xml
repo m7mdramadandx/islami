@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginHorizontal="48dp"
-    card_view:cardCornerRadius="25dp">
+    android:layout_marginHorizontal="64dp"
+    android:background="@drawable/bg_rounded">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +12,6 @@
         android:layout_margin="8dp"
         android:orientation="vertical"
         android:paddingVertical="8dp">
-
 
         <TextView
             android:id="@+id/alertTitle"
@@ -23,13 +21,15 @@
             android:layout_gravity="center"
             android:layout_marginVertical="10dp"
             android:text="@string/didYouFinished"
-            android:textColor="@color/titleColor" />
+            android:textColor="@color/titleColor"
+            android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginHorizontal="64dp"
-            android:background="@drawable/bg_rounded" />
+            android:background="@drawable/bg_rounded"
+            android:backgroundTint="@color/colorAccent" />
 
         <LinearLayout
             android:id="@+id/actionBar"
@@ -45,7 +45,8 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:text="@string/notYet"
-                android:textColor="#D32F2F" />
+                android:textColor="#D32F2F"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/yes"
@@ -54,7 +55,8 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:text="@string/yes"
-                android:textColor="#00C853" />
+                android:textColor="#00C853"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -67,4 +69,4 @@
             android:visibility="gone" />
 
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</LinearLayout>

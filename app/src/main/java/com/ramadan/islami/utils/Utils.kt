@@ -193,7 +193,7 @@ fun showImg(imgUrl: String, context: Context) {
 
 fun showBrief(title: String, content: String, context: Context) {
     val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-    val view = View.inflate(context, R.layout.story_marker, null)
+    val view = View.inflate(context, R.layout.alert_dialog_read_marker, null)
     dialogBuilder.setView(view)
     val alertDialog = dialogBuilder.create()
     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

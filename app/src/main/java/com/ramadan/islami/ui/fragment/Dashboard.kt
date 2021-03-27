@@ -2,10 +2,11 @@ package com.ramadan.islami.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Chronometer
+import android.widget.Chronometer.OnChronometerTickListener
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -16,12 +17,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
-import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.LoadAdError
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.logEvent
+import com.ramadan.islami.Azan
 import com.ramadan.islami.R
 import com.ramadan.islami.data.api.ApiHelper
 import com.ramadan.islami.data.api.RetrofitBuilder
@@ -35,7 +35,6 @@ import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.Utils
 import com.ramadan.islami.utils.changeNavigation
-import com.ramadan.islami.utils.debug_tag
 import com.ramadan.islami.utils.showMessage
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
@@ -57,6 +56,7 @@ class Dashboard : Fragment(), FirebaseListener {
         ).get(WebServiceViewModel::class.java)
     }
     private lateinit var hijriDate: TextView
+    private lateinit var nextPrayerTime: TextView
     private lateinit var mAdView: AdView
     private lateinit var suggestionRCV: RecyclerView
     private lateinit var dailyRCV: RecyclerView
@@ -72,6 +72,7 @@ class Dashboard : Fragment(), FirebaseListener {
     private lateinit var hijriToday: UmmalquraCalendar
     private lateinit var progress0: ProgressBar
     private lateinit var progress1: ProgressBar
+    private lateinit var timer: Chronometer
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -101,8 +102,7 @@ class Dashboard : Fragment(), FirebaseListener {
 
     override fun onPause() {
         super.onPause()
-//        mAdView.removeAllViews()
-//        mAdView.destroy()
+        mAdView.removeAllViews()
     }
 
     override fun onCreateView(
@@ -114,6 +114,7 @@ class Dashboard : Fragment(), FirebaseListener {
         mAdView = root.findViewById(R.id.adView)
         dataViewModel.firebaseListener = this
         hijriDate = root.findViewById(R.id.hijriDate)
+        timer = root.findViewById(R.id.timer)
         suggestionRCV = root.findViewById(R.id.suggestionRecyclerView)
         dailyRCV = root.findViewById(R.id.dailyRecyclerView)
         familyTreeRCV = root.findViewById(R.id.familyTreeRecyclerView)
@@ -130,6 +131,16 @@ class Dashboard : Fragment(), FirebaseListener {
                 "${hijriToday[UmmalquraCalendar.DAY_OF_MONTH]} " +
                 "${utils.month[hijriToday[UmmalquraCalendar.MONTH]]} " +
                 "${hijriToday[UmmalquraCalendar.YEAR]} ").also { hijriDate.text = it }
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            timer.isCountDown = true
+        }
+        timer.format = "00:%s"
+        timer.base = Azan().getAlarmDate(view.context)?.timeInMillis!!
+        timer.start()
+
+        timer.onChronometerTickListener = OnChronometerTickListener { c ->
+        }
 
         suggestionRCV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
         suggestionRCV.adapter = suggestionAdapter
@@ -167,31 +178,6 @@ class Dashboard : Fragment(), FirebaseListener {
         }
         view.findViewById<RelativeLayout>(R.id.prophets_tree).setOnClickListener {
             it.changeNavigation(DashboardDirections.actionDashboardToFamilyTree())
-        }
-        mAdView.adListener = object : AdListener() {
-            override fun onAdLoaded() {
-                Log.e(debug_tag, "LOADED")
-            }
-
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                Log.e(debug_tag, adError.message)
-            }
-
-            override fun onAdOpened() {
-                Log.e(debug_tag, "OPENED")
-            }
-
-            override fun onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
-            }
-
-            override fun onAdLeftApplication() {
-                // Code to be executed when the user has left the app.
-            }
-
-            override fun onAdClosed() {
-                Log.e(debug_tag, "CLOSED")
-            }
         }
     }
 

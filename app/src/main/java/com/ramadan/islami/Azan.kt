@@ -30,10 +30,7 @@ class Azan : BroadcastReceiver() {
         mediaPlayer = MediaPlayer.create(context, R.raw.elqtamy).apply {
             setVolume(100 * .01f, 100 * .01f)
             start()
-            setOnCompletionListener {
-                release()
-                stop()
-            }
+            setOnCompletionListener { release() }
         }
         val notificationHelper = NotificationHelper(context)
         val notification = notificationHelper.channelNotification(
@@ -58,39 +55,51 @@ class Azan : BroadcastReceiver() {
         )
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             calendar?.let {
-                if (Calendar.getInstance().timeInMillis <= calendar.timeInMillis)
+                if ((Calendar.getInstance().timeInMillis <= calendar.timeInMillis)
+                    || (Calendar.getInstance().time.seconds <= calendar.timeInMillis)
+                ) {
                     alarmManager.setExactAndAllowWhileIdle(
                         AlarmManager.RTC_WAKEUP,
                         calendar.timeInMillis,
                         pendingIntent
                     )
+                    showMessage(context, "Next Alarm: ${calendar.time.minutes}")
+                    Log.e(debug_tag, "Next Alarm: ${calendar.time.minutes}")
+                }
             }
         }
     }
 
-    private fun getAlarmDate(context: Context): Calendar? {
+    fun getAlarmDate(context: Context): Calendar? {
         val calendar = Calendar.getInstance()
         localeHelper.getPrayerTimes(context)?.let { mutableSet ->
             var setAlarm = false
             val hourTime = mutableListOf(
-                mutableSet.find { it.contains("fajr") }?.substring(0, 2),
-                mutableSet.find { it.contains("dhuhr") }?.substring(0, 2),
-                mutableSet.find { it.contains("asr") }?.substring(0, 2),
-                mutableSet.find { it.contains("maghrib") }?.substring(0, 2),
-                mutableSet.find { it.contains("isha") }?.substring(0, 2),
+                "6",
+                "6",
+                "6",
+//                mutableSet.find { it.contains("fajr") }?.substring(0, 2),
+//                mutableSet.find { it.contains("dhuhr") }?.substring(0, 2),
+//                mutableSet.find { it.contains("asr") }?.substring(0, 2),
+//                mutableSet.find { it.contains("maghrib") }?.substring(0, 2),
+//                mutableSet.find { it.contains("isha") }?.substring(0, 2),
             )
             val minutesTime = mutableListOf(
-                mutableSet.find { it.contains("fajr") }?.substring(3, 5),
-                mutableSet.find { it.contains("dhuhr") }?.substring(3, 5),
-                mutableSet.find { it.contains("asr") }?.substring(3, 5),
-                mutableSet.find { it.contains("maghrib") }?.substring(3, 5),
-                mutableSet.find { it.contains("isha") }?.substring(3, 5),
+                "1",
+                "4",
+                "6",
+//                mutableSet.find { it.contains("fajr") }?.substring(3, 5),
+//                mutableSet.find { it.contains("dhuhr") }?.substring(3, 5),
+//                mutableSet.find { it.contains("asr") }?.substring(3, 5),
+//                mutableSet.find { it.contains("maghrib") }?.substring(3, 5),
+//                mutableSet.find { it.contains("isha") }?.substring(3, 5),
             )
             var hour = hourTime[0]?.toInt()
             var minute = minutesTime[0]?.toInt()
             val currentHour = calendar[Calendar.HOUR_OF_DAY]
+            val mm = calendar[Calendar.MINUTE]
             for (i in 0 until hourTime.size) {
-                if (currentHour <= hourTime[i]!!.toInt() && !setAlarm) {
+                if (currentHour <= hourTime[i]!!.toInt() && mm <= minutesTime[i]!!.toInt() && !setAlarm) {
                     hour = hourTime[i]?.toInt()
                     minute = minutesTime[i]?.toInt()
                     setAlarm = true
@@ -104,8 +113,6 @@ class Azan : BroadcastReceiver() {
             calendar[Calendar.HOUR_OF_DAY] = hour!!
             calendar[Calendar.MINUTE] = minute!!
             calendar[Calendar.SECOND] = 0
-            showMessage(context, "Next Alarm: $hour:$minute")
-            Log.e(debug_tag, "Next Alarm: $hour:$minute")
             return calendar
         } ?: return null
     }

@@ -2,7 +2,6 @@ package com.ramadan.islami.ui.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -42,12 +41,18 @@ class AzanActivity : AppCompatActivity() {
             observeDate(it.latitude, it.longitude)
         }
         intent.hasExtra("prayName").let {
-            if (it) (" صلاه " + intent.getStringExtra("prayName")).also { prayName.text = it }
+            if (it) (intent.getStringExtra("prayName")).also { prayName.text = it }
         }
-        Handler().postDelayed({
-            Azan().setAlarm(this)
-//            NotificationManagerCompat.from(this).cancel(1001)
-        }, 10000)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Azan().setAlarm(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Azan().setAlarm(this)
     }
 
     override fun onResume() {
