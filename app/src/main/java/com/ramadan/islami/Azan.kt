@@ -28,9 +28,11 @@ class Azan : BroadcastReceiver() {
         )
         wakeLock.acquire(10 * 60 * 1000L /*10 minutes*/)
         mediaPlayer = MediaPlayer.create(context, R.raw.elqtamy).apply {
-            setVolume(100 * .01f, 100 * .01f)
-            start()
-            setOnCompletionListener { release() }
+            if (!isPlaying) {
+                setVolume(100 * .01f, 100 * .01f)
+                start()
+                setOnCompletionListener { release() }
+            }
         }
         val notificationHelper = NotificationHelper(context)
         val notification = notificationHelper.channelNotification(
@@ -55,17 +57,11 @@ class Azan : BroadcastReceiver() {
         )
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             calendar?.let {
-                if ((Calendar.getInstance().timeInMillis <= calendar.timeInMillis)
-                    || (Calendar.getInstance().time.seconds <= calendar.timeInMillis)
-                ) {
-                    alarmManager.setExactAndAllowWhileIdle(
-                        AlarmManager.RTC_WAKEUP,
-                        calendar.timeInMillis,
-                        pendingIntent
-                    )
-                    showMessage(context, "Next Alarm: ${calendar.time.minutes}")
-                    Log.e(debug_tag, "Next Alarm: ${calendar.time.minutes}")
-                }
+                alarmManager.setExactAndAllowWhileIdle(
+                    AlarmManager.RTC_WAKEUP,
+                    calendar.timeInMillis,
+                    pendingIntent)
+                Log.e(debug_tag, "Next Alarm: ${calendar.time.minutes}")
             }
         }
     }
@@ -75,9 +71,11 @@ class Azan : BroadcastReceiver() {
         localeHelper.getPrayerTimes(context)?.let { mutableSet ->
             var setAlarm = false
             val hourTime = mutableListOf(
-                "6",
-                "6",
-                "6",
+                "22",
+                "23",
+                "1",
+                "2",
+                "3",
 //                mutableSet.find { it.contains("fajr") }?.substring(0, 2),
 //                mutableSet.find { it.contains("dhuhr") }?.substring(0, 2),
 //                mutableSet.find { it.contains("asr") }?.substring(0, 2),
@@ -85,9 +83,11 @@ class Azan : BroadcastReceiver() {
 //                mutableSet.find { it.contains("isha") }?.substring(0, 2),
             )
             val minutesTime = mutableListOf(
-                "1",
-                "4",
-                "6",
+                "30",
+                "30",
+                "30",
+                "30",
+                "30",
 //                mutableSet.find { it.contains("fajr") }?.substring(3, 5),
 //                mutableSet.find { it.contains("dhuhr") }?.substring(3, 5),
 //                mutableSet.find { it.contains("asr") }?.substring(3, 5),
@@ -97,13 +97,14 @@ class Azan : BroadcastReceiver() {
             var hour = hourTime[0]?.toInt()
             var minute = minutesTime[0]?.toInt()
             val currentHour = calendar[Calendar.HOUR_OF_DAY]
+            val currentSecond = calendar[Calendar.SECOND]
             val mm = calendar[Calendar.MINUTE]
             for (i in 0 until hourTime.size) {
-                if (currentHour <= hourTime[i]!!.toInt() && mm <= minutesTime[i]!!.toInt() && !setAlarm) {
+                if (currentHour < hourTime[i]!!.toInt() && !setAlarm) {
                     hour = hourTime[i]?.toInt()
                     minute = minutesTime[i]?.toInt()
-                    setAlarm = true
                     prayName = Utils(context).prayers[i]
+                    setAlarm = true
                 } else if (i == hourTime.size - 1 && !setAlarm) {
                     calendar.add(Calendar.DATE, 1)
                     hour = hourTime[0]?.toInt()

@@ -38,10 +38,6 @@ class SplashScreen : AppCompatActivity() {
             finish()
         }, 1000)
 
-//        val configuration = RequestConfiguration.Builder().build()
-////            .setTestDeviceIds(listOf("95B73043073F86AAE72BC71577E335B0")).build()
-//        MobileAds.setRequestConfiguration(configuration)
-
         val adRequest = AdRequest.Builder().build()
 
         InterstitialAd.load(this,

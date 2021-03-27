@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Chronometer
-import android.widget.Chronometer.OnChronometerTickListener
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -135,11 +134,19 @@ class Dashboard : Fragment(), FirebaseListener {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             timer.isCountDown = true
         }
-        timer.format = "00:%s"
+//        timer.text = "00:00:00"
         timer.base = Azan().getAlarmDate(view.context)?.timeInMillis!!
         timer.start()
-
-        timer.onChronometerTickListener = OnChronometerTickListener { c ->
+        timer.format = "HH:mm:ss"
+        timer.setOnChronometerTickListener { chronometer ->
+//            val time: Long = SystemClock.elapsedRealtime() - chronometer.base
+            val time: Long = Azan().getAlarmDate(view.context)?.timeInMillis!!
+            val h = (time / 3600000).toInt()
+            val m = (time - h * 3600000).toInt() / 60000
+            val s = (time - h * 3600000 - m * 60000).toInt() / 1000
+            val t =
+                (if (h < 10) "0$h" else h).toString() + ":" + (if (m < 10) "0$m" else m) + ":" + if (s < 10) "0$s" else s
+            chronometer.text = t
         }
 
         suggestionRCV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)

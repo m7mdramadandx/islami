@@ -22,6 +22,7 @@ class LocaleHelper {
         private const val VERSE_OF_DAY = "verse_of_day"
         private const val HADITH_OF_DAY = "hadith_of_day"
         private const val Prayer_TIMES = "prayer_times"
+        private const val NEXT_Prayer = "next_prayer"
     }
 
     fun setVerseOfDay(context: Context, verseItem: Verse.VerseItem) {
@@ -91,6 +92,19 @@ class LocaleHelper {
     fun getPrayerTimes(context: Context): MutableSet<String>? {
         val prefs = getDefaultSharedPreferences(context)
         return prefs.getStringSet(Prayer_TIMES, null)
+    }
+
+    fun setNextPrayer(context: Context, prayer: Int) {
+        val prefs: SharedPreferences = getDefaultSharedPreferences(context)
+        prefs.edit().apply {
+            putInt(NEXT_Prayer, prayer)
+            apply()
+        }
+    }
+
+    fun getNextPrayer(context: Context): Int {
+        val prefs = getDefaultSharedPreferences(context)
+        return prefs.getInt(NEXT_Prayer, 0)
     }
 
     fun setQuranMark(context: Context, page: String) {

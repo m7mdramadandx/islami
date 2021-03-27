@@ -78,7 +78,7 @@ class Settings : Fragment() {
                 view.context
             )
         }
-        view.findViewById<CardView>(R.id.data).setOnClickListener {
+        view.findViewById<CardView>(R.id.bookmarks).setOnClickListener {
             val quran =
                 getString(R.string.quran) + " : " + localeHelper.getQuranMark(it.context) + "\n"
             val stories =

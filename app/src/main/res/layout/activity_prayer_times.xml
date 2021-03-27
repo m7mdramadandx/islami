@@ -1,120 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingVertical="16dp"
     tools:context=".ui.activity.PrayerTimes">
 
-    <com.vivekkaushik.datepicker.DatePickerTimeline
-        android:id="@+id/dtp_schedule_prayer"
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginHorizontal="12dp"
-        android:background="@drawable/bg_rounded"
-        android:elevation="8dp"
-        android:padding="10dp"
-        app:dateTextColor="@color/colorAccent"
-        app:dayTextColor="@color/textColor"
-        app:monthTextColor="@color/textColor" />
+        android:orientation="vertical"
+        android:paddingVertical="16dp"
+        android:paddingBottom="8dp">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dtp_schedule_prayer"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/background"
-        android:elevation="8dp">
-
-        <ProgressBar
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="gone" />
-
-        <LinearLayout
+        <com.vivekkaushik.datepicker.DatePickerTimeline
+            android:id="@+id/dtp_schedule_prayer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="8dp">
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginHorizontal="12dp"
+            android:background="@drawable/bg_rounded"
+            android:elevation="8dp"
+            android:padding="10dp"
+            app:dateTextColor="@color/colorAccent"
+            app:dayTextColor="@color/textColor"
+            app:monthTextColor="@color/textColor" />
+
+        <FrameLayout
+            android:id="@+id/prayer_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dtp_schedule_prayer"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/background"
+            android:elevation="8dp">
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingHorizontal="16dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="8dp">
 
-                <ImageView
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2"
+                        android:src="@drawable/ic_calendar" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/scheduleDay"
+                            style="@style/TextAppearance.AppCompat.Medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Day"
+                            android:textColor="@color/colorAccent" />
+
+                        <TextView
+                            android:id="@+id/scheduleDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Date"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/scheduleLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center|end"
+                        android:text="Location"
+                        android:textColor="@color/white"
+                        app:drawableStartCompat="@drawable/ic_location" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="48dp"
+                    android:background="@color/colorAccent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_schedule_prayer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="0.2"
-                    android:src="@drawable/ic_calendar" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_weight="2"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/scheduleDay"
-                        style="@style/TextAppearance.AppCompat.Medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Day"
-                        android:textColor="@color/colorAccent" />
-
-                    <TextView
-                        android:id="@+id/scheduleDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Date"
-                        android:textColor="@color/white" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/scheduleLocation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center|end"
-                    android:text="Location"
-                    android:textColor="@color/white"
-                    app:drawableStartCompat="@drawable/ic_location" />
-
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_prayer_time" />
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="48dp"
-                android:background="@color/colorAccent" />
+        </FrameLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_schedule_prayer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:itemCount="1"
-                tools:listitem="@layout/item_prayer_time" />
-        </LinearLayout>
-
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/monthView"
-        style="@style/TextAppearance.AppCompat.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="monthView"
-        android:text="See Full Month"
-        android:textColor="@color/colorAccent" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/monthView"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/prayer_frame"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/bg_rounded"
+            android:onClick="monthView"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="4dp"
+            android:text="See Full Month"
+            android:textColor="@color/textColor" />
+    </RelativeLayout>
+</ScrollView>

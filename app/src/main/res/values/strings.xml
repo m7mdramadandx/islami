@@ -112,6 +112,9 @@
     <string name="themeSetting">Theme setting</string>
     <string name="languageSetting">Language setting</string>
     <string name="save">حفظ</string>
+    <string name="_00_00">00:00</string>
+    <string name="bookmarks">bookmarks</string>
+    <string name="couldnotGetPrayers">you will not get prayer times</string>
 
     <string-array name="custom_weekdays">
         <item>Sn</item>

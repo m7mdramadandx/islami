@@ -2,6 +2,7 @@ package com.ramadan.islami.ui.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -45,14 +46,16 @@ class AzanActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStop() {
-        super.onStop()
-        Azan().setAlarm(this)
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         Azan().setAlarm(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Handler().postDelayed({
+            Azan().setAlarm(this)
+        }, 20000)
     }
 
     override fun onResume() {
@@ -66,15 +69,7 @@ class AzanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_azan)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        findViewById<ImageView>(R.id.mute).setOnClickListener {
-            if (isPlaying) {
-                !isPlaying
-                Azan.mediaPlayer.pause()
-            } else {
-                !isPlaying
-                Azan.mediaPlayer.start()
-            }
-        }
+        findViewById<ImageView>(R.id.mute).setOnClickListener { Azan.mediaPlayer.pause() }
         turnScreenOnAndKeyguardOff()
     }
 

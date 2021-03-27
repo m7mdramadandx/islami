@@ -112,7 +112,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/data"
+        android:id="@+id/bookmarks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -125,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:gravity="center"
-            android:text="@string/data"
+            android:text="@string/bookmarks"
             android:textColor="@color/grey_silver" />
 
         <ImageView
@@ -133,7 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
             android:paddingEnd="16dp"
-            android:src="@drawable/ic_wish_list" />
+            android:src="@drawable/ic_bookmakrs" />
 
     </androidx.cardview.widget.CardView>
 

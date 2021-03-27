@@ -132,7 +132,7 @@ class PrayerTimes : AppCompatActivity() {
     ) = when (requestCode) {
         ACCESS_FINE_LOCATION_REQ_CODE -> {
             if (PackageManager.PERMISSION_GRANTED == grantResults[0]) fetchDate()
-            else showMessage(this, getString(R.string.couldnotDownload))
+            else showMessage(this, getString(R.string.couldnotGetPrayers))
         }
         else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
@@ -146,7 +146,7 @@ class PrayerTimes : AppCompatActivity() {
             val geocoder = Geocoder(this, Locale.getDefault())
             val addresses: List<Address> =
                 geocoder.getFromLocation(it.latitude, it.longitude, 1)
-            scheduleLocation.text = addresses[0].adminArea
+            scheduleLocation.text = addresses[0].adminArea ?: " "
         }
         fusedLocationClient.lastLocation.addOnFailureListener {
             showMessage(this, it.localizedMessage!!)
