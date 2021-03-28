@@ -10,18 +10,18 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import com.ramadan.islami.R
-import com.ramadan.islami.ui.activity.Video
+import com.ramadan.islami.data.model.Video
+import com.ramadan.islami.ui.activity.VideoDetails
 import kotlinx.android.synthetic.main.item_tile.view.*
 import kotlinx.android.synthetic.main.item_video.view.*
-import com.ramadan.islami.data.model.Video as VideoModel
 
 internal class VideoAdapter(private val lifecycle: Lifecycle) :
     RecyclerView.Adapter<VideoAdapter.CustomView>() {
 
-    private var videosSectionsList = mutableListOf<VideoModel>()
+    private var videosSectionsList = mutableListOf<Video>()
     private var videosList = mutableListOf<String>()
 
-    fun setVideoSectionsList(data: MutableList<VideoModel>) {
+    fun setVideoSectionsList(data: MutableList<Video>) {
         videosSectionsList = data
         notifyDataSetChanged()
     }
@@ -64,11 +64,11 @@ internal class VideoAdapter(private val lifecycle: Lifecycle) :
         private var player: YouTubePlayer? = null
         private var currentVideoId: String? = null
 
-        fun videosSectionsView(video: VideoModel) {
+        fun videosSectionsView(video: Video) {
             itemView.tileTitle.text = video.title
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, Video::class.java)
-                intent.putExtra("videos", video)
+                val intent = Intent(itemView.context, VideoDetails::class.java)
+                intent.putExtra("videoObj", video)
                 it.context.startActivity(intent)
             }
         }

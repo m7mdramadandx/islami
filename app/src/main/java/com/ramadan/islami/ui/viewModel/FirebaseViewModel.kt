@@ -104,6 +104,14 @@ class FirebaseViewModel : ViewModel() {
         return mutableData
     }
 
+    suspend fun fetchVideo(language: String, collectionID: String, documentId: String): Video {
+        firebaseListener?.onStarted()
+        val video = repo.fetchVideo(language, collectionID, documentId)
+        if (video.id.isNotEmpty()) firebaseListener?.onSuccess()
+        else firebaseListener?.onFailure("Try Again ")
+        return video
+    }
+
     fun fetchTopics(language: String, topic: String): MutableLiveData<MutableList<Topic>> {
         firebaseListener?.onStarted()
         val mutableData = MutableLiveData<MutableList<Topic>>()

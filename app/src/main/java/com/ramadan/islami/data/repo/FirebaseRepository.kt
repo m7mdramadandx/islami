@@ -137,6 +137,20 @@ class FirebaseRepository {
         return mutableLiveData
     }
 
+    suspend fun fetchVideo(
+        language: String,
+        collectionID: String,
+        documentId: String,
+    ): Video {
+        val data = rootCollection.document(language).collection("collection").document(collectionID)
+            .collection(collectionID).document(documentId).get().await()
+        val id: String = data.id
+        val title: String = data.getString("title") ?: data.id
+        val videosID: ArrayList<String> = data.get("id") as ArrayList<String>
+        return Video(id, title, videosID)
+    }
+
+
     suspend fun fetchTopics(
         language: String,
         topic: String,

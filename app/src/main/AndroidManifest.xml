@@ -90,11 +90,15 @@
             android:name=".ui.activity.TopicDetails"
             android:theme="@style/AppTheme_NoActionBar" />
         <activity
-            android:name=".ui.activity.Video"
+            android:name=".ui.activity.VideoDetails"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
             android:hardwareAccelerated="true" />
-        <activity android:name=".ui.activity.VideoList" />
-        <activity android:name=".ui.activity.TopicList" />
+        <activity
+            android:name=".ui.activity.VideoList"
+            android:label="@string/videos" />
+        <activity
+            android:name=".ui.activity.TopicList"
+            android:label="@string/topics" />
         <activity android:name=".ui.activity.MonthPrayerTimes" />
         <activity
             android:name=".ui.activity.AzanActivity"

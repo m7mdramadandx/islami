@@ -133,5 +133,6 @@
     <string name="couldnotGetPrayers">لن تتمكن من معرفة أوقات الصلاه</string>
     <string name="download">تحميل</string>
     <string name="options">خيارات</string>
+    <string name="videos">فديوهات</string>
 
 </resources>

@@ -19,7 +19,7 @@ class NotificationOpenedHandler(base: Context?) : OneSignal.OSNotificationOpened
             "topic" -> Intent(applicationContext, TopicDetails::class.java)
             "verseOfDay" -> Intent(applicationContext, QuoteOfDay::class.java)
             "hadithOfDay" -> Intent(applicationContext, QuoteOfDay::class.java)
-            "video" -> Intent(applicationContext, VideoList::class.java)
+            "video" -> Intent(applicationContext, VideoDetails::class.java)
             "story" -> Intent(applicationContext, StoryDetails::class.java)
             "ramadan" -> Intent(applicationContext, Quote::class.java)
             "hadiths" -> Intent(applicationContext, Hadiths::class.java)

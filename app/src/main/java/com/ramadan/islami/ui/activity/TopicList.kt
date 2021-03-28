@@ -49,7 +49,6 @@ class TopicList : AppCompatActivity(), FirebaseListener {
 
     private fun observeData() {
         val collectionId = intent.getStringExtra("collectionId").toString()
-        title = collectionId
         viewModel.fetchTopics(language, collectionId)
             .observe(this, { topicAdapter.setTopicDataList(it, collectionId) })
     }

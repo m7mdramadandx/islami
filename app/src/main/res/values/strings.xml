@@ -116,6 +116,7 @@
     <string name="couldnotGetPrayers">you will not get prayer times</string>
     <string name="download">Download</string>
     <string name="options">Options</string>
+    <string name="videos">videos</string>
 
     <string-array name="custom_weekdays">
         <item>Sn</item>
