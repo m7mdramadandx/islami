@@ -33,6 +33,7 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
         <receiver android:name=".AutoStart">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
@@ -41,10 +42,6 @@
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
-
-        <service
-            android:name=".AzanService"
-            android:enabled="true" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -99,7 +96,6 @@
         <activity android:name=".ui.activity.VideoList" />
         <activity android:name=".ui.activity.TopicList" />
         <activity android:name=".ui.activity.MonthPrayerTimes" />
-
         <activity
             android:name=".ui.activity.AzanActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

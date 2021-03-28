@@ -2,7 +2,7 @@ package com.ramadan.islami.ui.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
+import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +17,7 @@ import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.ResponseStatus
+import com.ramadan.islami.utils.debug_tag
 import com.ramadan.islami.utils.turnScreenOnAndKeyguardOff
 import kotlinx.android.synthetic.main.activity_azan.*
 import java.util.*
@@ -48,14 +49,20 @@ class AzanActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        Log.e(debug_tag, "DESTROY")
         Azan().setAlarm(this)
     }
 
     override fun onStop() {
         super.onStop()
-        Handler().postDelayed({
-            Azan().setAlarm(this)
-        }, 20000)
+        Log.e(debug_tag, "STOP")
+        Azan().setAlarm(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.e(debug_tag, "PAUSE")
+        Azan().setAlarm(this)
     }
 
     override fun onResume() {

@@ -6,12 +6,12 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:paddingHorizontal="6dp"
     tools:showIn="@layout/activity_prayer_times">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:orientation="horizontal"
         android:padding="2dp">
 
@@ -30,8 +30,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="end"
             android:text="@string/_00_00"
+            android:textAlignment="textEnd"
             android:textColor="@color/colorAccent" />
 
     </LinearLayout>
@@ -57,8 +57,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="end"
             android:text="@string/_00_00"
+            android:textAlignment="textEnd"
             android:textColor="@color/colorAccent" />
 
     </LinearLayout>
@@ -84,8 +84,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="end"
             android:text="@string/_00_00"
+            android:textAlignment="textEnd"
             android:textColor="@color/colorAccent" />
 
     </LinearLayout>
@@ -112,8 +112,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="end"
             android:text="@string/_00_00"
+            android:textAlignment="textEnd"
             android:textColor="@color/colorAccent" />
 
     </LinearLayout>
@@ -139,8 +139,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="end"
             android:text="@string/_00_00"
+            android:textAlignment="textEnd"
             android:textColor="@color/colorAccent" />
 
     </LinearLayout>
@@ -154,7 +154,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawablePadding="8dp"
+            android:drawablePadding="16dp"
             android:gravity="center"
             android:text="@string/isha"
             android:textColor="#fff"
@@ -166,8 +166,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="end"
             android:text="@string/_00_00"
+            android:textAlignment="textEnd"
             android:textColor="@color/colorAccent" />
 
     </LinearLayout>

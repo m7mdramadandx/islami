@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.PrayerTimes">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +20,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginHorizontal="12dp"
             android:background="@drawable/bg_rounded"
-            android:elevation="12dp"
+            android:elevation="8dp"
             android:padding="10dp"
             app:dateTextColor="@color/colorAccent"
             app:dayTextColor="@color/textColor"
@@ -106,9 +105,10 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_schedule_prayer"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginHorizontal="48dp"
                     tools:itemCount="1"
                     tools:listitem="@layout/item_prayer_time" />
             </LinearLayout>

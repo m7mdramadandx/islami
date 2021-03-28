@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="stories">قصص</string>
+    <string name="stories">القصص</string>
     <string name="app_name">إسلامي</string>
     <string name="quotes">نصوص</string>
     <string name="prophets_tree">شجرة الأنبياء</string>
-    <string name="topics">مواضيع</string>
+    <string name="topics">موضوعات</string>
     <string name="adam">آدم</string>
     <string name="suggested_to_you">مقترح لك</string>
-    <string name="muhammad">"قصة محمد ﷺ "</string>
+    <string name="muhammad">"قصة سيدنا محمد ﷺ "</string>
     <string name="hadiths">أحاديث</string>
     <string name="quranic_verses">آيات قرآنية</string>
     <string name="prophetsFamilyTree">شجرة عائلة الأنبياء</string>
-    <string name="muhammadFamilyTree">شجرة عائلة محمد</string>
+    <string name="muhammadFamilyTree">شجرة عائلة  سيدنا محمد ﷺ</string>
     <string name="bigFamilyTree">الشجرة الكبرى</string>
     <string name="send_feedback">أرسل ملاحظاتك إلينا</string>
     <string name="about_app">عن التطبيق</string>
@@ -31,7 +31,7 @@
     <string name="thanks_for_your_time">شكرا على وقتك</string>
     <string name="noWordsToSend">لا توجد كلمات للارسال</string>
     <string name="failedToDownload">فشل في التحميل</string>
-    <string name="saved">تم الحفظ</string>
+    <string name="saved">تم التحميل</string>
     <string name="could_download">نقرة طويلة لتحميل الصورة</string>
     <string name="couldnotDownload">لن تتمكن من تحميل الصور</string>
     <string name="couldYouRateThisArticle">قيم المقال</string>
@@ -68,7 +68,6 @@
     <string name="noInternet">فشل في لاتوصيل للإنترنت</string>
     <string name="azan">الآذان</string>
     <string name="subscribe">اشتراك</string>
-    <string name="data">my data</string>
     <string-array name="custom_weekdays">
         <item>ح</item>
         <item>اث</item>
@@ -130,7 +129,7 @@
     <string name="languageSetting">إعدات اللغة</string>
     <string name="save">حفظ</string>
     <string name="_00_00">00:00</string>
-    <string name="bookmarks">العلامات</string>
+    <string name="bookmarks">" العلامات المرجعية"</string>
     <string name="couldnotGetPrayers">لن تتمكن من معرفة أوقات الصلاه</string>
     <string name="download">تحميل</string>
     <string name="options">خيارات</string>

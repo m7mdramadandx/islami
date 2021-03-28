@@ -77,20 +77,24 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
             localeHelper.getQuranMark(ctx)?.let {
                 if (it.contains(surah.name.toRegex(RegexOption.LITERAL))) {
                     itemView.apply {
+                        surahNumber.setTextColor(ctx.resources.getColor(R.color.grey_silver))
                         versesNumber.setTextColor(ctx.resources.getColor(R.color.grey_silver))
                         revelationType.setTextColor(ctx.resources.getColor(R.color.grey_silver))
                         surahCard.setCardBackgroundColor(ctx.resources.getColor(R.color.silver_grey))
+                        surahImage.visibility = View.GONE
                     }
                 } else {
                     itemView.apply {
                         versesNumber.setTextColor(ctx.resources.getColor(R.color.white))
+                        versesNumber.setTextColor(ctx.resources.getColor(R.color.white))
                         revelationType.setTextColor(ctx.resources.getColor(R.color.white))
-                        surahCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
+                        surahCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorSecondary))
+                        surahImage.visibility = View.VISIBLE
                     }
                 }
             }
             itemView.apply {
-                surahNumber.text = surah.number.toString()
+                surahNumber.text = valueOf(nf.format(surah.number))
                 surahName.text = surah.name
                 versesNumber.text =
                     context.getString(R.string.versesNumber) + valueOf(nf.format(surah.ayahs.size))
@@ -119,7 +123,7 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
                         text += it.text + ayahNumber
                         _juzNumber.text = it.juz
                         _hizbNumber.text =
-                            context.getString(R.string.hizbNumber) + valueOf(nf.format(it.hizbQuarter / 4))
+                            context.getString(R.string.hizbNumber) + valueOf(nf.format((it.hizbQuarter.toDouble() / 4)))
                     }
                 }
                 _surahName.text = surahName

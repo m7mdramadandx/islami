@@ -134,19 +134,24 @@ class Dashboard : Fragment(), FirebaseListener {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             timer.isCountDown = true
         }
-//        timer.text = "00:00:00"
-        timer.base = Azan().getAlarmDate(view.context)?.timeInMillis!!
+        timer.text = "00:00:00"
+        Azan().getAlarmDate(view.context)?.let {
+            timer.base = it.time.time
+        }
         timer.start()
         timer.format = "HH:mm:ss"
         timer.setOnChronometerTickListener { chronometer ->
+            Azan().getAlarmDate(view.context)?.let {
+                val time: Long = it.time.time
+                val h = (time / 3600000).toInt()
+                val m = (time - h * 3600000).toInt() / 60000
+                val s = (time - h * 3600000 - m * 60000).toInt() / 1000
+                val t =
+                    (if (h < 10) "0$h" else h).toString() + ":" + (if (m < 10) "0$m" else m) + ":" + if (s < 10) "0$s" else s
+                chronometer.text = t
+
+            }
 //            val time: Long = SystemClock.elapsedRealtime() - chronometer.base
-            val time: Long = Azan().getAlarmDate(view.context)?.timeInMillis!!
-            val h = (time / 3600000).toInt()
-            val m = (time - h * 3600000).toInt() / 60000
-            val s = (time - h * 3600000 - m * 60000).toInt() / 1000
-            val t =
-                (if (h < 10) "0$h" else h).toString() + ":" + (if (m < 10) "0$m" else m) + ":" + if (s < 10) "0$s" else s
-            chronometer.text = t
         }
 
         suggestionRCV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)

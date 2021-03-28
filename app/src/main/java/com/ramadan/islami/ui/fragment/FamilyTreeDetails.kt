@@ -102,8 +102,10 @@ class FamilyTreeDetails : Fragment() {
                         } else null
                         bitmap?.let { it1 ->
                             saveImage(it1)
-                            view.snackBar(view.context.getString(R.string.saved))
-                        } ?: view.snackBar(view.context.getString(R.string.failedToDownload))
+                            showMessage(view.context, view.context.getString(R.string.saved))
+                        } ?: showMessage(view.context,
+                            view.context.getString(R.string.failedToDownload))
+
                     }
                     1 -> {
                         val bmpUri: Uri = getLocalBitmapUri(imageView)!!
