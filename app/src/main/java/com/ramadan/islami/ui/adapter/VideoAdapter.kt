@@ -68,6 +68,7 @@ internal class VideoAdapter(private val lifecycle: Lifecycle) :
             itemView.tileTitle.text = video.title
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, VideoDetails::class.java)
+                intent.putExtra("intentKey", "videoObj")
                 intent.putExtra("videoObj", video)
                 it.context.startActivity(intent)
             }
