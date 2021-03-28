@@ -17,7 +17,6 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
-import com.ramadan.islami.data.model.Azkar
 import com.ramadan.islami.data.model.Topic
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.TopicAdapter
@@ -38,8 +37,6 @@ class TopicDetails : AppCompatActivity() {
     private var topic: Topic? = null
     private lateinit var topicAdapter: TopicAdapter
     private lateinit var recyclerView: RecyclerView
-    private var intentKey: String = ""
-    private lateinit var azkar: Azkar.AzkarItem
     private lateinit var adView: AdView
     private lateinit var localeHelper: LocaleHelper
 
@@ -57,7 +54,7 @@ class TopicDetails : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+        MainActivity.firebaseAnalytics?.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
             param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
         }
         loadAds()
@@ -101,32 +98,41 @@ class TopicDetails : AppCompatActivity() {
                 Log.e(debug_tag, adError.message)
             }
 
-            override fun onAdOpened() {
-                Log.e(debug_tag, "OPENED")
-            }
-
-            override fun onAdClicked() {}
-
             override fun onAdLeftApplication() {
                 contentView.updatePadding(0, 0, 0, 0)
             }
 
             override fun onAdClosed() {
-                Log.e(debug_tag, "CLOSED")
+                contentView.updatePadding(0, 0, 0, 0)
+            }
+        }
+    }
+
+
+    private fun fetchTopic() {
+        if (intent.hasExtra("topic")) {
+            topic = intent.getSerializableExtra("topic") as Topic
+            observeData()
+        } else fetchNotification()
+    }
+
+    private fun fetchNotification() {
+        val collectionID = intent.getStringExtra("collectionID").toString()
+        val documentID = intent.getStringExtra("documentID").toString()
+        GlobalScope.launch(Dispatchers.IO) {
+            withContext(Dispatchers.Main) {
+                topic = viewModel.fetchTopic(language, collectionID, documentID)
+                observeData()
             }
         }
     }
 
     private fun observeData() {
-        topicAdapter
-            .setTopicContentDataList(topic!!.content as MutableMap<String, String>, topic!!.brief)
-        title = topic!!.title
-    }
-
-    private fun fetchTopic() {
-        if (intent.hasExtra("topic")) topic = intent.getSerializableExtra("topic") as Topic
-        else fetchNotification()
-        observeData()
+        topic?.let {
+            title = it.title
+            topicAdapter
+                .setTopicContentDataList(it.content as MutableMap<String, String>, it.brief)
+        }
     }
 
     private fun fetchEveningAzkar() {
@@ -155,15 +161,6 @@ class TopicDetails : AppCompatActivity() {
         }
     }
 
-    private fun fetchNotification() {
-        val collectionID = intent.getStringExtra("collectionID").toString()
-        val documentID = intent.getStringExtra("documentID").toString()
-        GlobalScope.launch(Dispatchers.IO) {
-            withContext(Dispatchers.Main) {
-                topic = viewModel.fetchTopic(language, collectionID, documentID)
-            }
-        }
-    }
 
     private fun loadAds() {
         GlobalScope.launch(Dispatchers.IO) {

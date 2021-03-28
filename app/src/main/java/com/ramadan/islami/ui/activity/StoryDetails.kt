@@ -39,7 +39,7 @@ class StoryDetails : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+        MainActivity.firebaseAnalytics?.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
             param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
         }
     }
@@ -69,7 +69,7 @@ class StoryDetails : AppCompatActivity() {
     }
 
     private fun fetchNotification() {
-        val storyID = intent.getStringExtra("storyID").toString()
+        val storyID = intent.getStringExtra("documentID").toString()
         GlobalScope.launch(Dispatchers.IO) {
             story = viewModel.fetchStory(language, storyID)
             withContext(Dispatchers.Main) { observeData() }

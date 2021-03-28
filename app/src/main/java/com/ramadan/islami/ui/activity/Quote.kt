@@ -27,7 +27,7 @@ class Quote : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+        MainActivity.firebaseAnalytics?.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
             param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
         }
     }
@@ -40,7 +40,6 @@ class Quote : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         quote = intent?.getSerializableExtra("quotes") as QuoteModel
         supportActionBar!!.title = quote.title
-//        viewModel.listener = this
         versesAdapter = RecyclerViewAdapter()
         hadithsAdapter = RecyclerViewAdapter()
         versesRecyclerView = findViewById(R.id.versesRecyclerView)
@@ -96,13 +95,4 @@ class Quote : AppCompatActivity() {
         hadithsAdapter.setQuotesDataList(quote.hadiths, false)
     }
 
-//    override fun onStarted() {}
-//
-//    override fun onSuccess() {
-//        Toast.makeText(this, getString(R.string.could_download), Toast.LENGTH_LONG).show()
-//    }
-//
-//    override fun onFailure(message: String) {
-//        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-//    }
 }

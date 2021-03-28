@@ -71,34 +71,22 @@ class Azan : BroadcastReceiver() {
         localeHelper.getPrayerTimes(context)?.let { mutableSet ->
             var setAlarm = false
             val hourTime = mutableListOf(
-                "22",
-                "23",
-                "1",
-                "2",
-                "3",
-//                mutableSet.find { it.contains("fajr") }?.substring(0, 2),
-//                mutableSet.find { it.contains("dhuhr") }?.substring(0, 2),
-//                mutableSet.find { it.contains("asr") }?.substring(0, 2),
-//                mutableSet.find { it.contains("maghrib") }?.substring(0, 2),
-//                mutableSet.find { it.contains("isha") }?.substring(0, 2),
+                mutableSet.find { it.contains("fajr") }?.substring(0, 2),
+                mutableSet.find { it.contains("dhuhr") }?.substring(0, 2),
+                mutableSet.find { it.contains("asr") }?.substring(0, 2),
+                mutableSet.find { it.contains("maghrib") }?.substring(0, 2),
+                mutableSet.find { it.contains("isha") }?.substring(0, 2),
             )
             val minutesTime = mutableListOf(
-                "30",
-                "30",
-                "30",
-                "30",
-                "30",
-//                mutableSet.find { it.contains("fajr") }?.substring(3, 5),
-//                mutableSet.find { it.contains("dhuhr") }?.substring(3, 5),
-//                mutableSet.find { it.contains("asr") }?.substring(3, 5),
-//                mutableSet.find { it.contains("maghrib") }?.substring(3, 5),
-//                mutableSet.find { it.contains("isha") }?.substring(3, 5),
+                mutableSet.find { it.contains("fajr") }?.substring(3, 5),
+                mutableSet.find { it.contains("dhuhr") }?.substring(3, 5),
+                mutableSet.find { it.contains("asr") }?.substring(3, 5),
+                mutableSet.find { it.contains("maghrib") }?.substring(3, 5),
+                mutableSet.find { it.contains("isha") }?.substring(3, 5),
             )
             var hour = hourTime[0]?.toInt()
             var minute = minutesTime[0]?.toInt()
             val currentHour = calendar[Calendar.HOUR_OF_DAY]
-            val currentSecond = calendar[Calendar.SECOND]
-            val mm = calendar[Calendar.MINUTE]
             for (i in 0 until hourTime.size) {
                 if (currentHour < hourTime[i]!!.toInt() && !setAlarm) {
                     hour = hourTime[i]?.toInt()

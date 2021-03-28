@@ -6,7 +6,6 @@ import android.content.Intent
 import com.onesignal.OSNotificationOpenedResult
 import com.onesignal.OneSignal
 import com.ramadan.islami.ui.activity.*
-import com.ramadan.islami.ui.fragment.Dashboard
 
 class NotificationOpenedHandler(base: Context?) : OneSignal.OSNotificationOpenedHandler,
     ContextWrapper(base) {
@@ -16,15 +15,16 @@ class NotificationOpenedHandler(base: Context?) : OneSignal.OSNotificationOpened
         when (data["intentName"]) {
             "morningAzkar" -> Intent(applicationContext, TopicDetails::class.java)
             "eveningAzkar" -> Intent(applicationContext, TopicDetails::class.java)
+            "azkar" -> Intent(applicationContext, TopicDetails::class.java)
             "topic" -> Intent(applicationContext, TopicDetails::class.java)
-            "verse" -> Intent(applicationContext, QuoteOfDay::class.java)
-            "hadith" -> Intent(applicationContext, QuoteOfDay::class.java)
-            "azkar" -> Intent(applicationContext, QuoteOfDay::class.java)
+            "verseOfDay" -> Intent(applicationContext, QuoteOfDay::class.java)
+            "hadithOfDay" -> Intent(applicationContext, QuoteOfDay::class.java)
             "video" -> Intent(applicationContext, VideoList::class.java)
             "story" -> Intent(applicationContext, StoryDetails::class.java)
             "ramadan" -> Intent(applicationContext, Quote::class.java)
             "hadiths" -> Intent(applicationContext, Hadiths::class.java)
-            else -> Intent(applicationContext, Dashboard::class.java)
+            "quran" -> Intent(applicationContext, MainActivity::class.java)
+            else -> Intent(applicationContext, MainActivity::class.java)
         }.apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             putExtra("intentKey", data["intentKey"].toString())

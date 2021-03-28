@@ -20,7 +20,7 @@ class Video : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+        MainActivity.firebaseAnalytics?.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
             param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
         }
     }

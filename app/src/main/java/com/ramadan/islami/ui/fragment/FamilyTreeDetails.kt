@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
@@ -36,7 +35,7 @@ class FamilyTreeDetails : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+        MainActivity.firebaseAnalytics?.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
             param(FirebaseAnalytics.Param.SCREEN_NAME, "FamilyTreeDetails")
         }
     }
@@ -97,18 +96,14 @@ class FamilyTreeDetails : Fragment() {
             menuItemClickListener = { view, position ->
                 when (position) {
                     0 -> {
-                        var bitmap: Bitmap? = null
-                        try {
-                            bitmap = (imageView.drawable as BitmapDrawable).bitmap
-                        } catch (e: Exception) {
-                            Log.e(debug_tag, e.localizedMessage!!)
-                        }
-                        try {
-                            saveImage(bitmap!!)
+                        val drawable = imageView.drawable
+                        val bitmap: Bitmap? = if (drawable is BitmapDrawable) {
+                            (imageView.drawable as BitmapDrawable).bitmap
+                        } else null
+                        bitmap?.let { it1 ->
+                            saveImage(it1)
                             view.snackBar(view.context.getString(R.string.saved))
-                        } catch (e: Exception) {
-                            view.snackBar(view.context.getString(R.string.failedToDownload))
-                        }
+                        } ?: view.snackBar(view.context.getString(R.string.failedToDownload))
                     }
                     1 -> {
                         val bmpUri: Uri = getLocalBitmapUri(imageView)!!
@@ -124,8 +119,8 @@ class FamilyTreeDetails : Fragment() {
     }
 
     private fun getMenuObjects() = mutableListOf<MenuObject>().apply {
-        MenuObject(getString(R.string.save)).apply {
-            setResourceValue(R.drawable.ic_quote)
+        MenuObject(getString(R.string.download)).apply {
+            setResourceValue(R.drawable.ic_download)
             setBgColorValue((Color.rgb(23, 34, 59)))
             add(this)
         }

@@ -138,16 +138,14 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
                 cardName.textSize = 16.toFloat()
                 setOnClickListener {
                     when (collection.id) {
-                        "hadithOfDay" -> {
-                            Intent(ctx, QuoteOfDay::class.java).apply {
-                                putExtra("intentKey", "hadith")
-                                ctx.startActivity(this)
-                            }
+                        "hadithOfDay" -> Intent(ctx, QuoteOfDay::class.java).apply {
+                            putExtra("intentKey", "hadith")
+                            ctx.startActivity(this)
                         }
                         "quran" -> it.changeNavigation(DashboardDirections.actionNavDashboardToNavQuran())
                         "hadiths" -> ctx.startActivity(Intent(ctx, Hadiths::class.java))
                         "muhammadStory" -> Intent(ctx, StoryDetails::class.java).apply {
-                            putExtra("storyID", "muhammad")
+                            putExtra("documentID", "muhammad")
                             ctx.startActivity(this)
                         }
                     }

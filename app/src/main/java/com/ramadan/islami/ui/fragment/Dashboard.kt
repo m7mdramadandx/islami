@@ -94,7 +94,7 @@ class Dashboard : Fragment(), FirebaseListener {
         super.onResume()
         observeData()
         loadAds()
-        MainActivity.firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+        MainActivity.firebaseAnalytics?.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
             param(FirebaseAnalytics.Param.SCREEN_NAME, "Dashboard")
         }
     }

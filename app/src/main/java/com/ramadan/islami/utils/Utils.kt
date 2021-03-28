@@ -27,10 +27,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.ramadan.islami.R
 import com.ramadan.islami.R.string
 import com.squareup.picasso.Picasso
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.OutputStream
+import java.io.*
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -67,6 +64,11 @@ class Utils(val context: Context) {
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fprayer_times.jpg?alt=media&token=860b09fa-e3b5-4ea8-9826-d207d549c704"
         ),
         CollectionModel(
+            "hadithOfDay",
+            context.getString(string.hadithOfDay),
+            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fhadith.jpg?alt=media&token=041848ee-c824-47aa-a33b-1d697d232269"
+        ),
+        CollectionModel(
             "verseOfDay",
             context.getString(string.verseOfDay),
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fverse.jpg?alt=media&token=de42048d-28c5-408f-a9fe-19ad5c19ec50"
@@ -85,11 +87,6 @@ class Utils(val context: Context) {
             "morningAzkar",
             context.getString(string.morningAzkar),
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fmorning.jpg?alt=media&token=a3693803-5e76-4938-bc3d-dd951a5bc207"
-        ),
-        CollectionModel(
-            "hadithOfDay",
-            context.getString(string.hadithOfDay),
-            "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Fhadith.jpg?alt=media&token=041848ee-c824-47aa-a33b-1d697d232269"
         ),
         CollectionModel(
             "dateConversion",
@@ -163,30 +160,6 @@ fun showMessage(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
 
-fun showImg(imgUrl: String, context: Context) {
-    val dialogBuilder = AlertDialog.Builder(context)
-    val view = LayoutInflater.from(context).inflate(R.layout.img_dialog, null)
-    dialogBuilder.setView(view)
-    val alertDialog = dialogBuilder.create()
-    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    alertDialog.show()
-    val imageView: ImageView = view.findViewById(R.id.quoteImg)
-    Picasso.get()
-        .load(imgUrl).error(R.drawable.failure_img).placeholder(R.drawable.load_img)
-        .into(imageView)
-    var bitmap: Bitmap? = null
-    try {
-        bitmap = (imageView.drawable as BitmapDrawable).bitmap
-    } catch (e: Exception) {
-        Log.e("ERROR", e.localizedMessage!!)
-    }
-    imageView.setOnLongClickListener {
-        showOptions(context, bitmap!!, imageView)
-        false
-    }
-}
-
-
 fun showBrief(title: String, content: String, context: Context) {
     val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
     val view = View.inflate(context, R.layout.alert_dialog_read_marker, null)
@@ -202,7 +175,23 @@ fun showBrief(title: String, content: String, context: Context) {
     alertContent.text = content
 }
 
-fun showOptions(context: Context, bitmap: Bitmap, imageView: ImageView) {
+fun showImg(imgUrl: String, context: Context) {
+    val dialogBuilder = AlertDialog.Builder(context)
+    val view = LayoutInflater.from(context).inflate(R.layout.img_dialog, null)
+    dialogBuilder.setView(view)
+    val alertDialog = dialogBuilder.create()
+    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    alertDialog.show()
+    val imageView: ImageView = view.findViewById(R.id.quoteImg)
+    Picasso.get().load(imgUrl).error(R.drawable.failure_img)
+        .placeholder(R.drawable.load_img).into(imageView)
+    imageView.setOnLongClickListener {
+        showOptions(context, imageView, imgUrl)
+        false
+    }
+}
+
+fun showOptions(context: Context, imageView: ImageView, imgUrl: String) {
     val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
     val view = View.inflate(context, R.layout.alert_dialog_options, null)
     dialogBuilder.setView(view)
@@ -219,12 +208,14 @@ fun showOptions(context: Context, bitmap: Bitmap, imageView: ImageView) {
         view.context.startActivity(Intent.createChooser(shareIntent, "Send to"))
     }
     view.findViewById<TextView>(R.id.download).setOnClickListener {
-        try {
-            saveImage(bitmap)
+        val drawable = imageView.drawable
+        val bitmap: Bitmap? = if (drawable is BitmapDrawable) {
+            (imageView.drawable as BitmapDrawable).bitmap
+        } else null
+        bitmap?.let { it1 ->
+            saveImage(it1)
             it.snackBar(context.getString(string.saved))
-        } catch (e: Exception) {
-            it.snackBar(context.getString(string.failedToDownload))
-        }
+        } ?: it.snackBar(context.getString(string.failedToDownload))
     }
 }
 
@@ -244,6 +235,28 @@ fun saveImage(bitmap: Bitmap) {
         Log.e(debug_tag, e.message.toString())
     }
 }
+
+fun getLocalBitmapUri(imageView: ImageView): Uri? {
+    val drawable = imageView.drawable
+    val bmp: Bitmap? = if (drawable is BitmapDrawable) {
+        (imageView.drawable as BitmapDrawable).bitmap
+    } else return null
+
+    var bmpUri: Uri? = null
+    try {
+        val dir = File(dirPath)
+        if (!dir.exists()) dir.mkdirs()
+        val file = File("$dirPath/${Random.nextDouble()}.jpg")
+        val out = FileOutputStream(file)
+        bmp?.compress(Bitmap.CompressFormat.PNG, 90, out)
+        out.close()
+        bmpUri = Uri.fromFile(file)
+    } catch (e: IOException) {
+        e.printStackTrace()
+    }
+    return bmpUri
+}
+
 
 fun Context.isNetworkConnected(): Boolean {
     val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
@@ -309,23 +322,3 @@ fun View.snackBar(message: String) {
     }
 }
 
-fun getLocalBitmapUri(imageView: ImageView): Uri? {
-    val drawable = imageView.drawable
-    val bmp: Bitmap? = if (drawable is BitmapDrawable) {
-        (imageView.drawable as BitmapDrawable).bitmap
-    } else return null
-
-    var bmpUri: Uri? = null
-    try {
-        val file = File(Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_DOWNLOADS), "family_tree_" + System.currentTimeMillis() + ".png")
-        file.parentFile.mkdirs()
-        val out = FileOutputStream(file)
-        bmp?.compress(Bitmap.CompressFormat.PNG, 90, out)
-        out.close()
-        bmpUri = Uri.fromFile(file)
-    } catch (e: IOException) {
-        e.printStackTrace()
-    }
-    return bmpUri
-}

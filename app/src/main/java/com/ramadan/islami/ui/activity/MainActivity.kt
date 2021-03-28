@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         var language: String = "ar"
         var isConnected: Boolean = true
-        lateinit var firebaseAnalytics: FirebaseAnalytics
+        var firebaseAnalytics: FirebaseAnalytics? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -158,7 +158,7 @@ class MainActivity : AppCompatActivity() {
                     e.printStackTrace()
                 }
             }
-        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+        firebaseAnalytics?.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
             param(FirebaseAnalytics.Param.SCREEN_NAME, "MainActivity")
         }
         navController.addOnDestinationChangedListener(listener)
