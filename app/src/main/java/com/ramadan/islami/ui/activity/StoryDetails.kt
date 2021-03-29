@@ -18,7 +18,6 @@ import com.ramadan.islami.data.model.Story
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.StoryAdapter
 import com.ramadan.islami.ui.viewModel.FirebaseViewModel
-import com.ramadan.islami.utils.Utils
 import com.ramadan.islami.utils.showBrief
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuGravity
@@ -99,11 +98,10 @@ class StoryDetails : AppCompatActivity() {
             isClosableOutside = true,
             gravity = MenuGravity.END
         )
-        val utils = Utils(applicationContext)
         contextMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams).apply {
             menuItemClickListener = { view, position ->
                 when (position) {
-                    0 -> showBrief(story!!.title, story!!.brief, view.context)
+                    0 -> showBrief(story.title, story.brief, view.context)
                     1 -> {
                         val intent = Intent()
                         intent.action = Intent.ACTION_VIEW

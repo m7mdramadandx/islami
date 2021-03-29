@@ -9,6 +9,7 @@ class ViewModelFactory(private val apiHelper: ApiHelper) : ViewModelProvider.Fac
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(WebServiceViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
             return WebServiceViewModel(WebServiceRepository(apiHelper)) as T
         }
         throw IllegalArgumentException("Unknown class name")

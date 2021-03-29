@@ -19,6 +19,7 @@ internal class NotificationReceived : OneSignal.OSRemoteNotificationReceivedHand
         Log.i("TOTO", "Received Notification Data: $data")
         val mutableNotification = notification.mutableCopy()
         mutableNotification.setExtender { builder: NotificationCompat.Builder ->
+            @Suppress("DEPRECATION")
             builder.setColor(context!!.resources.getColor(R.color.colorPrimary))
                 .setNumber(5)
                 .setChannelId(notification.notificationId)

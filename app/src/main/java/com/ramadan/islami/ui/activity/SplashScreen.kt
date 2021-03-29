@@ -55,10 +55,6 @@ class SplashScreen : AppCompatActivity() {
             })
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
     private fun appTheme() {
         when (localeHelper.getDefaultTheme(this)) {
             "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)

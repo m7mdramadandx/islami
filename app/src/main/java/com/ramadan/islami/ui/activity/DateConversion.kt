@@ -51,7 +51,7 @@ class DateConversion : AppCompatActivity() {
             param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
         }
     }
-
+    @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_date_conversion)
@@ -62,7 +62,7 @@ class DateConversion : AppCompatActivity() {
         calendarView.setSelectedDate(hijriToday)
         hijri.setOnClickListener {
             val dpd = HijriDatePickerDialog.newInstance(
-                { view, year, monthOfYear, dayOfMonth ->
+                { _, year, monthOfYear, dayOfMonth ->
                     setHijriDate(year, monthOfYear, dayOfMonth)
                 },
                 hijriToday[UmmalquraCalendar.YEAR],
@@ -77,7 +77,7 @@ class DateConversion : AppCompatActivity() {
         }
         gregorian.setOnClickListener {
             val dpd = GregorianDatePickerDialog.newInstance(
-                { view, year, monthOfYear, dayOfMonth ->
+                { _, year, monthOfYear, dayOfMonth ->
                     setGregorianDate(year, monthOfYear, dayOfMonth)
                 },
                 gregorianToday[Calendar.YEAR],
@@ -114,7 +114,7 @@ class DateConversion : AppCompatActivity() {
 
                             override fun onAdLoaded(rewardedAd: RewardedAd) {
                                 mRewardedAd = rewardedAd
-                                mRewardedAd?.show(this@DateConversion) { item ->
+                                mRewardedAd?.show(this@DateConversion) { _ ->
                                     hijri.text = it.data!!.data.hijri.date
                                 }
                             }
@@ -209,7 +209,7 @@ class DateConversion : AppCompatActivity() {
         )
         contextMenuDialogFragment =
             ContextMenuDialogFragment.newInstance(menuParams).apply {
-                menuItemClickListener = { view, position ->
+                menuItemClickListener = { _, position ->
                     if (position == 0) {
                         val intent = Intent()
                         intent.action = Intent.ACTION_VIEW

@@ -73,6 +73,7 @@ class TopicDetails : AppCompatActivity() {
         recyclerView = findViewById(R.id.contentRecyclerView)
         recyclerView.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         recyclerView.adapter = topicAdapter
+        @Suppress("DEPRECATION")
         toolbar_layout.setContentScrimColor(resources.getColor(R.color.colorPrimary))
         toolbar_layout.setCollapsedTitleTextColor(Color.WHITE)
         toolbar_layout.setBackgroundResource(R.drawable.asset)
@@ -131,7 +132,7 @@ class TopicDetails : AppCompatActivity() {
         topic?.let {
             title = it.title
             topicAdapter
-                .setTopicContentDataList(it.content as MutableMap<String, String>, it.brief)
+                .setTopicContentDataList(it.content as MutableMap<String, String>)
         }
     }
 

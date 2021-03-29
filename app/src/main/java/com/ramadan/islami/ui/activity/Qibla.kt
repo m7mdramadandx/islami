@@ -105,6 +105,7 @@ class Qibla : AppCompatActivity() {
         userLocation.latitude = latitude
         userLocation.longitude = longitude
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        @Suppress("DEPRECATION")
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION)
         sensorManager.registerListener(object : SensorEventListener {
             override fun onAccuracyChanged(p0: Sensor?, p1: Int) {

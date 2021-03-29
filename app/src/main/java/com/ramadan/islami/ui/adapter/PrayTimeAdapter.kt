@@ -56,6 +56,7 @@ class PrayTimeAdapter : RecyclerView.Adapter<PrayTimeAdapter.ViewHolder>() {
         }
     }
 
+    @Suppress("DEPRECATION")
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun schedulePrayer(prayerData: PrayerData?) {
             itemView.apply {

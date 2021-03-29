@@ -25,6 +25,7 @@ class Application : Application() {
 //            .setMaxAdContentRating(MAX_AD_CONTENT_RATING_T)
             .build()
         MobileAds.setRequestConfiguration(conf)
+        @Suppress("DEPRECATION")
         MobileAds.initialize(this, getString(R.string.ad_id))
         if (localeHelper.getAzan(this)) Azan().setAlarm(this)
     }

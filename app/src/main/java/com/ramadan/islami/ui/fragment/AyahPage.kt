@@ -50,7 +50,8 @@ class AyahPage : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        arguments?.let { surah = AyahPageArgs.fromBundle(it).surah }
+        arguments?.let { surah = AyahPageArgs.fromBundle(it).surah!! }
+        @Suppress("DEPRECATION")
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         (activity as MainActivity).supportActionBar?.hide()
         (activity as MainActivity).fixedBanner.visibility = View.GONE
@@ -61,6 +62,7 @@ class AyahPage : Fragment() {
 
     override fun onDetach() {
         super.onDetach()
+        @Suppress("DEPRECATION")
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         (activity as MainActivity).supportActionBar?.show()
         (activity as MainActivity).fixedBanner.visibility = View.VISIBLE

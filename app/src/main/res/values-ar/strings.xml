@@ -5,7 +5,6 @@
     <string name="quotes">نصوص</string>
     <string name="prophets_tree">شجرة الأنبياء</string>
     <string name="topics">موضوعات</string>
-    <string name="adam">آدم</string>
     <string name="suggested_to_you">مقترح لك</string>
     <string name="muhammad">"قصة سيدنا محمد ﷺ "</string>
     <string name="hadiths">أحاديث</string>
@@ -14,13 +13,12 @@
     <string name="muhammadFamilyTree">شجرة عائلة  سيدنا محمد ﷺ</string>
     <string name="bigFamilyTree">الشجرة الكبرى</string>
     <string name="send_feedback">أرسل ملاحظاتك إلينا</string>
-    <string name="about_app">عن التطبيق</string>
     <string name="rate_app">قيم التطبيق</string>
     <string name="language">اللغة</string>
     <string name="themes">المظهر</string>
     <string name="share">مشاركة</string>
     <string name="view_images">عرض الصور</string>
-    <string name="send">إؤسال</string>
+    <string name="send">إرسال</string>
     <string name="please_give_details_on_the_issue_or_provide_general_feedback">يرجى تقديم التفاصيل حول المشكلة أو تقديم ملاحظات عامة</string>
     <string name="part">جزء رقم "</string>
     <string name="english">الانجليزية</string>
@@ -39,7 +37,6 @@
     <string name="lightTheme">الوضع المضيء</string>
     <string name="nightTheme">الوضع الليلي</string>
     <string name="pickOne">اختر ما يناسبك</string>
-    <string name="mn"> من </string>
     <string name="ok">تم</string>
     <string name="cancel">الغاء</string>
     <string name="followSystem">اتبع النظام</string>
@@ -57,7 +54,6 @@
     <string name="quran">القرآن الكريم</string>
     <string name="prayerTimesTitle">أوقات الصلاه لشهر </string>
     <string name="versesNumber"> عدد الآيات</string>
-    <string name="juzNumber">"جزء رقم ۩ "</string>
     <string name="hizbNumber">"حزب رقم ۩ "</string>
     <string name="notification">الاشعارات</string>
     <string name="bookmark">وضع علامة</string>
@@ -127,7 +123,6 @@
     <string name="notificationSetting">إعدات الاشعارات</string>
     <string name="themeSetting">إعدات المظهر</string>
     <string name="languageSetting">إعدات اللغة</string>
-    <string name="save">حفظ</string>
     <string name="_00_00">00:00</string>
     <string name="bookmarks">" العلامات المرجعية"</string>
     <string name="couldnotGetPrayers">لن تتمكن من معرفة أوقات الصلاه</string>

@@ -134,6 +134,7 @@ class FamilyTreeDetails : Fragment() {
     }
 
     private fun showContextMenuDialogFragment() {
+        @Suppress("DEPRECATION")
         if (requireFragmentManager().findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
             contextMenuDialogFragment.show(requireFragmentManager(), ContextMenuDialogFragment.TAG)
         }

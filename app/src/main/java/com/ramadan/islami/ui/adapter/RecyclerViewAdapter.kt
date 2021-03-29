@@ -265,6 +265,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
         fun familyTreeView(collection: Collection) {
             itemView.familyTreeName.text = collection.title.toUpperCase(Locale.ENGLISH)
             if (isDashboard) {
+                @Suppress("DEPRECATION")
                 itemView.familyTreeCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorBackground))
                 itemView.familyTreeImage.maxWidth =
                     ctx.resources.getDimension(R.dimen.familyTree).toInt()
@@ -292,6 +293,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
             }
         }
 
+        @Suppress("DEPRECATION")
         fun allahNamesView(allahNames: AllahNames.AllahNamesItem?, position: Int) {
             if (position % 2 == 0) {
                 itemView.allahNameCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorSecondary))

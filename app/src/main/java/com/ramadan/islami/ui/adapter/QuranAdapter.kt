@@ -61,9 +61,7 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
             ayahList.isNotEmpty() -> holder.ayahView(
                 ayahList,
                 ayahList.first().page + position,
-                surahName,
-                surahNum
-            )
+                surahName)
             else -> holder.surahView(surahList[position])
         }
 
@@ -73,6 +71,7 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
         private val localeHelper = LocaleHelper()
         private val ctx = itemView.context
 
+        @Suppress("DEPRECATION")
         fun surahView(surah: Surah) {
             localeHelper.getQuranMark(ctx)?.let {
                 if (it.contains(surah.name.toRegex(RegexOption.LITERAL))) {
@@ -111,7 +110,6 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
             ayahList: MutableList<Quran.Ayah>,
             position: Int,
             surahName: String,
-            surahNum: String,
         ) {
             var text = String()
             itemView.apply {
@@ -127,6 +125,7 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
                     }
                 }
                 _surahName.text = surahName
+                @Suppress("DEPRECATION")
                 ayahText.text = (Html.fromHtml(text))
 
                 val bookmark = 0

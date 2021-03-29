@@ -9,7 +9,6 @@
     <string name="topicBanner" translatable="false">ca-app-pub-5169956365910255/6120215242</string>
 
     <string name="muhammad">Muhammad pbuh Story</string>
-    <string name="adam">Adam</string>
     <string name="stories">Stories</string>
     <string name="quotes">Quotes</string>
     <string name="prophets_tree">Prophets Tree</string>
@@ -21,7 +20,6 @@
     <string name="muhammadFamilyTree">Muhammad family tree</string>
     <string name="bigFamilyTree">The big family tree</string>
     <string name="send_feedback">Send us Feedback</string>
-    <string name="about_app">About Application</string>
     <string name="rate_app">"Rate Application "</string>
     <string name="language">Languages</string>
     <string name="themes">Theme</string>
@@ -48,7 +46,6 @@
     <string name="pickOne">Pick the suitable for you</string>
     <string name="followSystem">follow the system</string>
     <string name="hadithOfDay">Hadith of day</string>
-    <string name="mn">"  "</string>
     <string name="settings">Settings</string>
     <string name="daily">Daily</string>
     <string name="dashboard">Dashboard</string>
@@ -64,7 +61,6 @@
     <string name="prayerTimesTitle">Prayer times for </string>
     <string name="quran">Quran</string>
     <string name="versesNumber">verses number</string>
-    <string name="juzNumber">"juz ۩ "</string>
     <string name="hizbNumber">"hizb ۩ "</string>
     <string name="notification">notification</string>
     <string name="bookmark">bookmark</string>
@@ -110,7 +106,6 @@
     <string name="notificationSetting">Notification setting</string>
     <string name="themeSetting">Theme setting</string>
     <string name="languageSetting">Language setting</string>
-    <string name="save">save</string>
     <string name="_00_00">00:00</string>
     <string name="bookmarks">bookmarks</string>
     <string name="couldnotGetPrayers">you will not get prayer times</string>

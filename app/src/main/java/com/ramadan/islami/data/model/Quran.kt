@@ -1,12 +1,15 @@
 package com.ramadan.islami.data.model
 
+import androidx.annotation.Keep
 import java.io.Serializable
 
+@Keep
 class Quran(
     val code: Int,
     val `data`: Data,
     val status: String,
 ) : Serializable {
+    @Keep
     class Data(
         val surahs: List<Surah>,
     )
@@ -24,13 +27,4 @@ class Quran(
         val tafseer: String,
     )
 }
-
-class Surah(
-    val ayahs: List<Quran.Ayah>,
-    val englishName: String,
-    val englishNameTranslation: String,
-    val name: String,
-    val number: Int,
-    val revelationType: String,
-) : Serializable
 

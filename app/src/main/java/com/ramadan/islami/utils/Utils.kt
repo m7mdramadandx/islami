@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.ramadan.islami.utils
 
 import android.app.Activity
@@ -186,12 +188,12 @@ fun showImg(imgUrl: String, context: Context) {
     Picasso.get().load(imgUrl).error(R.drawable.failure_img)
         .placeholder(R.drawable.load_img).into(imageView)
     imageView.setOnLongClickListener {
-        showOptions(context, imageView, imgUrl)
+        showOptions(context, imageView)
         false
     }
 }
 
-fun showOptions(context: Context, imageView: ImageView, imgUrl: String) {
+fun showOptions(context: Context, imageView: ImageView) {
     val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
     val view = View.inflate(context, R.layout.alert_dialog_options, null)
     dialogBuilder.setView(view)

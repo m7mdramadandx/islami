@@ -1,5 +1,6 @@
 package com.ramadan.islami.data.model
 
+import androidx.annotation.Keep
 import java.io.Serializable
 
 data class Calender(
@@ -13,6 +14,7 @@ data class Calender(
     )
 }
 
+@Keep
 data class Gregorian(
     val date: String,
     val day: String,
@@ -20,17 +22,20 @@ data class Gregorian(
     val weekday: Weekday,
     val year: String,
 ) : Serializable {
+    @Keep
     data class Month(
         val en: String,
         val number: Int,
     ) : Serializable
 
+    @Keep
     data class Weekday(
         val en: String,
     ) : Serializable
 
 }
 
+@Keep
 data class Hijri(
     val date: String,
     val day: String,
@@ -39,12 +44,14 @@ data class Hijri(
     val weekday: Weekday,
     val year: String,
 ) : Serializable {
+    @Keep
     data class Month(
         val ar: String,
         val en: String,
         val number: Int,
     ) : Serializable
 
+    @Keep
     data class Weekday(
         val ar: String,
         val en: String,

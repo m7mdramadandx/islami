@@ -61,6 +61,7 @@ class Azan : BroadcastReceiver() {
                     AlarmManager.RTC_WAKEUP,
                     calendar.timeInMillis,
                     pendingIntent)
+                @Suppress("DEPRECATION")
                 Log.e(debug_tag, "Next Alarm: ${calendar.time.minutes}")
             }
         }

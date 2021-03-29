@@ -27,7 +27,7 @@ class TopicAdapter : RecyclerView.Adapter<TopicAdapter.CustomView>() {
         notifyDataSetChanged()
     }
 
-    fun setTopicContentDataList(data: MutableMap<String, String>, brief: String) {
+    fun setTopicContentDataList(data: MutableMap<String, String>) {
         contentMap = data
         notifyDataSetChanged()
     }

@@ -1,8 +1,10 @@
 package com.ramadan.islami.data.model
 
+import androidx.annotation.Keep
 import java.io.Serializable
 
 
+@Keep
 class Story(
     val id: String,
     val title: String,

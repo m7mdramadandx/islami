@@ -13,11 +13,6 @@
         <item name="android:fontFamily">@font/kemenag_font_family</item>
     </style>
 
-    <style name="AppTheme_Material_NoActionBar" parent="AppTheme_Material">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
 
     <style name="AppTheme_NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>

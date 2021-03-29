@@ -1,8 +1,10 @@
 package com.ramadan.islami.utils
 
+import androidx.annotation.Keep
 import com.ramadan.islami.utils.ResponseStatus.*
 
 
+@Keep
 data class Resource<out T>(val status: ResponseStatus, val data: T?, val message: String?) {
     companion object {
         fun <T> loading(data: T?): Resource<T> =

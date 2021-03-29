@@ -116,6 +116,7 @@ class Settings : Fragment() {
                         R.id.option1 -> localeHelper.persist(context, "ar")
                         R.id.option2 -> localeHelper.persist(context, "en")
                     }
+                    alertDialog.dismiss()
                     startActivity(Intent(context, MainActivity::class.java))
                 }
             }
@@ -143,6 +144,7 @@ class Settings : Fragment() {
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                         }
                     }
+                    alertDialog.dismiss()
                 }
             }
             "notification" -> {

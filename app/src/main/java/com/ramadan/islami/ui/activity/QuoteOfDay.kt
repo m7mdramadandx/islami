@@ -153,7 +153,7 @@ class QuoteOfDay : AppCompatActivity() {
             gravity = MenuGravity.END
         )
         contextMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams).apply {
-            menuItemClickListener = { view, position ->
+            menuItemClickListener = { _, position ->
                 when (position) {
                     0 -> Intent(Intent.ACTION_SEND).also {
                         it.type = "text/plain"

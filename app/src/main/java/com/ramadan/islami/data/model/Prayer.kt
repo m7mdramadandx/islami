@@ -1,20 +1,24 @@
 package com.ramadan.islami.data.model
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 
+@Keep
 data class Prayer(
     val code: Int,
     val `data`: List<PrayerData>,
     val status: String,
 ) : Serializable {
+    @Keep
     data class PrayerData(
         val date: PrayerDate,
         val meta: Meta,
         val timings: Timings,
     ) : Serializable
 
+    @Keep
     data class PrayerDate(
         val gregorian: Gregorian,
         val hijri: Hijri,
@@ -22,6 +26,7 @@ data class Prayer(
         val timestamp: String,
     ) : Serializable
 
+    @Keep
     data class Meta(
         val latitude: Double,
         val latitudeAdjustmentMethod: String,
@@ -32,35 +37,37 @@ data class Prayer(
         val timezone: String,
     ) : Serializable
 
+    @Keep
     data class Timings(
         @SerializedName("Asr")
         val asr: String,
 
         @SerializedName("Dhuhr")
-        val dhuhr: String = String().plus("-----"),
+        val dhuhr: String,
 
         @SerializedName("Fajr")
-        val fajr: String = String().removeSuffix("(EET)"),
+        val fajr: String,
 
         @SerializedName("Imsak")
-        val imsak: String = String().removeSuffix("(EET)"),
+        val imsak: String,
 
         @SerializedName("Isha")
-        val isha: String = String().removeSuffix("(EET)"),
+        val isha: String,
 
         @SerializedName("Maghrib")
-        val maghrib: String = String().removeSuffix("(EET)"),
+        val maghrib: String,
 
         @SerializedName("Midnight")
-        val midnight: String = String().removeSuffix("(EET)"),
+        val midnight: String,
 
         @SerializedName("Sunrise")
-        val sunrise: String = String().removeSuffix("(EET)"),
+        val sunrise: String,
 
         @SerializedName("Sunset")
-        val sunset: String = String().removeSuffix("(EET)"),
+        val sunset: String,
     ) : Serializable
 
+    @Keep
     data class Method(
         val id: Int,
         val name: String,

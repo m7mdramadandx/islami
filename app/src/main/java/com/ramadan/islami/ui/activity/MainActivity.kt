@@ -7,11 +7,9 @@ import android.content.IntentSender
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.core.view.updatePadding
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -25,7 +23,6 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.InstallState
@@ -40,6 +37,7 @@ import com.google.firebase.ktx.Firebase
 import com.ramadan.islami.R
 import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.isNetworkConnected
+import com.ramadan.islami.utils.showMessage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -92,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         firebaseAnalytics = Firebase.analytics
         fixedBanner = findViewById(R.id.fixedBanner)
         listener =
-            NavController.OnDestinationChangedListener { controller, destination, arguments ->
+            NavController.OnDestinationChangedListener { _, destination, _ ->
                 when (destination.id) {
                     R.id.nav_family_tree_details -> {
 
@@ -218,22 +216,13 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == APP_UPDATE_REQUEST_CODE) {
             if (resultCode != Activity.RESULT_OK) {
-                Toast.makeText(this,
-                    "App Update failed, please try again on the next app launch.",
-                    Toast.LENGTH_SHORT)
-                    .show()
+                showMessage(this, "App Update failed, please try again on the next app launch.")
             }
         }
     }
 
     private fun popupSnackbarForCompleteUpdate() {
-        val snackbar = Snackbar.make(
-            findViewById(R.id.mainConstraint),
-            "An update has just been downloaded.",
-            Snackbar.LENGTH_INDEFINITE)
-        snackbar.setAction("RESTART") { appUpdateManager.completeUpdate() }
-        snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.colorAccent))
-        snackbar.show()
+        showMessage(this, "An update has just been downloaded.")
     }
 
 }

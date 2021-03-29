@@ -1,7 +1,9 @@
 package com.ramadan.islami.data.model
 
+import androidx.annotation.Keep
 import java.io.Serializable
 
+@Keep
 class Topic(
     val id: String,
     val title: String,
