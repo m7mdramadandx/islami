@@ -40,7 +40,6 @@ class Qibla : AppCompatActivity() {
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_qibla)
@@ -56,17 +55,7 @@ class Qibla : AppCompatActivity() {
         )
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
-            if (!checkIfAlreadyPermission()) {
-                requestForSpecificPermission()
-            } else {
-                val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-                fusedLocationClient.lastLocation.addOnSuccessListener {
-                    initQiblaDirection(it.latitude, it.longitude)
-                }
-                fusedLocationClient.lastLocation.addOnFailureListener {
-                    Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
-                }
-            }
+            if (!checkIfAlreadyPermission()) requestForSpecificPermission() else fetchQibla()
         }
 
     }
@@ -91,12 +80,29 @@ class Qibla : AppCompatActivity() {
     ) {
         when (requestCode) {
             ACCESS_FINE_LOCATION_REQ_CODE -> if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "guides", Toast.LENGTH_LONG).show()
+                fetchQibla()
             } else {
-                Toast.makeText(this, getString(R.string.couldnotDownload), Toast.LENGTH_LONG)
+                Toast.makeText(this, getString(R.string.couldnotGetQibla), Toast.LENGTH_LONG)
                     .show()
             }
             else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        }
+    }
+
+    fun fetchQibla() {
+        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+        ) {
+            super.onBackPressed()
+        }
+        fusedLocationClient.lastLocation.addOnSuccessListener {
+            initQiblaDirection(it.latitude, it.longitude)
+        }
+        fusedLocationClient.lastLocation.addOnFailureListener {
+            Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -3,11 +3,13 @@ package com.ramadan.islami.data.model
 import androidx.annotation.Keep
 import java.io.Serializable
 
+@Keep
 data class Calender(
     val code: Int,
     val `data`: CalenderData,
     val status: String,
 ) {
+    @Keep
     data class CalenderData(
         val gregorian: Gregorian,
         val hijri: Hijri,

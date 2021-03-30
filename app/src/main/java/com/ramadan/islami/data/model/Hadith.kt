@@ -1,5 +1,8 @@
 package com.ramadan.islami.data.model
 
+import androidx.annotation.Keep
+
+@Keep
 data class Hadith(
     val bookNumber: String,
     val chapterId: String,
@@ -7,6 +10,7 @@ data class Hadith(
     val hadith: List<HadithX>,
     val hadithNumber: String,
 ) {
+    @Keep
     data class HadithX(
         val body: String,
         val chapterNumber: String,

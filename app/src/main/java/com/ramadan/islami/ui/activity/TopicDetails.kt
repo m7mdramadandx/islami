@@ -132,7 +132,7 @@ class TopicDetails : AppCompatActivity() {
         topic?.let {
             title = it.title
             topicAdapter
-                .setTopicContentDataList(it.content as MutableMap<String, String>)
+                .setTopicContent(it.content as MutableMap<String, String>)
         }
     }
 

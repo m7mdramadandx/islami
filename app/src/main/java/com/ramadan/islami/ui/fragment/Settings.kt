@@ -159,7 +159,7 @@ class Settings : Fragment() {
                         }
                         R.id.option2 -> {
                             OneSignal.disablePush(true)
-                            FirebaseMessaging.getInstance().unsubscribeFromTopic("allUsers")
+//                            FirebaseMessaging.getInstance().unsubscribeFromTopic("allUsers")
                             localeHelper.setNotification(context, false)
                         }
                     }

@@ -14,6 +14,7 @@ class Quran(
         val surahs: List<Surah>,
     )
 
+    @Keep
     class Ayah(
         val hizbQuarter: Int,
         val juz: String,

@@ -27,7 +27,7 @@ class TopicAdapter : RecyclerView.Adapter<TopicAdapter.CustomView>() {
         notifyDataSetChanged()
     }
 
-    fun setTopicContentDataList(data: MutableMap<String, String>) {
+    fun setTopicContent(data: MutableMap<String, String>) {
         contentMap = data
         notifyDataSetChanged()
     }
@@ -37,15 +37,14 @@ class TopicAdapter : RecyclerView.Adapter<TopicAdapter.CustomView>() {
         notifyDataSetChanged()
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomView {
-        return if (topicList.size > 0) {
+        return if (contentMap.isNotEmpty()) {
             val view: View = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_tile, parent, false)
+                .inflate(R.layout.item_content, parent, false)
             CustomView(view)
         } else {
             val view: View = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_content, parent, false)
+                .inflate(R.layout.item_tile, parent, false)
             CustomView(view)
         }
     }

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Chronometer
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -15,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.bcgdv.asia.lib.ticktock.TickTockView
 import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -22,16 +22,13 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.Azan
 import com.ramadan.islami.R
-import com.ramadan.islami.data.api.ApiHelper
-import com.ramadan.islami.data.api.RetrofitBuilder
 import com.ramadan.islami.data.listener.FirebaseListener
 import com.ramadan.islami.ui.activity.MainActivity
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.adapter.SliderAdapter
 import com.ramadan.islami.ui.viewModel.FirebaseViewModel
-import com.ramadan.islami.ui.viewModel.ViewModelFactory
-import com.ramadan.islami.ui.viewModel.WebServiceViewModel
+import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.Utils
 import com.ramadan.islami.utils.changeNavigation
 import com.ramadan.islami.utils.showMessage
@@ -42,18 +39,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
 import java.util.*
 
 
 class Dashboard : Fragment(), FirebaseListener {
 
     private val dataViewModel by lazy { ViewModelProvider(this).get(FirebaseViewModel::class.java) }
-    private val apiViewModel by lazy {
-        ViewModelProvider(
-            this,
-            ViewModelFactory(ApiHelper(RetrofitBuilder("http://api.aladhan.com/").apiService()))
-        ).get(WebServiceViewModel::class.java)
-    }
     private lateinit var hijriDate: TextView
     private lateinit var nextPrayerTime: TextView
     private lateinit var mAdView: AdView
@@ -67,11 +59,13 @@ class Dashboard : Fragment(), FirebaseListener {
     private lateinit var familyTreeAdapter: RecyclerViewAdapter
     private val storiesAdapter = SliderAdapter()
     private val quotesAdapter = SliderAdapter()
+    private val localeHelper = LocaleHelper()
+    private val azan = Azan()
     private lateinit var utils: Utils
     private lateinit var hijriToday: UmmalquraCalendar
     private lateinit var progress0: ProgressBar
     private lateinit var progress1: ProgressBar
-    private lateinit var timer: Chronometer
+    private lateinit var ticktock: TickTockView
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -113,7 +107,7 @@ class Dashboard : Fragment(), FirebaseListener {
         mAdView = root.findViewById(R.id.adView)
         dataViewModel.firebaseListener = this
         hijriDate = root.findViewById(R.id.hijriDate)
-        timer = root.findViewById(R.id.timer)
+        ticktock = root.findViewById(R.id.ticktock)
         suggestionRCV = root.findViewById(R.id.suggestionRecyclerView)
         dailyRCV = root.findViewById(R.id.dailyRecyclerView)
         familyTreeRCV = root.findViewById(R.id.familyTreeRecyclerView)
@@ -131,29 +125,21 @@ class Dashboard : Fragment(), FirebaseListener {
                 "${utils.month[hijriToday[UmmalquraCalendar.MONTH]]} " +
                 "${hijriToday[UmmalquraCalendar.YEAR]} ").also { hijriDate.text = it }
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            timer.isCountDown = true
-        }
-        timer.text = "00:00:00"
-        Azan().getAlarmDate(view.context)?.let {
-            timer.base = it.time.time
-        }
-        timer.start()
-        timer.format = "HH:mm:ss"
-        timer.setOnChronometerTickListener { chronometer ->
-            Azan().getAlarmDate(view.context)?.let {
-                val time: Long = it.time.time
-                val h = (time / 3600000).toInt()
-                val m = (time - h * 3600000).toInt() / 60000
-                val s = (time - h * 3600000 - m * 60000).toInt() / 1000
-                val t =
-                    (if (h < 10) "0$h" else h).toString() + ":" + (if (m < 10) "0$m" else m) + ":" + if (s < 10) "0$s" else s
-                chronometer.text = t
 
+        localeHelper.getPrayerTimes(view.context).let {
+            val format = SimpleDateFormat("hh:mm:ss")
+            ticktock.setOnTickListener {
+                val date = Date()
+//                date.setTime(System.currentTimeMillis());
+                azan.getAlarmDate(view.context)?.let { date.time = it.timeInMillis }
+                format.format(date)
             }
-//            val time: Long = SystemClock.elapsedRealtime() - chronometer.base
-        }
+            azan.getAlarmDate(view.context)?.let {
+                val start = Calendar.getInstance()
+                ticktock.start(start, it)
+            }
 
+        }
         suggestionRCV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
         suggestionRCV.adapter = suggestionAdapter
 

@@ -44,6 +44,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/bg_rounded"
                     android:backgroundTint="@color/colorPrimary"
+                    android:gravity="center"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="2dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -58,12 +59,18 @@
                         android:text="@string/prayerTimes"
                         android:textColor="@color/colorAccent" />
 
-                    <Chronometer
-                        android:id="@+id/timer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:textColor="@color/white" />
+                    <com.bcgdv.asia.lib.ticktock.TickTockView
+                        android:id="@+id/ticktock"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center_horizontal"
+                        app:tickAutoFitText="true"
+                        app:tickDotRadius="6dp"
+                        app:tickEmptyRingColor="@android:color/white"
+                        app:tickFillRingColor="@color/colorAccent"
+                        app:tickMoveCounterClockwise="true"
+                        app:tickRingThickness="2dp"
+                        app:tickTextColor="@color/white" />
                 </LinearLayout>
 
                 <TextView
