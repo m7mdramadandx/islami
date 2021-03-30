@@ -29,10 +29,10 @@
         </aapt:attr>
     </path>
     <path
-        android:fillColor="#3f3f3f"
+        android:fillColor="#E1B34F"
         android:pathData="M32,14m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0" />
     <path
-        android:fillColor="#3f3f3f"
+        android:fillColor="#E1B34F"
         android:pathData="m30,22h4l1,20h-6z" />
     <path
         android:fillColor="#3f3f3f"

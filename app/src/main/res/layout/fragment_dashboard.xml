@@ -38,41 +38,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/bg_rounded"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:gravity="center"
-                    android:paddingHorizontal="8dp"
-                    android:paddingVertical="2dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/hijriDate">
-
-                    <TextView
-                        android:id="@+id/nextPrayerTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_rounded"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:text="@string/prayerTimes"
-                        android:textColor="@color/colorAccent" />
-
-                    <com.bcgdv.asia.lib.ticktock.TickTockView
-                        android:id="@+id/ticktock"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center_horizontal"
-                        app:tickAutoFitText="true"
-                        app:tickDotRadius="6dp"
-                        app:tickEmptyRingColor="@android:color/white"
-                        app:tickFillRingColor="@color/colorAccent"
-                        app:tickMoveCounterClockwise="true"
-                        app:tickRingThickness="2dp"
-                        app:tickTextColor="@color/white" />
-                </LinearLayout>
-
                 <TextView
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
@@ -118,22 +83,24 @@
                         android:text="@string/stories"
                         android:textColor="@android:color/white" />
 
-                    <ImageButton
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="8dp"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/ic_expand" />
+                        android:src="@drawable/ic_expand"
+                        tools:ignore="ContentDescription" />
 
 
                     <com.smarteist.autoimageslider.SliderView
                         android:id="@+id/storiesSlider"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:layout_marginTop="42dp"
+                        android:layout_marginTop="48dp"
                         android:background="@drawable/bg_rounded"
                         android:backgroundTint="@color/colorSecondary"
+                        android:padding="8dp"
                         android:paddingHorizontal="12dp"
                         app:sliderIndicatorSelectedColor="@color/colorAccent"
                         app:sliderIndicatorUnselectedColor="@android:color/white">
@@ -164,19 +131,20 @@
                         android:textColor="@android:color/white"
                         android:textSize="21sp" />
 
-                    <ImageButton
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/ic_expand" />
+                        android:src="@drawable/ic_expand"
+                        tools:ignore="ContentDescription" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/dailyRecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="42dp"
-                        android:paddingHorizontal="8dp"
+                        android:layout_marginTop="48dp"
+                        android:paddingStart="8dp"
                         tools:listitem="@layout/item_card" />
 
                 </RelativeLayout>
@@ -207,23 +175,24 @@
                         android:textColor="@android:color/white" />
 
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/seeAllQuotes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="8dp"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/ic_expand" />
+                        android:src="@drawable/ic_expand"
+                        tools:ignore="ContentDescription" />
 
                     <com.smarteist.autoimageslider.SliderView
                         android:id="@+id/quotesSlider"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:layout_marginTop="42dp"
+                        android:layout_marginTop="48dp"
                         android:background="@drawable/bg_rounded"
                         android:backgroundTint="@color/colorSecondary"
-                        android:paddingHorizontal="12dp"
+                        android:padding="8dp"
                         app:sliderIndicatorSelectedColor="@color/colorAccent"
                         app:sliderIndicatorUnselectedColor="@android:color/white">
 
@@ -255,7 +224,8 @@
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/failure_img" />
+                            android:src="@drawable/failure_img"
+                            tools:ignore="ContentDescription" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -292,20 +262,21 @@
                         android:textColor="@android:color/white"
                         android:textSize="21sp" />
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/seeAllTrees"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/ic_expand" />
+                        android:src="@drawable/ic_expand"
+                        tools:ignore="ContentDescription" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/familyTreeRecyclerView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="42dp"
-                        android:paddingHorizontal="8dp"
+                        android:layout_marginTop="48dp"
+                        android:paddingStart="8dp"
                         tools:listitem="@layout/item_family_tree" />
 
                 </RelativeLayout>

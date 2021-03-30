@@ -18,8 +18,7 @@ class TopicAdapter : RecyclerView.Adapter<TopicAdapter.CustomView>() {
     private var topicList = mutableListOf<TopicModel>()
     private var azkarList = mutableListOf<Azkar.AzkarItem>()
     private var contentMap: MutableMap<String, String> = mutableMapOf()
-    var collectionId = String()
-    var brief = String()
+    private var collectionId = String()
 
     fun setTopicDataList(data: MutableList<TopicModel>, collectionId: String) {
         topicList = data
@@ -38,13 +37,13 @@ class TopicAdapter : RecyclerView.Adapter<TopicAdapter.CustomView>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomView {
-        return if (contentMap.isNotEmpty()) {
+        return if (topicList.size > 0) {
             val view: View = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_content, parent, false)
+                .inflate(R.layout.item_tile, parent, false)
             CustomView(view)
         } else {
             val view: View = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_tile, parent, false)
+                .inflate(R.layout.item_content, parent, false)
             CustomView(view)
         }
     }

@@ -20,7 +20,6 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.logEvent
-import com.ramadan.islami.Azan
 import com.ramadan.islami.R
 import com.ramadan.islami.data.listener.FirebaseListener
 import com.ramadan.islami.ui.activity.MainActivity
@@ -28,7 +27,6 @@ import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.adapter.SliderAdapter
 import com.ramadan.islami.ui.viewModel.FirebaseViewModel
-import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.Utils
 import com.ramadan.islami.utils.changeNavigation
 import com.ramadan.islami.utils.showMessage
@@ -39,15 +37,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.text.SimpleDateFormat
 import java.util.*
 
 
 class Dashboard : Fragment(), FirebaseListener {
-
     private val dataViewModel by lazy { ViewModelProvider(this).get(FirebaseViewModel::class.java) }
     private lateinit var hijriDate: TextView
-    private lateinit var nextPrayerTime: TextView
     private lateinit var mAdView: AdView
     private lateinit var suggestionRCV: RecyclerView
     private lateinit var dailyRCV: RecyclerView
@@ -59,8 +54,6 @@ class Dashboard : Fragment(), FirebaseListener {
     private lateinit var familyTreeAdapter: RecyclerViewAdapter
     private val storiesAdapter = SliderAdapter()
     private val quotesAdapter = SliderAdapter()
-    private val localeHelper = LocaleHelper()
-    private val azan = Azan()
     private lateinit var utils: Utils
     private lateinit var hijriToday: UmmalquraCalendar
     private lateinit var progress0: ProgressBar
@@ -107,7 +100,6 @@ class Dashboard : Fragment(), FirebaseListener {
         mAdView = root.findViewById(R.id.adView)
         dataViewModel.firebaseListener = this
         hijriDate = root.findViewById(R.id.hijriDate)
-        ticktock = root.findViewById(R.id.ticktock)
         suggestionRCV = root.findViewById(R.id.suggestionRecyclerView)
         dailyRCV = root.findViewById(R.id.dailyRecyclerView)
         familyTreeRCV = root.findViewById(R.id.familyTreeRecyclerView)
@@ -126,20 +118,20 @@ class Dashboard : Fragment(), FirebaseListener {
                 "${hijriToday[UmmalquraCalendar.YEAR]} ").also { hijriDate.text = it }
 
 
-        localeHelper.getPrayerTimes(view.context).let {
-            val format = SimpleDateFormat("hh:mm:ss")
-            ticktock.setOnTickListener {
-                val date = Date()
+//        localeHelper.getPrayerTimes(view.context).let {
+//            val format = SimpleDateFormat("hh:mm:ss")
+//            ticktock.setOnTickListener {
+//                val date = Date()
 //                date.setTime(System.currentTimeMillis());
-                azan.getAlarmDate(view.context)?.let { date.time = it.timeInMillis }
-                format.format(date)
-            }
-            azan.getAlarmDate(view.context)?.let {
-                val start = Calendar.getInstance()
-                ticktock.start(start, it)
-            }
-
-        }
+//                azan.getAlarmDate(view.context)?.let { date.time = it.timeInMillis }
+//                format.format(date)
+//            }
+//            azan.getAlarmDate(view.context)?.let {
+//                val start = Calendar.getInstance()
+//                ticktock.start(start, it)
+//            }
+//
+//        }
         suggestionRCV.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
         suggestionRCV.adapter = suggestionAdapter
 

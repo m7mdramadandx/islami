@@ -2,11 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape>
-            <gradient android:endColor="@color/colorPrimary"
-                android:centerColor="@color/colorSecondary"
-                android:gradientRadius="120dp"
-                android:startColor="@color/colorSecondary"
-                android:type="radial" />
+            <gradient android:centerColor="@color/colorSecondary" android:endColor="@color/colorPrimary" android:gradientRadius="420dp" android:startColor="@color/colorSecondary" android:type="radial" />
             <corners android:bottomLeftRadius="30dp" android:bottomRightRadius="30dp" />
             <padding android:bottom="1dp" android:left="1dp" android:right="1dp" android:top="1dp" />
         </shape>

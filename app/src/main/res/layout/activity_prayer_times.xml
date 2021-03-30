@@ -92,9 +92,10 @@
 
             <TextView
                 android:id="@+id/scheduleLocation"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Location"
+                android:maxLines="1"
+                android:textAlignment="viewStart"
                 android:textColor="@color/white"
                 app:drawableStartCompat="@drawable/ic_location"
                 app:layout_constraintBottom_toTopOf="@+id/view"

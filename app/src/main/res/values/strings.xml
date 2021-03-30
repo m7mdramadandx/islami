@@ -114,6 +114,7 @@
     <string name="videos">videos</string>
     <string name="couldnotGetQibla">you will not able to know qibla</string>
     <string name="onlyCurrentMonth">only current month you can view</string>
+    <string name="translateWords">Translate words</string>
 
     <string-array name="custom_weekdays">
         <item>Sn</item>

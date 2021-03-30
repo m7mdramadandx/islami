@@ -95,15 +95,6 @@ class MainActivity : AppCompatActivity() {
                     R.id.nav_family_tree_details -> {
 
                     }
-                    //                        Intent(Intent.ACTION_SEND).also {
-//                            it.type = "text/plain"
-//                            it.putExtra(
-//                                Intent.EXTRA_TEXT,
-//                                "I suggest this app for you : ${appURL}"
-//                            )
-//                            startActivity(it)
-//                        }
-
                 }
             }
         isConnected = this.isNetworkConnected()

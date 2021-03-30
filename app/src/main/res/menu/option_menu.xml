@@ -4,6 +4,6 @@
         android:id="@+id/context_menu"
         android:icon="@drawable/ic_menu"
         android:orderInCategory="100"
-        android:title="Options"
+        android:title="@string/options"
         app:showAsAction="always" />
 </menu>

@@ -77,7 +77,10 @@ class PrayerTimes : AppCompatActivity() {
         scheduleDay.text = utils.weekday[gregorianToday[Calendar.DAY_OF_WEEK]]
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
-            if (!checkIfAlreadyPermission()) requestForSpecificPermission() else fetchDate()
+            if (!checkIfAlreadyPermission()) requestForSpecificPermission() else {
+                if (MainActivity.isConnected) fetchDate()
+                else showMessage(this, getString(R.string.noInternet))
+            }
         }
 
         findViewById<DatePickerTimeline>(R.id.dtp_schedule_prayer).apply {
@@ -90,7 +93,7 @@ class PrayerTimes : AppCompatActivity() {
             setOnDateSelectedListener(object : OnDateSelectedListener {
                 override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
                     prayer?.let {
-                        if (month == it.data.first().date.gregorian.month.number) {
+                        if (month == it.data.first().date.gregorian.month.number - 1) {
                             selectedDate = day
                             prayTimeAdapter.setSchedulePrayer(prayer!!.data[day - 1])
                         } else snackBar(getString(R.string.onlyCurrentMonth))

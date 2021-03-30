@@ -100,42 +100,55 @@ class StoryDetails : AppCompatActivity() {
         )
         contextMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams).apply {
             menuItemClickListener = { view, position ->
-                when (position) {
-                    0 -> showBrief(story.title, story.brief, view.context)
-                    1 -> {
-                        val intent = Intent()
-                        intent.action = Intent.ACTION_VIEW
-                        intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                        intent.data = Uri.parse("https://translate.google.com/")
-                        startActivity(intent)
+                if (language == "en") {
+                    when (position) {
+                        0 -> showBrief(story.title, story.brief, view.context)
+                        1 -> {
+                            val intent = Intent()
+                            intent.action = Intent.ACTION_VIEW
+                            intent.addCategory(Intent.CATEGORY_BROWSABLE)
+                            intent.data = Uri.parse("https://translate.google.com/")
+                            startActivity(intent)
+                        }
+                        2 -> {
+                            val intent = Intent()
+                            intent.action = Intent.ACTION_VIEW
+                            intent.addCategory(Intent.CATEGORY_BROWSABLE)
+                            intent.data = Uri.parse("https://en.wikipedia.org/wiki/$title")
+                            startActivity(intent)
+                        }
                     }
-                    2 -> {
-                        val intent = Intent()
-                        intent.action = Intent.ACTION_VIEW
-                        intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                        intent.data = Uri.parse("https://en.wikipedia.org/wiki/$title")
-                        startActivity(intent)
-                    }
+                } else {
+                    if (position == 0) showBrief(story.title, story.brief, view.context)
                 }
             }
         }
     }
 
     private fun getMenuObjects() = mutableListOf<MenuObject>().apply {
-        MenuObject(getString(R.string.brief)).apply {
-            setResourceValue(R.drawable.ic_quote)
-            setBgColorValue((Color.rgb(23, 34, 59)))
-            add(this)
-        }
-        MenuObject("Translate words").apply {
-            setResourceValue(R.drawable.translate)
-            setBgColorValue((Color.rgb(22, 36, 71)))
-            add(this)
-        }
-        MenuObject("Who's $title").apply {
-            setResourceValue(R.drawable.wikipedia)
-            setBgColorValue((Color.rgb(23, 34, 59)))
-            add(this)
+        if (language == "en") {
+            MenuObject(getString(R.string.brief)).apply {
+                setResourceValue(R.drawable.ic_quote)
+                setBgColorValue((Color.rgb(23, 34, 59)))
+                add(this)
+            }
+            MenuObject(getString(R.string.translateWords)).apply {
+                setResourceValue(R.drawable.translate)
+                setBgColorValue((Color.rgb(22, 36, 71)))
+                add(this)
+            }
+            MenuObject("Who's $title").apply {
+                setResourceValue(R.drawable.wikipedia)
+                setBgColorValue((Color.rgb(23, 34, 59)))
+                add(this)
+            }
+
+        } else {
+            MenuObject(getString(R.string.brief)).apply {
+                setResourceValue(R.drawable.ic_quote)
+                setBgColorValue((Color.rgb(23, 34, 59)))
+                add(this)
+            }
         }
     }
 

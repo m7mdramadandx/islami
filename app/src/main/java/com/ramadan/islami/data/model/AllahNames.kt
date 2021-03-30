@@ -4,6 +4,7 @@ import androidx.annotation.Keep
 
 @Keep
 class AllahNames : ArrayList<AllahNames.AllahNamesItem>() {
+    @Keep
     data class AllahNamesItem(
         val name: String,
         val english: String,

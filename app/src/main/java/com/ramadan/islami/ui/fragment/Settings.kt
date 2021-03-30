@@ -36,8 +36,7 @@ class Settings : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_settings, container, false)
-        return root
+        return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -159,7 +158,7 @@ class Settings : Fragment() {
                         }
                         R.id.option2 -> {
                             OneSignal.disablePush(true)
-//                            FirebaseMessaging.getInstance().unsubscribeFromTopic("allUsers")
+                            FirebaseMessaging.getInstance().unsubscribeFromTopic("allUsers")
                             localeHelper.setNotification(context, false)
                         }
                     }

@@ -15,27 +15,18 @@ import com.ramadan.islami.data.listener.FirebaseListener
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.TopicAdapter
 import com.ramadan.islami.ui.viewModel.FirebaseViewModel
-import com.ramadan.islami.ui.viewModel.LocalViewModel
 import kotlinx.android.synthetic.main.recycler_view.*
 
 
 class TopicList : AppCompatActivity(), FirebaseListener {
     private val viewModel by lazy { ViewModelProvider(this).get(FirebaseViewModel::class.java) }
-    private val localViewModel by lazy { ViewModelProvider(this).get(LocalViewModel::class.java) }
-
     private lateinit var topicAdapter: TopicAdapter
     private lateinit var recyclerView: RecyclerView
 
-
     override fun onStart() {
         super.onStart()
-        intent.getStringExtra("intentKey")?.let {
-            if (it == "azkar") {
-                observeData()
-            } else if (it == "topics") observeData()
-        }
+        observeData()
     }
-
     override fun onResume() {
         super.onResume()
         MainActivity.firebaseAnalytics?.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
@@ -58,13 +49,9 @@ class TopicList : AppCompatActivity(), FirebaseListener {
 
     private fun observeData() {
         val collectionId = intent.getStringExtra("collectionId").toString()
+        title = collectionId
         viewModel.fetchTopics(language, collectionId)
             .observe(this, { topicAdapter.setTopicDataList(it, collectionId) })
-    }
-
-    fun fetchAzkar(): Unit {
-        title = getString(R.string.azkar)
-        localViewModel.getAzkar(this)?.let { topicAdapter.setAzkarDataList(it) }
     }
 
     override fun onSupportNavigateUp(): Boolean {

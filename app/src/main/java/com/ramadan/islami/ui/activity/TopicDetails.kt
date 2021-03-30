@@ -91,7 +91,6 @@ class TopicDetails : AppCompatActivity() {
         adView.adListener = object : AdListener() {
             override fun onAdLoaded() {
                 contentView.updatePadding(0, 0, 0, 160)
-                Log.e(debug_tag, "LOADED")
             }
 
             override fun onAdFailedToLoad(adError: LoadAdError) {
@@ -158,7 +157,7 @@ class TopicDetails : AppCompatActivity() {
         title = getString(R.string.azkar)
         localViewModel.getAzkar(this)?.let { azkar ->
             azkar.shuffle()
-            topicAdapter.setAzkarDataList(azkar.take(5).toMutableList())
+            topicAdapter.setAzkarDataList(azkar.take(15).toMutableList())
         }
     }
 

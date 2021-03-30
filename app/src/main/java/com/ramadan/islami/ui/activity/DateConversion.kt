@@ -1,12 +1,7 @@
 package com.ramadan.islami.ui.activity
 
-import android.content.Intent
-import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
@@ -24,9 +19,6 @@ import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.ResponseStatus
 import com.ramadan.islami.utils.debug_tag
 import com.ramadan.islami.utils.showMessage
-import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
-import com.yalantis.contextmenu.lib.MenuObject
-import com.yalantis.contextmenu.lib.MenuParams
 import kotlinx.android.synthetic.main.activity_date_conversion.*
 import net.alhazmy13.hijridatepicker.date.gregorian.GregorianDatePickerDialog
 import net.alhazmy13.hijridatepicker.date.hijri.HijriDatePickerDialog
@@ -41,7 +33,6 @@ class DateConversion : AppCompatActivity() {
         ).get(WebServiceViewModel::class.java)
     }
     private var mRewardedAd: RewardedAd? = null
-    private lateinit var contextMenuDialogFragment: ContextMenuDialogFragment
     private lateinit var hijriToday: UmmalquraCalendar
     private lateinit var gregorianToday: Calendar
 
@@ -51,6 +42,7 @@ class DateConversion : AppCompatActivity() {
             param(FirebaseAnalytics.Param.SCREEN_NAME, title.toString())
         }
     }
+
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,13 +83,10 @@ class DateConversion : AppCompatActivity() {
             dpd.show(supportFragmentManager, "GregorianDatePickerDialog")
 
         }
-        initMenuFragment()
-
     }
 
     private fun fetchHijri(gregorianDate: String) {
         val adRequest = AdRequest.Builder().build()
-
         viewModel.hijriCalender(gregorianDate).observe(this@DateConversion, {
             when (it.status) {
                 ResponseStatus.LOADING -> conversionIcon.rotation = 180F
@@ -122,7 +111,7 @@ class DateConversion : AppCompatActivity() {
                 }
                 ResponseStatus.ERROR -> {
                     conversionIcon.rotation = 90F
-                    showMessage(this@DateConversion, it.message.toString())
+                    showMessage(this@DateConversion, getString(R.string.noInternet))
                 }
             }
         })
@@ -156,7 +145,7 @@ class DateConversion : AppCompatActivity() {
                     }
                     ResponseStatus.ERROR -> {
                         conversionIcon.rotation = 90F
-                        showMessage(this@DateConversion, it.message.toString())
+                        showMessage(this@DateConversion, getString(R.string.noInternet))
                     }
                 }
             })
@@ -182,50 +171,4 @@ class DateConversion : AppCompatActivity() {
         return true
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.option_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        item.let { if (it.itemId == R.id.context_menu) showContextMenuDialogFragment() }
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun showContextMenuDialogFragment() {
-        if (supportFragmentManager.findFragmentByTag(ContextMenuDialogFragment.TAG) == null) {
-            contextMenuDialogFragment.show(
-                supportFragmentManager,
-                ContextMenuDialogFragment.TAG
-            )
-        }
-    }
-
-    private fun initMenuFragment() {
-        val menuParams = MenuParams(
-            actionBarSize = resources.getDimension(R.dimen.tool_bar_height).toInt(),
-            menuObjects = getMenuObjects(),
-            isClosableOutside = true
-        )
-        contextMenuDialogFragment =
-            ContextMenuDialogFragment.newInstance(menuParams).apply {
-                menuItemClickListener = { _, position ->
-                    if (position == 0) {
-                        val intent = Intent()
-                        intent.action = Intent.ACTION_VIEW
-                        intent.addCategory(Intent.CATEGORY_BROWSABLE)
-                        intent.data = Uri.parse("https://translate.google.com/")
-                        startActivity(intent)
-                    }
-                }
-            }
-    }
-
-    private fun getMenuObjects() = mutableListOf<MenuObject>().apply {
-        MenuObject(getString(R.string.view_images)).apply {
-            setResourceValue(R.drawable.ic_photo_library)
-            setBgColorValue((Color.rgb(22, 36, 71)))
-            add(this)
-        }
-    }
 }

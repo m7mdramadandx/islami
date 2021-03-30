@@ -130,5 +130,6 @@
     <string name="options">خيارات</string>
     <string name="videos">فديوهات</string>
     <string name="couldnotGetQibla">you will not able to know qibla</string>
+    <string name="translateWords">Translate words</string>
 
 </resources>

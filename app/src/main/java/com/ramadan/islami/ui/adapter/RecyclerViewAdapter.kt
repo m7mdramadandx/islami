@@ -14,7 +14,6 @@ import com.ramadan.islami.data.model.Story
 import com.ramadan.islami.ui.activity.*
 import com.ramadan.islami.ui.fragment.DashboardDirections
 import com.ramadan.islami.ui.fragment.FamilyTreeDirections
-import com.ramadan.islami.utils.Utils
 import com.ramadan.islami.utils.changeNavigation
 import com.ramadan.islami.utils.showImg
 import com.squareup.picasso.Picasso
@@ -126,7 +125,6 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
 
     inner class CustomView(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val ctx: Context = itemView.context
-        private val util = Utils(ctx)
 
         fun suggestionView(collection: Collection) {
             itemView.apply {
@@ -190,15 +188,15 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomView>
                             ctx.startActivity(this)
                         }
                     }
-                    "verseOfDay" -> {
-                        Intent(ctx, QuoteOfDay::class.java).apply {
-                            putExtra("intentKey", "verse")
-                            ctx.startActivity(this)
-                        }
-                    }
                     "azkarOfDay" -> {
                         Intent(ctx, TopicDetails::class.java).apply {
                             putExtra("intentKey", "azkar")
+                            ctx.startActivity(this)
+                        }
+                    }
+                    "verseOfDay" -> {
+                        Intent(ctx, QuoteOfDay::class.java).apply {
+                            putExtra("intentKey", "verse")
                             ctx.startActivity(this)
                         }
                     }
