@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -14,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.bcgdv.asia.lib.ticktock.TickTockView
 import com.github.msarhan.ummalqura.calendar.UmmalquraCalendar
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -30,9 +30,11 @@ import com.ramadan.islami.ui.viewModel.FirebaseViewModel
 import com.ramadan.islami.utils.Utils
 import com.ramadan.islami.utils.changeNavigation
 import com.ramadan.islami.utils.showMessage
+import com.ramadan.islami.utils.topicsImg
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -51,6 +53,7 @@ class Dashboard : Fragment(), FirebaseListener {
     private lateinit var quotesSlider: SliderView
     private lateinit var suggestionAdapter: RecyclerViewAdapter
     private lateinit var dailyAdapter: RecyclerViewAdapter
+    private lateinit var topicsImage: ImageView
     private lateinit var familyTreeAdapter: RecyclerViewAdapter
     private val storiesAdapter = SliderAdapter()
     private val quotesAdapter = SliderAdapter()
@@ -58,7 +61,6 @@ class Dashboard : Fragment(), FirebaseListener {
     private lateinit var hijriToday: UmmalquraCalendar
     private lateinit var progress0: ProgressBar
     private lateinit var progress1: ProgressBar
-    private lateinit var ticktock: TickTockView
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -105,6 +107,7 @@ class Dashboard : Fragment(), FirebaseListener {
         familyTreeRCV = root.findViewById(R.id.familyTreeRecyclerView)
         storiesSlider = root.findViewById(R.id.storiesSlider)
         quotesSlider = root.findViewById(R.id.quotesSlider)
+        topicsImage = root.findViewById(R.id.topicsImg)
         progress0 = root.findViewById(R.id.progress0)
         progress1 = root.findViewById(R.id.progress1)
         return root
@@ -154,6 +157,9 @@ class Dashboard : Fragment(), FirebaseListener {
         quotesSlider.isAutoCycle = true
         quotesSlider.setIndicatorAnimation(IndicatorAnimations.THIN_WORM)
         quotesSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
+
+        Picasso.get().load(topicsImg).placeholder(R.drawable.load_img)
+            .error(R.drawable.failure_img).into(topicsImage)
         view.findViewById<RelativeLayout>(R.id.storiesCard).setOnClickListener {
             it.changeNavigation(DashboardDirections.actionDashboardToStories())
         }

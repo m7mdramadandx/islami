@@ -21,7 +21,6 @@ import com.ramadan.islami.utils.debug_tag
 import com.ramadan.islami.utils.showMessage
 import kotlinx.android.synthetic.main.activity_date_conversion.*
 import net.alhazmy13.hijridatepicker.date.gregorian.GregorianDatePickerDialog
-import net.alhazmy13.hijridatepicker.date.hijri.HijriDatePickerDialog
 import java.util.*
 
 
@@ -52,21 +51,26 @@ class DateConversion : AppCompatActivity() {
         gregorianToday = Calendar.getInstance()
         hijriToday = UmmalquraCalendar()
         calendarView.setSelectedDate(hijriToday)
-        hijri.setOnClickListener {
-            val dpd = HijriDatePickerDialog.newInstance(
-                { _, year, monthOfYear, dayOfMonth ->
-                    setHijriDate(year, monthOfYear, dayOfMonth)
-                },
-                hijriToday[UmmalquraCalendar.YEAR],
-                hijriToday[UmmalquraCalendar.MONTH],
-                hijriToday[UmmalquraCalendar.DAY_OF_MONTH]
-            )
-            dpd.vibrate(true)
-            dpd.accentColor = resources.getColor(R.color.colorPrimary)
-            dpd.setOkText(R.string.ok)
-            dpd.setCancelText(R.string.cancel)
-            dpd.show(supportFragmentManager, "HijriDatePickerDialog")
-        }
+//        hijri.setOnClickListener {
+//            try {
+//                val dpd = HijriDatePickerDialog.newInstance(
+//                    { _, year, monthOfYear, dayOfMonth ->
+//                        setHijriDate(year, monthOfYear, dayOfMonth)
+//                    },
+//                    hijriToday[UmmalquraCalendar.YEAR],
+//                    hijriToday[UmmalquraCalendar.MONTH],
+//                    hijriToday[UmmalquraCalendar.DAY_OF_MONTH]
+//                )
+//                dpd.vibrate(true)
+//                dpd.accentColor = resources.getColor(R.color.colorPrimary)
+//                dpd.setOkText(R.string.ok)
+//                dpd.setCancelText(R.string.cancel)
+//                dpd.show(supportFragmentManager, "HijriDatePickerDialog")
+//
+//            } catch (e: Exception) {
+//                it.snackBar(e.localizedMessage!! + "\n" + "Sorry, try it again later")
+//            }
+//        }
         gregorian.setOnClickListener {
             val dpd = GregorianDatePickerDialog.newInstance(
                 { _, year, monthOfYear, dayOfMonth ->

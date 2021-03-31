@@ -3,9 +3,11 @@
 package com.ramadan.islami.ui.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.gms.ads.AdRequest
@@ -17,6 +19,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.ramadan.islami.R
 import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.debug_tag
+import kotlinx.android.synthetic.main.activity_splash_screen.*
 import java.util.*
 
 
@@ -29,9 +32,12 @@ class SplashScreen : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
         appTheme()
         supportActionBar?.hide()
+        window!!.navigationBarColor = Color.TRANSPARENT
         FirebaseMessaging.getInstance().isAutoInitEnabled = true
         FirebaseMessaging.getInstance().subscribeToTopic("allUsers")
-//        BadgeUtils().clearBadge(this)
+        val animation = AnimationUtils.loadAnimation(this, R.anim.pop_enter)
+        animation.duration = 800
+        islamiImg.animation = animation
         Handler().postDelayed({
             GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(this)
             startActivity(Intent(this, MainActivity::class.java))

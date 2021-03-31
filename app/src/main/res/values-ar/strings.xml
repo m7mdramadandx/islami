@@ -129,7 +129,10 @@
     <string name="download">تحميل</string>
     <string name="options">خيارات</string>
     <string name="videos">فديوهات</string>
-    <string name="couldnotGetQibla">you will not able to know qibla</string>
-    <string name="translateWords">Translate words</string>
+    <string name="couldnotGetQibla">لن تتمكن من معرفة القبلة</string>
+    <string name="onlyCurrentMonth">البيانات للشهر الحالي فقط</string>
+    <string name="translateWords">المترجم</string>
+    <string name="direction_to_mecca">الاتجاه الى مكة</string>
+    <string name="see_full_month">رؤية الشهر كامل</string>
 
 </resources>

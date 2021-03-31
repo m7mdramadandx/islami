@@ -115,6 +115,8 @@
     <string name="couldnotGetQibla">you will not able to know qibla</string>
     <string name="onlyCurrentMonth">only current month you can view</string>
     <string name="translateWords">Translate words</string>
+    <string name="direction_to_mecca">Direction to Mecca</string>
+    <string name="see_full_month">See full month</string>
 
     <string-array name="custom_weekdays">
         <item>Sn</item>

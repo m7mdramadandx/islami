@@ -99,6 +99,7 @@ class Settings : Fragment() {
         dialogBuilder.setView(view)
         val alertDialog = dialogBuilder.create()
         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.window!!.attributes.windowAnimations = R.style.ShrinkAnimation
         alertDialog.show()
         alertDialog.setCancelable(true)
         view.findViewById<TextView>(R.id.title).text = title

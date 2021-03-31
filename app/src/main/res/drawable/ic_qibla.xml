@@ -23,28 +23,28 @@
         android:fillColor="#eee"
         android:pathData="m509.957,260.926 l-56.838,56.849c-1.314,1.303 -2.042,3.069 -2.042,4.926v111.789c0,3.849 -3.12,6.969 -6.969,6.969h-20.978c3.839,0 6.958,-3.12 6.958,-6.969v-111.788c0,-1.858 0.739,-3.623 2.042,-4.926l56.849,-56.849c2.72,-2.72 2.72,-7.133 0,-9.853l-56.849,-56.849c-1.303,-1.303 -2.042,-3.069 -2.042,-4.926v-117.752c0,-3.849 -3.12,-6.969 -6.958,-6.969h20.978c3.849,0 6.969,3.12 6.969,6.969v117.752c0,1.858 0.729,3.623 2.042,4.926l56.838,56.849c2.72,2.719 2.72,7.133 0,9.852z" />
     <path
-        android:fillColor="#E1B34F"
+        android:fillColor="#fed402"
         android:pathData="M256,82.28m-7.698,0a7.698,7.698 0,1 1,15.396 0a7.698,7.698 0,1 1,-15.396 0" />
     <path
-        android:fillColor="#E1B34F"
+        android:fillColor="#fed402"
         android:pathData="M256,429.392m-7.698,0a7.698,7.698 0,1 1,15.396 0a7.698,7.698 0,1 1,-15.396 0" />
     <path
-        android:fillColor="#E1B34F"
+        android:fillColor="#fed402"
         android:pathData="M133.277,133.114m-7.698,0a7.698,7.698 0,1 1,15.396 0a7.698,7.698 0,1 1,-15.396 0" />
     <path
-        android:fillColor="#E1B34F"
+        android:fillColor="#fed402"
         android:pathData="M378.723,378.559m-7.698,0a7.698,7.698 0,1 1,15.396 0a7.698,7.698 0,1 1,-15.396 0" />
     <path
-        android:fillColor="#E1B34F"
+        android:fillColor="#fed402"
         android:pathData="M82.444,255.836m-7.698,0a7.698,7.698 0,1 1,15.396 0a7.698,7.698 0,1 1,-15.396 0" />
     <path
-        android:fillColor="#E1B34F"
+        android:fillColor="#fed402"
         android:pathData="M429.556,255.836m-7.698,0a7.698,7.698 0,1 1,15.396 0a7.698,7.698 0,1 1,-15.396 0" />
     <path
-        android:fillColor="#E1B34F"
+        android:fillColor="#fed402"
         android:pathData="M133.277,378.559m-7.698,0a7.698,7.698 0,1 1,15.396 0a7.698,7.698 0,1 1,-15.396 0" />
     <path
-        android:fillColor="#E1B34F"
+        android:fillColor="#fed402"
         android:pathData="M378.723,133.114m-7.698,0a7.698,7.698 0,1 1,15.396 0a7.698,7.698 0,1 1,-15.396 0" />
 
 </vector>

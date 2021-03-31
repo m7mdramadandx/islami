@@ -168,6 +168,7 @@ fun showBrief(title: String, content: String, context: Context) {
     dialogBuilder.setView(view)
     val alertDialog = dialogBuilder.create()
     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    alertDialog.window!!.attributes.windowAnimations = R.style.ShrinkAnimation
     alertDialog.show()
     alertDialog.setCancelable(true)
     view.findViewById<LinearLayout>(R.id.actionBar).visibility = View.GONE
@@ -183,6 +184,7 @@ fun showImg(imgUrl: String, context: Context) {
     dialogBuilder.setView(view)
     val alertDialog = dialogBuilder.create()
     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    alertDialog.window!!.attributes.windowAnimations = R.style.ShrinkAnimation
     alertDialog.show()
     val imageView: ImageView = view.findViewById(R.id.quoteImg)
     Picasso.get().load(imgUrl).error(R.drawable.failure_img)
@@ -199,6 +201,7 @@ fun showOptions(context: Context, imageView: ImageView) {
     dialogBuilder.setView(view)
     val alertDialog = dialogBuilder.create()
     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    alertDialog.window!!.attributes.windowAnimations = R.style.ShrinkAnimation
     alertDialog.show()
     alertDialog.setCancelable(true)
     view.findViewById<TextView>(R.id.share).setOnClickListener {
@@ -285,6 +288,8 @@ fun Activity.turnScreenOnAndKeyguardOff() {
 
 const val defaultImg: String =
     "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/islami_background_256.png?alt=media&token=72e1403c-2e25-4c8c-b1c0-2cf383153c01"
+const val topicsImg: String =
+    "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2Ftopics.png?alt=media&token=679938a2-cfca-4a6b-9e3e-4637d7583d76"
 
 const val muhammadFamilyAR =
     "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/familyTree%2Fmuhammad_tree_ar.png?alt=media&token=aa82bc11-285d-46b7-82f6-b7cceff8eb5a"

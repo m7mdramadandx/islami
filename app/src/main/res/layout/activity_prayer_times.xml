@@ -81,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="24dp"
                     android:text="Date"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -94,12 +94,14 @@
                 android:id="@+id/scheduleLocation"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
                 android:maxLines="1"
-                android:textAlignment="viewStart"
+                android:text="eee"
+                android:textAlignment="inherit"
                 android:textColor="@color/white"
                 app:drawableStartCompat="@drawable/ic_location"
                 app:layout_constraintBottom_toTopOf="@+id/view"
-                app:layout_constraintEnd_toEndOf="@+id/view"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View
@@ -144,7 +146,7 @@
             android:onClick="monthView"
             android:paddingHorizontal="24dp"
             android:paddingVertical="4dp"
-            android:text="See Full Month"
+            android:text="@string/see_full_month"
             android:textColor="@color/textColor" />
     </RelativeLayout>
 </ScrollView>

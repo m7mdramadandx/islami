@@ -89,7 +89,7 @@ class Qibla : AppCompatActivity() {
         }
     }
 
-    fun fetchQibla() {
+    private fun fetchQibla() {
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(

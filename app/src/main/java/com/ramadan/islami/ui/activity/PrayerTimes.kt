@@ -96,10 +96,10 @@ class PrayerTimes : AppCompatActivity() {
                         if (month == it.data.first().date.gregorian.month.number - 1) {
                             selectedDate = day
                             prayTimeAdapter.setSchedulePrayer(prayer!!.data[day - 1])
+                            scheduleDay.text = utils.weekday[dayOfWeek]
+                            "$day-${month + 1}-$year".also { scheduleDate.text = it }
                         } else snackBar(getString(R.string.onlyCurrentMonth))
                     } ?: snackBar(getString(R.string.noInternet))
-                    scheduleDay.text = utils.weekday[dayOfWeek]
-                    "$day-${month + 1}-$year".also { scheduleDate.text = it }
                 }
 
                 override fun onDisabledDateSelected(

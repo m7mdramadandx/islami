@@ -42,4 +42,9 @@
         <item name="android:padding">2dp</item>
     </style>
 
+    <style name="ShrinkAnimation">
+        <item name="android:windowEnterAnimation">@anim/enter</item>
+        <item name="android:windowExitAnimation">@anim/exit</item>
+    </style>
+
 </resources>

@@ -114,6 +114,7 @@ class AyahPage : Fragment() {
         val view = LayoutInflater.from(ctx).inflate(R.layout.alert_dialog_read_marker, null)
         dialogBuilder.setView(view)
         val alertDialog = dialogBuilder.create()
+        alertDialog.window!!.attributes.windowAnimations = R.style.ShrinkAnimation
         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
         view.findViewById<TextView>(R.id.yes).setOnClickListener {

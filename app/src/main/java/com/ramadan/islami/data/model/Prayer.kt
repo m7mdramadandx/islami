@@ -4,7 +4,6 @@ import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-
 @Keep
 data class Prayer(
     val code: Int,

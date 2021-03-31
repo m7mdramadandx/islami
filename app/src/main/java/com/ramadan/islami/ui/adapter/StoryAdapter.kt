@@ -55,7 +55,9 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
                 else -> itemView.expansionCard.setCardBackgroundColor(ctx.resources.getColor(R.color.colorPrimary))
             }
             itemView.expansionText.text = text.replace(":", "\n")
-            itemView.storyTitle.text = "${ctx.getString(R.string.part)} ${(layoutPosition + 1)}"
+            "${ctx.getString(R.string.part)} ${layoutPosition + 1}".also {
+                itemView.storyTitle.text = it
+            }
             itemView.expansionLayout.addListener { _, isExpanded ->
                 if (!isExpanded && !marks.contains("$title ${layoutPosition + 1}")) {
                     execOnce?.let { alert("$title ${layoutPosition + 1}") }
@@ -73,6 +75,7 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.CustomView>() {
             dialogBuilder.setView(view)
             val alertDialog = dialogBuilder.create()
             alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            alertDialog.window!!.attributes.windowAnimations = R.style.ShrinkAnimation
             alertDialog.show()
             view.findViewById<TextView>(R.id.yes).setOnClickListener {
                 localeHelper.setStoryMark(ctx, keyStore)
