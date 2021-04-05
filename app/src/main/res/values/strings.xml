@@ -117,6 +117,7 @@
     <string name="translateWords">Translate words</string>
     <string name="direction_to_mecca">Direction to Mecca</string>
     <string name="see_full_month">See full month</string>
+    <string name="tryAgain">try again in difrrent time</string>
 
     <string-array name="custom_weekdays">
         <item>Sn</item>

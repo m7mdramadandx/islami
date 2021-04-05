@@ -34,6 +34,7 @@ import com.ramadan.islami.utils.*
 import com.vivekkaushik.datepicker.DatePickerTimeline
 import com.vivekkaushik.datepicker.OnDateSelectedListener
 import kotlinx.android.synthetic.main.activity_prayer_times.*
+import java.io.IOException
 import java.util.*
 
 class PrayerTimes : AppCompatActivity() {
@@ -79,7 +80,11 @@ class PrayerTimes : AppCompatActivity() {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
             if (!checkIfAlreadyPermission()) requestForSpecificPermission() else {
                 if (MainActivity.isConnected) fetchDate()
-                else showMessage(this, getString(R.string.noInternet))
+                else {
+                    localeHelper.getPrayerTimes(this@PrayerTimes)?.let { mutableSet ->
+                        prayTimeAdapter.setOfflinePrayer(mutableSet)
+                    } ?: showMessage(this, getString(R.string.noInternet))
+                }
             }
         }
 
@@ -167,12 +172,17 @@ class PrayerTimes : AppCompatActivity() {
                     progress.visibility = View.GONE
                     prayer = it.data!!
                     prayTimeAdapter.setSchedulePrayer(prayer!!.data[selectedDate - 1])
-                    localeHelper.setPrayerTimes(this, prayer!!.data[selectedDate - 1].timings)
+                    try {
+                        localeHelper.setPrayerTimes(this, prayer!!.data[selectedDate - 1].timings)
+                    } catch (e: IOException) {
+                        showMessage(this, e.localizedMessage!!)
+                    }
                 }
                 ResponseStatus.ERROR -> {
                     localeHelper.getPrayerTimes(this@PrayerTimes)?.let { mutableSet ->
                         prayTimeAdapter.setOfflinePrayer(mutableSet)
                     } ?: showMessage(this, getString(R.string.noInternet))
+                    showMessage(this, it.message!!)
                     progress.visibility = View.GONE
                 }
             }

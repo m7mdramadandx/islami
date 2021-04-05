@@ -205,12 +205,15 @@ fun showOptions(context: Context, imageView: ImageView) {
     alertDialog.show()
     alertDialog.setCancelable(true)
     view.findViewById<TextView>(R.id.share).setOnClickListener {
-        val bmpUri: Uri = getLocalBitmapUri(imageView)!!
-        val shareIntent = Intent()
-        shareIntent.action = Intent.ACTION_SEND
-        shareIntent.type = "picture/png"
-        shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri)
-        view.context.startActivity(Intent.createChooser(shareIntent, "Send to"))
+        Intent().apply {
+            action = Intent.ACTION_SEND
+            type = "picture/png"
+            getLocalBitmapUri(imageView)?.let { putExtra(Intent.EXTRA_STREAM, it) }
+                ?: showMessage(view.context,
+                    view.context.getString(R.string.tryAgain))
+            view.context.startActivity(Intent.createChooser(this, "Send to"))
+        }
+        alertDialog.dismiss()
     }
     view.findViewById<TextView>(R.id.download).setOnClickListener {
         val drawable = imageView.drawable
@@ -221,6 +224,7 @@ fun showOptions(context: Context, imageView: ImageView) {
             saveImage(it1)
             it.snackBar(context.getString(string.saved))
         } ?: it.snackBar(context.getString(string.failedToDownload))
+        alertDialog.dismiss()
     }
 }
 
@@ -229,11 +233,11 @@ fun saveImage(bitmap: Bitmap) {
     try {
         val dir = File(dirPath)
         if (!dir.exists()) dir.mkdirs()
-        val file = File("$dirPath/${Random.nextDouble()}.jpg")
+        val file = File("$dirPath/${Random.nextDouble()}.png")
         file.createNewFile()
         val outStream: OutputStream?
         outStream = FileOutputStream(file)
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream)
         outStream.flush()
         outStream.close()
     } catch (e: Exception) {
@@ -251,7 +255,7 @@ fun getLocalBitmapUri(imageView: ImageView): Uri? {
     try {
         val dir = File(dirPath)
         if (!dir.exists()) dir.mkdirs()
-        val file = File("$dirPath/${Random.nextDouble()}.jpg")
+        val file = File("$dirPath/${Random.nextDouble()}.png")
         val out = FileOutputStream(file)
         bmp?.compress(Bitmap.CompressFormat.PNG, 90, out)
         out.close()

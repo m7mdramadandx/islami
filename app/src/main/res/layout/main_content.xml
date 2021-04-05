@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:visibility="visible"
-        ads:adSize="SMART_BANNER"
+        ads:adSize="BANNER"
         ads:adUnitId="@string/mainActivityBanner" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

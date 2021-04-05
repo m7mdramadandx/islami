@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layoutDirection="ltr"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingHorizontal="8dp"
@@ -22,9 +23,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
+            android:background="@drawable/bg_rounded"
             android:drawablePadding="4dp"
             android:gravity="center|start"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="2dp"
             android:text="@string/hijri"
+            android:textAlignment="center"
             app:autoSizeTextType="uniform"
             app:drawableStartCompat="@drawable/ic_calendar" />
 
@@ -44,9 +49,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
+            android:background="@drawable/bg_rounded"
             android:drawablePadding="4dp"
             android:gravity="center|start"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="2dp"
             android:text="@string/gregorian"
+            android:textAlignment="center"
             app:autoSizeTextType="uniform"
             app:drawableStartCompat="@drawable/ic_calendar" />
 

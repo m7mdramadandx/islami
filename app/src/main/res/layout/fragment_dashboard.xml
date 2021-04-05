@@ -125,6 +125,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:text="@string/daily"
                         android:textColor="@android:color/white"
                         android:textSize="21sp" />
@@ -250,9 +251,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="@string/prophets_tree"
-                        android:textColor="@android:color/white"
-
-                        />
+                        android:textColor="@android:color/white" />
 
                     <ImageView
                         android:id="@+id/seeAllTrees"

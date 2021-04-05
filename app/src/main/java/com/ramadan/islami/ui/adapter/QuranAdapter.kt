@@ -177,7 +177,7 @@ class QuranAdapter : RecyclerView.Adapter<QuranAdapter.CustomView>() {
                                 }
                             }
                             showBrief(
-                                " تفسير الآية رقم ${valueOf(nf.format(ayahNum))} من صورة $surahName ",
+                                " تفسير الآية رقم ${valueOf(nf.format(ayahNum))} من $surahName ",
                                 ayahList[ayahNum].tafseer,
                                 ctx
                             )

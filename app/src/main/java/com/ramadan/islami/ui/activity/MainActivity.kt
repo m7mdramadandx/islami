@@ -10,6 +10,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.ShareCompat
 import androidx.core.view.updatePadding
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -30,6 +31,9 @@ import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
+import com.google.android.play.core.review.ReviewInfo
+import com.google.android.play.core.review.ReviewManagerFactory
+import com.google.android.play.core.tasks.Task
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
@@ -43,12 +47,13 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var listener: NavController.OnDestinationChangedListener
     private lateinit var navController: NavController
     private lateinit var fixedBanner: AdView
-    private val appURL = ""
+    private val appURL = "https://play.google.com/store/apps/details?id=com.ramadan.islami"
     private val localeHelper = LocaleHelper()
     lateinit var constraintLayout: ConstraintLayout
     private val APP_UPDATE_REQUEST_CODE = 1991
@@ -91,10 +96,16 @@ class MainActivity : AppCompatActivity() {
         fixedBanner = findViewById(R.id.fixedBanner)
         listener =
             NavController.OnDestinationChangedListener { _, destination, _ ->
-                when (destination.id) {
-                    R.id.nav_family_tree_details -> {
-
-                    }
+                if (destination.label == getString(R.string.share)) {
+                    ShareCompat.IntentBuilder.from(this)
+                        .setType("text/plain")
+                        .setChooserTitle("Chooser title")
+                        .setText(appURL)
+                        .startChooser()
+                    navController.navigate(R.id.nav_dashboard)
+                } else if (destination.label == getString(R.string.rate_app)) {
+                    askRatings()
+                    navController.navigate(R.id.nav_dashboard)
                 }
             }
         isConnected = this.isNetworkConnected()
@@ -201,6 +212,21 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun askRatings() {
+        val manager = ReviewManagerFactory.create(this)
+        val request: Task<ReviewInfo> = manager.requestReviewFlow()
+        request.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val reviewInfo: ReviewInfo = task.result
+                val flow: Task<Void> = manager.launchReviewFlow(this, reviewInfo)
+                flow.addOnCompleteListener { task2 -> }
+            } else {
+                showMessage(this, getString(R.string.tryAgain))
+            }
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

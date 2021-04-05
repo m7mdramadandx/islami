@@ -59,4 +59,3 @@ data class Hijri(
         val en: String,
     ) : Serializable
 }
-

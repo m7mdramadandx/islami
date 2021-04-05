@@ -36,7 +36,6 @@ class LocaleHelper {
             )
         )
         prefs.edit().apply {
-            remove(VERSE_OF_DAY)
             putStringSet(VERSE_OF_DAY, verse)
             apply()
         }
@@ -58,7 +57,6 @@ class LocaleHelper {
             )
         )
         prefs.edit().apply {
-            remove(HADITH_OF_DAY)
             putStringSet(HADITH_OF_DAY, hadith)
             apply()
         }
@@ -83,7 +81,6 @@ class LocaleHelper {
             )
         )
         prefs.edit().apply {
-            remove(Prayer_TIMES)
             putStringSet(Prayer_TIMES, prayerTimes)
             apply()
         }

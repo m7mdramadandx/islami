@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
@@ -105,15 +104,16 @@ class FamilyTreeDetails : Fragment() {
                             showMessage(view.context, view.context.getString(R.string.saved))
                         } ?: showMessage(view.context,
                             view.context.getString(R.string.failedToDownload))
-
                     }
                     1 -> {
-                        val bmpUri: Uri = getLocalBitmapUri(imageView)!!
-                        val shareIntent = Intent()
-                        shareIntent.action = Intent.ACTION_SEND
-                        shareIntent.type = "picture/png"
-                        shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri)
-                        view.context.startActivity(Intent.createChooser(shareIntent, "Send to"))
+                        Intent().apply {
+                            action = Intent.ACTION_SEND
+                            type = "picture/png"
+                            getLocalBitmapUri(imageView)?.let { putExtra(Intent.EXTRA_STREAM, it) }
+                                ?: showMessage(view.context,
+                                    view.context.getString(R.string.tryAgain))
+                            view.context.startActivity(Intent.createChooser(this, "Send to"))
+                        }
                     }
                 }
             }

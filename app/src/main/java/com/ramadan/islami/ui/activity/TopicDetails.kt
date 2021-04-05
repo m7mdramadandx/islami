@@ -2,6 +2,7 @@ package com.ramadan.islami.ui.activity
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -10,10 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.*
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
@@ -24,7 +22,7 @@ import com.ramadan.islami.ui.viewModel.FirebaseViewModel
 import com.ramadan.islami.ui.viewModel.LocalViewModel
 import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.debug_tag
-import kotlinx.android.synthetic.main.activity_topic.*
+import kotlinx.android.synthetic.main.activity_topic_details.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -39,6 +37,7 @@ class TopicDetails : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adView: AdView
     private lateinit var localeHelper: LocaleHelper
+
 
     override fun onStart() {
         super.onStart()
@@ -63,7 +62,7 @@ class TopicDetails : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_topic)
+        setContentView(R.layout.activity_topic_details)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -90,7 +89,7 @@ class TopicDetails : AppCompatActivity() {
         adView = findViewById(R.id.adView)
         adView.adListener = object : AdListener() {
             override fun onAdLoaded() {
-                contentView.updatePadding(0, 0, 0, 160)
+                contentView.updatePadding(0, 0, 0, 190)
             }
 
             override fun onAdFailedToLoad(adError: LoadAdError) {
