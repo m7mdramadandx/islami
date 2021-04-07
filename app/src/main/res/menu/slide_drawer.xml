@@ -34,7 +34,6 @@
             android:title="@string/prophets_tree" />
     </group>
     <group
-        android:id="@+id/extra"
         android:checkableBehavior="single"
         android:menuCategory="secondary">
         <item

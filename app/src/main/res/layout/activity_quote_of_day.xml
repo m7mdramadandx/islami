@@ -7,7 +7,6 @@
     tools:context=".ui.activity.QuoteOfDay">
 
     <RelativeLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="8dp"
@@ -39,7 +38,6 @@
             app:autoSizeTextType="uniform" />
 
         <TextView
-            android:id="@+id/textDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/textContent"

@@ -7,7 +7,6 @@
     tools:context=".ui.activity.MonthPrayerTimes">
 
     <TableLayout
-        android:id="@+id/table_heading_layout"
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:background="@color/colorSecondary"

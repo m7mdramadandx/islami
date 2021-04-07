@@ -128,7 +128,7 @@ class QuoteOfDay : AppCompatActivity() {
                 }
                 ResponseStatus.ERROR -> {
                     progress.visibility = View.GONE
-                    showMessage(this, it.message.toString())
+                    showToast(this, it.message.toString())
                 }
                 ResponseStatus.LOADING -> progress.visibility = View.VISIBLE
             }

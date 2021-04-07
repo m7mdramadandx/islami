@@ -3,7 +3,7 @@ package com.ramadan.islami.data.database
 import android.content.Context
 import com.google.gson.Gson
 import com.ramadan.islami.data.model.*
-import com.ramadan.islami.utils.showMessage
+import com.ramadan.islami.utils.showToast
 import java.io.BufferedInputStream
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -19,7 +19,7 @@ class LocalDb {
             val reader: Reader = InputStreamReader(bufferedIn, Charset.forName("UTF-8"))
             Gson().fromJson(reader, Quran::class.java).data.surahs
         } catch (e: Exception) {
-            showMessage(context, e.localizedMessage!!)
+            showToast(context, e.localizedMessage!!)
             return mutableListOf()
         }
     }
@@ -31,7 +31,7 @@ class LocalDb {
             val reader: Reader = InputStreamReader(bufferedIn, Charset.forName("UTF-8"))
             Gson().fromJson(reader, Verse::class.java)
         } catch (e: Exception) {
-            showMessage(context, e.localizedMessage!!)
+            showToast(context, e.localizedMessage!!)
             return Verse()
         }
     }
@@ -43,7 +43,7 @@ class LocalDb {
             val reader: Reader = InputStreamReader(bufferedIn, Charset.forName("UTF-8"))
             Gson().fromJson(reader, Azkar::class.java)
         } catch (e: Exception) {
-            showMessage(context, e.localizedMessage!!)
+            showToast(context, e.localizedMessage!!)
             return Azkar()
         }
     }
@@ -55,7 +55,7 @@ class LocalDb {
             val reader: Reader = InputStreamReader(bufferedIn, Charset.forName("UTF-8"))
             Gson().fromJson(reader, AllahNames::class.java)
         } catch (e: Exception) {
-            showMessage(context, e.localizedMessage!!)
+            showToast(context, e.localizedMessage!!)
             return AllahNames()
         }
     }

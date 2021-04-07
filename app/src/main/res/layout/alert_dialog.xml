@@ -4,14 +4,12 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    app:cardBackgroundColor="@android:color/transparent"
     app:cardElevation="0dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/bg_rounded"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="8dp">
@@ -22,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingHorizontal="56dp"
-            android:text="@string/bookmark"
+            android:text="@string/settings"
             android:textAlignment="center"
             android:textColor="@color/titleColor"
             android:textSize="24sp"

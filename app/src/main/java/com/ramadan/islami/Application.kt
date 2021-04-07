@@ -26,7 +26,8 @@ class Application : Application() {
             .build()
         MobileAds.setRequestConfiguration(conf)
         @Suppress("DEPRECATION")
-        MobileAds.initialize(this, getString(R.string.ad_id))
+//        MobileAds.initialize(this, getString(R.string.ad_id))
+        MobileAds.initialize(this)
         if (localeHelper.getAzan(this)) azan.setAlarm(this)
     }
 

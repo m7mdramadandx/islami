@@ -18,7 +18,7 @@ import com.ramadan.islami.ui.viewModel.ViewModelFactory
 import com.ramadan.islami.ui.viewModel.WebServiceViewModel
 import com.ramadan.islami.utils.ResponseStatus
 import com.ramadan.islami.utils.debug_tag
-import com.ramadan.islami.utils.showMessage
+import com.ramadan.islami.utils.showToast
 import kotlinx.android.synthetic.main.activity_date_conversion.*
 import net.alhazmy13.hijridatepicker.date.gregorian.GregorianDatePickerDialog
 import java.util.*
@@ -115,7 +115,7 @@ class DateConversion : AppCompatActivity() {
                 }
                 ResponseStatus.ERROR -> {
                     conversionIcon.rotation = 90F
-                    showMessage(this@DateConversion, getString(R.string.noInternet))
+                    showToast(this@DateConversion, getString(R.string.noInternet))
                 }
             }
         })
@@ -141,15 +141,16 @@ class DateConversion : AppCompatActivity() {
 
                                 override fun onAdLoaded(rewardedAd: RewardedAd) {
                                     mRewardedAd = rewardedAd
-                                    mRewardedAd?.show(this@DateConversion) { item ->
+                                    mRewardedAd?.show(this@DateConversion) { _ ->
                                         gregorian.text = it.data!!.data.gregorian.date
                                     }
+
                                 }
                             })
                     }
                     ResponseStatus.ERROR -> {
                         conversionIcon.rotation = 90F
-                        showMessage(this@DateConversion, getString(R.string.noInternet))
+                        showToast(this@DateConversion, getString(R.string.noInternet))
                     }
                 }
             })

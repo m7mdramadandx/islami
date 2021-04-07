@@ -60,15 +60,15 @@ class Azan : BroadcastReceiver() {
                 alarmManager.setExactAndAllowWhileIdle(
                     AlarmManager.RTC_WAKEUP,
                     calendar.timeInMillis,
-                    pendingIntent)
-                @Suppress("DEPRECATION")
-                Log.e(debug_tag, "Next Alarm: ${calendar.time.minutes}")
+                    pendingIntent
+                )
             }
         }
     }
 
-    fun getAlarmDate(context: Context): Calendar? {
+    private fun getAlarmDate(context: Context): Calendar? {
         val calendar = Calendar.getInstance()
+        val utils = Utils(context)
         localeHelper.getPrayerTimes(context)?.let { mutableSet ->
             var setAlarm = false
             val hourTime = mutableListOf(
@@ -92,7 +92,8 @@ class Azan : BroadcastReceiver() {
                 if (currentHour < hourTime[i]!!.toInt() && !setAlarm) {
                     hour = hourTime[i]?.toInt()
                     minute = minutesTime[i]?.toInt()
-                    prayName = Utils(context).prayers[i]
+                    prayName = utils.prayers[i]
+                    Log.e(debug_tag, prayName)
                     setAlarm = true
                 } else if (i == hourTime.size - 1 && !setAlarm) {
                     calendar.add(Calendar.DATE, 1)
@@ -120,7 +121,7 @@ class Azan : BroadcastReceiver() {
         val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.cancel(pendingIntent)
-        showMessage(context, "Canceled")
+        showToast(context, "Canceled")
     }
 
     companion object {

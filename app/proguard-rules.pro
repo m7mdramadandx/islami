@@ -14,13 +14,7 @@
 
 # Uncomment this to preserve the line number information for
 # debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+-keepattributes SourceFile,LineNumberTable
 # If you keep the line number information, uncomment this to
-#-keepattributes LineNumberTable,SourceFile
-#-keepnames class com.ramadan.islami.data.model.Surah
-#-keepnames class com.ramadan.islami.data.model.Azkar
-#-keepnames class com.ramadan.islami.data.model.AllahNames
-#-keepnames class com.ramadan.islami.data.model.Verse
-#-keepnames class com.ramadan.islami.data.model.Prayer
-#-keepnames class com.ramadan.islami.data.model.Calender
+-keepattributes LineNumberTable,SourceFile
 

@@ -29,7 +29,7 @@ import com.ramadan.islami.ui.adapter.SliderAdapter
 import com.ramadan.islami.ui.viewModel.FirebaseViewModel
 import com.ramadan.islami.utils.Utils
 import com.ramadan.islami.utils.changeNavigation
-import com.ramadan.islami.utils.showMessage
+import com.ramadan.islami.utils.showToast
 import com.ramadan.islami.utils.topicsImg
 import com.smarteist.autoimageslider.IndicatorAnimations
 import com.smarteist.autoimageslider.SliderAnimations
@@ -203,6 +203,6 @@ class Dashboard : Fragment(), FirebaseListener {
     override fun onFailure(message: String) {
         progress0.visibility = View.GONE
         progress1.visibility = View.GONE
-        showMessage(requireContext(), message)
+        showToast(requireContext(), message)
     }
 }

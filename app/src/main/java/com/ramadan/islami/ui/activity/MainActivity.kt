@@ -1,8 +1,7 @@
 package com.ramadan.islami.ui.activity
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
+import android.content.DialogInterface
 import android.content.IntentSender
 import android.content.res.Configuration
 import android.os.Bundle
@@ -23,6 +22,7 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -40,8 +40,9 @@ import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
 import com.ramadan.islami.R
 import com.ramadan.islami.utils.LocaleHelper
+import com.ramadan.islami.utils.debug_tag
 import com.ramadan.islami.utils.isNetworkConnected
-import com.ramadan.islami.utils.showMessage
+import com.ramadan.islami.utils.showToast
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -99,10 +100,11 @@ class MainActivity : AppCompatActivity() {
                 if (destination.label == getString(R.string.share)) {
                     ShareCompat.IntentBuilder.from(this)
                         .setType("text/plain")
-                        .setChooserTitle("Chooser title")
+                        .setChooserTitle(getString(R.string.share))
                         .setText(appURL)
-                        .startChooser()
-                    navController.navigate(R.id.nav_dashboard)
+                        .startChooser().apply {
+                            navController.navigate(R.id.nav_dashboard)
+                        }
                 } else if (destination.label == getString(R.string.rate_app)) {
                     askRatings()
                     navController.navigate(R.id.nav_dashboard)
@@ -152,7 +154,8 @@ class MainActivity : AppCompatActivity() {
                             appUpdateInfo,
                             AppUpdateType.IMMEDIATE,
                             this,
-                            APP_UPDATE_REQUEST_CODE)
+                            APP_UPDATE_REQUEST_CODE
+                        )
                     }
                 } catch (e: IntentSender.SendIntentException) {
                     e.printStackTrace()
@@ -206,7 +209,8 @@ class MainActivity : AppCompatActivity() {
                         appUpdateInfo,
                         installType!!,
                         this,
-                        APP_UPDATE_REQUEST_CODE)
+                        APP_UPDATE_REQUEST_CODE
+                    )
                 } catch (e: IntentSender.SendIntentException) {
                     e.printStackTrace()
                 }
@@ -221,25 +225,40 @@ class MainActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 val reviewInfo: ReviewInfo = task.result
                 val flow: Task<Void> = manager.launchReviewFlow(this, reviewInfo)
-                flow.addOnCompleteListener { task2 -> }
+                flow.addOnCompleteListener {
+                    showToast(this, "Thanks")
+                    Log.e(debug_tag, reviewInfo.toString())
+                }
             } else {
-                showMessage(this, getString(R.string.tryAgain))
+                showRateAppFallbackDialog()
+                showToast(this, getString(R.string.tryAgain))
             }
         }
 
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == APP_UPDATE_REQUEST_CODE) {
-            if (resultCode != Activity.RESULT_OK) {
-                showMessage(this, "App Update failed, please try again on the next app launch.")
-            }
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == APP_UPDATE_REQUEST_CODE) {
+//            if (resultCode != Activity.RESULT_OK) {
+//                showToast(this, "App Update failed, please try again on the next app launch.")
+//            }
+//        }
+//    }
 
     private fun popupSnackbarForCompleteUpdate() {
-        showMessage(this, "An update has just been downloaded.")
+        showToast(this, "An update has just been downloaded.")
+    }
+
+    private fun showRateAppFallbackDialog() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.rate_app)
+            .setMessage("R.string.rate_app_message")
+            .setPositiveButton("+") { dialog, which -> }
+            .setNegativeButton("-") { dialog, which -> }
+            .setNeutralButton("5") { dialog, which -> }
+            .setOnDismissListener(DialogInterface.OnDismissListener { dialog: DialogInterface? -> })
+            .show()
     }
 
 }

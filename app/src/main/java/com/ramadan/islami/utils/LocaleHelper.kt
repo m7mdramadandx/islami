@@ -72,12 +72,12 @@ class LocaleHelper {
         val prayerTimes = HashSet<String>()
         prayerTimes.addAll(
             mutableSetOf(
-                pray.fajr.replace("(EET)", "fajr"),
-                pray.sunrise.replace("(EET)", "sunrise"),
-                pray.dhuhr.replace("(EET)", "dhuhr"),
-                pray.asr.replace("(EET)", "asr"),
-                pray.maghrib.replace("(EET)", "maghrib"),
-                pray.isha.replace("(EET)", "isha"),
+                pray.fajr.plus(" fajr"),
+                pray.sunrise.plus(" sunrise"),
+                pray.dhuhr.plus(" dhuhr"),
+                pray.asr.plus(" asr"),
+                pray.maghrib.plus(" maghrib"),
+                pray.isha.plus(" isha"),
             )
         )
         prefs.edit().apply {

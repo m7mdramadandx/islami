@@ -16,7 +16,7 @@ import com.ramadan.islami.data.listener.FirebaseListener
 import com.ramadan.islami.ui.activity.MainActivity.Companion.language
 import com.ramadan.islami.ui.adapter.RecyclerViewAdapter
 import com.ramadan.islami.ui.viewModel.FirebaseViewModel
-import com.ramadan.islami.utils.showMessage
+import com.ramadan.islami.utils.showToast
 
 class Stories : Fragment(), FirebaseListener {
     private val viewModel by lazy { ViewModelProvider(this).get(FirebaseViewModel::class.java) }
@@ -58,6 +58,6 @@ class Stories : Fragment(), FirebaseListener {
 
     override fun onFailure(message: String) {
         progress.visibility = View.GONE
-        showMessage(requireContext(), message)
+        showToast(requireContext(), message)
     }
 }

@@ -1,10 +1,7 @@
 package com.ramadan.islami.ui.fragment
 
 import android.content.Context
-import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
@@ -19,6 +16,7 @@ import com.yalantis.contextmenu.lib.ContextMenuDialogFragment
 import com.yalantis.contextmenu.lib.MenuGravity
 import com.yalantis.contextmenu.lib.MenuObject
 import com.yalantis.contextmenu.lib.MenuParams
+
 
 class FamilyTreeDetails : Fragment() {
     private var familyTree = ""
@@ -95,30 +93,35 @@ class FamilyTreeDetails : Fragment() {
             menuItemClickListener = { view, position ->
                 when (position) {
                     0 -> {
-                        val drawable = imageView.drawable
-                        val bitmap: Bitmap? = if (drawable is BitmapDrawable) {
-                            (imageView.drawable as BitmapDrawable).bitmap
-                        } else null
-                        bitmap?.let { it1 ->
-                            saveImage(it1)
-                            showMessage(view.context, view.context.getString(R.string.saved))
-                        } ?: showMessage(view.context,
-                            view.context.getString(R.string.failedToDownload))
+                        downloadImg(imageUrl)
+                        showToast(view.context, view.context.getString(R.string.saved))
                     }
                     1 -> {
-                        Intent().apply {
-                            action = Intent.ACTION_SEND
-                            type = "picture/png"
-                            getLocalBitmapUri(imageView)?.let { putExtra(Intent.EXTRA_STREAM, it) }
-                                ?: showMessage(view.context,
-                                    view.context.getString(R.string.tryAgain))
-                            view.context.startActivity(Intent.createChooser(this, "Send to"))
-                        }
+//                        Picasso.get().load(imageUrl).into(object : Target {
+//                            override fun onBitmapLoaded(bitmap: Bitmap, from: LoadedFrom) {
+//                                Intent("android.intent.action.SEND").apply {
+//                                    type = "image/*"
+//                                    getlocalBitmapUri(bitmap)?.let {
+//                                        putExtra("android.intent.extra.STREAM", it)
+//                                    } ?: showToast(view.context, getString(R.string.tryAgain))
+//                                    view.context.startActivity(Intent.createChooser(this, "share"))
+//                                }
+//                            }
+//
+//                            override fun onBitmapFailed(
+//                                e: java.lang.Exception?,
+//                                errorDrawable: Drawable?
+//                            ) = showToast(view.context, getString(R.string.tryAgain))
+//
+//                            override fun onPrepareLoad(placeHolderDrawable: Drawable) {}
+//                        })
+//
                     }
                 }
             }
         }
     }
+
 
     private fun getMenuObjects() = mutableListOf<MenuObject>().apply {
         MenuObject(getString(R.string.download)).apply {
@@ -126,11 +129,11 @@ class FamilyTreeDetails : Fragment() {
             setBgColorValue((Color.rgb(23, 34, 59)))
             add(this)
         }
-        MenuObject(getString(R.string.share)).apply {
-            setResourceValue(R.drawable.ic_share)
-            setBgColorValue((Color.rgb(22, 36, 71)))
-            add(this)
-        }
+//        MenuObject(getString(R.string.share)).apply {
+//            setResourceValue(R.drawable.ic_share)
+//            setBgColorValue((Color.rgb(22, 36, 71)))
+//            add(this)
+//        }
     }
 
     private fun showContextMenuDialogFragment() {

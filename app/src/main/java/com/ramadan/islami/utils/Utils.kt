@@ -6,11 +6,11 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.KeyguardManager
 import android.content.Context
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
@@ -29,6 +29,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.ramadan.islami.R
 import com.ramadan.islami.R.string
 import com.squareup.picasso.Picasso
+import com.squareup.picasso.Target
 import java.io.*
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -50,9 +51,11 @@ class Utils(val context: Context) {
             context.getString(string.hadithOfDay),
             "https://firebasestorage.googleapis.com/v0/b/islami-ecc03.appspot.com/o/collection%2FhadithOfDay.jpg?alt=media&token=543ece34-faa2-4c27-b77d-77f3ffb9d945"
         ),
-        CollectionModel("muhammadStory",
+        CollectionModel(
+            "muhammadStory",
             context.getString(string.muhammad),
-            "https://i.pinimg.com/564x/c1/6a/fe/c16afea2f025b7ae1dfddbafe8e15f02.jpg"),
+            "https://i.pinimg.com/564x/c1/6a/fe/c16afea2f025b7ae1dfddbafe8e15f02.jpg"
+        ),
         CollectionModel(
             "hadiths",
             context.getString(string.hadiths),
@@ -112,7 +115,7 @@ class Utils(val context: Context) {
         CollectionModel("bigTree", context.getString(string.bigFamilyTree), defaultImg),
     )
 
-    val prayers = mutableListOf(
+    val prayers = listOf(
         context.getString(string.fajr),
         context.getString(string.dhuhr),
         context.getString(string.asr),
@@ -148,17 +151,16 @@ class Utils(val context: Context) {
 
 
 const val debug_tag = "TOTO"
-const val lat = 31.107364
-const val lon = 29.783520
 const val ACCESS_FINE_LOCATION_REQ_CODE = 35
 const val QIBLA_LATITUDE = 21.3891
 const val QIBLA_LONGITUDE = 39.8579
 const val ONESIGNAL_APP_ID = "84b5b5b5-1be2-49c4-b7cc-dc033da3bf84"
-private val dirPath = Environment.getExternalStoragePublicDirectory(
+
+val dirPath = Environment.getExternalStoragePublicDirectory(
     Environment.DIRECTORY_PICTURES
 ).path + "/islami"
 
-fun showMessage(context: Context, message: String) {
+fun showToast(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
 
@@ -204,17 +206,19 @@ fun showOptions(context: Context, imageView: ImageView) {
     alertDialog.window!!.attributes.windowAnimations = R.style.ShrinkAnimation
     alertDialog.show()
     alertDialog.setCancelable(true)
-    view.findViewById<TextView>(R.id.share).setOnClickListener {
-        Intent().apply {
-            action = Intent.ACTION_SEND
-            type = "picture/png"
-            getLocalBitmapUri(imageView)?.let { putExtra(Intent.EXTRA_STREAM, it) }
-                ?: showMessage(view.context,
-                    view.context.getString(R.string.tryAgain))
-            view.context.startActivity(Intent.createChooser(this, "Send to"))
-        }
-        alertDialog.dismiss()
-    }
+//    view.findViewById<TextView>(R.id.share).setOnClickListener {
+//        Intent().apply {
+//            action = Intent.ACTION_SEND
+//            type = "picture/png"
+//            getLocalBitmapUri(imageView)?.let { putExtra(Intent.EXTRA_STREAM, it) }
+//                ?: showToast(
+//                    view.context,
+//                    view.context.getString(string.tryAgain)
+//                )
+//            view.context.startActivity(Intent.createChooser(this, "Send to"))
+//        }
+//        alertDialog.dismiss()
+//    }
     view.findViewById<TextView>(R.id.download).setOnClickListener {
         val drawable = imageView.drawable
         val bitmap: Bitmap? = if (drawable is BitmapDrawable) {
@@ -235,8 +239,7 @@ fun saveImage(bitmap: Bitmap) {
         if (!dir.exists()) dir.mkdirs()
         val file = File("$dirPath/${Random.nextDouble()}.png")
         file.createNewFile()
-        val outStream: OutputStream?
-        outStream = FileOutputStream(file)
+        val outStream = FileOutputStream(file)
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream)
         outStream.flush()
         outStream.close()
@@ -256,15 +259,58 @@ fun getLocalBitmapUri(imageView: ImageView): Uri? {
         val dir = File(dirPath)
         if (!dir.exists()) dir.mkdirs()
         val file = File("$dirPath/${Random.nextDouble()}.png")
-        val out = FileOutputStream(file)
-        bmp?.compress(Bitmap.CompressFormat.PNG, 90, out)
-        out.close()
+        val outStream = FileOutputStream(file)
+        bmp?.compress(Bitmap.CompressFormat.PNG, 90, outStream)
+        outStream.close()
         bmpUri = Uri.fromFile(file)
     } catch (e: IOException) {
         e.printStackTrace()
     }
     return bmpUri
 }
+
+fun downloadImg(imageUrl: String) {
+    Picasso.get()
+        .load(imageUrl)
+        .into(object : Target {
+            override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom?) {
+                try {
+                    val dir = File(dirPath)
+                    if (!dir.exists()) dir.mkdirs()
+                    val fileOutputStream = FileOutputStream(File(dir, Date().toString() + ".jpg"))
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream)
+                    fileOutputStream.flush()
+                    fileOutputStream.close()
+                } catch (e: FileNotFoundException) {
+                    e.printStackTrace()
+                } catch (e2: IOException) {
+                    e2.printStackTrace()
+                }
+            }
+
+            override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) = Unit
+
+            override fun onPrepareLoad(placeHolderDrawable: Drawable?) = Unit
+        })
+
+}
+//private fun getlocalBitmapUri(bitmap: Bitmap): Uri? {
+//    var bmuri: Uri? = null
+//    try {
+//        val file = File(
+//            Environment.getExternalStorageDirectory().toString() + File.separator + "image.jpg"
+//        )
+//        val fileOutputStream = FileOutputStream(file)
+//        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream)
+//        fileOutputStream.close()
+//        bmuri = Uri.fromFile(file)
+//    } catch (e: FileNotFoundException) {
+//        e.printStackTrace()
+//    } catch (e2: IOException) {
+//        e2.printStackTrace()
+//    }
+//    return bmuri
+//}
 
 
 fun Context.isNetworkConnected(): Boolean {
@@ -315,8 +361,7 @@ fun coloredJson(text: String): String {
     return "<font color='#E1B34F'>$text</font>"
 }
 
-const val MUSLIM_SALAT_URL = "http://muslimsalat.com/"
-const val GITHUB_URL = "https://api.github.com/"
+//const val MUSLIM_SALAT_URL = "http://muslimsalat.com/"
 
 fun View.changeNavigation(direction: NavDirections) {
     Navigation.findNavController(this).navigate(direction)

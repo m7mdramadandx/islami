@@ -2,7 +2,6 @@ package com.ramadan.islami.ui.activity
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -11,7 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.ramadan.islami.R
@@ -89,16 +91,12 @@ class TopicDetails : AppCompatActivity() {
         adView = findViewById(R.id.adView)
         adView.adListener = object : AdListener() {
             override fun onAdLoaded() {
-                contentView.updatePadding(0, 0, 0, 190)
+                contentView.updatePadding(0, 0, 0, 160)
             }
 
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 contentView.updatePadding(0, 0, 0, 0)
                 Log.e(debug_tag, adError.message)
-            }
-
-            override fun onAdLeftApplication() {
-                contentView.updatePadding(0, 0, 0, 0)
             }
 
             override fun onAdClosed() {

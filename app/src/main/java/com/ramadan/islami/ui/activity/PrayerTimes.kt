@@ -83,7 +83,7 @@ class PrayerTimes : AppCompatActivity() {
                 else {
                     localeHelper.getPrayerTimes(this@PrayerTimes)?.let { mutableSet ->
                         prayTimeAdapter.setOfflinePrayer(mutableSet)
-                    } ?: showMessage(this, getString(R.string.noInternet))
+                    } ?: showToast(this, getString(R.string.noInternet))
                 }
             }
         }
@@ -142,7 +142,7 @@ class PrayerTimes : AppCompatActivity() {
     ) = when (requestCode) {
         ACCESS_FINE_LOCATION_REQ_CODE -> {
             if (PackageManager.PERMISSION_GRANTED == grantResults[0]) fetchDate()
-            else showMessage(this, getString(R.string.couldnotGetPrayers))
+            else showToast(this, getString(R.string.couldnotGetPrayers))
         }
         else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
@@ -152,14 +152,16 @@ class PrayerTimes : AppCompatActivity() {
     private fun fetchDate() {
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         fusedLocationClient.lastLocation.addOnSuccessListener {
-            observeDate(it.latitude, it.longitude)
+            it?.let {
+                observeDate(it.latitude, it.longitude)
+            } ?: showToast(this, getString(R.string.tryAgain))
             val geocoder = Geocoder(this, Locale.getDefault())
             val addresses: List<Address> =
                 geocoder.getFromLocation(it.latitude, it.longitude, 1)
             scheduleLocation.text = addresses[0].adminArea ?: " "
         }
         fusedLocationClient.lastLocation.addOnFailureListener {
-            showMessage(this, it.localizedMessage!!)
+            showToast(this, it.localizedMessage!!)
         }
     }
 
@@ -175,14 +177,14 @@ class PrayerTimes : AppCompatActivity() {
                     try {
                         localeHelper.setPrayerTimes(this, prayer!!.data[selectedDate - 1].timings)
                     } catch (e: IOException) {
-                        showMessage(this, e.localizedMessage!!)
+                        showToast(this, e.localizedMessage!!)
                     }
                 }
                 ResponseStatus.ERROR -> {
                     localeHelper.getPrayerTimes(this@PrayerTimes)?.let { mutableSet ->
                         prayTimeAdapter.setOfflinePrayer(mutableSet)
-                    } ?: showMessage(this, getString(R.string.noInternet))
-                    showMessage(this, it.message!!)
+                    } ?: showToast(this, getString(R.string.noInternet))
+                    showToast(this, it.message!!)
                     progress.visibility = View.GONE
                 }
             }

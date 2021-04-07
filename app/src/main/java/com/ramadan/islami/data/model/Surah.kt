@@ -4,7 +4,7 @@ import androidx.annotation.Keep
 import java.io.Serializable
 
 @Keep
-class Surah(
+data class Surah(
     val ayahs: List<Quran.Ayah>,
     val englishName: String,
     val englishNameTranslation: String,

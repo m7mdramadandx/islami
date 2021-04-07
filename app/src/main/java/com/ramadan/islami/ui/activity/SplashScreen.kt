@@ -20,7 +20,6 @@ import com.ramadan.islami.R
 import com.ramadan.islami.utils.LocaleHelper
 import com.ramadan.islami.utils.debug_tag
 import kotlinx.android.synthetic.main.activity_splash_screen.*
-import java.util.*
 
 
 class SplashScreen : AppCompatActivity() {
