@@ -2,7 +2,7 @@
 islami App eases and notifies your Islamic duties.
 
 # Google Play -
-[<img src="screenshots/googlePlay.png" width=200>] (https://play.google.com/store/apps/details?id=com.ramadan.islami)
+[(<img src="screenshots/googlePlay.png" width=200>)] (https://play.google.com/store/apps/details?id=com.ramadan.islami)
 
 
 
