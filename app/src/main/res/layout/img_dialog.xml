@@ -15,7 +15,7 @@
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
         android:cropToPadding="true"
-        android:src="@drawable/ic_error_img"
+        app:srcCompat="@drawable/ic_error_img"
         tools:ignore="ContentDescription" />
 
 </androidx.cardview.widget.CardView>

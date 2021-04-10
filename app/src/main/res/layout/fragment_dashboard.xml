@@ -90,7 +90,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="8dp"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/ic_expand"
+                        ads:srcCompat="@drawable/ic_expand"
                         tools:ignore="ContentDescription" />
 
 
@@ -135,7 +135,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/ic_expand"
+                        ads:srcCompat="@drawable/ic_expand"
                         tools:ignore="ContentDescription" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -180,7 +180,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="8dp"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/ic_expand"
+                        ads:srcCompat="@drawable/ic_expand"
                         tools:ignore="ContentDescription" />
 
                     <com.smarteist.autoimageslider.SliderView
@@ -216,7 +216,7 @@
                         android:adjustViewBounds="true"
                         android:background="@android:color/transparent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/failure_img"
+                        ads:srcCompat="@drawable/failure_img"
                         tools:ignore="ContentDescription" />
 
                     <FrameLayout
@@ -257,7 +257,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/ic_expand"
+                        ads:srcCompat="@drawable/ic_expand"
                         tools:ignore="ContentDescription" />
 
                     <androidx.recyclerview.widget.RecyclerView

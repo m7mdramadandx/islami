@@ -2,12 +2,16 @@ package com.ramadan.islami.utils
 
 
 import android.annotation.TargetApi
-import android.app.*
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.os.Build
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import com.ramadan.islami.R
 import com.ramadan.islami.ui.activity.AzanActivity
@@ -46,7 +50,7 @@ class NotificationHelper(base: Context) : ContextWrapper(base) {
             .build()
     }
 
-    fun Activity.turnScreenOffAndKeyguardOn() {
+    fun AppCompatActivity.turnScreenOffAndKeyguardOn() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
             setShowWhenLocked(false)
             setTurnScreenOn(false)

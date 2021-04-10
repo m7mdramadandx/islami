@@ -86,7 +86,7 @@ class FirebaseRepository {
                 val title: String = snapshot.getString("title") ?: snapshot.id
                 val image: String = snapshot.getString("image") ?: defaultImg
                 val verses = (snapshot?.get("verses") ?: ArrayList<String>(0)) as ArrayList<String>
-                val hadiths = snapshot.get("hadiths") as ArrayList<String>
+                val hadiths = (snapshot?.get("hadiths") ?: ArrayList<String>(0)) as ArrayList<String>
                 val category = Quote(id, title.toUpperCase(Locale.ROOT), image, verses, hadiths)
                 dataList.add(category)
             }

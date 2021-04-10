@@ -3,15 +3,13 @@
     <style name="AppTheme" parent="@style/Theme.AppCompat.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="cardViewStyle">@style/CardViewStyle</item>
-        <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:textColorHighlight">@color/colorAccent</item>
-        <item name="navigationIconTint">@color/colorAccent</item>
         <item name="fontFamily">@font/kemenag_font_family</item>
         <item name="android:fontFamily">@font/kemenag_font_family</item>
-
     </style>
 
     <style name="CardViewStyle" parent="CardView">

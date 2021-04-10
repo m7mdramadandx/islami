@@ -42,7 +42,7 @@
             android:adjustViewBounds="false"
             android:background="@android:color/transparent"
             android:rotation="90"
-            android:src="@drawable/ic_convert" />
+            app:srcCompat="@drawable/ic_convert" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/gregorian"

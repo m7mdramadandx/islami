@@ -1,6 +1,6 @@
 package com.ramadan.islami.ui.adapter
 
-import android.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater

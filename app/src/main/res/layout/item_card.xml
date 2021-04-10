@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/failure_img" />
+        app:srcCompat="@drawable/failure_img" />
 
     <FrameLayout
         android:layout_width="match_parent"

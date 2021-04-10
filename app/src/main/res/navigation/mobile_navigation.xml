@@ -77,9 +77,6 @@
             app:exitAnim="@anim/exit"
             app:popEnterAnim="@anim/pop_enter"
             app:popExitAnim="@anim/pop_exit" />
-        <action
-            android:id="@+id/action_dashboard_to_rate"
-            app:destination="@id/nav_rate" />
 
         <action
             android:id="@+id/action_dashboard_to_share"
@@ -169,11 +166,6 @@
         android:name="com.ramadan.islami.ui.fragment.Settings"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings" />
-
-    <fragment
-        android:id="@+id/nav_rate"
-        android:name="com.ramadan.islami.ui.fragment.Feedback"
-        android:label="@string/rate_app" />
 
     <fragment
         android:id="@+id/nav_share"

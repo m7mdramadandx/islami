@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
             android:paddingEnd="16dp"
-            android:src="@drawable/ic_language" />
+            card_view:srcCompat="@drawable/ic_language" />
 
     </androidx.cardview.widget.CardView>
 
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
             android:paddingEnd="16dp"
-            android:src="@drawable/ic_theme" />
+            card_view:srcCompat="@drawable/ic_theme" />
 
     </androidx.cardview.widget.CardView>
 
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
             android:paddingEnd="16dp"
-            android:src="@drawable/ic_notification_bell" />
+            card_view:srcCompat="@drawable/ic_notification_bell" />
 
     </androidx.cardview.widget.CardView>
 
@@ -107,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
             android:paddingEnd="16dp"
-            android:src="@drawable/ic_azan" />
+            card_view:srcCompat="@drawable/ic_azan" />
 
     </androidx.cardview.widget.CardView>
 
@@ -133,7 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
             android:paddingEnd="16dp"
-            android:src="@drawable/ic_bookmakrs" />
+            card_view:srcCompat="@drawable/ic_bookmakrs" />
 
     </androidx.cardview.widget.CardView>
 

@@ -57,7 +57,6 @@ class FirebaseViewModel : ViewModel() {
         firebaseListener?.onStarted()
         val mutableData = MutableLiveData<MutableList<Quote>>()
         GlobalScope.launch(Dispatchers.IO) {
-            delay(300)
             withContext(Dispatchers.Main) {
                 repo.fetchQuotes(language).observeForever { mutableData.value = it }
                 if (mutableData.value!!.isNotEmpty()) firebaseListener?.onSuccess()
@@ -79,7 +78,6 @@ class FirebaseViewModel : ViewModel() {
         firebaseListener?.onStarted()
         val mutableData = MutableLiveData<MutableList<ModelCollection>>()
         GlobalScope.launch(Dispatchers.IO) {
-            delay(300)
             withContext(Dispatchers.Main) {
                 repo.fetchCollection(language).observeForever { mutableData.value = it }
                 if (mutableData.value!!.isNotEmpty()) firebaseListener?.onSuccess()
@@ -93,7 +91,6 @@ class FirebaseViewModel : ViewModel() {
         firebaseListener?.onStarted()
         val mutableData = MutableLiveData<MutableList<Video>>()
         GlobalScope.launch(Dispatchers.IO) {
-            delay(300)
             withContext(Dispatchers.Main) {
                 repo.fetchVideos(language)
                     .observeForever { videosList -> mutableData.value = videosList }

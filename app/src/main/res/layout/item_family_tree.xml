@@ -15,7 +15,7 @@
         android:adjustViewBounds="true"
         android:paddingHorizontal="32dp"
         android:paddingVertical="24dp"
-        android:src="@drawable/family_tree_img" />
+        card_view:srcCompat="@drawable/family_tree_img" />
 
     <TextView
         android:id="@+id/familyTreeName"

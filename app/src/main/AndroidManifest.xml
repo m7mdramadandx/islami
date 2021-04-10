@@ -5,10 +5,10 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -54,7 +54,9 @@
             android:name="com.onesignal.NotificationServiceExtension"
             android:value="com.ramadan.islami.utils.NotificationReceived" />
 
-        <activity android:name=".ui.activity.SplashScreen">
+        <activity
+            android:name=".ui.activity.SplashScreen"
+            android:theme="@style/AppTheme_NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

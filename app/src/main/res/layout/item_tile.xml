@@ -35,7 +35,7 @@
             android:layout_centerVertical="true"
             android:layout_marginHorizontal="8dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_expand" />
+            app:srcCompat="@drawable/ic_expand" />
 
     </RelativeLayout>
 

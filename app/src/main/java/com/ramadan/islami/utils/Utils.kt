@@ -2,8 +2,6 @@
 
 package com.ramadan.islami.utils
 
-import android.app.Activity
-import android.app.AlertDialog
 import android.app.KeyguardManager
 import android.content.Context
 import android.graphics.Bitmap
@@ -23,6 +21,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
@@ -318,7 +318,7 @@ fun Context.isNetworkConnected(): Boolean {
     return cm!!.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnected
 }
 
-fun Activity.turnScreenOnAndKeyguardOff() {
+fun AppCompatActivity.turnScreenOnAndKeyguardOff() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
         setShowWhenLocked(true)
         setTurnScreenOn(true)

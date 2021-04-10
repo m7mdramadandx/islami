@@ -33,9 +33,10 @@
             android:icon="@drawable/ic_family_tree"
             android:title="@string/prophets_tree" />
     </group>
+
     <group
         android:checkableBehavior="single"
-        android:menuCategory="secondary">
+        android:menuCategory="system">
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings"
@@ -45,10 +46,6 @@
             android:icon="@drawable/ic_feedback"
             android:title="@string/send_feedback" />
 
-        <item
-            android:id="@+id/nav_rate"
-            android:icon="@drawable/ic_rating"
-            android:title="@string/rate_app" />
         <item
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_share"

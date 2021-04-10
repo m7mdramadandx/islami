@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/azan" />
+        app:srcCompat="@drawable/azan" />
 
     <ImageView
         android:id="@+id/mute"
@@ -22,22 +22,9 @@
         android:layout_margin="8dp"
         android:background="@drawable/bg_rounded"
         android:backgroundTint="@color/white"
-        android:src="@drawable/ic_mute"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/prayName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/amiri_font"
-        android:text="صلاه الفجر"
-        android:textColor="#fff"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/dummy_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_mute" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/dummy_button"
@@ -45,9 +32,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:background="@drawable/bg_rounded"
+        android:backgroundTint="#eee"
         android:gravity="center"
         android:text="@string/prayerVerse"
-        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textSize="19sp"
         app:fontFamily="@font/amiri_font"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2" />
 
