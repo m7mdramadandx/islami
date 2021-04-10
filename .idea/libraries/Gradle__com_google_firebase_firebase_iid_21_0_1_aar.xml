@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.firebase:firebase-iid:21.0.1@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/47371be172833855bf97d8e74e5b1c13/jetified-firebase-iid-21.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/85bf823aa10d2088c676d7e53d52d1b2/jetified-firebase-iid-21.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e9fdd14e3465f705792929ec6b3442fe/jetified-firebase-iid-21.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/12053c30776eedbbc3621dfa23c19515/jetified-firebase-iid-21.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/66be3695090e7de0af11dbc6e83854de/jetified-firebase-iid-21.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f189a9953e804da0a89167f0c8df579e/jetified-firebase-iid-21.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b5f7ba355629b9e328f3f45ee8c3df66/jetified-firebase-iid-21.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ea7808ec6adafd894b802f7c6cd7a3ce/jetified-firebase-iid-21.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1976b3d6a507f546902ee1248b13b331/jetified-firebase-iid-21.0.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/74776730ef4f752c5f700861092d8eea/jetified-firebase-iid-21.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/74776730ef4f752c5f700861092d8eea/jetified-firebase-iid-21.0.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/74776730ef4f752c5f700861092d8eea/jetified-firebase-iid-21.0.1/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-iid/21.0.1/b07dee5360751c1b87705100bc672728fb77b46b/firebase-iid-21.0.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

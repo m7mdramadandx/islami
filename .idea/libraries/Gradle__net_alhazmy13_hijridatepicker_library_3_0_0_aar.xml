@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: net.alhazmy13.hijridatepicker:library:3.0.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dbbba22870bcd5c5686d7cec0ce2d7c1/jetified-library-3.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dbbba22870bcd5c5686d7cec0ce2d7c1/jetified-library-3.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dbbba22870bcd5c5686d7cec0ce2d7c1/jetified-library-3.0.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.alhazmy13.hijridatepicker/library/3.0.0/eb2c8d83b5cd0b1630b3fc0705d20581679b9bf6/library-3.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.alhazmy13.hijridatepicker/library/3.0.0/de72c8f5adfad1db9b2120a11c2c7191f2a3ccc9/library-3.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,506 @@
+[
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_azan.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\activity_azan.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_theme.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_theme.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_topic_details.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\activity_topic_details.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_thumb_up.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_thumb_up.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_failure_img.webp.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\failure_img.webp"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi_ic_notification.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable-xhdpi\\ic_notification.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_mute.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_mute.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_share.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_share.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_alert_dialog_options.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\alert_dialog_options.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_notification_bell.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_notification_bell.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_alert_dialog_read_marker.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\alert_dialog_read_marker.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_language.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_language.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_load_img.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\load_img.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_sunset.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_sunset.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_logo.webp.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\logo.webp"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_story.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_story.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_wikipedia.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\wikipedia.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_ic_notification.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable-hdpi\\ic_notification.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_ic_notification.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable-mdpi\\ic_notification.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_cloudy_day.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_cloudy_day.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_bg_overlay.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\bg_overlay.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_sunrise.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_sunrise.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_bookmakrs.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_bookmakrs.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_item_card.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\item_card.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\font-v26_kemenag_font_family.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\font-v26\\kemenag_font_family.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_qibla.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\activity_qibla.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_asset.webp.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\asset.webp"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\font_amiri_font.ttf.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\font\\amiri_font.ttf"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_convert.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_convert.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi_ic_notification.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable-xxhdpi\\ic_notification.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_expand.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_expand.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_item_family_tree.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\item_family_tree.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_menu.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_menu.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_settings.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_settings.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_bookmark.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_bookmark.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_quran.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_quran.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_ayah.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\fragment_ayah.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-mdpi_ic_launcher_background.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_month_prayer_times.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\activity_month_prayer_times.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_family_tree.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_family_tree.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_azan.jpg.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\azan.jpg"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_item_content.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\item_content.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_rating.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_rating.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_family_tree_img.webp.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\family_tree_img.webp"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_qibla_nidlle.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_qibla_nidlle.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\font_uthmani_font.otf.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\font\\uthmani_font.otf"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_alert_dialog.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\alert_dialog.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_main_content.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\main_content.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_azan.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_azan.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_quran_page.webp.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\quran_page.webp"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_sura.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\fragment_sura.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\raw_elqtamy.mp3.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\raw\\elqtamy.mp3"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_location.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_location.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_sun.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_sun.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_calendar.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_calendar.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_dashboard.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_dashboard.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_splash_screen.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\activity_splash_screen.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_quote.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\activity_quote.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_item_video.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\item_video.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xhdpi_ic_launcher_background.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_feedback.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\fragment_feedback.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_item_surah.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\item_surah.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_item_ayah.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\item_ayah.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_qibla.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_qibla.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_item_prayer_time.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\item_prayer_time.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\font_kemenag_font_family.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\font\\kemenag_font_family.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout-v26_item_ayah.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout-v26\\item_ayah.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\anim_enter.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\anim\\enter.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_feedback.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_feedback.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-hdpi_ic_launcher_background.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxxhdpi_ic_launcher_background.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_notification.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_notification.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_cloudy_night.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_cloudy_night.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_main.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_dashboard.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\fragment_dashboard.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_translate.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\translate.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\anim_pop_exit.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\anim\\pop_exit.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_item_slider_img.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\item_slider_img.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\font_kemenag.ttf.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\font\\kemenag.ttf"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\menu_option_menu.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\menu\\option_menu.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_bg_rounded.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable-mdpi\\bg_rounded.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_item_month_prayer_times.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\item_month_prayer_times.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_topic.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_topic.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_quote.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_quote.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_quote_of_day.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\activity_quote_of_day.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxxhdpi_ic_notification.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_notification.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_item_tile.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\item_tile.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\menu_slide_drawer.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\menu\\slide_drawer.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_item_allah_name.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\item_allah_name.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxhdpi_ic_launcher_background.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_thumb_down.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_thumb_down.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\xml_network_security_config.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\xml\\network_security_config.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_item_story.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\item_story.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\anim_exit.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\anim\\exit.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_download.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_download.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\navigation_mobile_navigation.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\navigation\\mobile_navigation.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_daily.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_daily.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_background.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\background.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\font_quran_font.ttf.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\font\\quran_font.ttf"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_family_tree.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\fragment_family_tree.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_date_conversion.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\activity_date_conversion.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\anim_pop_enter.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\anim\\pop_enter.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_fragment_settings.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\fragment_settings.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_half_moon.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_half_moon.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_recycler_view.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\recycler_view.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_nav_header.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\nav_header.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_img_dialog.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\img_dialog.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_prayer_times.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\layout\\activity_prayer_times.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\islami\\app\\build\\intermediates\\res\\merged\\release\\drawable_ic_error_img.xml.flat",
+        "source": "D:\\androidProjects\\islami\\app\\src\\main\\res\\drawable\\ic_error_img.xml"
+    }
+]

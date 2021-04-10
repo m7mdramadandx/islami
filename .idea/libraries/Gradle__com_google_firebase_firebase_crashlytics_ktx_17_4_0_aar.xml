@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.firebase:firebase-crashlytics-ktx:17.4.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/01029f83bb742d8d7efcf4dc982d118f/jetified-firebase-crashlytics-ktx-17.4.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fea5f61cc295766ecd067f3245c50eb1/jetified-firebase-crashlytics-ktx-17.4.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/60c9d4c4501bdaea326f6d4d4b6e45cd/jetified-firebase-crashlytics-ktx-17.4.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fd77fb8baa4e5524b3c9d3d8470784e8/jetified-firebase-crashlytics-ktx-17.4.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7d05c6e29a5eadcd48adf180f6417dfe/jetified-firebase-crashlytics-ktx-17.4.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f431b1a8acf7432e40dbd59299ae8881/jetified-firebase-crashlytics-ktx-17.4.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f65d5c7c120ef10f8c6f357f1ce156c2/jetified-firebase-crashlytics-ktx-17.4.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f65d5c7c120ef10f8c6f357f1ce156c2/jetified-firebase-crashlytics-ktx-17.4.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f65d5c7c120ef10f8c6f357f1ce156c2/jetified-firebase-crashlytics-ktx-17.4.0/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-crashlytics-ktx/17.4.0/1406dfb1611a8101c7cf814520a9ab6d1999ff24/firebase-crashlytics-ktx-17.4.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-crashlytics-ktx/17.4.0/45ebcebfa0e94fa66bd917a177e7ad6a5c25ec86/firebase-crashlytics-ktx-17.4.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

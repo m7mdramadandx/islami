@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.smarteist:autoimageslider:1.3.7@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b343d344ad9c4ea97647ed72ad02420e/jetified-autoimageslider-1.3.7/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b343d344ad9c4ea97647ed72ad02420e/jetified-autoimageslider-1.3.7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b343d344ad9c4ea97647ed72ad02420e/jetified-autoimageslider-1.3.7/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.smarteist/autoimageslider/1.3.7/10520f728950ecce6a701f90235c8c593ec71e1d/autoimageslider-1.3.7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.smarteist/autoimageslider/1.3.7/76de077e836a9264760eda2abc4308b05d9b16b8/autoimageslider-1.3.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

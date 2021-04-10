@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">173815807932-ijrnlj9qv3bdup2ak5fafjs9kac8kigs.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">173815807932</string>
+    <string name="google_api_key" translatable="false">AIzaSyDxWerzZpxMLDttGC7amxaI6awZ1kz5E5g</string>
+    <string name="google_app_id" translatable="false">1:173815807932:android:0aa41d082e81416f7935b9</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDxWerzZpxMLDttGC7amxaI6awZ1kz5E5g</string>
+    <string name="google_storage_bucket" translatable="false">islami-ecc03.appspot.com</string>
+    <string name="project_id" translatable="false">islami-ecc03</string>
+</resources>

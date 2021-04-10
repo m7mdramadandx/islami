@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.Yalantis:Context-Menu.Android:1.1.4@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/06985387520f85225a0632c6724026a6/jetified-Context-Menu.Android-1.1.4/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/06985387520f85225a0632c6724026a6/jetified-Context-Menu.Android-1.1.4/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/06985387520f85225a0632c6724026a6/jetified-Context-Menu.Android-1.1.4/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9c9bd89fd3b18198624ebeedd9e63e4c/jetified-Context-Menu.Android-1.1.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9c9bd89fd3b18198624ebeedd9e63e4c/jetified-Context-Menu.Android-1.1.4/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9c9bd89fd3b18198624ebeedd9e63e4c/jetified-Context-Menu.Android-1.1.4/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.Yalantis/Context-Menu.Android/1.1.4/5817d0f119590836874e5fcdd8c99a0855a73b9a/Context-Menu.Android-1.1.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,4 @@
+#Sat Apr 10 15:56:04 EET 2021
+base.0=D\:\\androidProjects\\islami\\app\\build\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

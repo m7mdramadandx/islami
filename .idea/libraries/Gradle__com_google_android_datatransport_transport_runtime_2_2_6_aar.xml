@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.android.datatransport:transport-runtime:2.2.6@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d22ae74cb541449c4bb0867b35e07581/jetified-transport-runtime-2.2.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/44225741443a67435d183b2e28c5a839/jetified-transport-runtime-2.2.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fe01800802b465ac626252d13a34b663/jetified-transport-runtime-2.2.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a1af61b1a7d285e9ef38173e27a2b92f/jetified-transport-runtime-2.2.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bd7f2e0ff069d483a4ff675a408b6d11/jetified-transport-runtime-2.2.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3e04adad7cd36dcb1cc0b7e2efa0839c/jetified-transport-runtime-2.2.6/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5993799c6b3478abe16d74e62c3b2dc7/jetified-transport-runtime-2.2.6/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5993799c6b3478abe16d74e62c3b2dc7/jetified-transport-runtime-2.2.6/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5993799c6b3478abe16d74e62c3b2dc7/jetified-transport-runtime-2.2.6/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.datatransport/transport-runtime/2.2.6/7509bfbb3df6c8d1e8b5ab57eb22a40042d3ef64/transport-runtime-2.2.6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

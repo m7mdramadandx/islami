@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.firebase:firebase-encoders-json:17.1.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/86fbbdf0453dc8ba6159c61ba8d3ae19/jetified-firebase-encoders-json-17.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/24fc8f5ca61c4d199d7ee5d364c04821/jetified-firebase-encoders-json-17.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bc217c7b3b2ebbc88b9cbf448af9b602/jetified-firebase-encoders-json-17.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3d13223c3a7f5b141646ed819e56bf09/jetified-firebase-encoders-json-17.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d7ed70481bfc1cf8a65bda285626b710/jetified-firebase-encoders-json-17.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/96adf684c596af3b3f0409aa19f35b8e/jetified-firebase-encoders-json-17.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d6b350de15a77f6c664397eb3ecd4af6/jetified-firebase-encoders-json-17.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/060de06892303319c4fe823442f3b9a6/jetified-firebase-encoders-json-17.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7da9107ea93216ed74b83e3748806dcd/jetified-firebase-encoders-json-17.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/35e91e21ea9edbb966539a5cabd1b307/jetified-firebase-encoders-json-17.1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/35e91e21ea9edbb966539a5cabd1b307/jetified-firebase-encoders-json-17.1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/35e91e21ea9edbb966539a5cabd1b307/jetified-firebase-encoders-json-17.1.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-encoders-json/17.1.0/5fbe3622c8be8565ee56aa41117b13f095965904/firebase-encoders-json-17.1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-encoders-json/17.1.0/562e15d8b50abbf64e6e8b33c3ccdab488ae15f8/firebase-encoders-json-17.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,237 @@
+-keep class androidx.core.app.CoreComponentFactory { <init>(); }
+-keep class androidx.lifecycle.ProcessLifecycleOwnerInitializer { <init>(); }
+-keep class androidx.room.MultiInstanceInvalidationService { <init>(); }
+-keep class androidx.work.impl.WorkManagerInitializer { <init>(); }
+-keep class androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy { <init>(); }
+-keep class androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy { <init>(); }
+-keep class androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy { <init>(); }
+-keep class androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy { <init>(); }
+-keep class androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver { <init>(); }
+-keep class androidx.work.impl.background.systemalarm.RescheduleReceiver { <init>(); }
+-keep class androidx.work.impl.background.systemalarm.SystemAlarmService { <init>(); }
+-keep class androidx.work.impl.background.systemjob.SystemJobService { <init>(); }
+-keep class androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver { <init>(); }
+-keep class com.google.android.datatransport.runtime.backends.TransportBackendDiscovery { <init>(); }
+-keep class com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver { <init>(); }
+-keep class com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService { <init>(); }
+-keep class com.google.android.gms.ads.AdActivity { <init>(); }
+-keep class com.google.android.gms.ads.AdService { <init>(); }
+-keep class com.google.android.gms.ads.MobileAdsInitProvider { <init>(); }
+-keep class com.google.android.gms.common.api.GoogleApiActivity { <init>(); }
+-keep class com.google.android.gms.measurement.AppMeasurementJobService { <init>(); }
+-keep class com.google.android.gms.measurement.AppMeasurementReceiver { <init>(); }
+-keep class com.google.android.gms.measurement.AppMeasurementService { <init>(); }
+-keep class com.google.firebase.components.ComponentDiscoveryService { <init>(); }
+-keep class com.google.firebase.iid.FirebaseInstanceIdReceiver { <init>(); }
+-keep class com.google.firebase.messaging.FirebaseMessagingService { <init>(); }
+-keep class com.google.firebase.provider.FirebaseInitProvider { <init>(); }
+-keep class com.onesignal.BootUpReceiver { <init>(); }
+-keep class com.onesignal.FCMBroadcastReceiver { <init>(); }
+-keep class com.onesignal.FCMIntentJobService { <init>(); }
+-keep class com.onesignal.FCMIntentService { <init>(); }
+-keep class com.onesignal.FocusDelaySyncJobService { <init>(); }
+-keep class com.onesignal.FocusDelaySyncService { <init>(); }
+-keep class com.onesignal.HmsMessageServiceOneSignal { <init>(); }
+-keep class com.onesignal.NotificationDismissReceiver { <init>(); }
+-keep class com.onesignal.NotificationOpenedActivityHMS { <init>(); }
+-keep class com.onesignal.NotificationOpenedReceiver { <init>(); }
+-keep class com.onesignal.PermissionsActivity { <init>(); }
+-keep class com.onesignal.SyncJobService { <init>(); }
+-keep class com.onesignal.SyncService { <init>(); }
+-keep class com.onesignal.UpgradeReceiver { <init>(); }
+-keep class com.ramadan.islami.Application { <init>(); }
+-keep class com.ramadan.islami.AutoStart { <init>(); }
+-keep class com.ramadan.islami.Azan { <init>(); }
+-keep class com.ramadan.islami.ui.activity.AllahNames { <init>(); }
+-keep class com.ramadan.islami.ui.activity.AzanActivity { <init>(); }
+-keep class com.ramadan.islami.ui.activity.DateConversion { <init>(); }
+-keep class com.ramadan.islami.ui.activity.Hadiths { <init>(); }
+-keep class com.ramadan.islami.ui.activity.MainActivity { <init>(); }
+-keep class com.ramadan.islami.ui.activity.MonthPrayerTimes { <init>(); }
+-keep class com.ramadan.islami.ui.activity.PrayerTimes { <init>(); }
+-keep class com.ramadan.islami.ui.activity.Qibla { <init>(); }
+-keep class com.ramadan.islami.ui.activity.Quote { <init>(); }
+-keep class com.ramadan.islami.ui.activity.QuoteOfDay { <init>(); }
+-keep class com.ramadan.islami.ui.activity.SplashScreen { <init>(); }
+-keep class com.ramadan.islami.ui.activity.StoryDetails { <init>(); }
+-keep class com.ramadan.islami.ui.activity.TopicDetails { <init>(); }
+-keep class com.ramadan.islami.ui.activity.TopicList { <init>(); }
+-keep class com.ramadan.islami.ui.activity.VideoDetails { <init>(); }
+-keep class com.ramadan.islami.ui.activity.VideoList { <init>(); }
+-keep class com.squareup.picasso.PicassoProvider { <init>(); }
+-keep class android.widget.Space { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.app.AlertController$RecycleListView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.view.menu.ActionMenuItemView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.view.menu.ExpandedMenuView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.view.menu.ListMenuItemView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ActionBarContainer { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ActionBarContextView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ActionBarOverlayLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ActionMenuView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ActivityChooserView$InnerLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.AlertDialogLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.AppCompatTextView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ButtonBarLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ContentFrameLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.DialogTitle { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.FitWindowsFrameLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.FitWindowsLinearLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.SearchView$SearchAutoComplete { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.Toolbar { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.appcompat.widget.ViewStubCompat { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.browser.browseractions.BrowserActionsFallbackMenuView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.cardview.widget.CardView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.constraintlayout.widget.Barrier { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.constraintlayout.widget.ConstraintLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.constraintlayout.widget.Guideline { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.coordinatorlayout.widget.CoordinatorLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.core.widget.NestedScrollView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.drawerlayout.widget.DrawerLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.navigation.fragment.NavHostFragment { <init>(); }
+
+-keep class androidx.recyclerview.widget.RecyclerView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.viewpager.widget.ViewPager { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class androidx.viewpager2.widget.ViewPager2 { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.github.eltohamy.materialhijricalendarview.MaterialHijriCalendarView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.github.florent37.expansionpanel.ExpansionHeader { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.github.florent37.expansionpanel.ExpansionLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.gms.ads.AdView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.appbar.AppBarLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.appbar.CollapsingToolbarLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.appbar.MaterialToolbar { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.button.MaterialButton { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.button.MaterialButtonToggleGroup { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.chip.Chip { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.chip.ChipGroup { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.datepicker.MaterialCalendarGridView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.internal.BaselineLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.internal.CheckableImageButton { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.internal.NavigationMenuItemView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.internal.NavigationMenuView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.navigation.NavigationView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.snackbar.Snackbar$SnackbarLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.snackbar.SnackbarContentLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.tabs.TabLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.textfield.TextInputEditText { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.textfield.TextInputLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.textview.MaterialTextView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.timepicker.ChipTextInputComboView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.timepicker.ClockFaceView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.timepicker.ClockHandView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.google.android.material.timepicker.TimePickerView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.otaliastudios.zoom.ZoomImageView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.views.YouTubePlayerSeekBar { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.ramadan.islami.ui.fragment.AyahPage { <init>(...); }
+
+-keep class com.ramadan.islami.ui.fragment.Daily { <init>(...); }
+
+-keep class com.ramadan.islami.ui.fragment.Dashboard { <init>(...); }
+
+-keep class com.ramadan.islami.ui.fragment.FamilyTree { <init>(...); }
+
+-keep class com.ramadan.islami.ui.fragment.FamilyTreeDetails { <init>(...); }
+
+-keep class com.ramadan.islami.ui.fragment.Feedback { <init>(...); }
+
+-keep class com.ramadan.islami.ui.fragment.Quotes { <init>(...); }
+
+-keep class com.ramadan.islami.ui.fragment.Settings { <init>(...); }
+
+-keep class com.ramadan.islami.ui.fragment.Stories { <init>(...); }
+
+-keep class com.ramadan.islami.ui.fragment.Surah { <init>(...); }
+
+-keep class com.ramadan.islami.ui.fragment.Topics { <init>(...); }
+
+-keep class com.smarteist.autoimageslider.IndicatorView.PageIndicatorView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.smarteist.autoimageslider.SliderPager { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.smarteist.autoimageslider.SliderView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.vivekkaushik.datepicker.DatePickerTimeline { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.vivekkaushik.datepicker.TimelineView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class com.yalantis.contextmenu.lib.WrapperView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class net.alhazmy13.hijridatepicker.AccessibleLinearLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class net.alhazmy13.hijridatepicker.AccessibleTextView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class net.alhazmy13.hijridatepicker.VerticalTextView { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class net.alhazmy13.hijridatepicker.date.gregorian.AccessibleDateAnimator { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class net.alhazmy13.hijridatepicker.date.gregorian.TextViewWithCircularIndicator { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class net.alhazmy13.hijridatepicker.date.hijri.AccessibleDateAnimator { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class net.alhazmy13.hijridatepicker.date.hijri.TextViewWithCircularIndicator { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keep class net.alhazmy13.hijridatepicker.time.RadialPickerLayout { <init>(android.content.Context, android.util.AttributeSet); }
+
+-keepclassmembers class * { *** monthView(android.view.View); }
+

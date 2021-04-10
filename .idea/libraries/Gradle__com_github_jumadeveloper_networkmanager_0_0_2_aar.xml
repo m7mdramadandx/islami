@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.jumadeveloper:networkmanager:0.0.2@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dfec05521ca11c6c1d970dede2027b8b/jetified-networkmanager-0.0.2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dfec05521ca11c6c1d970dede2027b8b/jetified-networkmanager-0.0.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dfec05521ca11c6c1d970dede2027b8b/jetified-networkmanager-0.0.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c1ad0d671f49d85b03beab35f3115ab5/jetified-networkmanager-0.0.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c1ad0d671f49d85b03beab35f3115ab5/jetified-networkmanager-0.0.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c1ad0d671f49d85b03beab35f3115ab5/jetified-networkmanager-0.0.2/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jumadeveloper/networkmanager/0.0.2/f8ada182391e87f9822455aa995d029053a00885/networkmanager-0.0.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jumadeveloper/networkmanager/0.0.2/517c8d88a1bcfa7f969a628522fd8a859a9f65f5/networkmanager-0.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,2 @@
+com/ramadan/islami/BuildConfig.java
+ com.ramadan.islami.BuildConfig

@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config>
+        <device id="pixel_4_xl" />
+        <device id="pixel" />
+        <device id="pixel_xl" />
+        <device id="pixel_2" />
+        <device id="Nexus 7" />
+        <device id="pixel_3a" />
+        <device id="pixel_2_xl" />
+        <device id="pixel_3_xl" />
+        <device id="pixel_3a_xl" />
+        <locale>ar</locale>
+        <target>android-21</target>
+      </config>
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="TOTO" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b9140d88-8082-4ed0-9e6e-6ef219e94e9f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/output-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/output-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/data/repo/FirebaseRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/data/repo/FirebaseRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/ui/activity/AzanActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/ui/activity/AzanActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/ui/activity/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/ui/activity/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/ui/activity/SplashScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/ui/activity/SplashScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/ui/adapter/StoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/ui/adapter/StoryAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/ui/fragment/AyahPage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/ui/fragment/AyahPage.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/ui/viewModel/FirebaseViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/ui/viewModel/FirebaseViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/utils/NotificationHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/utils/NotificationHelper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/utils/Utils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/utils/Utils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/font-v26/kemenag_font_family.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/font-v26/kemenag_font_family.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_azan.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_azan.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_date_conversion.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_date_conversion.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_prayer_times.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_prayer_times.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_qibla.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_qibla.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash_screen.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/img_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/img_dialog.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_card.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_card.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_family_tree.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_family_tree.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_slider_img.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_slider_img.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_surah.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_surah.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_tile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_tile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/main_content.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/main_content.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/slide_drawer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/slide_drawer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-ar-rEG/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_3_API_29]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Data Class" />
+        <option value="Class" />
+        <option value="Kotlin Class" />
+        <option value="layoutResourceFile" />
+        <option value="resourceFile" />
+        <option value="valueResourceFile" />
+      </list>
+    </option>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="D:\androidProjects\keyStore.jks" />
+    <option name="KEY_ALIAS" value="Mhmd" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
+    <option name="BUILD_TARGET_KEY" value="apk" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KotlinCodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="ProjectId" id="1cEXJ19Cilb1DLoapJc9NT51Otn" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="AnalyzeApkAction.lastApkPath" value="$PROJECT_DIR$/app/release/Isalmic Awareenss 1.1.apk" />
+    <property name="ApkExportedModule" value="islami.app" />
+    <property name="BundleExportedModule" value="islami.app" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Iphone_X" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-03-30T13:45:33.586Z" />
+    <property name="ExportApk.ApkPath" value="D:\androidProjects\islami\app" />
+    <property name="ExportApk.BuildVariants" value="release" />
+    <property name="ExportApk.SignV1" value="true" />
+    <property name="ExportApk.SignV2" value="true" />
+    <property name="ResourceManagerPrefKey.ResourceType" value="COLOR" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SelectDeploymentTargetsDialog.selectedDevices" value="Nexus_5X_API_27" />
+    <property name="android-custom-viewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/androidx.cardview/cardview/1.0.0/c9f3ce7ca74ad2c978230f4094ba6804c5166f9c/cardview-1.0.0-sources.jar!/androidx/cardview/widget/CardView.java_SELECTED" value="CardView" />
+    <property name="android-custom-viewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
+    <property name="android-custom-viewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/com.github.florent37/expansionpanel/1.2.4/701f6e25583a40b1f7d48d54480273f88fe6a0b1/expansionpanel-1.2.4-sources.jar!/com/github/florent37/expansionpanel/ExpansionLayout.java_SELECTED" value="ExpansionLayout" />
+    <property name="android-custom-viewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/com.github.smarteist/autoimageslider/1.3.7/76de077e836a9264760eda2abc4308b05d9b16b8/autoimageslider-1.3.7-sources.jar!/com/smarteist/autoimageslider/SliderView.java_SELECTED" value="SliderView" />
+    <property name="android-custom-viewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.3.0/b42a5159ef2c670d26ce08246ec5aaf8f92e5a42/material-1.3.0-sources.jar!/com/google/android/material/navigation/NavigationView.java_SELECTED" value="NavigationView" />
+    <property name="android-custom-viewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/com.otaliastudios/zoomlayout/1.8.0/fd3a04ac9adc0634e7d19468441a3917372f4a3a/zoomlayout-1.8.0-sources.jar!/com/otaliastudios/zoom/ZoomLayout.kt_SELECTED" value="ZoomLayout" />
+    <property name="android-custom-viewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/com.pierfrancescosoffritti.androidyoutubeplayer/core/10.0.5/5fdb51ce5dce99605ead027ff7bd3e8e2f12e3e4/core-10.0.5-sources.jar!/com/pierfrancescosoffritti/androidyoutubeplayer/core/player/views/YouTubePlayerView.kt_SELECTED" value="YouTubePlayerView" />
+    <property name="android-custom-viewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/de.blox/graphview/0.7.1/1fea27e60300e919d0badd3e2b6767fb4029de25/graphview-0.7.1-sources.jar!/de/blox/graphview/GraphView.kt_SELECTED" value="GraphView" />
+    <property name="android-custom-viewD:/androidProjects/Islamic Awareness/app/src/main/java/com/ramadan/islami/utils/LinedTextView.java_SELECTED" value="LinedTextView" />
+    <property name="android-custom-viewD:/androidProjects/Islamic Awareness/app/src/main/java/com/ramadan/islamicAwareness/utils/ZoomLayout.java_SELECTED" value="ZoomLayout" />
+    <property name="android-custom-viewD:/androidProjects/islami/app/src/main/java/com/ramadan/islami/utils/AyahNumber.kt_SELECTED" value="AyahNumberView" />
+    <property name="android-custom-viewD:/androidProjects/islami/app/src/main/java/com/ramadan/islami/utils/LinedTextView.java_SELECTED" value="LinedTextView" />
+    <property name="android.recentlyUsedThemes" value="AppTheme" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last.edited.regexp" value="123" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/release" />
+    <property name="multi-representation-previewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/androidx.cardview/cardview/1.0.0/c9f3ce7ca74ad2c978230f4094ba6804c5166f9c/cardview-1.0.0-sources.jar!/androidx/cardview/widget/CardView.java_selected" value="Custom views" />
+    <property name="multi-representation-previewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
+    <property name="multi-representation-previewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/com.github.florent37/expansionpanel/1.2.4/701f6e25583a40b1f7d48d54480273f88fe6a0b1/expansionpanel-1.2.4-sources.jar!/com/github/florent37/expansionpanel/ExpansionLayout.java_selected" value="Custom views" />
+    <property name="multi-representation-previewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/com.github.smarteist/autoimageslider/1.3.7/76de077e836a9264760eda2abc4308b05d9b16b8/autoimageslider-1.3.7-sources.jar!/com/smarteist/autoimageslider/SliderView.java_selected" value="Custom views" />
+    <property name="multi-representation-previewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.3.0/b42a5159ef2c670d26ce08246ec5aaf8f92e5a42/material-1.3.0-sources.jar!/com/google/android/material/navigation/NavigationView.java_selected" value="Custom views" />
+    <property name="multi-representation-previewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/com.otaliastudios/zoomlayout/1.8.0/fd3a04ac9adc0634e7d19468441a3917372f4a3a/zoomlayout-1.8.0-sources.jar!/com/otaliastudios/zoom/ZoomLayout.kt_selected" value="Custom views" />
+    <property name="multi-representation-previewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/com.pierfrancescosoffritti.androidyoutubeplayer/core/10.0.5/5fdb51ce5dce99605ead027ff7bd3e8e2f12e3e4/core-10.0.5-sources.jar!/com/pierfrancescosoffritti/androidyoutubeplayer/core/player/views/YouTubePlayerView.kt_selected" value="Custom views" />
+    <property name="multi-representation-previewC:/Users/mhmdr/.gradle/caches/modules-2/files-2.1/de.blox/graphview/0.7.1/1fea27e60300e919d0badd3e2b6767fb4029de25/graphview-0.7.1-sources.jar!/de/blox/graphview/GraphView.kt_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/androidProjects/Islamic Awareness/app/src/main/java/com/ramadan/islami/utils/LinedTextView.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/androidProjects/Islamic Awareness/app/src/main/java/com/ramadan/islamicAwareness/utils/ZoomLayout.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/androidProjects/islami/app/src/main/java/com/ramadan/islami/utils/AyahNumber.kt_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/androidProjects/islami/app/src/main/java/com/ramadan/islami/utils/LinedTextView.java_selected" value="Custom views" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="MODULE_TAB" value="Properties" />
+    <option name="BUILD_VARIANTS_TAB" value="Build Types" />
+    <option name="LAST_EDITED_SIGNING_CONFIG" value="debug" />
+    <option name="LAST_EDITED_BUILD_TYPE" value="debug" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.ramadan.islami.ui.viewModel" />
+      <recent name="com.ramadan.islami.data.listener" />
+      <recent name="com.ramadan.islami.ui.fragment" />
+      <recent name="com.ramadan.islamicAwareness.ui.activity" />
+      <recent name="com.ramadan.islamicAwareness.sampledata" />
+    </key>
+    <key name="android.template.-962772547">
+      <recent name="com.ramadan.islamicAwareness.ui.activity" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.ramadan.islami.ui.fragment" />
+      <recent name="com.ramadan.islami.data.repo" />
+      <recent name="com.ramadan.islami.utils" />
+      <recent name="com.ramadan.islami.ui.activity" />
+      <recent name="com.ramadan.islami.data.model" />
+    </key>
+    <key name="android.template.packageName">
+      <recent name="com.ramadan.qsas" />
+    </key>
+    <key name="CreateKotlinClassDialog.RecentsKey">
+      <recent name="com.ramadan.islami.data.api" />
+      <recent name="com.ramadan.islamicAwareness.utils" />
+    </key>
+    <key name="android.template.-236100633">
+      <recent name="com.ramadan.islamicAwareness.ui.activity" />
+    </key>
+    <key name="android.template.-879987290">
+      <recent name="com.ramadan.islamicAwareness.ui.activity" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.ramadan.qsas" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\androidProjects\islami\app\src\main\res\layout" />
+      <recent name="D:\androidProjects\islami\app\src\main\res\anim" />
+      <recent name="D:\androidProjects\islami\app\src\main\res\drawable" />
+      <recent name="D:\androidProjects\islami\app\src\main\res\drawable-mdpi" />
+      <recent name="D:\androidProjects\islami\app\src\main\res\font-v26" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ramadan.qsas.Model" />
+    </key>
+    <key name="android.template.1848099471">
+      <recent name="com.ramadan.islami.ui.activity" />
+      <recent name="com.ramadan.islami" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\androidProjects\Islamic Awareness\app\src\main\res\drawable" />
+      <recent name="D:\androidProjects\Islamic Awareness\app\src\main\res\font" />
+      <recent name="C:\Users\mhmdr\Documents\androidProjects\Islamic Awareness\app\src\main\res\drawable-v24" />
+      <recent name="C:\Users\mhmdr\Documents\androidProjects\Islamic Awareness\app\src\main\java\com\ramadan\islamicAwareness" />
+      <recent name="C:\Users\mhmdr\Documents\androidProjects\The Reminder\app\src\main\java\com\ramadan\islamicAwareness" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="./size-analyzer check-bundle &lt;path-to-aab&gt; " />
+    </option>
+  </component>
+  <component name="RunManager" selected="Android App.app">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="islami.app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Islamic Awareness [signingReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="signingReport" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.Islamic Awareness [signingReport]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b9140d88-8082-4ed0-9e6e-6ef219e94e9f" name="Default Changelist" comment="" />
+      <created>1590094650372</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590094650372</updated>
+    </task>
+    <task id="LOCAL-00001" summary="added ar lang and prophets tree">
+      <created>1610263998952</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1610263998952</updated>
+    </task>
+    <task id="LOCAL-00002" summary="---">
+      <created>1610948291196</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1610948291196</updated>
+    </task>
+    <task id="LOCAL-00003" summary="---">
+      <created>1610966169024</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1610966169024</updated>
+    </task>
+    <task id="LOCAL-00004" summary="---">
+      <created>1611075758969</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1611075758969</updated>
+    </task>
+    <task id="LOCAL-00005" summary="---">
+      <created>1611638876393</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1611638876395</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added videos">
+      <created>1611681458255</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1611681458255</updated>
+    </task>
+    <task id="LOCAL-00007" summary="----">
+      <created>1611979730525</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1611979730525</updated>
+    </task>
+    <task id="LOCAL-00008" summary="----">
+      <created>1612137891153</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1612137891153</updated>
+    </task>
+    <task id="LOCAL-00009" summary="----">
+      <created>1612340223798</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1612340223798</updated>
+    </task>
+    <task id="LOCAL-00010" summary="----">
+      <created>1612684151566</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1612684151575</updated>
+    </task>
+    <task id="LOCAL-00011" summary="----">
+      <created>1613004504849</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1613004505101</updated>
+    </task>
+    <task id="LOCAL-00012" summary="----">
+      <created>1613299625613</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1613299625613</updated>
+    </task>
+    <task id="LOCAL-00013" summary="----">
+      <created>1614334629494</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1614334629494</updated>
+    </task>
+    <task id="LOCAL-00014" summary="----">
+      <created>1614699206343</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1614699206470</updated>
+    </task>
+    <task id="LOCAL-00015" summary="----">
+      <created>1614979485209</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1614979485209</updated>
+    </task>
+    <task id="LOCAL-00016" summary="improves">
+      <created>1615988589200</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1615988589201</updated>
+    </task>
+    <task id="LOCAL-00017" summary="improves">
+      <created>1616774426848</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1616774426848</updated>
+    </task>
+    <task id="LOCAL-00018" summary="improves">
+      <created>1616818165255</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1616818165256</updated>
+    </task>
+    <task id="LOCAL-00019" summary="improves">
+      <created>1616877500173</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1616877500173</updated>
+    </task>
+    <task id="LOCAL-00020" summary="improves">
+      <created>1616880248262</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1616880248262</updated>
+    </task>
+    <task id="LOCAL-00021" summary="improves">
+      <created>1616883732917</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1616883732917</updated>
+    </task>
+    <task id="LOCAL-00022" summary="improves">
+      <created>1616909712642</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1616909712642</updated>
+    </task>
+    <task id="LOCAL-00023" summary="improves">
+      <created>1616960113388</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1616960113388</updated>
+    </task>
+    <task id="LOCAL-00024" summary="improves">
+      <created>1616963438957</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1616963438957</updated>
+    </task>
+    <task id="LOCAL-00025" summary="improves">
+      <created>1616966576467</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1616966576467</updated>
+    </task>
+    <task id="LOCAL-00026" summary="shrink code">
+      <created>1616979593713</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1616979593713</updated>
+    </task>
+    <task id="LOCAL-00027" summary="shrink code">
+      <created>1617080583541</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1617080583541</updated>
+    </task>
+    <task id="LOCAL-00028" summary="improves">
+      <created>1617125622345</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1617125622345</updated>
+    </task>
+    <task id="LOCAL-00029" summary="improves">
+      <created>1617150332805</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1617150332805</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:D:/androidProjects/Islamic Awareness/app/src/main/res/layout" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/The-Reminder" />
+    </ignored-roots>
+    <MESSAGE value="added ar lang and prophets tree" />
+    <MESSAGE value="---" />
+    <MESSAGE value="added videos" />
+    <MESSAGE value="----" />
+    <MESSAGE value="shrink code" />
+    <MESSAGE value="improves" />
+    <option name="LAST_COMMIT_MESSAGE" value="improves" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="362" y="152" key="#Images" timestamp="1615430623592">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="362" y="152" key="#Images/0.30.1536.834@0.30.1536.834" timestamp="1615430623592" />
+    <state x="170" y="193" key="#PSD" timestamp="1618060106142">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="170" y="193" key="#PSD/0.30.1536.834@0.30.1536.834" timestamp="1618060106142" />
+    <state x="359" y="257" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1616806578778">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="359" y="257" key="#com.intellij.fileTypes.FileTypeChooser/0.30.1536.834@0.30.1536.834" timestamp="1616806578778" />
+    <state x="389" y="163" key="#com.intellij.ide.util.MemberChooser" timestamp="1617772436400">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="389" y="163" key="#com.intellij.ide.util.MemberChooser/0.30.1536.834@0.30.1536.834" timestamp="1617772436400" />
+    <state x="317" y="240" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1615853703334">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="317" y="240" key="#com.intellij.ide.util.TreeClassChooserDialog/0.30.1536.834@0.30.1536.834" timestamp="1615853703334" />
+    <state x="232" y="30" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1617080107016">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="232" y="30" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.30.1536.834@0.30.1536.834" timestamp="1617080107016" />
+    <state x="318" y="198" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1616953321644">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="318" y="198" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.30.1536.834@0.30.1536.834" timestamp="1616953321644" />
+    <state x="409" y="172" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1614808923042">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="409" y="172" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.30.1536.834@0.30.1536.834" timestamp="1614808923042" />
+    <state x="351" y="340" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1617773961867">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="351" y="340" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.30.1536.834@0.30.1536.834" timestamp="1617773961867" />
+    <state x="92" y="130" width="1093" height="634" key="AVDManager" timestamp="1618060014055">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="92" y="130" width="1093" height="634" key="AVDManager/0.30.1536.834@0.30.1536.834" timestamp="1618060014055" />
+    <state x="191" y="205" key="AndroidCreateResourceDirectoryDialog" timestamp="1616474003174">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="191" y="205" key="AndroidCreateResourceDirectoryDialog/0.30.1536.834@0.30.1536.834" timestamp="1616474003174" />
+    <state x="191" y="202" key="AndroidCreateResourceFileDialog" timestamp="1617762760002">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="191" y="202" key="AndroidCreateResourceFileDialog/0.30.1536.834/1920.0.1280.689@0.30.1536.834" timestamp="1616450695077" />
+    <state x="191" y="202" key="AndroidCreateResourceFileDialog/0.30.1536.834@0.30.1536.834" timestamp="1617762760002" />
+    <state x="407" y="238" width="1129" height="382" key="AndroidCreateXmlResourceDialog" timestamp="1617554846051">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="407" y="238" width="1129" height="382" key="AndroidCreateXmlResourceDialog/0.30.1536.834@0.30.1536.834" timestamp="1617554846051" />
+    <state x="260" y="157" key="AndroidThemeDialog" timestamp="1613411425147">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="260" y="157" key="AndroidThemeDialog/0.30.1536.834@0.30.1536.834" timestamp="1613411425147" />
+    <state x="169" y="39" width="1224" height="822" key="CommitChangelistDialog2" timestamp="1617150282139">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="169" y="39" width="1224" height="822" key="CommitChangelistDialog2/0.30.1536.834@0.30.1536.834" timestamp="1617150282139" />
+    <state width="511" height="466" key="DebuggerActiveHint" timestamp="1617963646779">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="511" height="466" key="DebuggerActiveHint/0.30.1536.834@0.30.1536.834" timestamp="1617963646779" />
+    <state x="93" y="123" width="1350" height="648" key="DiffContextDialog" timestamp="1610912008896">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="93" y="123" width="1350" height="648" key="DiffContextDialog/0.30.1536.834@0.30.1536.834" timestamp="1610912008896" />
+    <state x="368" y="206" key="FileChooserDialogImpl" timestamp="1618059737012">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="368" y="206" key="FileChooserDialogImpl/0.30.1536.834@0.30.1536.834" timestamp="1618059737012" />
+    <state width="1244" height="199" key="GridCell.Tab.0.bottom" timestamp="1618062619994">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1497" height="205" key="GridCell.Tab.0.bottom/0.30.1536.834/1920.0.1280.689@0.30.1536.834" timestamp="1616452155104" />
+    <state width="1244" height="199" key="GridCell.Tab.0.bottom/0.30.1536.834@0.30.1536.834" timestamp="1618062619994" />
+    <state width="1244" height="199" key="GridCell.Tab.0.center" timestamp="1618062619994">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1497" height="205" key="GridCell.Tab.0.center/0.30.1536.834/1920.0.1280.689@0.30.1536.834" timestamp="1616452155104" />
+    <state width="1244" height="199" key="GridCell.Tab.0.center/0.30.1536.834@0.30.1536.834" timestamp="1618062619994" />
+    <state width="1244" height="199" key="GridCell.Tab.0.left" timestamp="1618062619994">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1497" height="205" key="GridCell.Tab.0.left/0.30.1536.834/1920.0.1280.689@0.30.1536.834" timestamp="1616452155104" />
+    <state width="1244" height="199" key="GridCell.Tab.0.left/0.30.1536.834@0.30.1536.834" timestamp="1618062619994" />
+    <state width="1244" height="199" key="GridCell.Tab.0.right" timestamp="1618062619994">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1497" height="205" key="GridCell.Tab.0.right/0.30.1536.834/1920.0.1280.689@0.30.1536.834" timestamp="1616452155104" />
+    <state width="1244" height="199" key="GridCell.Tab.0.right/0.30.1536.834@0.30.1536.834" timestamp="1618062619994" />
+    <state width="1244" height="199" key="GridCell.Tab.1.bottom" timestamp="1618062619995">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1497" height="205" key="GridCell.Tab.1.bottom/0.30.1536.834/1920.0.1280.689@0.30.1536.834" timestamp="1616452155105" />
+    <state width="1244" height="199" key="GridCell.Tab.1.bottom/0.30.1536.834@0.30.1536.834" timestamp="1618062619995" />
+    <state width="1244" height="199" key="GridCell.Tab.1.center" timestamp="1618062619994">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1497" height="205" key="GridCell.Tab.1.center/0.30.1536.834/1920.0.1280.689@0.30.1536.834" timestamp="1616452155104" />
+    <state width="1244" height="199" key="GridCell.Tab.1.center/0.30.1536.834@0.30.1536.834" timestamp="1618062619994" />
+    <state width="1244" height="199" key="GridCell.Tab.1.left" timestamp="1618062619994">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1497" height="205" key="GridCell.Tab.1.left/0.30.1536.834/1920.0.1280.689@0.30.1536.834" timestamp="1616452155104" />
+    <state width="1244" height="199" key="GridCell.Tab.1.left/0.30.1536.834@0.30.1536.834" timestamp="1618062619994" />
+    <state width="1244" height="199" key="GridCell.Tab.1.right" timestamp="1618062619994">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="1497" height="205" key="GridCell.Tab.1.right/0.30.1536.834/1920.0.1280.689@0.30.1536.834" timestamp="1616452155105" />
+    <state width="1244" height="199" key="GridCell.Tab.1.right/0.30.1536.834@0.30.1536.834" timestamp="1618062619994" />
+    <state x="138" y="96" key="SettingsEditor" timestamp="1617762959523">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="138" y="96" key="SettingsEditor/0.30.1536.834@0.30.1536.834" timestamp="1617762959523" />
+    <state width="498" height="495" key="SwitcherDM" timestamp="1617111116053">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state width="498" height="495" key="SwitcherDM/0.30.1536.834@0.30.1536.834" timestamp="1617111116053" />
+    <state x="329" y="189" key="Vcs.Push.Dialog.v2" timestamp="1614979182307">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="329" y="189" key="Vcs.Push.Dialog.v2/0.30.1536.834@0.30.1536.834" timestamp="1614979182307" />
+    <state x="399" y="231" key="chooseDestDirectoryDialog" timestamp="1616621694368">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="399" y="231" key="chooseDestDirectoryDialog/0.30.1536.834@0.30.1536.834" timestamp="1616621694368" />
+    <state x="56" y="115" width="1350" height="648" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1610912008896">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="56" y="115" width="1350" height="648" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.30.1536.834@0.30.1536.834" timestamp="1610912008896" />
+    <state x="137" y="119" width="1034" height="634" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1617123138794">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="137" y="119" width="1034" height="634" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.30.1536.834@0.30.1536.834" timestamp="1617123138794" />
+    <state x="424" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1613454554464">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="424" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.30.1536.834@0.30.1536.834" timestamp="1613454554464" />
+    <state x="331" y="193" width="622" height="520" key="find.popup" timestamp="1615835503561">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="331" y="193" width="622" height="520" key="find.popup/0.30.1536.834@0.30.1536.834" timestamp="1615835503561" />
+    <state x="378" y="224" width="526" height="452" key="refactoring.ChangeSignatureDialog" timestamp="1615158521157">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="378" y="224" width="526" height="452" key="refactoring.ChangeSignatureDialog/0.30.1536.834@0.30.1536.834" timestamp="1615158521157" />
+    <state x="270" y="206" width="672" height="677" key="run.anything.popup" timestamp="1617586896526">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="270" y="206" width="672" height="677" key="run.anything.popup/0.30.1536.834@0.30.1536.834" timestamp="1617586896526" />
+    <state x="250" y="186" width="672" height="678" key="search.everywhere.popup" timestamp="1616016700954">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="250" y="186" width="672" height="678" key="search.everywhere.popup/0.30.1536.834@0.30.1536.834" timestamp="1616016700954" />
+    <state x="391" y="234" key="strings.multiline.dialog" timestamp="1616268879775">
+      <screen x="0" y="30" width="1536" height="834" />
+    </state>
+    <state x="391" y="234" key="strings.multiline.dialog/0.30.1536.834@0.30.1536.834" timestamp="1616268879775" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/data/database/LocalDb.kt</url>
+          <line>57</line>
+          <option name="timeStamp" value="82" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/ramadan/islami/data/repo/FirebaseRepository.kt</url>
+          <line>93</line>
+          <option name="timeStamp" value="117" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
