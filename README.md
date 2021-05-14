@@ -3,7 +3,7 @@ islami App eases and notifies your Islamic duties.
 
 # Google Play -
 
-[![](https://www.altitude-games.com/wp-content/uploads/2014/04/get-it-on-google-play.jpg)](https://play.google.com/store/apps/details?id=com.ramadan.islami)
+[![](https://www.altitude-games.com/wp-content/uploads/2014/04/get-it-on-google-play.jpg)](https://play.google.com/store/apps/details?id=com.ramadan.Islami)
 
 
 islami App eases and notifies your Islamic duties. We provide an accurate prayer time & azan application, also features the Holy Quran as well as Qibla locator, an Islamic Hijri calendar, hadiths, Huge library of remembrance, important topics and videos, etc...
